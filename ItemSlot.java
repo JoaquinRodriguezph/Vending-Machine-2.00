@@ -33,6 +33,10 @@ public class ItemSlot {
         return false;
     }
 
+    public boolean isAvailable() {
+        return stock > 0;
+    }
+
     private final int SLOTNUMBER;
 
     private Item item;
