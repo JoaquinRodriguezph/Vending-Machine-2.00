@@ -2,7 +2,7 @@ public class ItemTransaction {
     public ItemTransaction(Item item){
         this.item = item;
     }
-
+//dang
     public Item getItem() {
         return item;
     }
