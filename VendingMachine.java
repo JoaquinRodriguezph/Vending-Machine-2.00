@@ -31,4 +31,10 @@ public class VendingMachine {
             System.out.println("(" + slot + ")Selected Item: " + selectedItem.getItem().getName());
         return b;
     }
+
+    public boolean receivePayment(int cost) {
+        
+
+    }
+
 }
