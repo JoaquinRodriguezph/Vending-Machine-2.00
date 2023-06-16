@@ -17,10 +17,18 @@ public class VendingMachine {
     }
 
     public boolean chooseItem(int slot){
-        boolean result = false;
+        boolean b = false;
+        ItemSlot selectedItem = null;
         for (ItemSlot item: itemSlots){
-
+            if (slot == item.getSlotNumber()) {
+                b = true;
+                selectedItem = item;
+            }
         }
-        return result;
+        if (b == false)
+            System.out.println("Error: Invalid Item Selection");
+        else
+            System.out.println("(" + slot + ")Selected Item: " + selectedItem.getItem().getName());
+        return b;
     }
 }
