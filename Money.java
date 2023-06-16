@@ -62,48 +62,67 @@ public class Money {
     public boolean removeMoney(int money) {
         Money temp = new Money();
         temp = this;
-        while (money > 0) {
-            while (money > 5) {
-                while (money > 10) {
-                    while (money > 20) {
-                        while (money > 50) {
-                            while (money > 100) {
-                                while (money > 200) {
-                                    while (money > 500) {
-                                        while (money > 1000) {
-                                            oneThousandPeso--;
-                                            money -= 1000;
-                                        }
-                                        fiveHundredPeso--;
-                                        money -= 500;
-                                    }
-                                    twoHundredPeso--;
-                                    money -= 200;
-                                }
-                                oneHundredPeso--;
-                                money -= 100;
-                            }
-                            fiftyPeso--;
-                            money -= 50;
-                        }
-                        twentyPeso--;
-                        money -= 20;
-                    }
-                    tenPeso--;
-                    money -= 10;
-                }
-                fivePeso--;
-                money -= 5;
-            }
-            onePeso--;
+        boolean b = false;
+
+        while (temp.oneThousandPeso > 0 && money >= 1000) {
+            temp.oneThousandPeso--;
+            money -= 1000;
+        }
+
+        while (temp.fiveHundredPeso > 0 && money >= 500) {
+            temp.fiveHundredPeso--;
+            money -= 500;
+        }
+
+        while (temp.twoHundredPeso > 0 && money >= 200) {
+            temp.twoHundredPeso--;
+            money -= 200;
+        }
+
+        while (temp.oneHundredPeso > 0 && money >= 100) {
+            temp.oneHundredPeso--;
+            money -= 100;
+        }
+
+        while (temp.fiftyPeso > 0 && money >= 50) {
+            temp.fiftyPeso--;
+            money -= 50;
+        }
+
+        while (temp.twentyPeso > 0 && money >= 20) {
+            temp.fiveHundredPeso--;
+            money -= 20;
+        }
+
+        while (temp.tenPeso > 0 && money >= 10) {
+            temp.tenPeso--;
+            money -= 10;
+        }
+
+        while (temp.fivePeso > 0 && money >= 5) {
+            temp.fivePeso--;
+            money -= 5;
+        }
+
+        while (temp.onePeso > 0 && money >= 1) {
+            temp.fiveHundredPeso--;
             money -= 1;
         }
-        if (onePeso < 0 || fivePeso < 0 || tenPeso < 0 || twentyPeso < 0 || fiftyPeso < 0 || oneHundredPeso < 0 || twoHundredPeso < 0 || fiveHundredPeso < 0 || oneThousandPeso < 0){
-            this = temp;
-            temp = null;
-            return false;
+
+        if (money == 0) {
+            this.onePeso = temp.onePeso;
+            this.fivePeso = temp.fivePeso;
+            this.tenPeso = temp.tenPeso;
+            this.twentyPeso = temp.twentyPeso;
+            this.fiftyPeso = temp.fiftyPeso;
+            this.oneHundredPeso = temp.oneHundredPeso;
+            this.twoHundredPeso = temp.twoHundredPeso;
+            this.fiveHundredPeso = temp.fiveHundredPeso;
+            this.oneThousandPeso = temp.oneThousandPeso;
+            b = true;
         }
-        return true;
+        temp = null;
+        return b;
     }
 
     private int onePeso;
