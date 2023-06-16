@@ -59,7 +59,7 @@ public class VendingMachine {
             temp = sc.nextInt();
             switch (temp) {
                 case 1:
-                    payment.addOneHundredPeso(1);
+                    payment.addOnePeso(1);
                     break;
                 case 2:
                     payment.addFiftyPeso(1);
@@ -74,7 +74,7 @@ public class VendingMachine {
                     payment.addFiftyPeso(1);
                     break;
                 case 6:
-                    payment.addOneHundredPeso(1);
+                    payment.addOneHundredPeso(1);   //these maybe changed, since payment does not necessarily need to be a Money instance;
                     break;
                 case 7:
                     payment.addTwoHundredPeso(1);
@@ -84,9 +84,13 @@ public class VendingMachine {
                     break;
                 case 9:
                     payment.addOneThousandPeso(1);
+                case 0:
+                    break;
+                default:
+                    System.out.println("Error: Invalid Option");
             }
-
-            System.out.println("Paid: " + payment.getMoney());
+            if (temp <= 9 && temp >= 1)
+                System.out.println("Paid: " + payment.getMoney());
         }
 
         if (temp == 0) {
@@ -99,11 +103,13 @@ public class VendingMachine {
 
             change = payment.getMoney() - cost;
 
-            money.removeMoney(change);
+            if (money.removeMoney(change))
+                b = true;
         }
 
-
-        return b;
+        if (!b)
+            System.out.println("Transaction Failed");
+        return b;   //true transaction is successful, false otherwise (cancelling of payment or no change)
     }
 
 }
