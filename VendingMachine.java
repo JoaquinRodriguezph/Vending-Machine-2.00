@@ -93,11 +93,14 @@ public class VendingMachine {
                 System.out.println("Paid: " + payment.getMoney());
         }
 
+        System.out.println("Confirm Payment: (1) Yes   (0) No");
+        temp = sc.nextInt();
+
         if (temp == 0) {
             System.out.println("Cancelling Payment...");
         }
         else if (payment.getMoney() >= cost) {
-            System.out.println("Payment Successful!");
+            System.out.println("Payment Successful");
             if (payment.getMoney() != cost)
                 System.out.println("Calculating Change");
 
