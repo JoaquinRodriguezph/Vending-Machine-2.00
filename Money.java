@@ -11,6 +11,42 @@ public class Money {
         return (total + twoHundredPeso * 200 + fiveHundredPeso * 500 + oneThousandPeso * 1000);
     }
 
+    public int getOnePeso() {
+        return onePeso;
+    }
+
+    public int getFivePeso() {
+        return fivePeso;
+    }
+
+    public int getTenPeso() {
+        return tenPeso;
+    }
+
+    public int getTwentyPeso() {
+        return twentyPeso;
+    }
+
+    public int getFiftyPeso() {
+        return fiftyPeso;
+    }
+
+    public int getOneHundredPeso() {
+        return oneHundredPeso;
+    }
+
+    public int getTwoHundredPeso() {
+        return twoHundredPeso;
+    }
+
+    public int getFiveHundredPeso() {
+        return fiveHundredPeso;
+    }
+
+    public int getOneThousandPeso() {
+        return oneThousandPeso;
+    }
+
     public void setOnePeso(int n) {
         this.onePeso = n;
     }
