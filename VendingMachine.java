@@ -62,7 +62,7 @@ public class VendingMachine {
                     payment.addOnePeso(1);
                     break;
                 case 2:
-                    payment.addFiftyPeso(1);
+                    payment.addFivePeso(1);
                     break;
                 case 3:
                     payment.addTenPeso(1);
