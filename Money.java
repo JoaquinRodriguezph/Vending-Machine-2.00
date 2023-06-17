@@ -161,6 +161,41 @@ public class Money {
         return b;
     }
 
+    public void addOnePeso(int n){
+        this.onePeso += n;
+    }
+
+    public void addFivePeso(int n){
+        this.fivePeso += n;
+    }
+
+    public void addTenPeso(int n){
+        this.tenPeso += n;
+    }
+
+    public void addTwentyPeso(int n){
+        this.twentyPeso += n;
+    }
+
+    public void addFiftyPeso(int n){
+        this.fiftyPeso += n;
+    }
+
+    public void addOneHundredPeso(int n){
+        this.oneHundredPeso += n;
+    }
+
+    public void addTwoHundredPeso(int n){
+        this.twoHundredPeso += n;
+    }
+
+    public void addFiveHundredPeso(int n){
+        this.fiveHundredPeso += n;
+    }
+
+    public void addOneThousandPeso(int n){
+        this.oneThousandPeso += n;
+    }
     private int onePeso;
     private int fivePeso;
     private int tenPeso;
