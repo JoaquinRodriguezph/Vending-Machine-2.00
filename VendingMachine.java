@@ -50,7 +50,24 @@ public class VendingMachine {
     }
 
     private void displayItemMenu(){
-
+        System.out.println("=========================");
+        System.out.println("Slot Number|| Item");
+        System.out.println("==========Food===========");
+        System.out.println("1 || Fried Egg (Sunny Side Up");
+        System.out.println("2 || Tapas");
+        System.out.println("3 || Hotdog");
+        System.out.println("4 || Piattos");
+        System.out.println("5 || V-Cut");
+        System.out.println("6 || Corn");
+        System.out.println("7 || Fried Chicken");
+        System.out.println("8 || Bangus");
+        System.out.println("9 || Pork Chop");
+        System.out.println("10 || Tosino");
+        System.out.println("11 || Rice");
+        System.out.println("==========Drinks=========");
+        System.out.println("12 || Coca-Cola");
+        System.out.println("13 || Royal");
+        System.out.println("14 || Bottled Water");
     }
 
     private boolean chooseItem(int slot){
