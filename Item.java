@@ -4,7 +4,6 @@
  * as well which contains the total amount of items.
  */
 public class Item {
-    //peepee poo poo
 
     /**
      * This method is a constructor used to create an item instance
@@ -17,8 +16,8 @@ public class Item {
         this.NAME = name;
         this.cost = cost;
         this.CALORIES = calories;
-        stock = 0;
-        count++;
+        stock = 0;  //item stock default value is 0
+        count++;    //incrementing the number of items created (products)
     }
 
     /**
@@ -78,8 +77,8 @@ public class Item {
     }
 
     public static void delete(Item item) {
-        item = null;
-        count--;
+        item = null;    //deletes the item by making it null
+        count--;    //decrementing the number of object (item)
     }
 
     private final String NAME;
