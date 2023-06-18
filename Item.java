@@ -77,6 +77,11 @@ public class Item {
         this.stock += stock;
     }
 
+    public static void delete(Item item) {
+        item = null;
+        count--;
+    }
+
     private final String NAME;
 
     private int cost;
