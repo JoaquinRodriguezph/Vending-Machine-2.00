@@ -4,6 +4,18 @@ public class Money {
         oneHundredPeso = twoHundredPeso = fiveHundredPeso = oneThousandPeso = 0;
     }
 
+    public Money(Money money) {
+        onePeso = money.onePeso;
+        fivePeso = money.fivePeso;
+        tenPeso = money.tenPeso;
+        twentyPeso = money.twentyPeso;
+        fiftyPeso = money.fiftyPeso;
+        oneHundredPeso = money.oneHundredPeso;
+        twoHundredPeso = money.twoHundredPeso;
+        fiveHundredPeso = money.fiveHundredPeso;
+        oneThousandPeso = money.oneThousandPeso;
+    }
+
     public int getMoney(){
         int total = 0;
 
@@ -110,7 +122,7 @@ public class Money {
         temp.fiveHundredPeso -= money.fiveHundredPeso;
         temp.oneThousandPeso -= money.oneThousandPeso;
 
-        if (!(temp.onePeso < 0 || temp.fivePeso < 0 || temp.tenPeso < 0 || temp.twentyPeso < 0 || temp.fiftyPeso < 0 || temp.oneHundredPeso < 0 || temp.twoHundredPeso < 0 || temp.fiveHundredPeso < 0 || temp.oneThousandPeso < 0)) {
+        if (temp.isValid()) {
             this.onePeso = temp.onePeso;
             this.fivePeso = temp.fivePeso;
             this.tenPeso = temp.tenPeso;
@@ -191,6 +203,10 @@ public class Money {
         }
         temp = null;
         return b;
+    }
+
+    public boolean isValid() {
+        return !(onePeso < 0 || fivePeso < 0 || tenPeso < 0 || twentyPeso < 0 || fiftyPeso < 0 || oneHundredPeso < 0 || twoHundredPeso < 0 || fiveHundredPeso < 0 || oneThousandPeso < 0);
     }
 
     public void addOnePeso(int n){
