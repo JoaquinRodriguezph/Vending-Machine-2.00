@@ -33,7 +33,7 @@ public class VendingMachine {
         return b;
     }
 
-    public boolean receivePayment(int cost) {
+    public boolean receivePayment(int cost, Money wallet) {
         int change;
         int temp = -1;
         Money payment = new Money();
@@ -74,7 +74,7 @@ public class VendingMachine {
                     payment.addFiftyPeso(1);
                     break;
                 case 6:
-                    payment.addOneHundredPeso(1);   //these maybe changed, since payment does not necessarily need to be a Money instance;
+                    payment.addOneHundredPeso(1);
                     break;
                 case 7:
                     payment.addTwoHundredPeso(1);
@@ -100,6 +100,7 @@ public class VendingMachine {
             System.out.println("Cancelling Payment...");
         }
         else if (payment.getMoney() >= cost) {
+            money.addMoney(payment);
             System.out.println("Payment Successful");
             if (payment.getMoney() != cost)
                 System.out.println("Calculating Change");
