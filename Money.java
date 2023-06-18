@@ -95,6 +95,38 @@ public class Money {
         oneThousandPeso += money.oneThousandPeso;
     }
 
+    public boolean removeMoney(Money money) {
+        Money temp = new Money();
+        temp = this;
+        boolean b = false;
+
+        temp.onePeso -= money.onePeso;
+        temp.fivePeso -= money.fivePeso;
+        temp.tenPeso -= money.tenPeso;
+        temp.twentyPeso -= money.twentyPeso;
+        temp.fiftyPeso -= money.fiftyPeso;
+        temp.oneHundredPeso -= money.oneHundredPeso;
+        temp.twoHundredPeso -= money.twoHundredPeso;
+        temp.fiveHundredPeso -= money.fiveHundredPeso;
+        temp.oneThousandPeso -= money.oneThousandPeso;
+
+        if (!(temp.onePeso < 0 || temp.fivePeso < 0 || temp.tenPeso < 0 || temp.twentyPeso < 0 || temp.fiftyPeso < 0 || temp.oneHundredPeso < 0 || temp.twoHundredPeso < 0 || temp.fiveHundredPeso < 0 || temp.oneThousandPeso < 0)) {
+            this.onePeso = temp.onePeso;
+            this.fivePeso = temp.fivePeso;
+            this.tenPeso = temp.tenPeso;
+            this.twentyPeso = temp.twentyPeso;
+            this.fiftyPeso = temp.fiftyPeso;
+            this.oneHundredPeso = temp.oneHundredPeso;
+            this.twoHundredPeso = temp.twoHundredPeso;
+            this.fiveHundredPeso = temp.fiveHundredPeso;
+            this.oneThousandPeso = temp.oneThousandPeso;
+            b = true;
+        }
+
+        temp = null;
+        return b;
+    }
+
     public boolean removeMoney(int money) {
         Money temp = new Money();
         temp = this;

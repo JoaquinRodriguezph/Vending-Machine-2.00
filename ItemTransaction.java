@@ -11,7 +11,7 @@ public class ItemTransaction {
     public ItemTransaction(Item item){
         this.item = item;
     }
-//dangs
+
 
     /**
      * This method gets the item
