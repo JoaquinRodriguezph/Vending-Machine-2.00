@@ -37,6 +37,7 @@ public class VendingMachine {
         int change;
         int temp = -1;
         Money payment = new Money();
+        Money tempWallet = new Money(wallet);
         Scanner sc = new Scanner(System.in);
         boolean b = false;
 
@@ -55,7 +56,7 @@ public class VendingMachine {
         System.out.println("(9) 1000 Pesos");
         System.out.println("=========================");
 
-        while (payment.getMoney() < cost && temp == 0) {
+        while (payment.getMoney() < cost && temp != 0) {
             System.out.println("Insert: ");
             temp = sc.nextInt();
             switch (temp) {
@@ -90,12 +91,20 @@ public class VendingMachine {
                 default:
                     System.out.println("Error: Invalid Option");
             }
-            if (temp <= 9 && temp >= 1)
-                System.out.println("Paid: " + payment.getMoney());
+
+            if (temp <= 9 && temp >= 1) {
+                if (tempWallet.removeMoney(payment)) {
+                    System.out.println("Paid: " + payment.getMoney());
+                    if (payment.getMoney() < cost)
+                        tempWallet = wallet;
+                }
+            }
         }
 
-        System.out.println("Confirm Transaction: (1) Yes   (0) No");
-        temp = sc.nextInt();
+        do {
+            System.out.println("Confirm Transaction: (1) Yes   (0) No");
+            temp = sc.nextInt();
+        } while (temp != 1 && temp != 0);
 
         if (temp == 0) {
             System.out.println("Cancelling Transaction...");
@@ -106,12 +115,18 @@ public class VendingMachine {
 
             change = payment.getMoney() - cost;
             //Display Details of the Transaction
-            System.out.println("");
+            System.out.println("=========================");
+            System.out.println("Amount Paid: " + payment.getMoney());
+            System.out.println("Total Cost:  " + cost);
+            System.out.println("Amount Paid - Total Cost");
+            System.out.println("(Change):    " + change);
+            System.out.println("=========================");
 
             money.addMoney(payment);
 
             if (money.removeMoney(change)) {
-
+                wallet = tempWallet;
+                System.out.println("Transaction Successful");
                 b = true;
             }
             else {
@@ -119,6 +134,9 @@ public class VendingMachine {
                 System.out.println("The Machine Does Not Have Enough Change\nCancelling Transaction...");
             }
         }
+
+        payment = null;
+        tempWallet = null;
 
         if (!b)
             System.out.println("Transaction Failed");
