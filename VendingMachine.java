@@ -13,7 +13,7 @@ public class VendingMachine {
     }
 
     public void mainMenu(Money wallet) {
-        boolean bExit = false;
+        boolean bCon = false;
         boolean bTransaction = false;
         Scanner sc = new Scanner(System.in);
         int slotSelection;
@@ -24,21 +24,24 @@ public class VendingMachine {
             System.out.println("(0) Exit");
             System.out.println("Pick an Item: ");
             slotSelection = sc.nextInt();
+
             if (slotSelection != maintenanceCode) { //if the user is a maintenance person that would or would not like to conduct maintenance
-                bExit = chooseItem(slotSelection);
-                if (bExit && slotSelection != 0) {
+                bCon = chooseItem(slotSelection);
+                if (bCon && slotSelection != 0) {   //if the user selects a valid item
                     itemSelection = itemSlots[slotSelection - 1].getItem();
-                    bTransaction = receivePayment(itemSelection.getCost(), wallet);
+                    bTransaction = receivePayment(itemSelection.getCost(), wallet); //receives the payment from the user
 
-                    if (bTransaction)
-                        //make transactionlog
+                    if (bTransaction)   //updates the transaction log of that item if the transaction was successful
+                        transactionLog[slotSelection - 1].addTransaction();
 
-                        mainMenu(wallet);
+                    mainMenu(wallet);
                 }
             }
-            else
+            else {
                 maintenance();
-        } while (!bExit);   //exit detection also exists within the chooseItem() method
+                mainMenu(wallet);
+            }
+        } while (!bCon);   //exit detection also exists within the chooseItem() method
 
         if (bTransaction)
             System.out.println("Thank You for Your Purchase!");
@@ -61,7 +64,7 @@ public class VendingMachine {
             return true;
 
         for (ItemSlot itemSlot: itemSlots){ //looks for the corresponding slot number in the itemSlots array
-            if (slot == itemSlot.getSlotNumber()) {
+            if (slot == itemSlot.getSlotNumber() && itemSlot.isAvailable()) {   //only accept item slots that are valid and have available stock/s
                 b = true;
                 selectedSlot = itemSlot;
                 selectedItem = selectedSlot.getItem();
@@ -192,7 +195,7 @@ public class VendingMachine {
     }
 
     private void maintenance() {
-
+//reminder to make ItemSlot reflect directly onto transactionLog
     }
 
     private ItemSlot[] itemSlots;
