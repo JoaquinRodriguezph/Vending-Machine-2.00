@@ -13,7 +13,7 @@ public class VendingMachine {
     }
 
     public void mainMenu(Money wallet) {
-        boolean bExit;
+        boolean bExit = false;
         boolean bTransaction = false;
         Scanner sc = new Scanner(System.in);
         int slotSelection;
@@ -24,7 +24,7 @@ public class VendingMachine {
             System.out.println("(0) Exit");
             System.out.println("Pick an Item: ");
             slotSelection = sc.nextInt();
-            if (slotSelection != maintenanceCode) {
+            if (slotSelection != maintenanceCode) { //if the user is a maintenance person that would or would not like to conduct maintenance
                 bExit = chooseItem(slotSelection);
                 if (bExit && slotSelection != 0) {
                     itemSelection = itemSlots[slotSelection - 1].getItem();
