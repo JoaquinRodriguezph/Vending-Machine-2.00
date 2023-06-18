@@ -74,6 +74,10 @@ public class ItemSlot {
         return stock > 0;
     }
 
+    public boolean isEmpty() {
+        return stock == 0;
+    }
+
     private final int SLOTNUMBER;
 
     private Item item;
