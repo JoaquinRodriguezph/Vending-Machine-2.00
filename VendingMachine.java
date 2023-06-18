@@ -40,6 +40,7 @@ public class VendingMachine {
         Scanner sc = new Scanner(System.in);
         boolean b = false;
 
+        System.out.println("Amount to Pay: " + cost + " Pesos");
         System.out.println("=========================");
         System.out.println("(0) Cancel Payment");
         System.out.println("Insert Bills/Coins: ");
@@ -93,22 +94,30 @@ public class VendingMachine {
                 System.out.println("Paid: " + payment.getMoney());
         }
 
-        System.out.println("Confirm Payment: (1) Yes   (0) No");
+        System.out.println("Confirm Transaction: (1) Yes   (0) No");
         temp = sc.nextInt();
 
         if (temp == 0) {
-            System.out.println("Cancelling Payment...");
+            System.out.println("Cancelling Transaction...");
         }
         else if (payment.getMoney() >= cost) {
-            money.addMoney(payment);
-            System.out.println("Payment Successful");
             if (payment.getMoney() != cost)
                 System.out.println("Calculating Change");
 
             change = payment.getMoney() - cost;
+            //Display Details of the Transaction
+            System.out.println("");
 
-            if (money.removeMoney(change))
+            money.addMoney(payment);
+
+            if (money.removeMoney(change)) {
+
                 b = true;
+            }
+            else {
+                money.removeMoney(payment);
+                System.out.println("The Machine Does Not Have Enough Change\nCancelling Transaction...");
+            }
         }
 
         if (!b)
