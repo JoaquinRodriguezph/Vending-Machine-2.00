@@ -1,12 +1,11 @@
 import java.util.Scanner;
 public class VendingMachine {
-    private ItemSlot[] itemSlots;
-    private Money money;
-    private ItemTransaction[] transactionLog;
-    private VendingMachine startingInventory;
 
-    public VendingMachine(int maxSlots) {
-        this.itemSlots = new ItemSlot[maxSlots];
+    public VendingMachine(int maxSlots, int slotMaxItems) {
+        this.itemSlots = new ItemSlot[maxSlots];    //initializing the number of slots in the vending machine
+        for (int i = 0; i < maxSlots; i++) {    //loop to assign SLOTNUMBER and max items in each slot
+            itemSlots[i] = new ItemSlot(i + 1, slotMaxItems);
+        }
     }
 
     public void buyerMenu(){
@@ -142,5 +141,10 @@ public class VendingMachine {
             System.out.println("Transaction Failed");
         return b;   //true transaction is successful, false otherwise (cancelling of payment or no change)
     }
+
+    private ItemSlot[] itemSlots;
+    private Money money;
+    private ItemTransaction[] transactionLog;
+    private VendingMachine startingInventory;
 
 }
