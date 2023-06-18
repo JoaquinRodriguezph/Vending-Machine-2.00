@@ -21,17 +21,25 @@ public class VendingMachine {
 
     public boolean chooseItem(int slot){
         boolean b = false;
-        ItemSlot selectedItem = null;
-        for (ItemSlot item: itemSlots){
-            if (slot == item.getSlotNumber()) {
+        ItemSlot selectedSlot = null;
+        Item selectedItem = null;
+        for (ItemSlot itemSlot: itemSlots){
+            if (slot == itemSlot.getSlotNumber()) {
                 b = true;
-                selectedItem = item;
+                selectedSlot = itemSlot;
+                selectedItem = selectedSlot.getItem();
             }
         }
         if (!b)
             System.out.println("Error: Invalid Item Selection");
-        else
-            System.out.println("(" + slot + ")Selected Item: " + selectedItem.getItem().getName());
+        else {
+            System.out.println("=========================");
+            System.out.println("(" + slot + ")Selected Item: " + selectedItem.getName());
+            System.out.println("Price:           " + selectedItem.getCost() + "PHP");
+            System.out.println("Calorie/s:       " + selectedItem.getCalories());
+            System.out.println("=========================");
+        }
+
         return b;
     }
 
@@ -43,7 +51,7 @@ public class VendingMachine {
         Scanner sc = new Scanner(System.in);
         boolean b = false;
 
-        System.out.println("Amount to Pay: " + cost + " Pesos");
+        System.out.println("Amount to Pay: " + cost + " PHP");
         System.out.println("=========================");
         System.out.println("(0) Cancel Payment");
         System.out.println("Insert Bills/Coins: ");
