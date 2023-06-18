@@ -120,8 +120,7 @@ public class Money {
     }
 
     public boolean removeMoney(Money money) {
-        Money temp = new Money();
-        temp = this;
+        Money temp = new Money(this);
         boolean b = false;
 
         temp.onePeso -= money.onePeso;
@@ -256,6 +255,76 @@ public class Money {
     public void addOneThousandPeso(int n){
         this.oneThousandPeso += n;
     }
+
+    public void showMoney(String info) {
+        System.out.println("*************************");
+        System.out.println("Money in " + info);
+        displayDenominations();
+        System.out.println("Total:      " + getMoney());
+        System.out.println("*************************");
+    }
+
+    public void showMoney() {
+        System.out.println("*************************");
+        displayDenominations();
+        System.out.println("Total:      " + getMoney());
+        System.out.println("*************************");
+    }
+
+    private void displayDenominations() {
+        int[] list = toList();
+        String temp = "";
+
+        for (int i = 0; i < 9; i++) {
+            if (list[i] != 0) {
+                switch (i) {
+                    case 0:
+                        temp = "1 Peso:     ";
+                        break;
+                    case 1:
+                        temp = "5 Pesos:    ";
+                        break;
+                    case 2:
+                        temp = "10 Pesos:   ";
+                        break;
+                    case 3:
+                        temp = "20 Pesos:   ";
+                        break;
+                    case 4:
+                        temp = "50 Pesos:   ";
+                        break;
+                    case 5:
+                        temp = "100 Pesos:  ";
+                        break;
+                    case 6:
+                        temp = "200 Pesos:  ";
+                        break;
+                    case 7:
+                        temp = "500 Pesos:  ";
+                        break;
+                    case 8:
+                        temp = "1000 Pesos: ";
+                }
+                System.out.println(temp + list[i]);
+            }
+        }
+    }
+
+    private int[] toList() {
+        int[] list = new int[9];
+        list[0] = onePeso;
+        list[1] = fivePeso;
+        list[2] = tenPeso;
+        list[3] = twentyPeso;
+        list[4] = fiftyPeso;
+        list[5] = oneHundredPeso;
+        list[6] = twoHundredPeso;
+        list[7] = fiveHundredPeso;
+        list[8] = oneThousandPeso;
+
+        return list;
+    }
+
     private int onePeso;
     private int fivePeso;
     private int tenPeso;
