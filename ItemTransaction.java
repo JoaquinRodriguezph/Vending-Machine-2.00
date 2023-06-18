@@ -37,6 +37,19 @@ public class ItemTransaction {
         return item.getCost() * quantity;
     }
 
+    public void addTransaction() {
+        quantity++;
+    }
+
+    public void clearTransaction() {
+        quantity = 0;
+    }
+
+    @Override
+    public String toString() {
+        return item.getName() + item.getCost() + quantity + getTotal();
+    }
+
     private Item item;
     private int quantity;
 }
