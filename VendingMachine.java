@@ -6,9 +6,12 @@ public class VendingMachine {
         for (int i = 0; i < maxSlots; i++) {    //loop to assign SLOTNUMBER and max items in each slot
             itemSlots[i] = new ItemSlot(i + 1, slotMaxItems);
         }
+        startingInventory = null;
+        transactionLog = new ItemTransaction[maxSlots]; //initializing the number of possible items for the item transactions
+        money = new Money();
     }
 
-    public void buyerMenu(){
+    public void mainMenu(){
 
     }
 
@@ -25,7 +28,7 @@ public class VendingMachine {
                 selectedItem = item;
             }
         }
-        if (b == false)
+        if (!b)
             System.out.println("Error: Invalid Item Selection");
         else
             System.out.println("(" + slot + ")Selected Item: " + selectedItem.getItem().getName());
