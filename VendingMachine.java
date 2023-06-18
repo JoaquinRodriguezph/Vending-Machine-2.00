@@ -1,40 +1,64 @@
 import java.util.Scanner;
 public class VendingMachine {
 
-    public VendingMachine(int maxSlots, int slotMaxItems) {
+    public VendingMachine(int maxSlots, int slotMaxItems, int passcode) {
         this.itemSlots = new ItemSlot[maxSlots];    //initializing the number of slots in the vending machine
         for (int i = 0; i < maxSlots; i++) {    //loop to assign SLOTNUMBER and max items in each slot
             itemSlots[i] = new ItemSlot(i + 1, slotMaxItems);
         }
-        startingInventory = null;
+        startingInventory = null;   //there is no startingInventory when the Vending Machine is first instantiated
         transactionLog = new ItemTransaction[maxSlots]; //initializing the number of possible items for the item transactions
         money = new Money();
+        maintenanceCode = passcode;
     }
 
     public void mainMenu(Money wallet) {
+        boolean bExit;
+        boolean bTransaction = false;
         Scanner sc = new Scanner(System.in);
         int slotSelection;
+        Item itemSelection;
 
         displayItemMenu();
         do {
             System.out.println("(0) Exit");
             System.out.println("Pick an Item: ");
             slotSelection = sc.nextInt();
-        } while (!chooseItem(slotSelection) && slotSelection != 0);
+            if (slotSelection != maintenanceCode) {
+                bExit = chooseItem(slotSelection);
+                if (bExit && slotSelection != 0) {
+                    itemSelection = itemSlots[slotSelection - 1].getItem();
+                    bTransaction = receivePayment(itemSelection.getCost(), wallet);
 
+                    if (bTransaction)
+                        //make transactionlog
+
+                        mainMenu(wallet);
+                }
+            }
+            else
+                maintenance();
+        } while (!bExit);   //exit detection also exists within the chooseItem() method
+
+        if (bTransaction)
+            System.out.println("Thank You for Your Purchase!");
+        else
+            System.out.println("Thank You Come Again!");
+    }
+
+    private void displayItemMenu(){
 
     }
 
-    public void displayItemMenu(){
-
-    }
-
-    public boolean chooseItem(int slot){
+    private boolean chooseItem(int slot){
         boolean b = false;
         ItemSlot selectedSlot = null;
         Item selectedItem = null;
         int temp;
         Scanner sc = new Scanner(System.in);
+
+        if (slot == 0)  //slot selection at 0 for exit per user input
+            return true;
 
         for (ItemSlot itemSlot: itemSlots){ //looks for the corresponding slot number in the itemSlots array
             if (slot == itemSlot.getSlotNumber()) {
@@ -52,20 +76,12 @@ public class VendingMachine {
             System.out.println("Price:           " + selectedItem.getCost() + "PHP");
             System.out.println("Calorie/s:       " + selectedItem.getCalories());
             System.out.println("=========================");
-
-            do {
-                System.out.println("Confirm Selection: (1) Yes   (0) No");
-                temp = sc.nextInt();
-            } while (temp != 1 && temp != 0);
-
-            if (temp == 0)
-                b = false;
         }
 
         return b;
     }
 
-    public boolean receivePayment(int cost, Money wallet) {
+    private boolean receivePayment(int cost, Money wallet) {
         int change;
         int temp = -1;
         Money payment = new Money();
@@ -175,9 +191,14 @@ public class VendingMachine {
         return b;   //true transaction is successful, false otherwise (cancelling of payment or no change)
     }
 
+    private void maintenance() {
+
+    }
+
     private ItemSlot[] itemSlots;
     private Money money;
     private ItemTransaction[] transactionLog;
     private VendingMachine startingInventory;
+    private int maintenanceCode;
 
 }
