@@ -11,7 +11,17 @@ public class VendingMachine {
         money = new Money();
     }
 
-    public void mainMenu(){
+    public void mainMenu(Money wallet) {
+        Scanner sc = new Scanner(System.in);
+        int slotSelection;
+
+        displayItemMenu();
+        do {
+            System.out.println("(0) Exit");
+            System.out.println("Pick an Item: ");
+            slotSelection = sc.nextInt();
+        } while (!chooseItem(slotSelection) && slotSelection != 0);
+
 
     }
 
@@ -23,21 +33,33 @@ public class VendingMachine {
         boolean b = false;
         ItemSlot selectedSlot = null;
         Item selectedItem = null;
-        for (ItemSlot itemSlot: itemSlots){
+        int temp;
+        Scanner sc = new Scanner(System.in);
+
+        for (ItemSlot itemSlot: itemSlots){ //looks for the corresponding slot number in the itemSlots array
             if (slot == itemSlot.getSlotNumber()) {
                 b = true;
                 selectedSlot = itemSlot;
                 selectedItem = selectedSlot.getItem();
             }
         }
-        if (!b)
+
+        if (!b) //identifying whether the item selection is valid
             System.out.println("Error: Invalid Item Selection");
-        else {
+        else {  //details of the selected item
             System.out.println("=========================");
             System.out.println("(" + slot + ")Selected Item: " + selectedItem.getName());
             System.out.println("Price:           " + selectedItem.getCost() + "PHP");
             System.out.println("Calorie/s:       " + selectedItem.getCalories());
             System.out.println("=========================");
+
+            do {
+                System.out.println("Confirm Selection: (1) Yes   (0) No");
+                temp = sc.nextInt();
+            } while (temp != 1 && temp != 0);
+
+            if (temp == 0)
+                b = false;
         }
 
         return b;
