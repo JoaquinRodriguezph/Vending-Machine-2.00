@@ -216,6 +216,7 @@ public class VendingMachine {
                     bMaintenance = false;
                     break;
                 case 1:
+                    displayItemMenu();
                     break;
                 case 2:
                     break;
@@ -232,8 +233,9 @@ public class VendingMachine {
 //this includes Exit (0), ....
         System.out.println("============Maintenance=============");
         System.out.println("(0) Exit");
-        System.out.println("(1) Stock/Restock");
-        System.out.println("(2) Modify Item");
+        System.out.println("(1) Display Slot Information");
+        System.out.println("(2) Stock/Restock");
+        System.out.println("(3) Modify");
 
     }
 
