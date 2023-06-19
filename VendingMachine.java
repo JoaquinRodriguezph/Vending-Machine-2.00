@@ -201,8 +201,40 @@ public class VendingMachine {
         return b;   //true transaction is successful, false otherwise (cancelling of payment or no change)
     }
 
-    private void maintenance() {
+    private void maintenance(Money wallet) {
 //reminder to make ItemSlot reflect directly onto transactionLog
+        boolean bMaintenance = true;
+        Scanner sc = new Scanner(System.in);
+        int nOption;
+
+        displayMaintenanceMenu();   //displays the maintenance menu
+        do {
+            nOption = sc.nextInt();
+
+            switch (nOption) {
+                case 0:
+                    bMaintenance = false;
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+
+            }
+
+            maintenance(wallet);    //recurrence after the user finish performing their action
+        } while (bMaintenance);
+
+    }
+
+    private void displayMaintenanceMenu() {
+//this includes Exit (0), ....
+        System.out.println("============Maintenance=============");
+        System.out.println("(0) Exit");
+        System.out.println("(1) Stock/Restock");
+        System.out.println("(2) Modify Item");
+
     }
 
     private ItemSlot[] itemSlots;
