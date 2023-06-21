@@ -9,14 +9,18 @@ public class Item {
      * This method is a constructor used to create an item instance
      * from the following parameters:
      * @param name This is the name of the item. IT IS FINAL.
-     * @param cost This is the cost of the item.
+     * @param srp This is the SRP of the item. IT IS FINAL
      * @param calories This is the amount of calories in the item. IT IS FINAL.
      */
-    public Item(String name, int cost, int calories){
+    public Item(String name, int srp, int calories){
+        this(name, srp, calories, 0);
+    }
+
+    public Item(String name, int srp, int calories, int stock){
         this.NAME = name;
-        this.cost = cost;
+        this.SRP = srp;
         this.CALORIES = calories;
-        stock = 0;  //item stock default value is 0
+        setStock(stock);  //item stock is set to the parameter stock
         count++;    //incrementing the number of items created (products)
     }
 
@@ -37,15 +41,15 @@ public class Item {
     }
 
     /**
-     * This method gets the cost of the item.
+     * This method gets the SRP of the item.
      * @return the price of the item.
      */
-    public int getCost() {
-        return cost;
+    public int getSRP() {
+        return SRP;
     }
 
     /**
-     * This method gets the count of all items.
+     * This method gets the count of all item instances.
      * @return the count of all items.
      */
     public int getCount() {
@@ -83,7 +87,7 @@ public class Item {
 
     private final String NAME;
 
-    private int cost;
+    private final int SRP;
 
     private final int CALORIES;
 
