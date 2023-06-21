@@ -21,9 +21,9 @@ public class Person {
         return money;
     }
 
-    private final String NAME;
+    protected final String NAME;
 
-    private Money wallet;
+    protected Money wallet;
 }
 
 class MaintenancePerson extends Person{
