@@ -13,7 +13,7 @@ public class Item {
      * @param calories This is the amount of calories in the item. IT IS FINAL.
      */
     public Item(String name, int srp, int calories){
-        this(name, srp, calories, 0);
+        this(name, srp, calories, 0);   //stock set to zero by default
     }
 
     public Item(String name, int srp, int calories, int stock){
