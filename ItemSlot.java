@@ -41,6 +41,10 @@ public class ItemSlot {
         return stock;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     /**
      * This method sets the item that is in the item slot.
      * @param item the item to be set in the slot
