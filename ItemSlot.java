@@ -46,7 +46,16 @@ public class ItemSlot {
      * @param item the item to be set in the slot
      */
     public void setItem(Item item) {
+        setItem(item, item.getSRP());
+    }
+
+    public void setItem(Item item, int price) {
         this.item = item;
+        setPrice(price);
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
     /**
@@ -85,4 +94,6 @@ public class ItemSlot {
     private int stock;
 
     private final int MAX;
+
+    private int price;
 }

@@ -38,7 +38,7 @@ public class VendingMachine {
                 }
             }
             else {
-                maintenance();
+                maintenance(wallet);
                 mainMenu(wallet);
             }
         } while (!bCon);   //exit detection also exists within the chooseItem() method
