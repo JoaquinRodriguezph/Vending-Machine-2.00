@@ -157,6 +157,8 @@ public class VendingMachine {
                     if (payment.getMoney() < cost)
                         tempWallet = wallet;
                 }
+                else
+                    System.out.println("Error: Invalid Money Availability");
             }
         }
 
@@ -378,7 +380,87 @@ public class VendingMachine {
     }
 
     public void replenishMoney(Money wallet) {
+        int temp = -1;
+        int quantity;
+        Money change = new Money();
+        Money tempWallet = new Money(wallet);
+        Scanner sc = new Scanner(System.in);
+        boolean b = false;
 
+        while (temp != 0) {
+            System.out.println("Replenish Change");
+            System.out.println("=========================");
+            System.out.println("(0) Finish");
+            System.out.println("Replenish Bills/Coins: ");
+            System.out.println("(1) 1 Peso");
+            System.out.println("(2) 5 Pesos");
+            System.out.println("(3) 10 Pesos");
+            System.out.println("(4) 20 Pesos");
+            System.out.println("(5) 50 Pesos");
+            System.out.println("(6) 100 Pesos");
+            System.out.println("(7) 200 Pesos");
+            System.out.println("(8) 500 Pesos");
+            System.out.println("(9) 1000 Pesos");
+            System.out.println("=========================");
+
+
+
+            do {
+                System.out.println("Bills/Coins: ");
+                temp = sc.nextInt();
+                if (quantity < 0)
+                    System.out.println("Error: Invalid Option");
+            } while (temp < 0 || temp > 9);
+
+            do {
+                System.out.println("Quantity: ");
+                quantity = sc.nextInt();
+                if (quantity < 0)
+                    System.out.println("Error: Invalid Quantity");
+                else if (quantity == 0)
+                    temp = 0;
+            } while (quantity < 0);
+
+            switch (temp) {
+                case 1:
+                    change.addOnePeso(1);
+                    break;
+                case 2:
+                    change.addFivePeso(1);
+                    break;
+                case 3:
+                    change.addTenPeso(1);
+                    break;
+                case 4:
+                    change.addTwentyPeso(1);
+                    break;
+                case 5:
+                    change.addFiftyPeso(1);
+                    break;
+                case 6:
+                    change.addOneHundredPeso(1);
+                    break;
+                case 7:
+                    change.addTwoHundredPeso(1);
+                    break;
+                case 8:
+                    change.addFiveHundredPeso(1);
+                    break;
+                case 9:
+                    change.addOneThousandPeso(1);
+                case 0:
+            }
+
+            if (temp <= 9 && temp >= 1) {
+                if (tempWallet.removeMoney(change)) {
+                    change.showMoney(NAME + "Change");
+                    tempWallet = wallet;
+                }
+                else
+                    System.out.println("Error: Invalid Money Availability");
+            }
+            else if (temp == 0)
+        }
     }
 
 
