@@ -75,6 +75,7 @@ public class Item {
     /**
      * This method adds the amount of items in stock of the item.
      * @param stock the amount of item to add in stock.
+     * @return true if stock to be added is greater than 0, false otherwise.
      */
     public boolean addStock(int stock) {
         boolean b = false;

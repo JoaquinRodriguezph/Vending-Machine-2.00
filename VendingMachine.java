@@ -302,15 +302,30 @@ public class VendingMachine {
     }
 
     public boolean restock(int slot, int quantity) {
+        boolean b = false;
 
+        if (isValidSlot(slot))
+            if (itemSlots[slot - 1].getItem() != null)
+                b = itemSlots[slot - 1].addStock(quantity);
+            else
+                System.out.println("Slot " + slot + " is Not Assigned to Any Items");
+
+        return b;
     }
 
 
     public boolean changePrice(int slot, int price) {
         boolean b = true;
 
-        if (price > 0)
+        if (price > 0) {    //positive integer
+            System.out.print("Slot " + slot);
+            if (itemSlots[slot - 1].getPrice() != 0)    //if the item slot had contained any pre-existing assigned item
+                System.out.print(" Price Has Been Changed From " + itemSlots[slot - 1].getPrice() + " PHP to ");
+            else
+                System.out.print(" Has Been Set to ");
             itemSlots[slot - 1].setPrice(price);
+            System.out.println(itemSlots[slot - 1].getPrice() + " PHP (" + itemSlots[slot - 1].getItem().getName() + ")");
+        }
         else {
             b = false;
             System.out.println("Error: Invalid Price");
@@ -319,12 +334,26 @@ public class VendingMachine {
         return b;
     }
 
-    private boolean addStock(int slot, int quantity) {
+    public boolean setSRP(int slot) {
         boolean b = false;
 
-        if (itemSlots[])
+        if (isValidSlot(slot))
+            if (itemSlots[slot - 1].getItem() != null)
+                b = changePrice(slot, itemSlots[slot - 1].getItem().getSRP());
+            else
+                System.out.println("Slot " + slot + " is Not Assigned to Any Items");
 
+        return b;
     }
+
+    public void setAllSRP() {
+        for (int slot = 1; slot < itemSlots.length; slot++) {
+            if (itemSlots[slot - 1].getItem() != null)
+                changePrice(slot, itemSlots[slot - 1].getItem().getSRP());
+        }
+    }
+
+
 
 
     private final String NAME;
