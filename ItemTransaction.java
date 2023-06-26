@@ -9,7 +9,7 @@ public class ItemTransaction {
      * @param itemSlot item to be counted
      */
     public ItemTransaction(ItemSlot itemSlot){
-        this.itemSlot = itemSlot;
+        this.SLOT = itemSlot;
     }
 
 
@@ -18,7 +18,7 @@ public class ItemTransaction {
      * @return the item of the ItemTransaction instance
      */
     public ItemSlot getItem() {
-        return itemSlot;
+        return SLOT;
     }
 
     /**
@@ -34,7 +34,7 @@ public class ItemTransaction {
      * @return the total cost of the items
      */
     public int getTotal() {
-        return itemSlot.getPrice() * quantity;
+        return SLOT.getPrice() * quantity;
     }
 
     public void addTransaction() {
@@ -47,9 +47,9 @@ public class ItemTransaction {
 
     @Override
     public String toString() {
-        return itemSlot.getItem().getName() + itemSlot.getPrice() + quantity + getTotal();
+        return SLOT.getItem().getName() + SLOT.getPrice() + quantity + getTotal();
     }
 
-    private ItemSlot itemSlot;
+    private final ItemSlot SLOT;
     private int quantity;
 }

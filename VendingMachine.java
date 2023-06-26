@@ -9,6 +9,9 @@ public class VendingMachine {
         }
         startingInventory = null;   //there is no startingInventory when the Vending Machine is first instantiated
         transactionLog = new ItemTransaction[maxSlots]; //initializing the number of possible items for the item transactions
+        for (int i = 0; i < maxSlots; i++) {
+            transactionLog[i] = new ItemTransaction(itemSlots[i]);
+        }
         money = new Money();
     }
 
@@ -276,11 +279,16 @@ public class VendingMachine {
     }
 
     public boolean newStock(int slot, int quantity, Item item, int price) {
-        boolean b = false;
+        boolean b = false, found = false;
 
-        if ()
-        if (isValidSlot(slot))
-            if (isValidItem(item)) {
+
+
+        if (isValidSlot(slot) && isValidItem(item)) {
+            for (int i = 0; i < itemSlots.length; i++) {
+                if (item == itemSlots[i].getItem())
+                    found = true;
+            }
+            if (!found) {
                 if (itemSlots[slot - 1].isEmpty()) {    //check if the itemSlot is empty
                     b = true;
                     System.out.println("Setting Up New Stock On Slot " + slot);
@@ -295,9 +303,13 @@ public class VendingMachine {
                         itemSlots[slot - 1].setItem(item);  //sets the slot to this new item
                         System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getItem().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
                     }
-                }
-                System.out.println("Error: Slot " + slot + " is Not Empty");
+                } else
+                    System.out.println("Error: Slot " + slot + " is Not Empty");
             }
+            else
+                System.out.println("Error: The Same Item Already Exists in Vending Machine " + NAME);
+        }
+
 
         return b;
     }
@@ -348,7 +360,7 @@ public class VendingMachine {
     }
 
     public void setAllSRP() {
-        for (int slot = 1; slot < itemSlots.length; slot++) {
+        for (int slot = 1; slot <= itemSlots.length; slot++) {
             if (itemSlots[slot - 1].getItem() != null)
                 changePrice(slot, itemSlots[slot - 1].getItem().getSRP());
         }
@@ -477,11 +489,23 @@ public class VendingMachine {
     }
 
     public void displayTransactions() {
-
+        for (ItemTransaction transactions : transactionLog) {
+            System.out.println(transactions.toString());
+        }
     }
 
     public void displayInventories() {
 
+    }
+
+    private void displayInventory() {
+
+    }
+
+    public void clearLog() {
+        for (int i = 0; i < transactionLog.length; i++) {
+            transactionLog[i].clearTransaction();
+        }
     }
 
 
