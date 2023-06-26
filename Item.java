@@ -76,8 +76,15 @@ public class Item {
      * This method adds the amount of items in stock of the item.
      * @param stock the amount of item to add in stock.
      */
-    public void addStock(int stock) {
-        this.stock += stock;
+    public boolean addStock(int stock) {
+        boolean b = false;
+        if (stock > 0) {
+            this.stock += stock;
+            System.out.println(stock + "Stocks Have Been added to " + NAME);
+            System.out.println("Current Stock: " + this.stock);
+        }
+
+        return b;
     }
 
     public static void delete(Item item) {

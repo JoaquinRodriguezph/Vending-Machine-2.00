@@ -1,7 +1,8 @@
 import java.util.Scanner;
 public class VendingMachine {
 
-    public VendingMachine(int maxSlots, int slotMaxItems, int passcode) {
+    public VendingMachine(String name, int maxSlots, int slotMaxItems, int passcode) {
+        this.NAME = name;
         this.itemSlots = new ItemSlot[maxSlots];    //initializing the number of slots in the vending machine
         for (int i = 0; i < maxSlots; i++) {    //loop to assign SLOTNUMBER and max items in each slot
             itemSlots[i] = new ItemSlot(i + 1, slotMaxItems);
@@ -200,7 +201,7 @@ public class VendingMachine {
             System.out.println("Transaction Failed");
         return b;   //true transaction is successful, false otherwise (cancelling of payment or no change)
     }
-
+/*
     private void maintenance(Money wallet) {
 //reminder to make ItemSlot reflect directly onto transactionLog
         boolean bMaintenance = true;
@@ -238,6 +239,95 @@ public class VendingMachine {
         System.out.println("(3) Modify");
 
     }
+
+    */
+
+    public boolean isValidItem(Item item) {
+        boolean b = true;
+
+        if (item.getSRP() <= 0 || item == null) //item is invalid if SRP <= 0 or is null
+            b = false;
+
+        if (!b)
+            System.out.println("Error: Invalid Item");
+
+        return b;
+    }
+
+    public boolean isValidSlot(int slot) {
+        if (slot > 0 && slot <= itemSlots.length)
+            return true;
+        else {
+            System.out.println("Error: Invalid Item Slot");
+            return false;
+        }
+    }
+
+    //newStock method: make sure to check if the slot is currently empty
+    public boolean newStock(int slot, int quantity, Item item) {
+        return newStock(slot, quantity, item, item.getSRP());
+    }
+
+    public boolean newStock(int slot, Item item) {
+        return newStock(slot, 0, item, item.getSRP());
+    }
+
+    public boolean newStock(int slot, Item item, int price) {
+        return newStock(slot, 0, item, price);
+    }
+
+    public boolean newStock(int slot, int quantity, Item item, int price) {
+        boolean b = false;
+
+        if (isValidSlot(slot))
+            if (isValidItem(item)) {
+                if (itemSlots[slot - 1].isEmpty()) {    //check if the itemSlot is empty
+                    b = true;
+                    System.out.println("Setting Up New Stock On Slot " + slot);
+
+                    b = changePrice(slot, price);   //sets the price of the new item
+
+                    if (quantity != 0)  //quantity 0 bypasses new boolean value
+                        b = itemSlots[slot - 1].addStock(quantity);
+
+                    if (b) {
+                        itemSlots[slot - 1].setItem(item);  //sets the slot to this new item
+                        System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getItem().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
+                    }
+                }
+                System.out.println("Error: Slot " + slot + " is Not Empty");
+            }
+
+        return b;
+    }
+
+    public boolean restock(int slot, int quantity) {
+
+    }
+
+
+    public boolean changePrice(int slot, int price) {
+        boolean b = true;
+
+        if (price > 0)
+            itemSlots[slot - 1].setPrice(price);
+        else {
+            b = false;
+            System.out.println("Error: Invalid Price");
+        }
+
+        return b;
+    }
+
+    private boolean addStock(int slot, int quantity) {
+        boolean b = false;
+
+        if (itemSlots[])
+
+    }
+
+
+    private final String NAME;
 
     private ItemSlot[] itemSlots;
     private Money money;
