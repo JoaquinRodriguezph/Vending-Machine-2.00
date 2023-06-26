@@ -6,10 +6,10 @@ public class ItemTransaction {
     /**
      * This method is a constructor that creates an ItemTransaction
      * instance using the following parameter:
-     * @param item item to be counted
+     * @param itemSlot item to be counted
      */
-    public ItemTransaction(Item item){
-        this.item = item;
+    public ItemTransaction(ItemSlot itemSlot){
+        this.itemSlot = itemSlot;
     }
 
 
@@ -17,8 +17,8 @@ public class ItemTransaction {
      * This method gets the item
      * @return the item of the ItemTransaction instance
      */
-    public Item getItem() {
-        return item;
+    public ItemSlot getItem() {
+        return itemSlot;
     }
 
     /**
@@ -34,7 +34,7 @@ public class ItemTransaction {
      * @return the total cost of the items
      */
     public int getTotal() {
-        return item.getCost() * quantity;
+        return itemSlot.getPrice() * quantity;
     }
 
     public void addTransaction() {
@@ -47,9 +47,9 @@ public class ItemTransaction {
 
     @Override
     public String toString() {
-        return item.getName() + item.getCost() + quantity + getTotal();
+        return itemSlot.getItem().getName() + itemSlot.getPrice() + quantity + getTotal();
     }
 
-    private Item item;
+    private ItemSlot itemSlot;
     private int quantity;
 }

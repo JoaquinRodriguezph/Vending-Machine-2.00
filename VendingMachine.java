@@ -17,7 +17,6 @@ public class VendingMachine {
         boolean bTransaction = false;
         Scanner sc = new Scanner(System.in);
         int slotSelection;
-        Item itemSelection;
 
         displayItemMenu();
         do {
@@ -27,7 +26,6 @@ public class VendingMachine {
 
             bCon = chooseItem(slotSelection);
             if (bCon && slotSelection != 0) {   //if the user selects a valid item
-                itemSelection = itemSlots[slotSelection - 1].getItem();
                 bTransaction = receivePayment(itemSlots[slotSelection - 1].getPrice(), wallet); //receives the payment from the user
 
                 if (bTransaction)   //updates the transaction log of that item if the transaction was successful
@@ -151,7 +149,7 @@ public class VendingMachine {
                 if (tempWallet.removeMoney(payment)) {
                     System.out.println("Paid: " + payment.getMoney());
                     if (payment.getMoney() < cost)
-                        tempWallet = wallet;
+                        tempWallet.replace(wallet);
                 }
                 else
                     System.out.println("Error: Invalid Money Availability");
@@ -184,7 +182,7 @@ public class VendingMachine {
             money.addMoney(payment);
 
             if (money.removeMoney(change)) {
-                wallet = tempWallet;
+                wallet.replace(tempWallet);
                 System.out.println("Transaction Successful");
                 b = true;
             }
@@ -280,6 +278,7 @@ public class VendingMachine {
     public boolean newStock(int slot, int quantity, Item item, int price) {
         boolean b = false;
 
+        if ()
         if (isValidSlot(slot))
             if (isValidItem(item)) {
                 if (itemSlots[slot - 1].isEmpty()) {    //check if the itemSlot is empty
@@ -450,7 +449,7 @@ public class VendingMachine {
             if (temp <= 9 && temp >= 1) {
                 if (tempWallet.removeMoney(change)) {
                     change.showMoney(NAME + "Change");
-                    tempWallet = wallet;
+                    tempWallet.replace(wallet);
                 }
                 else
                     System.out.println("Error: Invalid Money Availability");
@@ -468,7 +467,7 @@ public class VendingMachine {
         } while (temp != 1 && temp != 0);
 
         if (temp == 1) {
-            wallet = tempWallet;
+            wallet.replace(tempWallet);
             money.addMoney(change);
         }
 
