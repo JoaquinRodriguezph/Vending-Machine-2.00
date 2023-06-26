@@ -163,6 +163,8 @@ public class VendingMachine {
         do {
             System.out.println("Confirm Transaction: (1) Yes   (0) No");
             temp = sc.nextInt();
+            if (temp != 1 && temp != 0)
+                System.out.println("Error: Invalid Option");
         } while (temp != 1 && temp != 0);
 
         if (temp == 0) {
@@ -353,7 +355,31 @@ public class VendingMachine {
         }
     }
 
+    public void collectMoney(Money wallet) {
+        Scanner sc = new Scanner(System.in);
+        int temp;
 
+        Money tempMoney = new Money(money);
+        wallet.addMoney(money);
+        System.out.println("Money Collected");
+        money.showMoney();
+
+        System.out.println("Money in Vending Machine " + NAME + " Has Been Emptied.");
+
+        do {
+            System.out.println("Proceed to Replenish Change?: (1) Yes   (0) No");
+            temp = sc.nextInt();
+            if (temp != 1 && temp != 0)
+                System.out.println("Error: Invalid Option");
+        } while (temp != 1 && temp != 0);
+
+        if (temp == 1)
+            replenishMoney(wallet);
+    }
+
+    public void replenishMoney(Money wallet) {
+
+    }
 
 
     private final String NAME;
