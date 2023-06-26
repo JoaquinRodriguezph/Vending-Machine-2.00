@@ -83,7 +83,24 @@ public class Item {
             this.stock += stock;
             System.out.println(stock + "Stocks Have Been added to " + NAME);
             System.out.println("Current Stock: " + this.stock);
+            b = true;
         }
+
+        return b;
+    }
+
+    public boolean removeStock(int stock) {
+        boolean b = false;
+        if (stock <= 0) {
+            if (stock <= this.stock) {
+                this.stock -= stock;
+                b = true;
+            }
+            else
+                System.out.println("Error: Not Enough Stock");
+        }
+        else
+            System.out.println("Error: Invalid Quantity");
 
         return b;
     }

@@ -73,13 +73,17 @@ public class ItemSlot {
      * @return true or false depending on if the stocking is successful
      */
     public boolean addStock(int stock){
-        if (this.item != null && stock > 0 && MAX >= this.stock + stock){
-            this.stock += stock;
-            System.out.println("Slot " + this.SLOTNUMBER + ": " + this.item.getName() + " Adding Stock Successful");
-            return true;
-        }
+        if (stock > 0 && MAX >= this.stock + stock){
+            if (item.removeStock(stock)) {
+                this.stock += stock;
 
-        System.out.println("Error: Invalid Amount/Stock");
+                System.out.println("Slot " + this.SLOTNUMBER + ": " + this.item.getName() + " Adding Stock Successful");
+                return true;
+            }
+        }
+        else
+            System.out.println("Error: Invalid Amount/Stock");
+
         return false;
     }
 

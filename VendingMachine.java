@@ -10,7 +10,6 @@ public class VendingMachine {
         startingInventory = null;   //there is no startingInventory when the Vending Machine is first instantiated
         transactionLog = new ItemTransaction[maxSlots]; //initializing the number of possible items for the item transactions
         money = new Money();
-        maintenanceCode = passcode;
     }
 
     public void mainMenu(Money wallet) {
@@ -26,20 +25,14 @@ public class VendingMachine {
             System.out.println("Pick an Item: ");
             slotSelection = sc.nextInt();
 
-            if (slotSelection != maintenanceCode) { //if the user is a maintenance person that would or would not like to conduct maintenance
-                bCon = chooseItem(slotSelection);
-                if (bCon && slotSelection != 0) {   //if the user selects a valid item
-                    itemSelection = itemSlots[slotSelection - 1].getItem();
-                    bTransaction = receivePayment(itemSelection.getCost(), wallet); //receives the payment from the user
+            bCon = chooseItem(slotSelection);
+            if (bCon && slotSelection != 0) {   //if the user selects a valid item
+                itemSelection = itemSlots[slotSelection - 1].getItem();
+                bTransaction = receivePayment(itemSlots[slotSelection - 1].getPrice(), wallet); //receives the payment from the user
 
-                    if (bTransaction)   //updates the transaction log of that item if the transaction was successful
-                        transactionLog[slotSelection - 1].addTransaction();
+                if (bTransaction)   //updates the transaction log of that item if the transaction was successful
+                    transactionLog[slotSelection - 1].addTransaction();
 
-                    mainMenu(wallet);
-                }
-            }
-            else {
-                maintenance(wallet);
                 mainMenu(wallet);
             }
         } while (!bCon);   //exit detection also exists within the chooseItem() method
@@ -48,25 +41,27 @@ public class VendingMachine {
             System.out.println("Thank You for Your Purchase!");
         else
             System.out.println("Thank You Come Again!");
+
+
+        sc = null;
     }
 
     private void displayItemMenu(){
         System.out.println("=========================");
-        System.out.println("Slot Number|| Item");
-        System.out.println("==========Food===========");
+        System.out.println("Slot Number || Item");
+        System.out.println("=========================");
         for (int i = 0; i < itemSlots.length; i++){
             if (itemSlots[i] != null){
                 System.out.println(itemSlots[i].getSlotNumber() + " || " + itemSlots[i].getItem().getName());
             }
         }
+        System.out.println("=========================");
     }
 
     private boolean chooseItem(int slot){
         boolean b = false;
         ItemSlot selectedSlot = null;
         Item selectedItem = null;
-        int temp;
-        Scanner sc = new Scanner(System.in);
 
         if (slot == 0)  //slot selection at 0 for exit per user input
             return true;
@@ -84,10 +79,11 @@ public class VendingMachine {
         else {  //details of the selected item
             System.out.println("=========================");
             System.out.println("(" + slot + ")Selected Item: " + selectedItem.getName());
-            System.out.println("Price:           " + selectedItem.getCost() + "PHP");
+            System.out.println("Price:           " + itemSlots[slot - 1].getPrice() + "PHP");
             System.out.println("Calorie/s:       " + selectedItem.getCalories());
             System.out.println("=========================");
         }
+
 
         return b;
     }
@@ -200,6 +196,7 @@ public class VendingMachine {
 
         payment = null;
         tempWallet = null;
+        sc = null;
 
         if (!b)
             System.out.println("Transaction Failed");
@@ -289,9 +286,10 @@ public class VendingMachine {
                     b = true;
                     System.out.println("Setting Up New Stock On Slot " + slot);
 
-                    b = changePrice(slot, price);   //sets the price of the new item
+                    if (price > 0)
+                        b = changePrice(slot, price);   //sets the price of the new item
 
-                    if (quantity != 0)  //quantity 0 bypasses new boolean value
+                    if (quantity != 0 && b)  //quantity 0 bypasses new boolean value
                         b = itemSlots[slot - 1].addStock(quantity);
 
                     if (b) {
@@ -377,15 +375,16 @@ public class VendingMachine {
 
         if (temp == 1)
             replenishMoney(wallet);
+
+        sc = null;
     }
 
     public void replenishMoney(Money wallet) {
         int temp = -1;
-        int quantity;
+        int quantity = 0;
         Money change = new Money();
         Money tempWallet = new Money(wallet);
         Scanner sc = new Scanner(System.in);
-        boolean b = false;
 
         while (temp != 0) {
             System.out.println("Replenish Change");
@@ -403,51 +402,48 @@ public class VendingMachine {
             System.out.println("(9) 1000 Pesos");
             System.out.println("=========================");
 
-
-
             do {
                 System.out.println("Bills/Coins: ");
                 temp = sc.nextInt();
-                if (quantity < 0)
+                if (temp < 0 || temp > 9)
                     System.out.println("Error: Invalid Option");
             } while (temp < 0 || temp > 9);
 
-            do {
-                System.out.println("Quantity: ");
-                quantity = sc.nextInt();
-                if (quantity < 0)
-                    System.out.println("Error: Invalid Quantity");
-                else if (quantity == 0)
-                    temp = 0;
-            } while (quantity < 0);
+            if (temp != 0)
+                do {
+                    System.out.println("Quantity: ");
+                    quantity = sc.nextInt();
+                    if (quantity <= 0)
+                        System.out.println("Error: Invalid Quantity");
+                } while (quantity <= 0);
 
             switch (temp) {
                 case 1:
-                    change.addOnePeso(1);
+                    change.addOnePeso(quantity);
                     break;
                 case 2:
-                    change.addFivePeso(1);
+                    change.addFivePeso(quantity);
                     break;
                 case 3:
-                    change.addTenPeso(1);
+                    change.addTenPeso(quantity);
                     break;
                 case 4:
-                    change.addTwentyPeso(1);
+                    change.addTwentyPeso(quantity);
                     break;
                 case 5:
-                    change.addFiftyPeso(1);
+                    change.addFiftyPeso(quantity);
                     break;
                 case 6:
-                    change.addOneHundredPeso(1);
+                    change.addOneHundredPeso(quantity);
                     break;
                 case 7:
-                    change.addTwoHundredPeso(1);
+                    change.addTwoHundredPeso(quantity);
                     break;
                 case 8:
-                    change.addFiveHundredPeso(1);
+                    change.addFiveHundredPeso(quantity);
                     break;
                 case 9:
-                    change.addOneThousandPeso(1);
+                    change.addOneThousandPeso(quantity);
                 case 0:
             }
 
@@ -459,8 +455,34 @@ public class VendingMachine {
                 else
                     System.out.println("Error: Invalid Money Availability");
             }
-            else if (temp == 0)
+            else {
+                change.showMoney(NAME + "Change");
+            }
         }
+
+        do {
+            System.out.println("Confirm Replenishing Change: (1) Yes   (0) No");
+            temp = sc.nextInt();
+            if (temp != 1 && temp != 0)
+                System.out.println("Error: Invalid Option");
+        } while (temp != 1 && temp != 0);
+
+        if (temp == 1) {
+            wallet = tempWallet;
+            money.addMoney(change);
+        }
+
+        tempWallet = null;
+        change = null;
+        sc = null;
+    }
+
+    public void displayTransactions() {
+
+    }
+
+    public void displayInventories() {
+
     }
 
 
@@ -470,6 +492,5 @@ public class VendingMachine {
     private Money money;
     private ItemTransaction[] transactionLog;
     private VendingMachine startingInventory;
-    private int maintenanceCode;
 
 }
