@@ -15,36 +15,48 @@ public class VendingMachine {
         money = new Money();
     }
 
+    public Money getMoney() {
+        return money;
+    }
+
+    public ItemSlot[] getItemSlots() {
+        return itemSlots;
+    }
+
     public void mainMenu(Money wallet) {
-        boolean bCon = false;
-        boolean bTransaction = false;
-        Scanner sc = new Scanner(System.in);
-        int slotSelection;
+        if (startingInventory != null) {
+            boolean bCon = false;
+            boolean bTransaction = false;
+            Scanner sc = new Scanner(System.in);
+            int slotSelection;
 
-        displayItemMenu();
-        do {
-            System.out.println("(0) Exit");
-            System.out.println("Pick an Item: ");
-            slotSelection = sc.nextInt();
+            displayItemMenu();
+            do {
+                System.out.println("(0) Exit");
+                System.out.println("Pick an Item: ");
+                slotSelection = sc.nextInt();
 
-            bCon = chooseItem(slotSelection);
-            if (bCon && slotSelection != 0) {   //if the user selects a valid item
-                bTransaction = receivePayment(itemSlots[slotSelection - 1].getPrice(), wallet); //receives the payment from the user
+                bCon = chooseItem(slotSelection);
+                if (bCon && slotSelection != 0) {   //if the user selects a valid item
+                    bTransaction = receivePayment(itemSlots[slotSelection - 1].getPrice(), wallet); //receives the payment from the user
 
-                if (bTransaction)   //updates the transaction log of that item if the transaction was successful
-                    transactionLog[slotSelection - 1].addTransaction();
+                    if (bTransaction)   //updates the transaction log of that item if the transaction was successful
+                        transactionLog[slotSelection - 1].addTransaction();
 
-                mainMenu(wallet);
-            }
-        } while (!bCon);   //exit detection also exists within the chooseItem() method
+                    mainMenu(wallet);
+                }
+            } while (!bCon);   //exit detection also exists within the chooseItem() method
 
-        if (bTransaction)
-            System.out.println("Thank You for Your Purchase!");
+            if (bTransaction)
+                System.out.println("Thank You for Your Purchase!");
+            else
+                System.out.println("Thank You Come Again!");
+
+
+            sc = null;
+        }
         else
-            System.out.println("Thank You Come Again!");
-
-
-        sc = null;
+            System.out.println("Error: This New Vending Machine Has Not Yet Been Setup");
     }
 
     private void displayItemMenu(){
@@ -495,11 +507,25 @@ public class VendingMachine {
     }
 
     public void displayInventories() {
+        VendingMachineInventory endingInventory = new VendingMachineInventory(this);
 
+        displayInventory(startingInventory, "Starting Inventory");
+        displayInventory(endingInventory, "Ending Inventory");
+
+        endingInventory = null;
     }
 
-    private void displayInventory() {
-
+    private void displayInventory(VendingMachineInventory inventory, String info) {
+        System.out.println("=========================");
+        System.out.println("Slot Number || Item");
+        System.out.println("=========================");
+        for (int i = 0; i < inventory.getItemSlots().length; i++){
+            if (inventory.getItemSlots()[i] != null){
+                System.out.println(inventory.getItemSlots()[i].getSlotNumber() + " || " + inventory.getItemSlots()[i].getItem().getName());
+            }
+        }
+        System.out.println("=========================");
+        inventory.getMoney().showMoney(info);
     }
 
     public void clearLog() {
@@ -508,12 +534,16 @@ public class VendingMachine {
         }
     }
 
+    public void newStartingInventory() {
+        startingInventory = null;
+        startingInventory = new VendingMachineInventory(this);
+    }
 
     private final String NAME;
 
     private ItemSlot[] itemSlots;
     private Money money;
     private ItemTransaction[] transactionLog;
-    private VendingMachine startingInventory;
+    private VendingMachineInventory startingInventory;
 
 }
