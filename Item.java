@@ -88,6 +88,10 @@ public class Item {
         return b;
     }
 
+    /**
+     * This method deletes the item by making it null.
+     * @param item the item to be deleted.
+     */
     public static void delete(Item item) {
         item = null;    //deletes the item by making it null
         count--;    //decrementing the number of object (item)
