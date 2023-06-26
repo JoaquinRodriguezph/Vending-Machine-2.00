@@ -15,6 +15,7 @@ public class ItemSlot {
         this.item = null;
         this.stock = 0;
         this.MAX = max;
+        this.price = 0;
     }
 
     /**
@@ -45,6 +46,10 @@ public class ItemSlot {
         return price;
     }
 
+    public int getMax() {
+        return MAX;
+    }
+
     /**
      * This method sets the item that is in the item slot.
      * @param item the item to be set in the slot
@@ -70,7 +75,7 @@ public class ItemSlot {
     public boolean addStock(int stock){
         if (this.item != null && stock > 0 && MAX >= this.stock + stock){
             this.stock += stock;
-            System.out.println("Adding Stock Successful");
+            System.out.println("Slot " + this.SLOTNUMBER + ": " + this.item.getName() + " Adding Stock Successful");
             return true;
         }
 
