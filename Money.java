@@ -1,4 +1,12 @@
+/**
+ * The Money Class contains attributes for each
+ * denomination of money.
+ */
 public class Money {
+    /**
+     * This method is a constructor that is used to create a money instance.
+     * It sets all its attributes to a 0 value.
+     */
     public Money(){
         onePeso = fivePeso = tenPeso = twentyPeso = fiftyPeso = 0;
         oneHundredPeso = twoHundredPeso = fiveHundredPeso = oneThousandPeso = 0;
