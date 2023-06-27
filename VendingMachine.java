@@ -22,6 +22,10 @@ public class VendingMachine {
         return itemSlots;
     }
 
+    public String getName() {
+        return NAME;
+    }
+
     public Item mainMenu(Money wallet) {
         Item theItem = null;
 

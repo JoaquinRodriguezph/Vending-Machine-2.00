@@ -20,6 +20,23 @@ public class VendingMachineDriver {
     }
 
     private static VendingMachine selectVendingMachine(ArrayList<VendingMachine> vendingMachines) {
+        VendingMachine vm;
+
+        Iterator<VendingMachine> it = vendingMachines.iterator();
+
+
+        System.out.println("=========================");
+        System.out.println("Vending Machine/s");
+        System.out.println("=========================");
+
+        for (int i = 1; it.hasNext(); i++) {
+            VendingMachine machine;
+            machine = it.next();
+
+            System.out.println("(" + i + ") " + machine.);
+        }
+        System.out.println("=========================");
+
 
     }
 
@@ -50,11 +67,14 @@ public class VendingMachineDriver {
                 case 1:
                 case 2:
                     vm = selectVendingMachine(vendingMachineList);
+                    if (vm == null)
+                        option = 0;
                     switch (option) {
                         case 1:
 
                             break;
                         case 2:
+                            break;
 
                     }
                     break;
