@@ -20,6 +20,7 @@ public class VendingMachineDriver {
         int option;
         boolean exit = false;
 
+        vendingMachine.displayItemMenu();
         do {
             System.out.println("=========================");
             System.out.println("       Stocking");
@@ -27,15 +28,25 @@ public class VendingMachineDriver {
             System.out.println("(0) Back");
             System.out.println("(1) Restock");
             System.out.println("(2) Add New Stock");
+            System.out.println("(3) Display Items");
+            System.out.println("=========================");
 
             do {
-                System.out.println("Maintenance Option: ");
+                System.out.println("Stocking Option: ");
                 option = sc.nextInt();
                 if (option > 4 || option < 0)
                     System.out.println("Error: Invalid Option");
             } while (option > 4 || option < 0);
             if (option == 0)
                 exit = true;
+            else {
+
+            }
+
+            switch (option) {
+                case 1:
+                    vendingMachine.restock()
+            }
 
         } while (!exit);
 
@@ -72,6 +83,7 @@ public class VendingMachineDriver {
 
             switch (option) {
                 case 1:
+                    execStocking(vendingMachine);
                     break;
                 case 2:
                     break;

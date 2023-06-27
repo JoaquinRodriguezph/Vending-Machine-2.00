@@ -73,7 +73,7 @@ public class VendingMachine {
         return theItem;
     }
 
-    private void displayItemMenu(){
+    public void displayItemMenu(){
         System.out.println("=========================");
         System.out.println("Slot Number || Item");
         System.out.println("=========================");
