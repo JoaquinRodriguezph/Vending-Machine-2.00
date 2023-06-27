@@ -11,7 +11,7 @@ public class VendingMachineDriver {
 
     }
 
-    private static void execBuyer(VendingMachine vendingMachine) {
+    private static Item execBuyer(VendingMachine vendingMachine) {
 
     }
 
@@ -20,7 +20,9 @@ public class VendingMachineDriver {
     }
 
     private static VendingMachine selectVendingMachine(ArrayList<VendingMachine> vendingMachines) {
-        VendingMachine vm;
+        Scanner sc = new Scanner(System.in);
+        VendingMachine vm = null;
+        int option;
 
         Iterator<VendingMachine> it = vendingMachines.iterator();
 
@@ -28,16 +30,28 @@ public class VendingMachineDriver {
         System.out.println("=========================");
         System.out.println("Vending Machine/s");
         System.out.println("=========================");
+        System.out.println("(0) Back");
 
         for (int i = 1; it.hasNext(); i++) {
             VendingMachine machine;
             machine = it.next();
 
-            System.out.println("(" + i + ") " + machine.);
+            System.out.println("(" + i + ") " + machine.getName());
         }
         System.out.println("=========================");
 
+        do {
+            option = sc.nextInt();
+            if (option > vendingMachines.size() || option < 0)
+                System.out.println("Error: Invalid Option");
+        } while (option > vendingMachines.size() || option < 0);
 
+        if (option != 0)
+            vm = vendingMachines.get(option - 1);
+        else
+            System.out.println("Going Back...");
+
+        return vm;
     }
 
     private static ArrayList<Item> startInteraction(Money buyerWallet, Money maintenanceWallet) {
@@ -71,7 +85,7 @@ public class VendingMachineDriver {
                         option = 0;
                     switch (option) {
                         case 1:
-
+                            allItems.add(execBuyer(vm));
                             break;
                         case 2:
                             break;

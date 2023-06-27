@@ -86,7 +86,7 @@ public class ItemStock {
         boolean b = false;
         if (stock > 0) {
             this.stock += stock;
-            System.out.println(stock + "Stocks Have Been added to " + NAME);
+            System.out.println(stock + " Stocks Have Been added to " + NAME);
             System.out.println("Current Stock: " + this.stock);
             b = true;
         }
@@ -96,7 +96,7 @@ public class ItemStock {
 
     public boolean removeStock(int stock) {
         boolean b = false;
-        if (stock <= 0) {
+        if (stock > 0) {
             if (stock <= this.stock) {
                 this.stock -= stock;
                 b = true;
