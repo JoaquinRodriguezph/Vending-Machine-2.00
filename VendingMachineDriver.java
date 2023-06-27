@@ -315,9 +315,6 @@ public class VendingMachineDriver {
 
         System.out.println("Exiting...");
 
-        if (allItems.size() == 0)
-            allItems = null;
-
         return allItems;
 }
 
