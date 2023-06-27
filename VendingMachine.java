@@ -293,6 +293,39 @@ public class VendingMachine {
         }
     }
 
+    public boolean addNewStock(ItemStock itemStock) {
+        boolean b = false;
+        Scanner sc = new Scanner(System.in);
+        int quantity, temp, slot, price = 0;
+
+        do {
+            System.out.println("Set to SRP: (1) Yes   (0) No");
+            temp = sc.nextInt();
+            if (temp != 1 && temp != 0)
+                System.out.println("Error: Invalid Option");
+        } while (temp != 1 && temp != 0);
+
+        if (temp == 0) {
+            System.out.print("Set Price (PHP): ");
+            price = sc.nextInt();
+        }
+
+        displayItemMenu();
+        slot = selectSlot();
+
+        if (slot != 0) {
+            System.out.print("Quantity: ");
+            quantity = sc.nextInt();
+
+            if (temp == 1)
+                b = newStock(slot, quantity, itemStock);
+            else
+                b = newStock(slot, quantity, itemStock, price);
+        }
+
+        return b;
+    }
+
     //newStock method: make sure to check if the slot is currently empty
     public boolean newStock(int slot, int quantity, ItemStock itemStock) {
         return newStock(slot, quantity, itemStock, itemStock.getSRP());
@@ -301,7 +334,6 @@ public class VendingMachine {
     public boolean newStock(int slot, int quantity, ItemStock itemStock, int price) {
         boolean b = false, found = false;
         ItemStock tempItem;
-
 
 
         tempItem = itemSlots[slot - 1].getItemStock();
@@ -352,20 +384,21 @@ public class VendingMachine {
         displayItemMenu();
         int slot = selectSlot();
 
-        System.out.print("Quantity: ");
-        quantity = sc.nextInt();
+        if (slot != 0) {
+            System.out.print("Quantity: ");
+            quantity = sc.nextInt();
 
-        if (isValidSlot(slot))
-            if (itemSlots[slot - 1].getItemStock() != null) {
-                b = itemSlots[slot - 1].addStock(quantity);
-                if (b) {
-                    //resets when stocking
-                    newStartingInventory();
-                    clearLog();
-                }
-            }
-            else
-                System.out.println("Slot " + slot + " is Not Assigned to Any Items");
+            if (isValidSlot(slot))
+                if (itemSlots[slot - 1].getItemStock() != null) {
+                    b = itemSlots[slot - 1].addStock(quantity);
+                    if (b) {
+                        //resets when stocking
+                        newStartingInventory();
+                        clearLog();
+                    }
+                } else
+                    System.out.println("Slot " + slot + " is Not Assigned to Any Items");
+        }
 
         return b;
     }
