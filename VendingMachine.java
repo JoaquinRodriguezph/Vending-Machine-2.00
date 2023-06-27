@@ -81,10 +81,14 @@ public class VendingMachine {
             if (itemSlots[i] != null){
                 System.out.print(itemSlots[i].getSlotNumber() + " || ");
                 if (itemSlots[i].getItemStock() != null) {
-                    System.out.println(itemSlots[i].getItemStock().getName());
+                    System.out.print(itemSlots[i].getItemStock().getName());
                 }
                 else
-                    System.out.println("X");
+                    System.out.print("X");
+                System.out.print(" - ");
+                if (!itemSlots[i].isAvailable())
+                    System.out.print("Not ");
+                System.out.println("Available");
             }
         }
         System.out.println("=========================");
