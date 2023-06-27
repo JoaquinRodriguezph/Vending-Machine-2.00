@@ -322,7 +322,7 @@ public class VendingMachine {
 
 
 
-                    itemSlots[slot - 1].setItem(itemStock); //sets the slot to this new item for addStock to function
+                    itemSlots[slot - 1].setItemStock(itemStock); //sets the slot to this new item for addStock to function
 
                     b = changePrice(slot, price);   //sets the price of the new item
 
@@ -332,7 +332,7 @@ public class VendingMachine {
                     }
 
                     if (!b) {
-                        itemSlots[slot - 1].setItem(tempItem); //sets the slot to the old item
+                        itemSlots[slot - 1].setItemStock(tempItem); //sets the slot to the old item
                         changePrice(slot, oldPrice);
                     }
 
