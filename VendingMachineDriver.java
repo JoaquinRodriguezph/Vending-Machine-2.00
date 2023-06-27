@@ -7,17 +7,84 @@ public class VendingMachineDriver {
 
     //VendingMachineDriver(){this.ItemList = new ArrayList<>();}
 
-    private static ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
+    private static ItemStock selectItemStock() {
+        Scanner sc = new Scanner(System.in);
+        ItemStock item = null;
+        int option;
 
+        Iterator<ItemStock> it = itemStockList.iterator();
+
+
+        System.out.println("=========================");
+        System.out.println("Vending Machine/s");
+        System.out.println("=========================");
+        System.out.println("(0) Back");
+
+        for (int i = 1; it.hasNext(); i++) {
+            ItemStock itemStock;
+            itemStock = it.next();
+
+            System.out.println("(" + i + ") " + itemStock.getName() + "; Stock: " + itemStock.getStock() + "; SRP: " + itemStock.getSRP() + "; Calories: " + itemStock.getCalories());
+        }
+        System.out.println("=========================");
+
+        do {
+            option = sc.nextInt();
+            if (option > itemStockList.size() || option < 0)
+                System.out.println("Error: Invalid Option");
+        } while (option > itemStockList.size() || option < 0);
+
+        if (option != 0) {
+            item = itemStockList.get(option - 1);
+            System.out.println("Selected Item: " + item.getName());
+        }
+        else
+            System.out.println("Going Back...");
+
+        return item;
     }
 
     private static Item execBuyer(VendingMachine vendingMachine, Money wallet) {
         return vendingMachine.mainMenu(wallet);
     }
 
+    private static void execStocking(VendingMachine vendingMachine) {
+        Scanner sc = new Scanner(System.in);
+        int option;
+        ItemStock itemStock;
+        boolean exit = false;
+
+        do {
+            System.out.println("=========================");
+            System.out.println("       Stocking");
+            System.out.println("=========================");
+            System.out.println("(0) Back");
+            System.out.println("(1) Restock");
+            System.out.println("(2) Add New Stock");
+            System.out.println("=========================");
+
+            do {
+                System.out.println("Maintenance Option: ");
+                option = sc.nextInt();
+                if (option > 4 || option < 0)
+                    System.out.println("Error: Invalid Option");
+            } while (option > 4 || option < 0);
+
+            switch (option) {
+                case 1:
+                    itemStock = selectItemStock();
+                    break;
+                case 2:
+                    vendingMachine.restock();
+            }
+
+        } while (!exit);
+
+        System.out.println("Going Back...");
+    }
+
     private static void execMaintenance(VendingMachine vendingMachine, Money wallet) {
         Scanner sc = new Scanner(System.in);
-        boolean stocking = false;
         int option;
 
 
@@ -30,18 +97,28 @@ public class VendingMachineDriver {
             System.out.println("(0) Back");
             System.out.println("(1) Stocking");
             System.out.println("(2) Change Price");
-            System.out.println("(3) Collect Money");    //contains the setting of srp
+            System.out.println("(3) Collect Money");
             System.out.println("(4) Replenish Change");
             System.out.println("=========================");
 
             do {
                 System.out.println("Maintenance Option: ");
                 option = sc.nextInt();
-                if (option != 1 && option != 0)
+                if (option > 4 || option < 0)
                     System.out.println("Error: Invalid Option");
-            } while (option != 1 && option != 0);
+            } while (option > 4 || option < 0);
 
+            switch (option) {
+                case 1:
+                    execStocking(vendingMachine);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
 
+            }
 
         } while (option != 0);
 
