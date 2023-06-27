@@ -32,8 +32,6 @@ public class VendingMachineDriver {
             System.out.println("(2) Change Price");
             System.out.println("(3) Collect Money");    //contains the setting of srp
             System.out.println("(4) Replenish Change");
-            System.out.println("(5) Do Maintenance");
-            System.out.println("(6) Display Inventory Change");
             System.out.println("=========================");
 
             do {

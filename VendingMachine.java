@@ -79,7 +79,9 @@ public class VendingMachine {
         System.out.println("=========================");
         for (int i = 0; i < itemSlots.length; i++){
             if (itemSlots[i] != null){
-                System.out.println(itemSlots[i].getSlotNumber() + " || " + itemSlots[i].getItemStock().getName());
+                System.out.print(itemSlots[i].getSlotNumber() + " || ");
+                if (itemSlots[i].getItemStock() != null)
+                    System.out.println(itemSlots[i].getItemStock().getName());
             }
         }
         System.out.println("=========================");
@@ -308,7 +310,7 @@ public class VendingMachine {
         boolean b = false, found = false;
 
 
-
+        displayItemMenu();
         if (isValidSlot(slot) && isValidItem(itemStock)) {
             for (int i = 0; i < itemSlots.length; i++) {
                 if (itemStock == itemSlots[i].getItemStock())
