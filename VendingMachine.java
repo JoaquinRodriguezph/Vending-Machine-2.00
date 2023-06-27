@@ -41,17 +41,19 @@ public class VendingMachine {
                 System.out.println("Pick an Item: ");
                 slotSelection = sc.nextInt();
 
-                bCon = chooseItem(slotSelection);
-                if (bCon && slotSelection != 0) {   //if the user selects a valid item
-                    bTransaction = receivePayment(itemSlots[slotSelection - 1].getPrice(), wallet); //receives the payment from the user
+                if (slotSelection != 0) {
+                    bCon = chooseItem(slotSelection);
+                    if (bCon) {   //if valid user input (bCon)
+                        bTransaction = receivePayment(itemSlots[slotSelection - 1].getPrice(), wallet); //receives the payment from the user
 
-                    if (bTransaction) {  //updates the transaction log of that item if the transaction was successful
-                        itemSlots[slotSelection - 1].removeStock();
-                        transactionLog[slotSelection - 1].addTransaction();
+                        if (bTransaction) {  //updates the transaction log of that item if the transaction was successful
+                            itemSlots[slotSelection - 1].removeStock();
+                            transactionLog[slotSelection - 1].addTransaction();
+                        }
                     }
-
-                    mainMenu(wallet);
                 }
+                else
+                    bCon = true;
             } while (!bCon);   //exit detection also exists within the chooseItem() method
 
             if (bTransaction) {

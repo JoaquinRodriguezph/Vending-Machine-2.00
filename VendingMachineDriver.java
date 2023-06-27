@@ -101,7 +101,7 @@ public class VendingMachineDriver {
                                         System.out.println("Error: Invalid Option");
                                 } while (option != 1 && option != 0);
 
-                            } while (option != 0)
+                            } while (option != 0);
                             break;
                         case 2:
                             execMaintenance(vm, wallet);
