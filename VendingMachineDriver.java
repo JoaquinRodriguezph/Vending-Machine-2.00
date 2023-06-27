@@ -66,7 +66,7 @@ public class VendingMachineDriver {
         System.out.println("Exiting...");
 
         return allItems;
-    }
+}
 
 
     private static void displayItemInventory(ArrayList<Item> items) {
@@ -94,7 +94,7 @@ public class VendingMachineDriver {
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
 
-    //    VendingMachineDriver vm = new VendingMachineDriver();
+        //    VendingMachineDriver vm = new VendingMachineDriver();
         itemStockList.add(new ItemStock("Fried Egg", 30, 150));
         itemStockList.add(new ItemStock("Chippy", 75, 170));
         itemStockList.add(new ItemStock("Tapas", 100, 200));
