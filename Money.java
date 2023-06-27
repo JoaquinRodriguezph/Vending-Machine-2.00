@@ -353,7 +353,7 @@ public class Money {
      * Adds n amount of one peso coins to the current money instance.
      * @param n amount of one peso coins.
      */
-    public void addOnePeso(int n){
+    public void changeOnePeso(int n){
         this.onePeso += n;
     }
 
@@ -361,7 +361,7 @@ public class Money {
      * Adds n amount of five peso coins to the current money instance.
      * @param n amount of five peso coins.
      */
-    public void addFivePeso(int n){
+    public void changeFivePeso(int n){
         this.fivePeso += n;
     }
 
@@ -369,7 +369,7 @@ public class Money {
      * Adds n amount of ten peso coins to the current money instance.
      * @param n amount of ten peso coins.
      */
-    public void addTenPeso(int n){
+    public void changeTenPeso(int n){
         this.tenPeso += n;
     }
 
@@ -377,7 +377,7 @@ public class Money {
      * Adds n amount of twenty peso coins to the current money instance.
      * @param n amount of twenty peso coins.
      */
-    public void addTwentyPeso(int n){
+    public void changeTwentyPeso(int n){
         this.twentyPeso += n;
     }
 
@@ -385,7 +385,7 @@ public class Money {
      * Adds n amount of fifty peso bills to the current money instance.
      * @param n amount of fifty peso bills.
      */
-    public void addFiftyPeso(int n){
+    public void changeFiftyPeso(int n){
         this.fiftyPeso += n;
     }
 
@@ -393,7 +393,7 @@ public class Money {
      * Adds n amount of one hundred peso bills to the current money instance.
      * @param n amount of one hundred peso bills.
      */
-    public void addOneHundredPeso(int n){
+    public void changeOneHundredPeso(int n){
         this.oneHundredPeso += n;
     }
 
@@ -401,7 +401,7 @@ public class Money {
      * Adds n amount of two hundred peso bills to the current money instance.
      * @param n amount of two hundred peso bills.
      */
-    public void addTwoHundredPeso(int n){
+    public void changeTwoHundredPeso(int n){
         this.twoHundredPeso += n;
     }
 
@@ -409,7 +409,7 @@ public class Money {
      * Adds n amount of five hundred peso bills to the current money instance.
      * @param n amount of five hundred peso bills.
      */
-    public void addFiveHundredPeso(int n){
+    public void changeFiveHundredPeso(int n){
         this.fiveHundredPeso += n;
     }
 
@@ -417,7 +417,7 @@ public class Money {
      * Adds n amount of one thousand peso bills to the current money instance.
      * @param n amount of one thousand peso bills.
      */
-    public void addOneThousandPeso(int n){
+    public void changeOneThousandPeso(int n){
         this.oneThousandPeso += n;
     }
 

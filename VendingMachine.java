@@ -143,31 +143,31 @@ public class VendingMachine {
             temp = sc.nextInt();
             switch (temp) {
                 case 1:
-                    payment.addOnePeso(1);
+                    payment.changeOnePeso(1);
                     break;
                 case 2:
-                    payment.addFivePeso(1);
+                    payment.changeFivePeso(1);
                     break;
                 case 3:
-                    payment.addTenPeso(1);
+                    payment.changeTenPeso(1);
                     break;
                 case 4:
-                    payment.addTwentyPeso(1);
+                    payment.changeTwentyPeso(1);
                     break;
                 case 5:
-                    payment.addFiftyPeso(1);
+                    payment.changeFiftyPeso(1);
                     break;
                 case 6:
-                    payment.addOneHundredPeso(1);
+                    payment.changeOneHundredPeso(1);
                     break;
                 case 7:
-                    payment.addTwoHundredPeso(1);
+                    payment.changeTwoHundredPeso(1);
                     break;
                 case 8:
-                    payment.addFiveHundredPeso(1);
+                    payment.changeFiveHundredPeso(1);
                     break;
                 case 9:
-                    payment.addOneThousandPeso(1);
+                    payment.changeOneThousandPeso(1);
                 case 0:
                     break;
                 default:
@@ -460,31 +460,31 @@ public class VendingMachine {
 
             switch (temp) {
                 case 1:
-                    change.addOnePeso(quantity);
+                    change.changeOnePeso(quantity);
                     break;
                 case 2:
-                    change.addFivePeso(quantity);
+                    change.changeFivePeso(quantity);
                     break;
                 case 3:
-                    change.addTenPeso(quantity);
+                    change.changeTenPeso(quantity);
                     break;
                 case 4:
-                    change.addTwentyPeso(quantity);
+                    change.changeTwentyPeso(quantity);
                     break;
                 case 5:
-                    change.addFiftyPeso(quantity);
+                    change.changeFiftyPeso(quantity);
                     break;
                 case 6:
-                    change.addOneHundredPeso(quantity);
+                    change.changeOneHundredPeso(quantity);
                     break;
                 case 7:
-                    change.addTwoHundredPeso(quantity);
+                    change.changeTwoHundredPeso(quantity);
                     break;
                 case 8:
-                    change.addFiveHundredPeso(quantity);
+                    change.changeFiveHundredPeso(quantity);
                     break;
                 case 9:
-                    change.addOneThousandPeso(quantity);
+                    change.changeOneThousandPeso(quantity);
                 case 0:
             }
 
