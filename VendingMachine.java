@@ -407,8 +407,10 @@ public class VendingMachine {
         boolean b = false;
 
         if (isValidSlot(slot))
-            if (itemSlots[slot - 1].getItemStock() != null)
-                b = changePrice(slot, itemSlots[slot - 1].getItemStock().getSRP());
+            if (itemSlots[slot - 1].getItemStock() != null) {
+                itemSlots[slot - 1].setSRP();
+                b = true;
+            }
             else
                 System.out.println("Slot " + slot + " is Not Assigned to Any Items");
 
@@ -418,7 +420,7 @@ public class VendingMachine {
     public void setAllSRP() {
         for (int slot = 1; slot <= itemSlots.length; slot++) {
             if (itemSlots[slot - 1].getItemStock() != null)
-                changePrice(slot, itemSlots[slot - 1].getItemStock().getSRP());
+                itemSlots[slot - 1].setSRP();
         }
 
         System.out.println("All Existing Items Have Been Set to Its SRP");

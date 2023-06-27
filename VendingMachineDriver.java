@@ -345,10 +345,10 @@ public class VendingMachineDriver {
         Scanner sc = new Scanner(System.in);
 
         //    VendingMachineDriver vm = new VendingMachineDriver();
-        itemStockList.add(new ItemStock("Fried Egg", 30, 150));
-        itemStockList.add(new ItemStock("Chippy", 75, 170));
-        itemStockList.add(new ItemStock("Tapas", 100, 200));
-        itemStockList.add(new ItemStock("Hotdog", 75, 290));
+        itemStockList.add(new ItemStock("Fried Egg", 30, 150, 10));
+        itemStockList.add(new ItemStock("Chippy", 75, 170,2));
+        itemStockList.add(new ItemStock("Tapas", 100, 200, 20));
+        itemStockList.add(new ItemStock("Hotdog", 75, 290, 5));
         itemStockList.add(new ItemStock("Piattos", 75, 150));
         itemStockList.add(new ItemStock("V-Cut", 75, 180));
         itemStockList.add(new ItemStock("Corn", 20, 88));
