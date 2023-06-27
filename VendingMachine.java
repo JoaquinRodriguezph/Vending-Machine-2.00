@@ -79,7 +79,9 @@ public class VendingMachine {
         System.out.println("=========================");
         for (int i = 0; i < itemSlots.length; i++){
             if (itemSlots[i] != null){
-                System.out.println(itemSlots[i].getSlotNumber() + " || " + itemSlots[i].getItemStock().getName());
+                System.out.print(itemSlots[i].getSlotNumber() + " || ");
+                if (itemSlots[i].getItemStock() != null)
+                    System.out.println(itemSlots[i].getItemStock().getName());
             }
         }
         System.out.println("=========================");
@@ -308,7 +310,6 @@ public class VendingMachine {
         boolean b = false, found = false;
 
 
-
         if (isValidSlot(slot) && isValidItem(itemStock)) {
             for (int i = 0; i < itemSlots.length; i++) {
                 if (itemStock == itemSlots[i].getItemStock())
@@ -328,7 +329,9 @@ public class VendingMachine {
                     if (b) {
                         itemSlots[slot - 1].setItem(itemStock);  //sets the slot to this new item
                         System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getItemStock().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
+                        //resets when stocking
                         newStartingInventory();
+                        clearLog();
                     }
                 } else
                     System.out.println("Error: Slot " + slot + " is Not Empty");
@@ -347,8 +350,11 @@ public class VendingMachine {
         if (isValidSlot(slot))
             if (itemSlots[slot - 1].getItemStock() != null) {
                 b = itemSlots[slot - 1].addStock(quantity);
-                if (b)
+                if (b) {
+                    //resets when stocking
                     newStartingInventory();
+                    clearLog();
+                }
             }
             else
                 System.out.println("Slot " + slot + " is Not Assigned to Any Items");
@@ -519,8 +525,19 @@ public class VendingMachine {
     }
 
     public void displayTransactions() {
+        int total = 0;
+
+        System.out.println("=========================");
         for (ItemTransaction transactions : transactionLog) {
-            System.out.println(transactions.toString());
+            if (transactions.getItemSlot().getItemStock() != null) {
+                System.out.println(transactions.toString());
+                total += transactions.getTotal();
+            }
+        }
+        System.out.println("=========================");
+        if (total > 0) {
+            System.out.println("Total Earnings: " + total + " PHP");
+            System.out.println("=========================");
         }
     }
 

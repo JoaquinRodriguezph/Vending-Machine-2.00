@@ -7,16 +7,37 @@ public class VendingMachineDriver {
 
     //VendingMachineDriver(){this.ItemList = new ArrayList<>();}
 
-    private ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
+    private static ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
 
     }
 
-    private static Item execBuyer(VendingMachine vendingMachine) {
-
+    private static Item execBuyer(VendingMachine vendingMachine, Money wallet) {
+        return vendingMachine.mainMenu(wallet);
     }
 
-    private static void execMaintenance(VendingMachine vendingMachine) {
+    private static void execMaintenance(VendingMachine vendingMachine, Money wallet) {
+        Scanner sc = new Scanner(System.in);
+        boolean stocking = false;
 
+
+        vendingMachine.displayInventories();
+        do {
+            System.out.println("=========================");
+            System.out.println("       Maintenance");
+            System.out.println("=========================");
+            System.out.println("(0) Back");
+            System.out.println("(1) Stocking");
+            System.out.println("(2) Change Slot Price");
+            System.out.println("(3) ");    //contains the setting of srp
+            System.out.println("(4) ");
+            System.out.println("(5) Do Maintenance");
+            System.out.println("(6) Display Inventory Change");
+            System.out.println("=========================");
+
+
+        } while ();
+
+        System.out.println("Going Back...");
     }
 
     private static VendingMachine selectVendingMachine(ArrayList<VendingMachine> vendingMachines) {
@@ -54,7 +75,7 @@ public class VendingMachineDriver {
         return vm;
     }
 
-    private static ArrayList<Item> startInteraction(Money buyerWallet, Money maintenanceWallet) {
+    private static ArrayList<Item> startInteraction(Money wallet) {
         boolean exit = false;
         ArrayList<Item> allItems = new ArrayList<Item>();
         int option;
@@ -64,11 +85,11 @@ public class VendingMachineDriver {
         //main interaction loop
         do {
             System.out.println("=========================");
-            System.out.println("Type of Interaction");
+            System.out.println("Select Interaction");
             System.out.println("=========================");
             System.out.println("(0) Exit");
-            System.out.println("(1) Buyer");
-            System.out.println("(2) Maintenance Person");
+            System.out.println("(1) Buy From Vending Machine");
+            System.out.println("(2) Do Maintenance");
             System.out.println("=========================");
 
             do {
@@ -78,26 +99,43 @@ public class VendingMachineDriver {
             } while (option > 2 || option < 0);
 
             switch (option) {
+                case 0:
+                    exit = true;
+                    break;
                 case 1:
                 case 2:
-                    vm = selectVendingMachine(vendingMachineList);
+                    vm = selectVendingMachine(vendingMachineList);  //let user select vending machine
                     if (vm == null)
                         option = 0;
                     switch (option) {
                         case 1:
-                            allItems.add(execBuyer(vm));
+                            do {
+                                Item anItem = execBuyer(vm, wallet);
+                                if (anItem != null)
+                                    allItems.add(anItem);
+                                anItem = null; //make anItem null
+
+                                do {
+                                    System.out.println("Continue Buying: (1) Yes   (0) No");
+                                    option = sc.nextInt();
+                                    if (option != 1 && option != 0)
+                                        System.out.println("Error: Invalid Option");
+                                } while (option != 1 && option != 0);
+
+                            } while (option != 0);
                             break;
                         case 2:
+                            execMaintenance(vm, wallet);
                             break;
 
                     }
-                    break;
-                case 0:
-                    exit = true;
             }
         } while (!exit);
 
         System.out.println("Exiting...");
+
+        if (allItems.size() == 0)
+            allItems = null;
 
         return allItems;
 }
@@ -155,8 +193,7 @@ public class VendingMachineDriver {
 
 
 
-        myInventory.addAll(startInteraction(myMoney, maintenanceMoney));
-
+        myInventory.addAll(startInteraction(myMoney));
         System.out.println("Resulting myInventory");
         displayItemInventory(myInventory);
 
