@@ -402,7 +402,7 @@ public class VendingMachine {
         System.out.println("Money in Vending Machine " + NAME + " Has Been Emptied.");
 
         do {
-            System.out.println("Proceed to Replenish Change?: (1) Yes   (0) No");
+            System.out.println("Proceed to Replenish Change: (1) Yes   (0) No");
             temp = sc.nextInt();
             if (temp != 1 && temp != 0)
                 System.out.println("Error: Invalid Option");
