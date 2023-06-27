@@ -403,6 +403,8 @@ public class VendingMachineDriver {
 //        System.out.println("Resulting myInventory");
 //        displayItemInventory(myInventory);
 
+
+        //=================================TESTING CODE=================================================
         VendingMachine vm = vendingMachineList.get(0);
         System.out.println("+++++++++++++");
         vm.displayItemMenu();
