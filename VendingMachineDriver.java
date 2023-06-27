@@ -15,10 +15,37 @@ public class VendingMachineDriver {
         return vendingMachine.mainMenu(wallet);
     }
 
+    private static void execStocking(VendingMachine vendingMachine) {
+        Scanner sc = new Scanner(System.in);
+        int option;
+        boolean exit = false;
+
+        do {
+            System.out.println("=========================");
+            System.out.println("       Stocking");
+            System.out.println("=========================");
+            System.out.println("(0) Back");
+            System.out.println("(1) Restock");
+            System.out.println("(2) Add New Stock");
+
+            do {
+                System.out.println("Maintenance Option: ");
+                option = sc.nextInt();
+                if (option > 4 || option < 0)
+                    System.out.println("Error: Invalid Option");
+            } while (option > 4 || option < 0);
+            if (option == 0)
+                exit = true;
+
+        } while (!exit);
+
+        System.out.println("Going Back...");
+    }
+
     private static void execMaintenance(VendingMachine vendingMachine, Money wallet) {
         Scanner sc = new Scanner(System.in);
-        boolean stocking = false;
         int option;
+        boolean exit = false;
 
 
         vendingMachine.displayInventories();
@@ -37,13 +64,23 @@ public class VendingMachineDriver {
             do {
                 System.out.println("Maintenance Option: ");
                 option = sc.nextInt();
-                if (option != 1 && option != 0)
+                if (option > 4 || option < 0)
                     System.out.println("Error: Invalid Option");
-            } while (option != 1 && option != 0);
+            } while (option > 4 || option < 0);
+            if (option == 0)
+                exit = true;
 
+            switch (option) {
+                case 1:
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    break;
+                case 4:
+            }
 
-
-        } while (option != 0);
+        } while (!exit);
 
         System.out.println("Going Back...");
     }
