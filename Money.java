@@ -228,6 +228,16 @@ public class Money {
         return !(onePeso < 0 || fivePeso < 0 || tenPeso < 0 || twentyPeso < 0 || fiftyPeso < 0 || oneHundredPeso < 0 || twoHundredPeso < 0 || fiveHundredPeso < 0 || oneThousandPeso < 0);
     }
 
+    public void empty() {
+        onePeso = fivePeso = tenPeso = twentyPeso = fiftyPeso = 0;
+        oneHundredPeso = twoHundredPeso = fiveHundredPeso = oneThousandPeso = 0;
+    }
+
+    public void replace(Money money) {
+        empty();
+        addMoney(money);
+    }
+
     public void addOnePeso(int n){
         this.onePeso += n;
     }

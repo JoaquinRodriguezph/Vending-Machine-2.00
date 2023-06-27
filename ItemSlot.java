@@ -12,7 +12,7 @@ public class ItemSlot {
      */
     public ItemSlot(int slot, int max){
         this.SLOTNUMBER = slot;
-        this.item = null;
+        this.itemStock = null;
         this.stock = 0;
         this.MAX = max;
         this.price = 0;
@@ -30,8 +30,8 @@ public class ItemSlot {
      * This method gets the item in the slot.
      * @return the item in the Slot
      */
-    public Item getItem() {
-        return item;
+    public ItemStock getItemStock() {
+        return itemStock;
     }
 
     /**
@@ -52,10 +52,10 @@ public class ItemSlot {
 
     /**
      * This method sets the item that is in the item slot.
-     * @param item the item to be set in the slot
+     * @param itemStock the item to be set in the slot
      */
-    public void setItem(Item item) {
-        this.item = item;
+    public void setItem(ItemStock itemStock) {
+        this.itemStock = itemStock;
     }
 
     public void setPrice(int price) {
@@ -63,7 +63,7 @@ public class ItemSlot {
     }
 
     public void setSRP() {
-        setPrice(item.getSRP());
+        setPrice(itemStock.getSRP());
     }
 
     /**
@@ -73,13 +73,17 @@ public class ItemSlot {
      * @return true or false depending on if the stocking is successful
      */
     public boolean addStock(int stock){
-        if (this.item != null && stock > 0 && MAX >= this.stock + stock){
-            this.stock += stock;
-            System.out.println("Slot " + this.SLOTNUMBER + ": " + this.item.getName() + " Adding Stock Successful");
-            return true;
-        }
+        if (stock > 0 && MAX >= this.stock + stock){
+            if (itemStock.removeStock(stock)) {
+                this.stock += stock;
 
-        System.out.println("Error: Invalid Amount/Stock");
+                System.out.println("Slot " + this.SLOTNUMBER + ": " + this.itemStock.getName() + " Adding Stock Successful");
+                return true;
+            }
+        }
+        else
+            System.out.println("Error: Invalid Amount/Stock");
+
         return false;
     }
 
@@ -97,7 +101,7 @@ public class ItemSlot {
 
     private final int SLOTNUMBER;
 
-    private Item item;
+    private ItemStock itemStock;
 
     private int stock;
 
