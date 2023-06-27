@@ -24,6 +24,7 @@ public class VendingMachine {
     }
 
     public void mainMenu(Money wallet) {
+
         if (startingInventory != null) {
             boolean bCon = false;
             boolean bTransaction = false;
@@ -40,8 +41,10 @@ public class VendingMachine {
                 if (bCon && slotSelection != 0) {   //if the user selects a valid item
                     bTransaction = receivePayment(itemSlots[slotSelection - 1].getPrice(), wallet); //receives the payment from the user
 
-                    if (bTransaction)   //updates the transaction log of that item if the transaction was successful
+                    if (bTransaction) {  //updates the transaction log of that item if the transaction was successful
                         transactionLog[slotSelection - 1].addTransaction();
+
+                    }
 
                     mainMenu(wallet);
                 }
@@ -74,7 +77,7 @@ public class VendingMachine {
     private boolean chooseItem(int slot){
         boolean b = false;
         ItemSlot selectedSlot = null;
-        Item selectedItem = null;
+        ItemStock selectedItemStock = null;
 
         if (slot == 0)  //slot selection at 0 for exit per user input
             return true;
@@ -83,7 +86,7 @@ public class VendingMachine {
             if (slot == itemSlot.getSlotNumber() && itemSlot.isAvailable()) {   //only accept item slots that are valid and have available stock/s
                 b = true;
                 selectedSlot = itemSlot;
-                selectedItem = selectedSlot.getItem();
+                selectedItemStock = selectedSlot.getItem();
             }
         }
 
@@ -91,9 +94,9 @@ public class VendingMachine {
             System.out.println("Error: Invalid Item Selection");
         else {  //details of the selected item
             System.out.println("=========================");
-            System.out.println("(" + slot + ")Selected Item: " + selectedItem.getName());
+            System.out.println("(" + slot + ")Selected Item: " + selectedItemStock.getName());
             System.out.println("Price:           " + itemSlots[slot - 1].getPrice() + "PHP");
-            System.out.println("Calorie/s:       " + selectedItem.getCalories());
+            System.out.println("Calorie/s:       " + selectedItemStock.getCalories());
             System.out.println("=========================");
         }
 
@@ -256,10 +259,10 @@ public class VendingMachine {
 
     */
 
-    public boolean isValidItem(Item item) {
+    public boolean isValidItem(ItemStock itemStock) {
         boolean b = true;
 
-        if (item.getSRP() <= 0 || item == null) //item is invalid if SRP <= 0 or is null
+        if (itemStock.getSRP() <= 0 || itemStock == null) //item is invalid if SRP <= 0 or is null
             b = false;
 
         if (!b)
@@ -278,26 +281,26 @@ public class VendingMachine {
     }
 
     //newStock method: make sure to check if the slot is currently empty
-    public boolean newStock(int slot, int quantity, Item item) {
-        return newStock(slot, quantity, item, item.getSRP());
+    public boolean newStock(int slot, int quantity, ItemStock itemStock) {
+        return newStock(slot, quantity, itemStock, itemStock.getSRP());
     }
 
-    public boolean newStock(int slot, Item item) {
-        return newStock(slot, 0, item, item.getSRP());
+    public boolean newStock(int slot, ItemStock itemStock) {
+        return newStock(slot, 0, itemStock, itemStock.getSRP());
     }
 
-    public boolean newStock(int slot, Item item, int price) {
-        return newStock(slot, 0, item, price);
+    public boolean newStock(int slot, ItemStock itemStock, int price) {
+        return newStock(slot, 0, itemStock, price);
     }
 
-    public boolean newStock(int slot, int quantity, Item item, int price) {
+    public boolean newStock(int slot, int quantity, ItemStock itemStock, int price) {
         boolean b = false, found = false;
 
 
 
-        if (isValidSlot(slot) && isValidItem(item)) {
+        if (isValidSlot(slot) && isValidItem(itemStock)) {
             for (int i = 0; i < itemSlots.length; i++) {
-                if (item == itemSlots[i].getItem())
+                if (itemStock == itemSlots[i].getItem())
                     found = true;
             }
             if (!found) {
@@ -312,7 +315,7 @@ public class VendingMachine {
                         b = itemSlots[slot - 1].addStock(quantity);
 
                     if (b) {
-                        itemSlots[slot - 1].setItem(item);  //sets the slot to this new item
+                        itemSlots[slot - 1].setItem(itemStock);  //sets the slot to this new item
                         System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getItem().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
                     }
                 } else

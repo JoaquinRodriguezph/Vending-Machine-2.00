@@ -1,7 +1,6 @@
 public class VendingMachineInventory {
     public VendingMachineInventory(VendingMachine vm) {
-        money = new Money();
-        money.replace(vm.getMoney());
+        money = new Money(vm.getMoney());
         ItemSlot[] tempSlots = vm.getItemSlots();
         itemSlots = new ItemSlot[tempSlots.length];
         for (int i = 0; i < tempSlots.length; i++) {
