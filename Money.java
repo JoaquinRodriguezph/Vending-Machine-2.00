@@ -257,8 +257,7 @@ public class Money {
      * @return true if successful and false if not.
      */
     public boolean removeMoney(int money) {
-        Money temp = new Money();
-        temp = this;
+        Money temp = new Money(this);
         boolean b = false;
 
         while (temp.oneThousandPeso > 0 && money >= 1000) {

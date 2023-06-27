@@ -298,14 +298,6 @@ public class VendingMachine {
         return newStock(slot, quantity, itemStock, itemStock.getSRP());
     }
 
-    public boolean newStock(int slot, ItemStock itemStock) {
-        return newStock(slot, 0, itemStock, itemStock.getSRP());
-    }
-
-    public boolean newStock(int slot, ItemStock itemStock, int price) {
-        return newStock(slot, 0, itemStock, price);
-    }
-
     public boolean newStock(int slot, int quantity, ItemStock itemStock, int price) {
         boolean b = false, found = false;
         ItemStock tempItem;
@@ -335,8 +327,6 @@ public class VendingMachine {
                         if (!b)
                             itemSlots[slot - 1].setItem(tempItem); //sets the slot to the old item
                     }
-
-
 
                     if (b) {
                         System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getItemStock().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
