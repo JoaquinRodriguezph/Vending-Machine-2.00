@@ -17,7 +17,7 @@ public class ItemTransaction {
      * This method gets the item
      * @return the item of the ItemTransaction instance
      */
-    public ItemSlot getItem() {
+    public ItemSlot getItemSlot() {
         return SLOT;
     }
 
