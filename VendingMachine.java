@@ -80,8 +80,11 @@ public class VendingMachine {
         for (int i = 0; i < itemSlots.length; i++){
             if (itemSlots[i] != null){
                 System.out.print(itemSlots[i].getSlotNumber() + " || ");
-                if (itemSlots[i].getItemStock() != null)
+                if (itemSlots[i].getItemStock() != null) {
                     System.out.println(itemSlots[i].getItemStock().getName());
+                }
+                else
+                    System.out.println("X");
             }
         }
         System.out.println("=========================");
