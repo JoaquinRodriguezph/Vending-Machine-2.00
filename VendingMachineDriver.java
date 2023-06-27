@@ -3,9 +3,17 @@ import java.util.ArrayList;
 public class VendingMachineDriver {
     private ArrayList<ItemStock> itemStockList = new ArrayList<ItemStock>();
 
+    private ArrayList<VendingMachine> vendingMachines = new ArrayList<VendingMachine>();
+
     //VendingMachineDriver(){this.ItemList = new ArrayList<>();}
 
-    private void
+    private void execVendingMachine(VendingMachine vendingMachine) {
+
+    }
+
+    private void selectVendingMachine() {
+
+    }
 
     public static void main(String args[]) {
         VendingMachineDriver vm = new VendingMachineDriver();
@@ -25,10 +33,14 @@ public class VendingMachineDriver {
         vm.itemStockList.add(new ItemStock("Royal", 50, 139));
         vm.itemStockList.add(new ItemStock("Bottled Water", 25, 0));
 
-        ArrayList<Item> myItems = new ArrayList<Item>();
+        vm.vendingMachines.add(new VendingMachine("PH", 8, 10))
+
+        ArrayList<Item> myInventory = new ArrayList<Item>();
         Money myMoney = new Money();
 
         Money maintenanceMoney = new Money();
+
+
 
 
     }

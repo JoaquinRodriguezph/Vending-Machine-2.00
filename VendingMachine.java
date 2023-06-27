@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class VendingMachine {
-    public VendingMachine(String name, int maxSlots, int slotMaxItems, int passcode) {
+    public VendingMachine(String name, int maxSlots, int slotMaxItems) {
         this.NAME = name;
         this.itemSlots = new ItemSlot[maxSlots];    //initializing the number of slots in the vending machine
         for (int i = 0; i < maxSlots; i++) {    //loop to assign SLOTNUMBER and max items in each slot
