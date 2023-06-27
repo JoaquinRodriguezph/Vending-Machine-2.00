@@ -54,7 +54,7 @@ public class ItemSlot {
      * This method sets the item that is in the item slot.
      * @param itemStock the item to be set in the slot
      */
-    public void setItem(ItemStock itemStock) {
+    public void setItemStock(ItemStock itemStock) {
         this.itemStock = itemStock;
     }
 
@@ -64,6 +64,10 @@ public class ItemSlot {
 
     public void setSRP() {
         setPrice(itemStock.getSRP());
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
     }
 
     /**

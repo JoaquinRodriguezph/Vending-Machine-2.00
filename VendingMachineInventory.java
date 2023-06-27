@@ -5,8 +5,8 @@ public class VendingMachineInventory {
         itemSlots = new ItemSlot[tempSlots.length];
         for (int i = 0; i < tempSlots.length; i++) {
             itemSlots[i] = new ItemSlot(tempSlots[i].getSlotNumber(), tempSlots[i].getMax());
-            itemSlots[i].setItem(tempSlots[i].getItemStock());
-            itemSlots[i].addStock(tempSlots[i].getStock());
+            itemSlots[i].setItemStock(tempSlots[i].getItemStock());
+            itemSlots[i].setStock(tempSlots[i].getStock());
             itemSlots[i].setPrice(tempSlots[i].getPrice());
         }
     }

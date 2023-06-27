@@ -83,7 +83,7 @@ public class VendingMachineDriver {
 
     private static void execStocking(VendingMachine vendingMachine) {
         Scanner sc = new Scanner(System.in);
-        int option;
+        int option, slot;
         ItemStock itemStock;
         boolean exit = false;
 
@@ -112,7 +112,14 @@ public class VendingMachineDriver {
                     if (itemStock != null)
                         addNewStock(itemStock, vendingMachine);
                 }
-                case 2 -> vendingMachine.restock();
+                case 2 -> {
+                    slot = vendingMachine.selectSlot();
+                    if (slot != 0) {
+                        System.out.print("Quantity: ");
+                        option = sc.nextInt();
+                        vendingMachine.restock(slot, option);
+                    }
+                }
             }
 
         } while (!exit);
@@ -337,7 +344,10 @@ public class VendingMachineDriver {
         Iterator<Integer> quantity = itemQuantity.iterator();
 
         while (item.hasNext() && quantity.hasNext()) {
-            System.out.println(item.next().getName() + ": " + quantity.next());
+            Item it = item.next();
+            Integer in = quantity.next();
+            if (it != null && in != null)
+                System.out.println(it.getName() + ": " + in);
         }
     }
 
@@ -345,49 +355,79 @@ public class VendingMachineDriver {
         Scanner sc = new Scanner(System.in);
 
         //    VendingMachineDriver vm = new VendingMachineDriver();
-        itemStockList.add(new ItemStock("Fried Egg", 30, 150, 10));
-        itemStockList.add(new ItemStock("Chippy", 75, 170,2));
-        itemStockList.add(new ItemStock("Tapas", 100, 200, 20));
-        itemStockList.add(new ItemStock("Hotdog", 75, 290, 5));
-        itemStockList.add(new ItemStock("Piattos", 75, 150));
-        itemStockList.add(new ItemStock("V-Cut", 75, 180));
-        itemStockList.add(new ItemStock("Corn", 20, 88));
-        itemStockList.add(new ItemStock("Fried Chicken", 100, 246));
-        itemStockList.add(new ItemStock("Bangus", 100, 200));
-        itemStockList.add(new ItemStock("Pork Chop", 100, 231));
-        itemStockList.add(new ItemStock("Tosino", 100, 230));
-        itemStockList.add(new ItemStock("Rice", 20, 206));
-        itemStockList.add(new ItemStock("Coca Cola", 50, 139));
-        itemStockList.add(new ItemStock("Royal", 50, 139));
-        itemStockList.add(new ItemStock("Bottled Water", 25, 0));
+
+        {
+            itemStockList.add(new ItemStock("Fried Egg", 30, 150, 10));
+            itemStockList.add(new ItemStock("Chippy", 75, 170, 2));
+            itemStockList.add(new ItemStock("Tapas", 100, 200, 20));
+            itemStockList.add(new ItemStock("Hotdog", 75, 290, 5));
+            itemStockList.add(new ItemStock("Piattos", 75, 150));
+            itemStockList.add(new ItemStock("V-Cut", 75, 180));
+            itemStockList.add(new ItemStock("Corn", 20, 88));
+            itemStockList.add(new ItemStock("Fried Chicken", 100, 246));
+            itemStockList.add(new ItemStock("Bangus", 100, 200));
+            itemStockList.add(new ItemStock("Pork Chop", 100, 231));
+            itemStockList.add(new ItemStock("Tosino", 100, 230));
+            itemStockList.add(new ItemStock("Rice", 20, 206));
+            itemStockList.add(new ItemStock("Coca Cola", 50, 139));
+            itemStockList.add(new ItemStock("Royal", 50, 139));
+            itemStockList.add(new ItemStock("Bottled Water", 25, 0));
+        }
 
         vendingMachineList.add(new VendingMachine("PH", 12, 15));
         vendingMachineList.add(new VendingMachine("FOODIES", 8, 10));
 
         Money unliMoney = new Money(); {
-            unliMoney.setOnePeso(99999999);
-            unliMoney.setFivePeso(99999999);
-            unliMoney.setTenPeso(99999999);
-            unliMoney.setTwentyPeso(99999999);
-            unliMoney.setFiftyPeso(99999999);
-            unliMoney.setOneHundredPeso(99999999);
-            unliMoney.setTwoHundredPeso(99999999);
-            unliMoney.setFiveHundredPeso(99999999);
-            unliMoney.setOneThousandPeso(99999999);
+            unliMoney.setOnePeso(99999);
+            unliMoney.setFivePeso(99999);
+            unliMoney.setTenPeso(99999);
+            unliMoney.setTwentyPeso(99999);
+            unliMoney.setFiftyPeso(99999);
+            unliMoney.setOneHundredPeso(99999);
+            unliMoney.setTwoHundredPeso(99999);
+            unliMoney.setFiveHundredPeso(99999);
+            unliMoney.setOneThousandPeso(99999);
         }
 
 
         ArrayList<Item> myInventory = new ArrayList<Item>();
         Money myMoney = new Money();
-        Money maintenanceMoney = new Money();
+        Money maintenanceMoney = new Money(); {
+            maintenanceMoney.setOnePeso(9999999);
+            maintenanceMoney.setFivePeso(9999999);
+        }
 
 
 
-        myInventory.addAll(startInteraction(myMoney));
+//        myInventory.addAll(startInteraction(myMoney));
+//        System.out.println("Resulting myInventory");
+//        displayItemInventory(myInventory);
+
+
+        //=================================TESTING CODE=================================================
+        VendingMachine vm = vendingMachineList.get(0);
+        System.out.println("+++++++++++++");
+        vm.displayItemMenu();
+        vm.newStock(1, 2, itemStockList.get(1), 22);
+   //     vm.displayItemMenu();
+//        vm.newStock(2, 0, itemStockList.get(1));
+//        System.out.println("+++++++++++++");
+//        vm.restock(1, 1);
+//        System.out.println("+++++++++++++");
+//        vm.restock(2, 1);
+//        System.out.println("+++++++++++++");
+//        vm.changePrice(1, 30);
+        vm.displayItemMenu();
+    //    vm.mainMenu(unliMoney);
+        System.out.println("+++++++++++++");
+        vm.replenishMoney(maintenanceMoney);
+        System.out.println("+++++++++++++");
+
+        myInventory.add(vm.mainMenu(unliMoney));
+        myInventory.add(vm.mainMenu(unliMoney));
+        myInventory.add(vm.mainMenu(unliMoney));
         System.out.println("Resulting myInventory");
         displayItemInventory(myInventory);
-
-
     }
 
 }
