@@ -66,6 +66,10 @@ public class ItemSlot {
         setPrice(itemStock.getSRP());
     }
 
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     /**
      * This method adds the amount specified in the parameter if it is not
      * below 0 and is not above the maximum capacity.

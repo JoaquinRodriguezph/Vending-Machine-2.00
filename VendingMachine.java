@@ -81,7 +81,7 @@ public class VendingMachine {
             if (itemSlots[i] != null){
                 System.out.print(itemSlots[i].getSlotNumber() + " || ");
                 if (itemSlots[i].getItemStock() != null) {
-                    System.out.print(itemSlots[i].getItemStock().getName());
+                    System.out.print(itemSlots[i].getItemStock().getName() + " " + itemSlots[i].getPrice() + " PHP");
                 }
                 else
                     System.out.print("X");
@@ -147,7 +147,7 @@ public class VendingMachine {
         System.out.println("(9) 1000 Pesos");
         System.out.println("=========================");
 
-        while (payment.getMoney() < cost && temp != 0) {
+        do {
             System.out.println("Insert: ");
             temp = sc.nextInt();
             switch (temp) {
@@ -192,21 +192,22 @@ public class VendingMachine {
                 else
                     System.out.println("Error: Invalid Money Availability");
             }
-        }
+        } while (payment.getMoney() < cost && temp != 0);
 
-        do {
-            System.out.println("Confirm Transaction: (1) Yes   (0) No");
-            temp = sc.nextInt();
-            if (temp != 1 && temp != 0)
-                System.out.println("Error: Invalid Option");
-        } while (temp != 1 && temp != 0);
+        if (temp != 0)
+            do {
+                System.out.println("Confirm Transaction: (1) Yes   (0) No");
+                temp = sc.nextInt();
+                if (temp != 1 && temp != 0)
+                    System.out.println("Error: Invalid Option");
+            } while (temp != 1 && temp != 0);
 
         if (temp == 0) {
             System.out.println("Cancelling Transaction...");
         }
         else if (payment.getMoney() >= cost) {
             if (payment.getMoney() != cost)
-                System.out.println("Calculating Change");
+                System.out.println("Calculating Change...");
 
             change = payment.getMoney() - cost;
             //Display Details of the Transaction
@@ -357,28 +358,19 @@ public class VendingMachine {
         return b;
     }
 
-    public boolean restock() {
-        Scanner sc = new Scanner(System.in);
+    public boolean restock(int slot, int quantity) {
         boolean b = false;
-        int quantity;
-        displayItemMenu();
-        int slot = selectSlot();
 
-        if (slot != 0) {
-            System.out.print("Quantity: ");
-            quantity = sc.nextInt();
-
-            if (isValidSlot(slot))
-                if (itemSlots[slot - 1].getItemStock() != null) {
-                    b = itemSlots[slot - 1].addStock(quantity);
-                    if (b) {
-                        //resets when stocking
-                        newStartingInventory();
-                        clearLog();
-                    }
-                } else
-                    System.out.println("Slot " + slot + " is Not Assigned to Any Items");
-        }
+        if (isValidSlot(slot))
+            if (itemSlots[slot - 1].getItemStock() != null) {
+                b = itemSlots[slot - 1].addStock(quantity);
+                if (b) {
+                    //resets when stocking
+                    newStartingInventory();
+                    clearLog();
+                }
+            } else
+                System.out.println("Slot " + slot + " is Not Assigned to Any Items");
 
         return b;
     }
@@ -439,9 +431,9 @@ public class VendingMachine {
         System.out.println("Money Collected");
         money.showMoney();
 
-        System.out.println("Money in Vending Machine " + NAME + " Has Been Emptied.");
+        System.out.println("Money in Vending Machine " + NAME + " Has Been Emptied.\nReminder: Replenish Change");
 
-        do {
+       /* do {
             System.out.println("Proceed to Replenish Change: (1) Yes   (0) No");
             temp = sc.nextInt();
             if (temp != 1 && temp != 0)
@@ -450,7 +442,7 @@ public class VendingMachine {
 
         if (temp == 1)
             replenishMoney(wallet);
-
+*/
         sc = null;
     }
 
@@ -460,6 +452,7 @@ public class VendingMachine {
         Money change = new Money();
         Money tempWallet = new Money(wallet);
         Scanner sc = new Scanner(System.in);
+/*
 
         while (temp != 0) {
             System.out.println("Replenish Change");
@@ -475,16 +468,17 @@ public class VendingMachine {
             System.out.println("(7) 200 Pesos");
             System.out.println("(8) 500 Pesos");
             System.out.println("(9) 1000 Pesos");
+            System.out.println("(10) Everything");
             System.out.println("=========================");
 
             do {
                 System.out.println("Bills/Coins: ");
                 temp = sc.nextInt();
-                if (temp < 0 || temp > 9)
+                if (temp < 0 || temp > 10)
                     System.out.println("Error: Invalid Option");
-            } while (temp < 0 || temp > 9);
+            } while (temp < 0 || temp > 10);
 
-            if (temp != 0)
+            if (temp != 0 && temp != 10)
                 do {
                     System.out.println("Quantity: ");
                     quantity = sc.nextInt();
@@ -519,6 +513,9 @@ public class VendingMachine {
                     break;
                 case 9:
                     change.changeOneThousandPeso(quantity);
+                    break;
+                case 10:
+                    change.replace(wallet);
                 case 0:
             }
 
@@ -527,13 +524,45 @@ public class VendingMachine {
                     change.showMoney(NAME + "Change");
                     tempWallet.replace(wallet);
                 }
-                else
+                else {
+                    switch (temp) {
+                        case 1:
+                            change.changeOnePeso(-quantity);
+                            break;
+                        case 2:
+                            change.changeFivePeso(-quantity);
+                            break;
+                        case 3:
+                            change.changeTenPeso(-quantity);
+                            break;
+                        case 4:
+                            change.changeTwentyPeso(-quantity);
+                            break;
+                        case 5:
+                            change.changeFiftyPeso(-quantity);
+                            break;
+                        case 6:
+                            change.changeOneHundredPeso(-quantity);
+                            break;
+                        case 7:
+                            change.changeTwoHundredPeso(-quantity);
+                            break;
+                        case 8:
+                            change.changeFiveHundredPeso(-quantity);
+                            break;
+                        case 9:
+                            change.changeOneThousandPeso(-quantity);
+                        case 0:
+                    }
                     System.out.println("Error: Invalid Money Availability");
-            }
-            else {
-                change.showMoney(NAME + "Change");
+                }
             }
         }
+*/
+
+        change.replace(wallet); //temp code
+
+        change.showMoney(NAME + " Change");
 
         do {
             System.out.println("Confirm Replenishing Change: (1) Yes   (0) No");
