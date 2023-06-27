@@ -310,7 +310,6 @@ public class VendingMachine {
         boolean b = false, found = false;
 
 
-        displayItemMenu();
         if (isValidSlot(slot) && isValidItem(itemStock)) {
             for (int i = 0; i < itemSlots.length; i++) {
                 if (itemStock == itemSlots[i].getItemStock())
