@@ -304,9 +304,11 @@ public class VendingMachine {
     public boolean newStock(int slot, int quantity, ItemStock itemStock, int price) {
         boolean b = false, found = false;
         ItemStock tempItem;
+        int oldPrice;
 
 
-        tempItem = itemSlots[slot - 1].getItemStock();
+        tempItem = itemSlots[slot - 1].getItemStock();  //keeps track of old item
+        oldPrice = itemSlots[slot - 1].getPrice();  //keeps track of old price of the slot
         if (isValidSlot(slot) && isValidItem(itemStock)) {
             for (int i = 0; i < itemSlots.length; i++) {
                 if (itemStock == itemSlots[i].getItemStock())
@@ -317,17 +319,21 @@ public class VendingMachine {
                     b = true;
                     System.out.println("Setting Up New Stock On Slot " + slot);
 
-                    if (price > 0)
-                        b = changePrice(slot, price);   //sets the price of the new item
+
 
 
                     itemSlots[slot - 1].setItem(itemStock); //sets the slot to this new item for addStock to function
 
+                    b = changePrice(slot, price);   //sets the price of the new item
+
                     if (quantity != 0 && b)  //quantity 0 bypasses new boolean value
                     {
                         b = itemSlots[slot - 1].addStock(quantity);
-                        if (!b)
-                            itemSlots[slot - 1].setItem(tempItem); //sets the slot to the old item
+                    }
+
+                    if (!b) {
+                        itemSlots[slot - 1].setItem(tempItem); //sets the slot to the old item
+                        changePrice(slot, oldPrice);
                     }
 
                     if (b) {
