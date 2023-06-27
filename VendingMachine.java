@@ -328,6 +328,7 @@ public class VendingMachine {
                     if (b) {
                         itemSlots[slot - 1].setItem(itemStock);  //sets the slot to this new item
                         System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getItemStock().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
+                        newStartingInventory();
                     }
                 } else
                     System.out.println("Error: Slot " + slot + " is Not Empty");
@@ -344,8 +345,11 @@ public class VendingMachine {
         boolean b = false;
 
         if (isValidSlot(slot))
-            if (itemSlots[slot - 1].getItemStock() != null)
+            if (itemSlots[slot - 1].getItemStock() != null) {
                 b = itemSlots[slot - 1].addStock(quantity);
+                if (b)
+                    newStartingInventory();
+            }
             else
                 System.out.println("Slot " + slot + " is Not Assigned to Any Items");
 
@@ -521,12 +525,14 @@ public class VendingMachine {
     }
 
     public void displayInventories() {
-        VendingMachineInventory endingInventory = new VendingMachineInventory(this);
+        if (startingInventory != null) {
+            VendingMachineInventory endingInventory = new VendingMachineInventory(this);
 
-        displayInventory(startingInventory, "Starting Inventory");
-        displayInventory(endingInventory, "Ending Inventory");
+            displayInventory(startingInventory, "Starting Inventory");
+            displayInventory(endingInventory, "Ending Inventory");
 
-        endingInventory = null;
+            endingInventory = null;
+        }
     }
 
     private void displayInventory(VendingMachineInventory inventory, String info) {

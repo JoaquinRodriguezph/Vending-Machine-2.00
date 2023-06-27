@@ -7,7 +7,7 @@ public class VendingMachineDriver {
 
     //VendingMachineDriver(){this.ItemList = new ArrayList<>();}
 
-    private ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
+    private static ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
 
     }
 
@@ -16,7 +16,28 @@ public class VendingMachineDriver {
     }
 
     private static void execMaintenance(VendingMachine vendingMachine, Money wallet) {
+        Scanner sc = new Scanner(System.in);
+        boolean stocking = false;
 
+
+        vendingMachine.displayInventories();
+        do {
+            System.out.println("=========================");
+            System.out.println("       Maintenance");
+            System.out.println("=========================");
+            System.out.println("(0) Back");
+            System.out.println("(1) Stocking");
+            System.out.println("(2) Change Slot Price");
+            System.out.println("(3) ");    //contains the setting of srp
+            System.out.println("(4) ");
+            System.out.println("(5) Do Maintenance");
+            System.out.println("(6) Display Inventory Change");
+            System.out.println("=========================");
+
+
+        } while ();
+
+        System.out.println("Going Back...");
     }
 
     private static VendingMachine selectVendingMachine(ArrayList<VendingMachine> vendingMachines) {
