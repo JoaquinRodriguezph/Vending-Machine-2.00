@@ -364,7 +364,7 @@ public class Money {
     public void changeFivePeso(int n){
         this.fivePeso += n;
     }
-
+    /*
     /**
      * Adds n amount of ten peso coins to the current money instance.
      * @param n amount of ten peso coins.
