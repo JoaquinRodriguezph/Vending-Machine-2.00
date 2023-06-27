@@ -12,6 +12,12 @@ public class Money {
         oneHundredPeso = twoHundredPeso = fiveHundredPeso = oneThousandPeso = 0;
     }
 
+    /**
+     * This method is a constructor that is used to create a money instance
+     * from a given money instance.
+     * It initializes all attributes to the values of the given instance.
+     * @param money
+     */
     public Money(Money money) {
         onePeso = money.onePeso;
         fivePeso = money.fivePeso;
@@ -24,6 +30,10 @@ public class Money {
         oneThousandPeso = money.oneThousandPeso;
     }
 
+    /**
+     * This method is used to get the total amount of money in the instance.
+     * @return the total amount of money.
+     */
     public int getMoney(){
         int total = 0;
 
@@ -43,78 +53,155 @@ public class Money {
         oneThousandPeso = money.oneThousandPeso;
     }
 */
+
+    /**
+     * This method returns the total amount of one peso coins.
+     * @return the total amount of one peso coins.
+     */
     public int getOnePeso() {
         return onePeso;
     }
 
+    /**
+     * This method returns the total amount of five peso coins.
+     * @return the total amount of five peso coins.
+     */
     public int getFivePeso() {
         return fivePeso;
     }
 
+    /**
+     * This method returns the total amount of ten peso coins.
+     * @return the total amount of ten peso coins.
+     */
     public int getTenPeso() {
         return tenPeso;
     }
 
+    /**
+     * This method returns the total amount of twenty peso coins.
+     * @return the total amount of twenty peso coins.
+     */
     public int getTwentyPeso() {
         return twentyPeso;
     }
 
+    /**
+     * This method returns the total amount of fifty peso bills.
+     * @return the total amount of fifty peso bills.
+     */
     public int getFiftyPeso() {
         return fiftyPeso;
     }
 
+    /**
+     * This method returns the total amount of one hundred peso bills.
+     * @return the total amount of one hundred peso bills.
+     */
     public int getOneHundredPeso() {
         return oneHundredPeso;
     }
 
+    /**
+     * This method returns the total amount of two hundred peso bills.
+     * @return the total amount of two hundred peso bills.
+     */
     public int getTwoHundredPeso() {
         return twoHundredPeso;
     }
 
+    /**
+     * This method returns the total amount of five hundred peso bills.
+     * @return the total amount of five hundred peso bills.
+     */
     public int getFiveHundredPeso() {
         return fiveHundredPeso;
     }
 
+    /**
+     * This method returns the total amount of one thousand peso bills.
+     * @return the total amount of one thousand peso bills.
+     */
     public int getOneThousandPeso() {
         return oneThousandPeso;
     }
 
+    /**
+     * Sets the amount of one peso coins.
+     * @param n the amount of one peso coins to be set.
+     */
     public void setOnePeso(int n) {
         this.onePeso = n;
     }
-
+    /**
+     * Sets the amount of five peso coins.
+     * @param n the amount of five peso coins to be set.
+     */
     public void setFivePeso(int n) {
         this.fivePeso = n;
     }
 
+    /**
+     * Sets the amount of ten peso coins.
+     * @param n the amount of ten peso coins to be set.
+     */
     public void setTenPeso(int n) {
         this.tenPeso = n;
     }
 
+    /**
+     * Sets the amount of twenty peso coins.
+     * @param n the amount of twenty peso coins to be set.
+     */
     public void setTwentyPeso(int n) {
         this.twentyPeso = n;
     }
 
+    /**
+     * Sets the amount of fifty peso bills.
+     * @param n the amount of fifty peso bills to be set.
+     */
     public void setFiftyPeso(int n) {
         this.fiftyPeso = n;
     }
 
+    /**
+     * Sets the amount of one hundred peso bills.
+     * @param n the amount of one hundred peso bills to be set.
+     */
     public void setOneHundredPeso(int n) {
         this.oneHundredPeso = n;
     }
 
+    /**
+     * Sets the amount of two hundred peso bills.
+     * @param n the amount of two hundred peso bills to be set.
+     */
     public void setTwoHundredPeso(int n) {
         this.twoHundredPeso = n;
     }
 
+    /**
+     * Sets the amount of five hundred peso bills.
+     * @param n the amount of five hundred peso bills to be set.
+     */
     public void setFiveHundredPeso(int n) {
         this.fiveHundredPeso = n;
     }
 
+    /**
+     * Sets the amount of one thousand peso bills.
+     * @param n the amount of one thousand peso bills to be set.
+     */
     public void setOneThousandPeso(int n) {
         this.oneThousandPeso = n;
     }
 
+    /**
+     * Adds the amount of money from the Money instance in the parameter to the
+     * current Money instance.
+     * @param money the Money instance whose attributes will be added from.
+     */
     public void addMoney(Money money){
         onePeso += money.onePeso;
         fivePeso += money.fivePeso;
@@ -127,6 +214,12 @@ public class Money {
         oneThousandPeso += money.oneThousandPeso;
     }
 
+    /**
+     * Removes the amount of money from the Money instance in the parameter to the
+     * current Money instance.
+     * @param money the Money instance whose attributes will be removed from.
+     * @return true if successful and false if not
+     */
     public boolean removeMoney(Money money) {
         Money temp = new Money(this);
         boolean b = false;
@@ -158,6 +251,11 @@ public class Money {
         return b;
     }
 
+    /**
+     * Removes specified amount of money from current Money instance.
+     * @param money the amount of money to be removed.
+     * @return true if successful and false if not.
+     */
     public boolean removeMoney(int money) {
         Money temp = new Money();
         temp = this;
@@ -224,56 +322,109 @@ public class Money {
         return b;
     }
 
+    /**
+     * This method checks if the Money instance is valid by checking if
+     * each attribute is positive.
+     * @return true if valid and false if not valid.
+     */
     public boolean isValid() {
         return !(onePeso < 0 || fivePeso < 0 || tenPeso < 0 || twentyPeso < 0 || fiftyPeso < 0 || oneHundredPeso < 0 || twoHundredPeso < 0 || fiveHundredPeso < 0 || oneThousandPeso < 0);
     }
 
+    /**
+     * This method sets all attributes of the Money instance to 0.
+     */
     public void empty() {
         onePeso = fivePeso = tenPeso = twentyPeso = fiftyPeso = 0;
         oneHundredPeso = twoHundredPeso = fiveHundredPeso = oneThousandPeso = 0;
     }
 
+    /**
+     * This method sets all attributes of the Money instance to 0.
+     * It then adds money from a given money instance.
+     * @param money the money instance who's added from.
+     */
     public void replace(Money money) {
         empty();
         addMoney(money);
     }
 
+    /**
+     * Adds n amount of one peso coins to the current money instance.
+     * @param n amount of one peso coins.
+     */
     public void addOnePeso(int n){
         this.onePeso += n;
     }
 
+    /**
+     * Adds n amount of five peso coins to the current money instance.
+     * @param n amount of five peso coins.
+     */
     public void addFivePeso(int n){
         this.fivePeso += n;
     }
 
+    /**
+     * Adds n amount of ten peso coins to the current money instance.
+     * @param n amount of ten peso coins.
+     */
     public void addTenPeso(int n){
         this.tenPeso += n;
     }
 
+    /**
+     * Adds n amount of twenty peso coins to the current money instance.
+     * @param n amount of twenty peso coins.
+     */
     public void addTwentyPeso(int n){
         this.twentyPeso += n;
     }
 
+    /**
+     * Adds n amount of fifty peso bills to the current money instance.
+     * @param n amount of fifty peso bills.
+     */
     public void addFiftyPeso(int n){
         this.fiftyPeso += n;
     }
 
+    /**
+     * Adds n amount of one hundred peso bills to the current money instance.
+     * @param n amount of one hundred peso bills.
+     */
     public void addOneHundredPeso(int n){
         this.oneHundredPeso += n;
     }
 
+    /**
+     * Adds n amount of two hundred peso bills to the current money instance.
+     * @param n amount of two hundred peso bills.
+     */
     public void addTwoHundredPeso(int n){
         this.twoHundredPeso += n;
     }
 
+    /**
+     * Adds n amount of five hundred peso bills to the current money instance.
+     * @param n amount of five hundred peso bills.
+     */
     public void addFiveHundredPeso(int n){
         this.fiveHundredPeso += n;
     }
 
+    /**
+     * Adds n amount of one thousand peso bills to the current money instance.
+     * @param n amount of one thousand peso bills.
+     */
     public void addOneThousandPeso(int n){
         this.oneThousandPeso += n;
     }
 
+    /**
+     * Displays the amount of money in info's currency and the total.
+     * @param info the currency of the money.
+     */
     public void showMoney(String info) {
         System.out.println("*************************");
         System.out.println("Money in " + info);
@@ -282,6 +433,9 @@ public class Money {
         System.out.println("*************************");
     }
 
+    /**
+     * Displays the total amount of money without the currency.
+     */
     public void showMoney() {
         System.out.println("*************************");
         displayDenominations();
@@ -289,6 +443,9 @@ public class Money {
         System.out.println("*************************");
     }
 
+    /**
+     * Displays the total amount of each denomination.
+     */
     private void displayDenominations() {
         int[] list = toList();
         String temp = "";
@@ -328,6 +485,11 @@ public class Money {
         }
     }
 
+    /**
+     * Makes a list of integers from 0 to 8 corresponding the denominations and their respective
+     * totals.
+     * @return list of 9 integers containing the nine dominations and their respective totals.
+     */
     private int[] toList() {
         int[] list = new int[9];
         list[0] = onePeso;
