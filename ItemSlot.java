@@ -30,7 +30,7 @@ public class ItemSlot {
      * This method gets the item in the slot.
      * @return the item in the Slot
      */
-    public ItemStock getItem() {
+    public ItemStock getItemStock() {
         return itemStock;
     }
 

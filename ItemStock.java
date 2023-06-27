@@ -65,6 +65,10 @@ public class ItemStock {
         return stock;
     }
 
+    public Item getItem() {
+        return ITEM;
+    }
+
     /**
      * This method sets the number of items in stock of the item.
      * @param stock the amount of item to add in stock.

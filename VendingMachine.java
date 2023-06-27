@@ -1,6 +1,5 @@
 import java.util.Scanner;
 public class VendingMachine {
-
     public VendingMachine(String name, int maxSlots, int slotMaxItems, int passcode) {
         this.NAME = name;
         this.itemSlots = new ItemSlot[maxSlots];    //initializing the number of slots in the vending machine
@@ -23,7 +22,8 @@ public class VendingMachine {
         return itemSlots;
     }
 
-    public void mainMenu(Money wallet) {
+    public Item mainMenu(Money wallet) {
+        Item theItem = null;
 
         if (startingInventory != null) {
             boolean bCon = false;
@@ -50,8 +50,11 @@ public class VendingMachine {
                 }
             } while (!bCon);   //exit detection also exists within the chooseItem() method
 
-            if (bTransaction)
+            if (bTransaction) {
+                System.out.println("Dispensing Item...");
+                theItem = itemSlots[slotSelection - 1].getItemStock().getItem();
                 System.out.println("Thank You for Your Purchase!");
+            }
             else
                 System.out.println("Thank You Come Again!");
 
@@ -60,6 +63,8 @@ public class VendingMachine {
         }
         else
             System.out.println("Error: This New Vending Machine Has Not Yet Been Setup");
+
+        return theItem;
     }
 
     private void displayItemMenu(){
@@ -68,7 +73,7 @@ public class VendingMachine {
         System.out.println("=========================");
         for (int i = 0; i < itemSlots.length; i++){
             if (itemSlots[i] != null){
-                System.out.println(itemSlots[i].getSlotNumber() + " || " + itemSlots[i].getItem().getName());
+                System.out.println(itemSlots[i].getSlotNumber() + " || " + itemSlots[i].getItemStock().getName());
             }
         }
         System.out.println("=========================");
@@ -86,7 +91,7 @@ public class VendingMachine {
             if (slot == itemSlot.getSlotNumber() && itemSlot.isAvailable()) {   //only accept item slots that are valid and have available stock/s
                 b = true;
                 selectedSlot = itemSlot;
-                selectedItemStock = selectedSlot.getItem();
+                selectedItemStock = selectedSlot.getItemStock();
             }
         }
 
@@ -300,7 +305,7 @@ public class VendingMachine {
 
         if (isValidSlot(slot) && isValidItem(itemStock)) {
             for (int i = 0; i < itemSlots.length; i++) {
-                if (itemStock == itemSlots[i].getItem())
+                if (itemStock == itemSlots[i].getItemStock())
                     found = true;
             }
             if (!found) {
@@ -316,7 +321,7 @@ public class VendingMachine {
 
                     if (b) {
                         itemSlots[slot - 1].setItem(itemStock);  //sets the slot to this new item
-                        System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getItem().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
+                        System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getItemStock().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
                     }
                 } else
                     System.out.println("Error: Slot " + slot + " is Not Empty");
@@ -333,7 +338,7 @@ public class VendingMachine {
         boolean b = false;
 
         if (isValidSlot(slot))
-            if (itemSlots[slot - 1].getItem() != null)
+            if (itemSlots[slot - 1].getItemStock() != null)
                 b = itemSlots[slot - 1].addStock(quantity);
             else
                 System.out.println("Slot " + slot + " is Not Assigned to Any Items");
@@ -352,7 +357,7 @@ public class VendingMachine {
             else
                 System.out.print(" Has Been Set to ");
             itemSlots[slot - 1].setPrice(price);
-            System.out.println(itemSlots[slot - 1].getPrice() + " PHP (" + itemSlots[slot - 1].getItem().getName() + ")");
+            System.out.println(itemSlots[slot - 1].getPrice() + " PHP (" + itemSlots[slot - 1].getItemStock().getName() + ")");
         }
         else {
             b = false;
@@ -366,8 +371,8 @@ public class VendingMachine {
         boolean b = false;
 
         if (isValidSlot(slot))
-            if (itemSlots[slot - 1].getItem() != null)
-                b = changePrice(slot, itemSlots[slot - 1].getItem().getSRP());
+            if (itemSlots[slot - 1].getItemStock() != null)
+                b = changePrice(slot, itemSlots[slot - 1].getItemStock().getSRP());
             else
                 System.out.println("Slot " + slot + " is Not Assigned to Any Items");
 
@@ -376,8 +381,8 @@ public class VendingMachine {
 
     public void setAllSRP() {
         for (int slot = 1; slot <= itemSlots.length; slot++) {
-            if (itemSlots[slot - 1].getItem() != null)
-                changePrice(slot, itemSlots[slot - 1].getItem().getSRP());
+            if (itemSlots[slot - 1].getItemStock() != null)
+                changePrice(slot, itemSlots[slot - 1].getItemStock().getSRP());
         }
     }
 
@@ -524,7 +529,7 @@ public class VendingMachine {
         System.out.println("=========================");
         for (int i = 0; i < inventory.getItemSlots().length; i++){
             if (inventory.getItemSlots()[i] != null){
-                System.out.println(inventory.getItemSlots()[i].getSlotNumber() + " || " + inventory.getItemSlots()[i].getItem().getName());
+                System.out.println(inventory.getItemSlots()[i].getSlotNumber() + " || " + inventory.getItemSlots()[i].getItemStock().getName());
             }
         }
         System.out.println("=========================");

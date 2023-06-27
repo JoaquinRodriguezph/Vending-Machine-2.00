@@ -25,7 +25,7 @@ public class VendingMachineDriver {
         vm.itemStockList.add(new ItemStock("Royal", 50, 139));
         vm.itemStockList.add(new ItemStock("Bottled Water", 25, 0));
 
-        ArrayList<ItemStock> myItems = new ArrayList<ItemStock>();
+        ArrayList<Item> myItems = new ArrayList<Item>();
         Money myMoney = new Money();
 
         Money maintenanceMoney = new Money();

@@ -4,6 +4,14 @@ public class Item {
         CALORIES = calories;
     }
 
+    public String getName() {
+        return NAME;
+    }
+
+    public int getCalories() {
+        return CALORIES;
+    }
+
     private final String NAME;
 
     private final int CALORIES;
