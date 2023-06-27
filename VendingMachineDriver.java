@@ -7,12 +7,12 @@ public class VendingMachineDriver {
 
     //VendingMachineDriver(){this.ItemList = new ArrayList<>();}
 
-    private static ItemStock selectItemStock() {
+    private static ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
         Scanner sc = new Scanner(System.in);
         ItemStock item = null;
         int option;
 
-        Iterator<ItemStock> it = itemStockList.iterator();
+        Iterator<ItemStock> it = itemStocks.iterator();
 
 
         System.out.println("=========================");
@@ -30,12 +30,12 @@ public class VendingMachineDriver {
 
         do {
             option = sc.nextInt();
-            if (option > itemStockList.size() || option < 0)
+            if (option > itemStocks.size() || option < 0)
                 System.out.println("Error: Invalid Option");
-        } while (option > itemStockList.size() || option < 0);
+        } while (option > itemStocks.size() || option < 0);
 
         if (option != 0) {
-            item = itemStockList.get(option - 1);
+            item = itemStocks.get(option - 1);
             System.out.println("Selected Item: " + item.getName());
         }
         else
@@ -46,6 +46,39 @@ public class VendingMachineDriver {
 
     private static Item execBuyer(VendingMachine vendingMachine, Money wallet) {
         return vendingMachine.mainMenu(wallet);
+    }
+
+    private static boolean addNewStock(ItemStock itemStock, VendingMachine vendingMachine) {
+        boolean b = false;
+        Scanner sc = new Scanner(System.in);
+        int quantity, temp, slot, price = 0;
+
+        do {
+            System.out.println("Set to SRP: (1) Yes   (0) No");
+            temp = sc.nextInt();
+            if (temp != 1 && temp != 0)
+                System.out.println("Error: Invalid Option");
+        } while (temp != 1 && temp != 0);
+
+        if (temp == 0) {
+            System.out.print("Set Price (PHP): ");
+            price = sc.nextInt();
+        }
+
+        vendingMachine.displayItemMenu();
+        slot = vendingMachine.selectSlot();
+
+        if (slot != 0) {
+            System.out.print("Quantity: ");
+            quantity = sc.nextInt();
+
+            if (temp == 1)
+                b = vendingMachine.newStock(slot, quantity, itemStock);
+            else
+                b = vendingMachine.newStock(slot, quantity, itemStock, price);
+        }
+
+        return b;
     }
 
     private static void execStocking(VendingMachine vendingMachine) {
@@ -64,21 +97,82 @@ public class VendingMachineDriver {
             System.out.println("=========================");
 
             do {
-                System.out.println("Maintenance Option: ");
+                System.out.println("Stocking Option: ");
                 option = sc.nextInt();
                 if (option > 4 || option < 0)
                     System.out.println("Error: Invalid Option");
             } while (option > 4 || option < 0);
 
+            if (option == 0)
+                exit = true;
+
             switch (option) {
-                case 1:
-                    itemStock = selectItemStock();
-                    break;
-                case 2:
-                    vendingMachine.restock();
+                case 1 -> {
+                    itemStock = selectItemStock(itemStockList);
+                    if (itemStock != null)
+                        addNewStock(itemStock, vendingMachine);
+                }
+                case 2 -> vendingMachine.restock();
             }
 
         } while (!exit);
+
+        System.out.println("Going Back...");
+    }
+
+    private static void execChangePrice(VendingMachine vendingMachine) {
+        Scanner sc = new Scanner(System.in);
+        int option;
+        int slot = 0;
+        boolean exit = false;
+
+
+        vendingMachine.displayInventories();
+        do {
+            System.out.println("=========================");
+            System.out.println("     Price Change");
+            System.out.println("=========================");
+            System.out.println("(0) Back");
+            System.out.println("(1) Edit Price");
+            System.out.println("(2) Set to SRP");
+            System.out.println("(3) Set All to SRP");
+            System.out.println("(4) Display Slots");
+            System.out.println("=========================");
+
+            do {
+                System.out.println("Price Change Option: ");
+                option = sc.nextInt();
+                if (option > 4 || option < 0)
+                    System.out.println("Error: Invalid Option");
+            } while (option > 4 || option < 0);
+
+            if (option == 0)
+                exit = true;
+
+            if (option < 4 && option > 0)
+                slot = vendingMachine.selectSlot();
+
+
+            switch (option) {
+                case 1 -> {
+                    System.out.print("Set Price (PHP): ");
+                    vendingMachine.changePrice(slot, sc.nextInt());
+                }
+                case 2 -> vendingMachine.setSRP(slot);
+                case 3 -> vendingMachine.setAllSRP();
+                case 4 -> vendingMachine.displayInventories();
+            }
+
+        } while (!exit);
+
+        System.out.println("Going Back...");
+    }
+
+    private static void execMoney(VendingMachine vendingMachine, boolean collect, Money wallet) {
+        if (collect)
+            vendingMachine.collectMoney(wallet);
+        else
+            vendingMachine.replenishMoney(wallet);
 
         System.out.println("Going Back...");
     }
@@ -113,11 +207,13 @@ public class VendingMachineDriver {
                     execStocking(vendingMachine);
                     break;
                 case 2:
+                    execChangePrice(vendingMachine);
                     break;
                 case 3:
+                    execMoney(vendingMachine, true, wallet);
                     break;
                 case 4:
-
+                    execMoney(vendingMachine, false, wallet);
             }
 
         } while (option != 0);
@@ -271,9 +367,21 @@ public class VendingMachineDriver {
         vendingMachineList.add(new VendingMachine("PH", 12, 15));
         vendingMachineList.add(new VendingMachine("FOODIES", 8, 10));
 
+        Money unliMoney = new Money(); {
+            unliMoney.setOnePeso(99999999);
+            unliMoney.setFivePeso(99999999);
+            unliMoney.setTenPeso(99999999);
+            unliMoney.setTwentyPeso(99999999);
+            unliMoney.setFiftyPeso(99999999);
+            unliMoney.setOneHundredPeso(99999999);
+            unliMoney.setTwoHundredPeso(99999999);
+            unliMoney.setFiveHundredPeso(99999999);
+            unliMoney.setOneThousandPeso(99999999);
+        }
+
+
         ArrayList<Item> myInventory = new ArrayList<Item>();
         Money myMoney = new Money();
-
         Money maintenanceMoney = new Money();
 
 

@@ -293,39 +293,6 @@ public class VendingMachine {
         }
     }
 
-    public boolean addNewStock(ItemStock itemStock) {
-        boolean b = false;
-        Scanner sc = new Scanner(System.in);
-        int quantity, temp, slot, price = 0;
-
-        do {
-            System.out.println("Set to SRP: (1) Yes   (0) No");
-            temp = sc.nextInt();
-            if (temp != 1 && temp != 0)
-                System.out.println("Error: Invalid Option");
-        } while (temp != 1 && temp != 0);
-
-        if (temp == 0) {
-            System.out.print("Set Price (PHP): ");
-            price = sc.nextInt();
-        }
-
-        displayItemMenu();
-        slot = selectSlot();
-
-        if (slot != 0) {
-            System.out.print("Quantity: ");
-            quantity = sc.nextInt();
-
-            if (temp == 1)
-                b = newStock(slot, quantity, itemStock);
-            else
-                b = newStock(slot, quantity, itemStock, price);
-        }
-
-        return b;
-    }
-
     //newStock method: make sure to check if the slot is currently empty
     public boolean newStock(int slot, int quantity, ItemStock itemStock) {
         return newStock(slot, quantity, itemStock, itemStock.getSRP());
@@ -405,7 +372,7 @@ public class VendingMachine {
 
 
     public boolean changePrice(int slot, int price) {
-        boolean b = true;
+        boolean b = false;
 
         if (price > 0) {    //positive integer
             System.out.print("Slot " + slot);
@@ -415,11 +382,14 @@ public class VendingMachine {
                 System.out.print(" Has Been Set to ");
             itemSlots[slot - 1].setPrice(price);
             System.out.println(itemSlots[slot - 1].getPrice() + " PHP (" + itemSlots[slot - 1].getItemStock().getName() + ")");
+            b = true;
         }
         else {
-            b = false;
             System.out.println("Error: Invalid Price");
         }
+
+        if (!b)
+            System.out.println("Failed to Change Price");
 
         return b;
     }
