@@ -36,5 +36,5 @@ class MaintenancePerson extends Person{
 
     private ArrayList<VendingMachine> vendingMachines;
 
-    private ArrayList<>
+    //private ArrayList<>
 }
