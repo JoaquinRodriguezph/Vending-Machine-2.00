@@ -411,6 +411,8 @@ public class VendingMachine {
             if (itemSlots[slot - 1].getItemStock() != null)
                 changePrice(slot, itemSlots[slot - 1].getItemStock().getSRP());
         }
+
+        System.out.println("All Existing Items Have Been Set to Its SRP");
     }
 
     public void collectMoney(Money wallet) {
