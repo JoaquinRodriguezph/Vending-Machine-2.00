@@ -46,8 +46,8 @@ public class VendingMachine {
                     bTransaction = receivePayment(itemSlots[slotSelection - 1].getPrice(), wallet); //receives the payment from the user
 
                     if (bTransaction) {  //updates the transaction log of that item if the transaction was successful
+                        itemSlots[slotSelection - 1].removeStock();
                         transactionLog[slotSelection - 1].addTransaction();
-
                     }
 
                     mainMenu(wallet);

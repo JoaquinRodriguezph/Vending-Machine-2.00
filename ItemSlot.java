@@ -87,6 +87,10 @@ public class ItemSlot {
         return false;
     }
 
+    public void removeStock() {
+        this.stock--;
+    }
+
     /**
      * The method checks if there is stock left of an item.
      * @return true or false depending if there is at least one stock
