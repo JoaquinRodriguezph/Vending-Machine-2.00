@@ -73,7 +73,7 @@ public class VendingMachine {
         return theItem;
     }
 
-    private void displayItemMenu(){
+    public void displayItemMenu(){
         System.out.println("=========================");
         System.out.println("Slot Number || Item");
         System.out.println("=========================");
@@ -308,8 +308,11 @@ public class VendingMachine {
 
     public boolean newStock(int slot, int quantity, ItemStock itemStock, int price) {
         boolean b = false, found = false;
+        ItemStock tempItem;
 
 
+
+        tempItem = itemSlots[slot - 1].getItemStock();
         if (isValidSlot(slot) && isValidItem(itemStock)) {
             for (int i = 0; i < itemSlots.length; i++) {
                 if (itemStock == itemSlots[i].getItemStock())
@@ -323,11 +326,19 @@ public class VendingMachine {
                     if (price > 0)
                         b = changePrice(slot, price);   //sets the price of the new item
 
+
+                    itemSlots[slot - 1].setItem(itemStock); //sets the slot to this new item for addStock to function
+
                     if (quantity != 0 && b)  //quantity 0 bypasses new boolean value
+                    {
                         b = itemSlots[slot - 1].addStock(quantity);
+                        if (!b)
+                            itemSlots[slot - 1].setItem(tempItem); //sets the slot to the old item
+                    }
+
+
 
                     if (b) {
-                        itemSlots[slot - 1].setItem(itemStock);  //sets the slot to this new item
                         System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getItemStock().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
                         //resets when stocking
                         newStartingInventory();
@@ -344,8 +355,15 @@ public class VendingMachine {
         return b;
     }
 
-    public boolean restock(int slot, int quantity) {
+    public boolean restock() {
+        Scanner sc = new Scanner(System.in);
         boolean b = false;
+        int quantity;
+        displayItemMenu();
+        int slot = selectSlot();
+
+        System.out.print("Quantity: ");
+        quantity = sc.nextInt();
 
         if (isValidSlot(slot))
             if (itemSlots[slot - 1].getItemStock() != null) {
@@ -522,6 +540,26 @@ public class VendingMachine {
         tempWallet = null;
         change = null;
         sc = null;
+    }
+
+    public int selectSlot() {
+        Scanner sc = new Scanner(System.in);
+        int slot;
+
+        do {
+            System.out.println("(0) Back");
+            System.out.println("Select Item Slot: ");
+            slot = sc.nextInt();
+            if (slot < 0 || slot > itemSlots.length)
+                System.out.println("Error: Invalid Slot Selection");
+        } while(slot < 0 || slot > itemSlots.length);
+
+        if (slot == 0)
+            System.out.println("No Slot Selected, Going Back...");
+        else
+            System.out.println("Selected Slot: " + slot);
+
+        return slot;
     }
 
     public void displayTransactions() {
