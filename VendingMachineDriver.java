@@ -1,24 +1,20 @@
 import java.util.*;
 
+import static java.lang.String.valueOf;
+
 public class VendingMachineDriver {
     private static ArrayList<ItemStock> itemStockList = new ArrayList<ItemStock>();
 
     private static ArrayList<VendingMachine> vendingMachineList = new ArrayList<VendingMachine>();
 
+    private static ArrayList<Money> moneyList = new ArrayList<Money>();
+
     //VendingMachineDriver(){this.ItemList = new ArrayList<>();}
 
-    private static ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
-        Scanner sc = new Scanner(System.in);
-        ItemStock item = null;
-        int option;
-
+    private static void displayItemStock(ArrayList<ItemStock> itemStocks) {
         Iterator<ItemStock> it = itemStocks.iterator();
 
-
         System.out.println("=========================");
-        System.out.println("Vending Machine/s");
-        System.out.println("=========================");
-        System.out.println("(0) Back");
 
         for (int i = 1; it.hasNext(); i++) {
             ItemStock itemStock;
@@ -27,6 +23,20 @@ public class VendingMachineDriver {
             System.out.println("(" + i + ") " + itemStock.getName() + "; Stock: " + itemStock.getStock() + "; SRP: " + itemStock.getSRP() + "; Calories: " + itemStock.getCalories());
         }
         System.out.println("=========================");
+    }
+
+    private static ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
+        Scanner sc = new Scanner(System.in);
+        ItemStock item = null;
+        int option;
+
+
+        System.out.println("=========================");
+        System.out.println("Item Stock/s");
+        System.out.println("=========================");
+        System.out.println("(0) Back");
+
+        displayItemStock(itemStocks);
 
         do {
             option = sc.nextInt();
@@ -200,14 +210,15 @@ public class VendingMachineDriver {
             System.out.println("(2) Change Price");
             System.out.println("(3) Collect Money");
             System.out.println("(4) Replenish Change");
+            System.out.println("(5) Show All ItemStocks");
             System.out.println("=========================");
 
             do {
                 System.out.println("Maintenance Option: ");
                 option = sc.nextInt();
-                if (option > 4 || option < 0)
+                if (option > 5 || option < 0)
                     System.out.println("Error: Invalid Option");
-            } while (option > 4 || option < 0);
+            } while (option > 5 || option < 0);
 
             switch (option) {
                 case 1:
@@ -221,6 +232,9 @@ public class VendingMachineDriver {
                     break;
                 case 4:
                     execMoney(vendingMachine, false, wallet);
+                    break;
+                case 5:
+                    displayItemStock(itemStockList);
             }
 
         } while (option != 0);
@@ -263,6 +277,38 @@ public class VendingMachineDriver {
         return vm;
     }
 
+    private static Money selectWallet(ArrayList<Money> wallets, Money currentWallet) {
+        Scanner sc = new Scanner(System.in);
+        Iterator<Money> it = wallets.iterator();
+        int option;
+        Money selectedWallet = currentWallet;
+
+        System.out.println("=========================");
+
+        for (int i = 1; it.hasNext(); i++) {
+            Money wallet;
+            wallet = it.next();
+
+            System.out.println("-----[ " + i + " ]-----");
+            wallet.showMoney();
+        }
+        System.out.println("=========================");
+        System.out.println("(0) Back");
+
+        do {
+            System.out.print("Select Wallet: ");
+            option = sc.nextInt();
+            if (option > wallets.size() || option < 0)
+                System.out.println("Error: Invalid Option");
+        } while (option > wallets.size() || option < 0);
+        if (option != 0)
+            selectedWallet = wallets.get(option - 1);
+
+        System.out.println("Going Back...");
+
+        return selectedWallet;
+    }
+
     private static ArrayList<Item> startInteraction(Money wallet) {
         boolean exit = false;
         ArrayList<Item> allItems = new ArrayList<Item>();
@@ -278,17 +324,25 @@ public class VendingMachineDriver {
             System.out.println("(0) Exit");
             System.out.println("(1) Buy From Vending Machine");
             System.out.println("(2) Do Maintenance");
+            System.out.println("(3) Select Wallet");
+            System.out.println("(4) Show Current Wallet");
             System.out.println("=========================");
 
             do {
                 option = sc.nextInt();
-                if (option > 2 || option < 0)
+                if (option > 4 || option < 0)
                     System.out.println("Error: Invalid Option");
-            } while (option > 2 || option < 0);
+            } while (option > 4 || option < 0);
 
             switch (option) {
                 case 0:
                     exit = true;
+                    break;
+                case 3:
+                    wallet = selectWallet(moneyList, wallet);
+                    break;
+                case 4:
+                    wallet.showMoney("Current Wallet");
                     break;
                 case 1:
                 case 2:
@@ -395,13 +449,20 @@ public class VendingMachineDriver {
         Money maintenanceMoney = new Money(); {
             maintenanceMoney.setOnePeso(9999999);
             maintenanceMoney.setFivePeso(9999999);
+            maintenanceMoney.setTwentyPeso(9999999);
+        }
+
+        {
+            moneyList.add(unliMoney);
+            moneyList.add(myMoney);
+            moneyList.add(maintenanceMoney);
         }
 
 
 
-//        myInventory.addAll(startInteraction(myMoney));
-//        System.out.println("Resulting myInventory");
-//        displayItemInventory(myInventory);
+        myInventory.addAll(startInteraction(myMoney));
+        System.out.println("Resulting myInventory");
+        displayItemInventory(myInventory);
 
 
         //=================================TESTING CODE=================================================

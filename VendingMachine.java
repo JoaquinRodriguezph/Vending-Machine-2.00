@@ -450,9 +450,11 @@ public class VendingMachine {
         int temp = -1;
         int quantity = 0;
         Money change = new Money();
+        Money emptyWallet = new Money();
         Money tempWallet = new Money(wallet);
         Scanner sc = new Scanner(System.in);
-/*
+ //       boolean replace = false;
+///*
 
         while (temp != 0) {
             System.out.println("Replenish Change");
@@ -516,6 +518,7 @@ public class VendingMachine {
                     break;
                 case 10:
                     change.replace(wallet);
+                 //  replace = true;
                 case 0:
             }
 
@@ -558,9 +561,9 @@ public class VendingMachine {
                 }
             }
         }
-*/
+//*/
 
-        change.replace(wallet); //temp code
+    //    change.replace(wallet); //temp code
 
         change.showMoney(NAME + " Change");
 
@@ -571,7 +574,9 @@ public class VendingMachine {
                 System.out.println("Error: Invalid Option");
         } while (temp != 1 && temp != 0);
 
+
         if (temp == 1) {
+            tempWallet.removeMoney(change);
             wallet.replace(tempWallet);
             money.addMoney(change);
         }
