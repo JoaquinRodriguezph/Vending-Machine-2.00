@@ -39,6 +39,7 @@ public class VendingMachineDriver {
         displayItemStock(itemStocks);
 
         do {
+            System.out.print("Option: ");
             option = sc.nextInt();
             if (option > itemStocks.size() || option < 0)
                 System.out.println("Error: Invalid Option");
@@ -790,6 +791,26 @@ public class VendingMachineDriver {
         System.out.println("=========================");
     }
 
+    private static void addItemStock(ItemStock itemStock) {
+        Scanner sc = new Scanner(System.in);
+        int stock;
+        boolean b = true;
+
+        System.out.println("=========================");
+        System.out.println("Adding Stock to " + itemStock.getName());
+        System.out.println("Current Stock: "+ itemStock.getStock());
+        System.out.println("=========================");
+        System.out.println("(0) Back");
+
+        do {
+            System.out.println("=========================");
+            System.out.print("Add Stock: ");
+            stock = sc.nextInt();
+            if (stock != 0)
+                b = itemStock.addStock(stock);
+        } while (stock != 0);
+    }
+
     private static void customizeItemStock() {
         Scanner sc = new Scanner(System.in);
         int option;
@@ -800,25 +821,32 @@ public class VendingMachineDriver {
             System.out.println("=========================");
             System.out.println("(0) Back");
             System.out.println("(1) Create Item Stock");
-            System.out.println("(2) Show Details");
-            System.out.println("(3) Show Item Stocks");
+            System.out.println("(2) Add Stocks");
+            System.out.println("(3) Show Details");
+            System.out.println("(4) Show Item Stocks");
             System.out.println("=========================");
 
             do {
                 System.out.print("Option: ");
                 option = sc.nextInt();
-                if (option > 3 || option < 0)
+                if (option > 4 || option < 0)
                     System.out.println("Error: Invalid Option");
-            } while (option > 3 || option < 0);
+            } while (option > 4 || option < 0);
 
             switch(option) {
                 case 1 -> itemStockList.addAll(createItemStock());
                 case 2 -> {
                     ItemStock item = selectItemStock(itemStockList);
+                    if (item != null) {
+                        addItemStock(item);
+                    }
+                }
+                case 3 -> {
+                    ItemStock item = selectItemStock(itemStockList);
                     if (item != null)
                         showItemStock(item);
                 }
-                case 3 -> displayItemStock(itemStockList);
+                case 4 -> displayItemStock(itemStockList);
             }
 
         } while (option != 0);
