@@ -783,7 +783,7 @@ public class VendingMachineDriver {
         return itemStocks;
     }
 
-    private static void showItemStock(ItemStock itemStock) {
+  /*  private static void showItemStock(ItemStock itemStock) {
         System.out.println("=========================");
         System.out.println(itemStock.getName());
         System.out.println("=========================");
@@ -791,7 +791,7 @@ public class VendingMachineDriver {
         System.out.println("Calories: " + itemStock.getCalories());
         System.out.println("Stock: " + itemStock.getStock());
         System.out.println("=========================");
-    }
+    }*/
 
     private static void addItemStock(ItemStock itemStock) {
         Scanner sc = new Scanner(System.in);
@@ -824,16 +824,15 @@ public class VendingMachineDriver {
             System.out.println("(0) Back");
             System.out.println("(1) Create Item Stock");
             System.out.println("(2) Add Stocks");
-            System.out.println("(3) Show Details");
-            System.out.println("(4) Show Item Stocks");
+            System.out.println("(3) Show Item Stocks");
             System.out.println("=========================");
 
             do {
                 System.out.print("Option: ");
                 option = sc.nextInt();
-                if (option > 4 || option < 0)
+                if (option > 3 || option < 0)
                     System.out.println("Error: Invalid Option");
-            } while (option > 4 || option < 0);
+            } while (option > 3 || option < 0);
 
             switch(option) {
                 case 1 -> itemStockList.addAll(createItemStock());
@@ -843,12 +842,7 @@ public class VendingMachineDriver {
                         addItemStock(item);
                     }
                 }
-                case 3 -> {
-                    ItemStock item = selectItemStock(itemStockList);
-                    if (item != null)
-                        showItemStock(item);
-                }
-                case 4 -> displayItemStock(itemStockList);
+                case 3 -> displayItemStock(itemStockList);
             }
 
         } while (option != 0);
