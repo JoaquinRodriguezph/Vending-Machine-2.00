@@ -818,7 +818,7 @@ public class VendingMachineDriver {
                     if (item != null)
                         showItemStock(item);
                 }
-                case 3 -> displayVendingMachine(vendingMachineList);
+                case 3 -> displayItemStock(itemStockList);
             }
 
         } while (option != 0);
