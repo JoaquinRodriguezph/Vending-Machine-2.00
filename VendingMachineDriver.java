@@ -80,6 +80,8 @@ public class VendingMachineDriver {
         slot = vendingMachine.selectSlot();
 
         if (slot != 0) {
+            System.out.println("Max Stocks: " + vendingMachine.getItemSlots()[slot - 1].getMax());
+            System.out.println("Current Stocks: " + vendingMachine.getItemSlots()[slot - 1].getStock());
             System.out.print("Quantity: ");
             quantity = sc.nextInt();
 
@@ -127,10 +129,10 @@ public class VendingMachineDriver {
                     vendingMachine.displayItemMenu();
                     slot = vendingMachine.selectSlot();
                     if (slot != 0) {
-                        if (vendingMachine.isValidSlot(slot)) {
-                            System.out.print("Quantity: ");
-                            option = sc.nextInt();
-                        }
+                        System.out.println("Max Stocks: " + vendingMachine.getItemSlots()[slot - 1].getMax());
+                        System.out.println("Current Stocks: " + vendingMachine.getItemSlots()[slot - 1].getStock());
+                        System.out.print("Quantity: ");
+                        option = sc.nextInt();
                         vendingMachine.restock(slot, option);
                     }
                 }
