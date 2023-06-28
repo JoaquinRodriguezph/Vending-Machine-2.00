@@ -15,6 +15,8 @@ public class VendingMachineDriver {
         Iterator<ItemStock> it = itemStocks.iterator();
 
         System.out.println("=========================");
+        System.out.println("Item Stocks: " + ItemStock.getCount());
+        System.out.println("=========================");
 
         for (int i = 1; it.hasNext(); i++) {
             ItemStock itemStock;
