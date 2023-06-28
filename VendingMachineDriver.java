@@ -109,24 +109,27 @@ public class VendingMachineDriver {
             do {
                 System.out.println("Stocking Option: ");
                 option = sc.nextInt();
-                if (option > 4 || option < 0)
+                if (option > 2 || option < 0)
                     System.out.println("Error: Invalid Option");
-            } while (option > 4 || option < 0);
+            } while (option > 2 || option < 0);
 
             if (option == 0)
                 exit = true;
 
             switch (option) {
-                case 1 -> {
+                case 2 -> {
                     itemStock = selectItemStock(itemStockList);
                     if (itemStock != null)
                         addNewStock(itemStock, vendingMachine);
                 }
-                case 2 -> {
+                case 1 -> {
+                    vendingMachine.displayItemMenu();
                     slot = vendingMachine.selectSlot();
                     if (slot != 0) {
-                        System.out.print("Quantity: ");
-                        option = sc.nextInt();
+                        if (vendingMachine.isValidSlot(slot)) {
+                            System.out.print("Quantity: ");
+                            option = sc.nextInt();
+                        }
                         vendingMachine.restock(slot, option);
                     }
                 }
@@ -166,19 +169,19 @@ public class VendingMachineDriver {
             if (option == 0)
                 exit = true;
 
-            if (option < 4 && option > 0)
+            if (option < 3 && option > 0)
                 slot = vendingMachine.selectSlot();
 
-
-            switch (option) {
-                case 1 -> {
-                    System.out.print("Set Price (PHP): ");
-                    vendingMachine.changePrice(slot, sc.nextInt());
+            if (slot != 0 || (option == 4 || option == 3))
+                switch (option) {
+                    case 1 -> {
+                        System.out.print("Set Price (PHP): ");
+                        vendingMachine.changePrice(slot, sc.nextInt());
+                    }
+                    case 2 -> vendingMachine.setSRP(slot);
+                    case 3 -> vendingMachine.setAllSRP();
+                    case 4 -> vendingMachine.displayItemMenu();
                 }
-                case 2 -> vendingMachine.setSRP(slot);
-                case 3 -> vendingMachine.setAllSRP();
-                case 4 -> vendingMachine.displayInventories();
-            }
 
         } while (!exit);
 
@@ -210,15 +213,19 @@ public class VendingMachineDriver {
             System.out.println("(2) Change Price");
             System.out.println("(3) Collect Money");
             System.out.println("(4) Replenish Change");
-            System.out.println("(5) Show All ItemStocks");
+            System.out.println("(5) Show Item Slots");
+            System.out.println("(6) Show All ItemStocks");
+            System.out.println("(7) Display Inventories");
+            System.out.println("(8) Display Transactions");
+            System.out.println("(9) Show Money");
             System.out.println("=========================");
 
             do {
                 System.out.println("Maintenance Option: ");
                 option = sc.nextInt();
-                if (option > 5 || option < 0)
+                if (option > 9 || option < 0)
                     System.out.println("Error: Invalid Option");
-            } while (option > 5 || option < 0);
+            } while (option > 9 || option < 0);
 
             switch (option) {
                 case 1:
@@ -234,7 +241,19 @@ public class VendingMachineDriver {
                     execMoney(vendingMachine, false, wallet);
                     break;
                 case 5:
+                    vendingMachine.displayItemMenu();
+                    break;
+                case 6:
                     displayItemStock(itemStockList);
+                    break;
+                case 7:
+                    vendingMachine.displayInventories();
+                    break;
+                case 8:
+                    vendingMachine.displayTransactions();
+                    break;
+                case 9:
+                    vendingMachine.showMoney();
             }
 
         } while (option != 0);
@@ -458,13 +477,23 @@ public class VendingMachineDriver {
             moneyList.add(maintenanceMoney);
         }
 
+        int option;
 
 
-        myInventory.addAll(startInteraction(myMoney));
-        System.out.println("Resulting myInventory");
-        displayItemInventory(myInventory);
+        do {
+            myInventory.addAll(startInteraction(myMoney));
+            System.out.println("Resulting myInventory");
+            displayItemInventory(myInventory);
 
+            do {
+                System.out.println("Exit: (1) Yes   (0) No");
+                option = sc.nextInt();
+                if (option != 1 && option != 0)
+                    System.out.println("Error: Invalid Option");
+            } while (option != 1 && option != 0);
+        } while (option != 1);
 
+/*
         //=================================TESTING CODE=================================================
         VendingMachine vm = vendingMachineList.get(0);
         System.out.println("+++++++++++++");
@@ -489,6 +518,8 @@ public class VendingMachineDriver {
         myInventory.add(vm.mainMenu(unliMoney));
         System.out.println("Resulting myInventory");
         displayItemInventory(myInventory);
+
+        */
     }
 
 }

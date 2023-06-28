@@ -47,7 +47,7 @@ public class ItemTransaction {
 
     @Override
     public String toString() {
-        return SLOT.getItemStock().getName() + SLOT.getPrice() + quantity + getTotal();
+        return SLOT.getItemStock().getName() + ": " + SLOT.getPrice() + " PHP * " + quantity + "   " + getTotal() + " PHP";
     }
 
     private final ItemSlot SLOT;

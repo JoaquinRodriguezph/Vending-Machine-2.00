@@ -286,7 +286,7 @@ public class Money {
         }
 
         while (temp.twentyPeso > 0 && money >= 20) {
-            temp.fiveHundredPeso--;
+            temp.twentyPeso--;
             money -= 20;
         }
 
