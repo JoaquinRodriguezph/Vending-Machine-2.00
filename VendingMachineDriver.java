@@ -261,13 +261,8 @@ public class VendingMachineDriver {
         System.out.println("Going Back...");
     }
 
-    private static VendingMachine selectVendingMachine(ArrayList<VendingMachine> vendingMachines) {
-        Scanner sc = new Scanner(System.in);
-        VendingMachine vm = null;
-        int option;
-
+    private static void displayVendingMachine(ArrayList<VendingMachine> vendingMachines) {
         Iterator<VendingMachine> it = vendingMachines.iterator();
-
 
         System.out.println("=========================");
         System.out.println("Vending Machine/s");
@@ -281,6 +276,14 @@ public class VendingMachineDriver {
             System.out.println("(" + i + ") " + machine.getName());
         }
         System.out.println("=========================");
+    }
+
+    private static VendingMachine selectVendingMachine(ArrayList<VendingMachine> vendingMachines) {
+        Scanner sc = new Scanner(System.in);
+        VendingMachine vm = null;
+        int option;
+
+        displayVendingMachine(vendingMachines);
 
         do {
             option = sc.nextInt();
@@ -296,22 +299,29 @@ public class VendingMachineDriver {
         return vm;
     }
 
-    private static Money selectWallet(ArrayList<Money> wallets, Money currentWallet) {
-        Scanner sc = new Scanner(System.in);
-        Iterator<Money> it = wallets.iterator();
-        int option;
-        Money selectedWallet = currentWallet;
+    private static void displayMoneyList(ArrayList<Money> moneyList) {
+        Iterator<Money> it = moneyList.iterator();
 
         System.out.println("=========================");
 
         for (int i = 1; it.hasNext(); i++) {
-            Money wallet;
-            wallet = it.next();
+            Money money;
+            money = it.next();
 
             System.out.println("-----[ " + i + " ]-----");
-            wallet.showMoney();
+            money.showMoney();
         }
         System.out.println("=========================");
+    }
+
+    private static Money selectWallet(ArrayList<Money> wallets, Money currentWallet) {
+        Scanner sc = new Scanner(System.in);
+
+        int option;
+        Money selectedWallet = currentWallet;
+
+        displayMoneyList(wallets);
+
         System.out.println("(0) Back");
 
         do {
@@ -424,6 +434,398 @@ public class VendingMachineDriver {
         }
     }
 
+    private static void showVendingMachine(VendingMachine vendingMachine) {
+        vendingMachine.displayItemMenu();
+        vendingMachine.displayInventories();
+        vendingMachine.displayTransactions();
+    }
+
+    private static ArrayList<VendingMachine> createVendingMachine() {
+        ArrayList<VendingMachine> vm = new ArrayList<VendingMachine>();
+        Scanner sc = new Scanner(System.in);
+        int option;
+        String name;
+        int slotSize = -1;
+        int numSlots = -1;
+        boolean create = false;
+
+        do {
+            System.out.println("=========================");
+            System.out.println("(0) Cancel");
+            System.out.print("Vending Machine Name: ");
+            name = sc.next();
+            if (!name.equalsIgnoreCase("0")) {
+                do {
+                    System.out.println("=========================");
+                    System.out.println("(0) Cancel");
+                    System.out.print("Number of Item Slots: ");
+                    numSlots = sc.nextInt();
+                    if (numSlots < 8 && numSlots != 0)
+                        System.out.println("Error: Invalid Number of Slots");
+                } while (numSlots < 8 && numSlots != 0);
+
+                if (numSlots != 0) {
+
+                    do {
+                        System.out.println("=========================");
+                        System.out.println("(0) Cancel");
+                        System.out.print("Max Items Per Slot: ");
+                        slotSize = sc.nextInt();
+                        if (slotSize < 10 && slotSize != 0)
+                            System.out.println("Error: Invalid Max Items");
+                    } while (slotSize < 10 && slotSize != 0);
+
+                    if (slotSize != 0)
+                        create = true;
+                }
+            }
+
+            if (create) {
+                vm.add(new VendingMachine(name, numSlots, slotSize));
+                System.out.println("New Vending Machine Created");
+            }
+            else
+                System.out.println("Vending Machine Creation Cancelled");
+
+            create = false;
+
+            do {
+                System.out.println("=========================");
+                System.out.println("(0) Finish");
+                System.out.println("(1) Create Another");
+                System.out.println("(2) Show Created Vending Machine/s");
+                System.out.println("=========================");
+
+                do {
+                    System.out.print("Option: ");
+                    option = sc.nextInt();
+                    if (option > 2 || option < 0)
+                        System.out.println("Error: Invalid Option");
+                } while (option > 2 || option < 0);
+
+                if (option == 2)
+                    if (vm.size() != 0)
+                        displayVendingMachine(vm);
+                    else
+                        System.out.println("No New Vending Machines Have Been Created");
+
+            } while (option != 0 && option != 1);
+        } while(option != 0);
+
+        System.out.println("Going Back...");
+
+        return vm;
+    }
+
+    private static void customizeVendingMachine() {
+        Scanner sc = new Scanner(System.in);
+        int option;
+
+        do {
+            System.out.println("=========================");
+            System.out.println("Customize Vending Machine");
+            System.out.println("=========================");
+            System.out.println("(0) Back");
+            System.out.println("(1) Create Vending Machine");
+            System.out.println("(2) Show Details");
+            System.out.println("(3) Show Vending Machines");
+            System.out.println("=========================");
+
+            do {
+                System.out.print("Option: ");
+                option = sc.nextInt();
+                if (option > 3 || option < 0)
+                    System.out.println("Error: Invalid Option");
+            } while (option > 3 || option < 0);
+
+            switch(option) {
+                case 1 -> vendingMachineList.addAll(createVendingMachine());
+                case 2 -> {
+                    VendingMachine vm = selectVendingMachine(vendingMachineList);
+                    if (vm != null)
+                        showVendingMachine(vm);
+                }
+                case 3 -> displayVendingMachine(vendingMachineList);
+            }
+
+
+        } while (option != 0);
+
+        System.out.println("Going Back...");
+    }
+
+    private static ArrayList<Money> createMoney() {
+        ArrayList<Money> money = new ArrayList<Money>();
+        Scanner sc = new Scanner(System.in);
+        int option, quantity = 0;
+        boolean create = false;
+        Money newMoney = new Money();
+
+        do {
+
+            System.out.println("=========================");
+            System.out.println("Adding Denominations");
+            System.out.println("=========================");
+            System.out.println("(0) Finish");
+            System.out.println("(1) 1 Peso");
+            System.out.println("(2) 5 Pesos");
+            System.out.println("(3) 10 Pesos");
+            System.out.println("(4) 20 Pesos");
+            System.out.println("(5) 50 Pesos");
+            System.out.println("(6) 100 Pesos");
+            System.out.println("(7) 200 Pesos");
+            System.out.println("(8) 500 Pesos");
+            System.out.println("(9) 1000 Pesos");
+
+            do {
+
+                do {
+                    System.out.println("=========================");
+                    System.out.print("Choose Bills/Coins: ");
+                    option = sc.nextInt();
+                    if (option < 0 || option > 9)
+                        System.out.println("Error: Invalid Option");
+                } while (option < 0 || option > 9);
+
+                if (option != 0)
+                    do {
+                        System.out.print("Quantity: ");
+                        quantity = sc.nextInt();
+                        if (quantity < 0)
+                            System.out.println("Error: Invalid Quantity");
+                    } while (quantity < 0);
+
+                if (quantity == 0)
+                    option = 0;
+
+
+                switch (option) {   //adds denominations to the newly created money
+                    case 1 -> newMoney.changeOnePeso(quantity);
+                    case 2 -> newMoney.changeFivePeso(quantity);
+                    case 3 -> newMoney.changeTenPeso(quantity);
+                    case 4 -> newMoney.changeTwentyPeso(quantity);
+                    case 5 -> newMoney.changeFiftyPeso(quantity);
+                    case 6 -> newMoney.changeOneHundredPeso(quantity);
+                    case 7 -> newMoney.changeTwoHundredPeso(quantity);
+                    case 8 -> newMoney.changeFiveHundredPeso(quantity);
+                    case 9 -> newMoney.changeOneThousandPeso(quantity);
+                }
+
+                    System.out.println("Total: " + newMoney.getMoney() + " PHP");
+            } while(option != 0);
+
+
+
+            do {
+                System.out.println("Confirm Creation: (1) Yes   (0) No");
+                option = sc.nextInt();
+                if (option != 1 && option != 0)
+                    System.out.println("Error: Invalid Option");
+            } while (option != 1 && option != 0);
+
+            if (option == 1)
+                create = true;
+
+
+            if (create) {
+                money.add(newMoney);
+                System.out.println("New Money Created");
+            }
+            else
+                System.out.println("Money Creation Cancelled");
+
+            create = false;
+
+            do {
+                System.out.println("=========================");
+                System.out.println("(0) Finish");
+                System.out.println("(1) Create Another");
+                System.out.println("(2) Show Created Money");
+                System.out.println("=========================");
+
+                do {
+                    System.out.print("Option: ");
+                    option = sc.nextInt();
+                    if (option > 2 || option < 0)
+                        System.out.println("Error: Invalid Option");
+                } while (option > 2 || option < 0);
+
+                if (option == 2)
+                    if (money.size() != 0)
+                        displayMoneyList(money);
+                    else
+                        System.out.println("No New Vending Machines Have Been Created");
+                else if (option == 1) {
+                    newMoney = new Money();
+                }
+
+            } while (option != 0 && option != 1);
+        } while(option != 0);
+
+        System.out.println("Going Back...");
+
+        return money;
+    }
+
+    private static void customizeMoney() {
+        Scanner sc = new Scanner(System.in);
+        int option;
+
+        do {
+            System.out.println("=========================");
+            System.out.println("    Customize Money");
+            System.out.println("=========================");
+            System.out.println("(0) Back");
+            System.out.println("(1) Create New Money");
+            System.out.println("(2) Show All Money");
+            System.out.println("=========================");
+
+            do {
+                System.out.print("Option: ");
+                option = sc.nextInt();
+                if (option > 2 || option < 0)
+                    System.out.println("Error: Invalid Option");
+            } while (option > 2 || option < 0);
+
+            switch(option) {
+                case 1 -> moneyList.addAll(createMoney());
+                case 2 -> displayMoneyList(moneyList);
+            }
+
+
+        } while (option != 0);
+
+        System.out.println("Going Back...");
+    }
+
+    private static ArrayList<ItemStock> createItemStock() {
+        ArrayList<ItemStock> itemStocks = new ArrayList<ItemStock>();
+        Scanner sc = new Scanner(System.in);
+        int option;
+        String name;
+        int srp = -1;
+        int calories = -1;
+        boolean create = false;
+        int stock = -1;
+
+        do {
+            System.out.println("=========================");
+            System.out.println("(0) Cancel");
+            System.out.print("Item Name: ");
+            name = sc.next();
+            if (!name.equalsIgnoreCase("0")) {
+                do {
+                    System.out.print("Calories: ");
+                    calories = sc.nextInt();
+                    if (calories < 0)
+                        System.out.println("Error: Invalid Calories");
+                } while (calories < 0);
+
+
+                do {
+                    System.out.print("Stocks: ");
+                    stock = sc.nextInt();
+                    if (stock < 0)
+                        System.out.println("Error: Invalid Stock/s");
+                } while (stock < 0);
+
+
+                System.out.println("=========================");
+                System.out.println("(0) Cancel");
+                do {
+                    System.out.print("SRP (PHP): ");
+                    srp = sc.nextInt();
+                    if (srp < 0)
+                        System.out.println("Error: Invalid SRP");
+                } while (srp < 0);
+
+                if (srp != 0)
+                    create = true;
+            }
+
+            if (create) {
+                itemStocks.add(new ItemStock(name, srp, calories, stock));
+                System.out.println("New Item Stock Created");
+            }
+            else
+                System.out.println("Item Stock Creation Cancelled");
+
+            create = false;
+
+            do {
+                System.out.println("=========================");
+                System.out.println("(0) Finish");
+                System.out.println("(1) Create Another");
+                System.out.println("(2) Show Created Item Stock/s");
+                System.out.println("=========================");
+
+                do {
+                    System.out.print("Option: ");
+                    option = sc.nextInt();
+                    if (option > 2 || option < 0)
+                        System.out.println("Error: Invalid Option");
+                } while (option > 2 || option < 0);
+
+                if (option == 2)
+                    if (itemStocks.size() != 0)
+                        displayItemStock(itemStocks);
+                    else
+                        System.out.println("No New Item Stocks Have Been Created");
+
+            } while (option != 0 && option != 1);
+        } while(option != 0);
+
+        System.out.println("Going Back...");
+
+        return itemStocks;
+    }
+
+    private static void showItemStock(ItemStock itemStock) {
+        System.out.println("=========================");
+        System.out.println(itemStock.getName());
+        System.out.println("=========================");
+        System.out.println("SRP: " + itemStock.getSRP() + " PHP");
+        System.out.println("Calories: " + itemStock.getCalories());
+        System.out.println("Stock: " + itemStock.getStock());
+        System.out.println("=========================");
+    }
+
+    private static void customizeItemStock() {
+        Scanner sc = new Scanner(System.in);
+        int option;
+
+        do {
+            System.out.println("=========================");
+            System.out.println("Customize Item Stock");
+            System.out.println("=========================");
+            System.out.println("(0) Back");
+            System.out.println("(1) Create Item Stock");
+            System.out.println("(2) Show Details");
+            System.out.println("(3) Show Item Stocks");
+            System.out.println("=========================");
+
+            do {
+                System.out.print("Option: ");
+                option = sc.nextInt();
+                if (option > 3 || option < 0)
+                    System.out.println("Error: Invalid Option");
+            } while (option > 3 || option < 0);
+
+            switch(option) {
+                case 1 -> itemStockList.addAll(createItemStock());
+                case 2 -> {
+                    ItemStock item = selectItemStock(itemStockList);
+                    if (item != null)
+                        showItemStock(item);
+                }
+                case 3 -> displayVendingMachine(vendingMachineList);
+            }
+
+        } while (option != 0);
+
+        System.out.println("Going Back...");
+    }
+
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
 
@@ -479,19 +881,54 @@ public class VendingMachineDriver {
 
         int option;
 
-
         do {
-            myInventory.addAll(startInteraction(myMoney));
-            System.out.println("Resulting myInventory");
-            displayItemInventory(myInventory);
+            System.out.println("=========================");
+            System.out.println("        Main Menu");
+            System.out.println("=========================");
+            System.out.println("(0) Exit");
+            System.out.println("(1) Start Main Program");
+            System.out.println("(2) Customize Vending Machines");
+            System.out.println("(3) Customize Money");
+            System.out.println("(4) Customize Item Stocks");
+            System.out.println("(5) Show Inventory");
+            System.out.println("=========================");
 
             do {
-                System.out.println("Exit: (1) Yes   (0) No");
+                System.out.print("Option: ");
                 option = sc.nextInt();
-                if (option != 1 && option != 0)
+                if (option > 5 || option < 0)
                     System.out.println("Error: Invalid Option");
-            } while (option != 1 && option != 0);
-        } while (option != 1);
+            } while (option > 5 || option < 0);
+
+            switch(option) {
+                case 2 -> customizeVendingMachine();
+                case 3 -> customizeMoney();
+                case 4 -> customizeItemStock();
+                case 5 -> displayItemInventory(myInventory);
+                case 1 -> {
+                    do {
+                        myInventory.addAll(startInteraction(myMoney));
+                        System.out.println("-----Resulting myInventory------");
+                        displayItemInventory(myInventory);
+
+                        do {
+                            System.out.println("Exit: (1) Yes   (0) No");
+                            option = sc.nextInt();
+                            if (option != 1 && option != 0)
+                                System.out.println("Error: Invalid Option");
+                        } while (option != 1 && option != 0);
+
+                    } while (option != 1);
+                }
+            }
+
+
+        } while (option != 0);
+
+
+
+
+
 
 /*
         //=================================TESTING CODE=================================================
