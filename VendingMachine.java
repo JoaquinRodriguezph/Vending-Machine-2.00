@@ -1,5 +1,17 @@
 import java.util.Scanner;
+
+/**
+ * The VendingMachine class contains all the methods and
+ * attributes for setting up (maintenance) and buying
+ * from a vending machine.
+ */
 public class VendingMachine {
+    /**
+     * This method is a constructor which utilizes the following parameters:
+     * @param name the name of the vending machine.
+     * @param maxSlots the max amount of Slots.
+     * @param slotMaxItems the max amount of items in each Slot.
+     */
     public VendingMachine(String name, int maxSlots, int slotMaxItems) {
         this.NAME = name;
         this.itemSlots = new ItemSlot[maxSlots];    //initializing the number of slots in the vending machine
@@ -14,18 +26,35 @@ public class VendingMachine {
         money = new Money();
     }
 
+    /**
+     * This method gets the total amount of money in the vending machine.
+     * @return the total amount of money in the vending machine.
+     */
     public Money getMoney() {
         return money;
     }
 
+    /**
+     * This method gets the list of Item Slots in the vending machine.
+     * @return list of item slots in the vending machine.
+     */
     public ItemSlot[] getItemSlots() {
         return itemSlots;
     }
 
+    /**
+     * This method gets the name of the vending machine.
+     * @return the name of the vending machine.
+     */
     public String getName() {
         return NAME;
     }
 
+    /**
+     * This method displays the mainMenu.
+     * @param wallet the wallet of the current User.
+     * @return theItem that the user bought.
+     */
     public Item mainMenu(Money wallet) {
         Item theItem = null;
 
@@ -73,6 +102,10 @@ public class VendingMachine {
         return theItem;
     }
 
+    /**
+     * This method displays the item menu.
+     * It shows each slot number with its corresponding item.
+     */
     public void displayItemMenu(){
         System.out.println("=========================");
         System.out.println("Slot Number || Item");
@@ -94,6 +127,11 @@ public class VendingMachine {
         System.out.println("=========================");
     }
 
+    /**
+     * This is a private method that chooses item based on:
+     * @param slot the slot to be chosen.
+     * @return true if successful and false if not.
+     */
     private boolean chooseItem(int slot){
         boolean b = false;
         ItemSlot selectedSlot = null;
@@ -124,6 +162,12 @@ public class VendingMachine {
         return b;
     }
 
+    /**
+     * This private method deals with the transaction when buying an item.
+     * @param cost cost of the item.
+     * @param wallet money of the user.
+     * @return true if successful and false if not.
+     */
     private boolean receivePayment(int cost, Money wallet) {
         int change;
         int temp = -1;
@@ -286,6 +330,11 @@ public class VendingMachine {
 
     */
 
+    /**
+     * This method checks if the amount of itemstock is valid.
+     * @param itemStock itemStock to be validated.
+     * @return true if itemstock is valid and false if not.
+     */
     public boolean isValidItem(ItemStock itemStock) {
         boolean b = true;
 
@@ -298,6 +347,11 @@ public class VendingMachine {
         return b;
     }
 
+    /**
+     * This method checks if the itemSlot is valid.
+     * @param slot itemSlot to be validated.
+     * @return true if itemSlot is valid and false if not.
+     */
     public boolean isValidSlot(int slot) {
         if (slot > 0 && slot <= itemSlots.length)
             return true;
@@ -308,9 +362,18 @@ public class VendingMachine {
     }
 
     //newStock method: make sure to check if the slot is currently empty
+
+    /**
+     * This method makes sure to check if the slot is currently empty.
+     * @param slot the slot to be checked.
+     * @param quantity the quantity of the slot to be checked.
+     * @param itemStock the itemStock of the slot to be checked.
+     * @return
+     */
     public boolean newStock(int slot, int quantity, ItemStock itemStock) {
         return newStock(slot, quantity, itemStock, itemStock.getSRP());
     }
+
 
     public boolean newStock(int slot, int quantity, ItemStock itemStock, int price) {
         boolean b = false, found = false;
