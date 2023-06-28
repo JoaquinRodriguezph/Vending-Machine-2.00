@@ -50,10 +50,10 @@ public class ItemStock {
     }
 
     /**
-     * This method gets the count of all item instances.
+     * This static method gets the count of all item instances.
      * @return the count of all items.
      */
-    public int getCount() {
+    public static int getCount() {
         return count;
     }
 
