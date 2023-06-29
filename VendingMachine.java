@@ -374,7 +374,14 @@ public class VendingMachine {
         return newStock(slot, quantity, itemStock, itemStock.getSRP());
     }
 
-
+    /**
+     * This method makes sure to check if the slot is currently empty.
+     * @param slot the slot to be checked.
+     * @param quantity the quantity of the slot to be checked.
+     * @param itemStock the itemStock of the slot to be checked.
+     * @param price the price to be checked.
+     * @return
+     */
     public boolean newStock(int slot, int quantity, ItemStock itemStock, int price) {
         boolean b = false, found = false;
         ItemStock tempItem;
@@ -428,6 +435,12 @@ public class VendingMachine {
         return b;
     }
 
+    /**
+     * This method restocks an item slot.
+     * @param slot the item slot to be restocked.
+     * @param quantity how many stocks would be put.
+     * @return true if successful and false if not.
+     */
     public boolean restock(int slot, int quantity) {
         boolean b = false;
 
@@ -445,7 +458,12 @@ public class VendingMachine {
         return b;
     }
 
-
+    /**
+     * This method changes the price of an item slot.
+     * @param slot the item slot to be changed.
+     * @param price the new price of the item slot.
+     * @return true if successful and false if not.
+     */
     public boolean changePrice(int slot, int price) {
         boolean b = false;
 
@@ -472,6 +490,11 @@ public class VendingMachine {
         return b;
     }
 
+    /**
+     * This method sets the SRP of an item slot.
+     * @param slot the item slot to be set.
+     * @return true if successful and false if not.
+     */
     public boolean setSRP(int slot) {
         boolean b = false;
 
@@ -486,6 +509,9 @@ public class VendingMachine {
         return b;
     }
 
+    /**
+     * This method sets all prices of existing items to its SRP.
+     */
     public void setAllSRP() {
         for (int slot = 1; slot <= itemSlots.length; slot++) {
             if (itemSlots[slot - 1].getItemStock() != null)
@@ -495,10 +521,18 @@ public class VendingMachine {
         System.out.println("All Existing Items Have Been Set to Its SRP");
     }
 
+    /**
+     * This method displays the amount of money in info's currency and the total.
+     */
     public void showMoney() {
         money.showMoney(NAME);
     }
 
+    /**
+     * This method collects the money inside the vending machine and
+     * transfers it into the following:
+     * @param wallet the wallet to be transferred to.
+     */
     public void collectMoney(Money wallet) {
         Scanner sc = new Scanner(System.in);
         int temp;
@@ -523,6 +557,10 @@ public class VendingMachine {
         sc = null;
     }
 
+    /**
+     * This method puts money into the following:
+     * @param wallet the wallet to be replenished.
+     */
     public void replenishMoney(Money wallet) {
         int temp = -1;
         int quantity = 0;
@@ -664,6 +702,10 @@ public class VendingMachine {
         sc = null;
     }
 
+    /**
+     * This method lets the user select an item slot.
+     * @return number inputted
+     */
     public int selectSlot() {
         Scanner sc = new Scanner(System.in);
         int slot;
@@ -682,6 +724,9 @@ public class VendingMachine {
         return slot;
     }
 
+    /**
+     * This method displays all the transactions of the user.
+     */
     public void displayTransactions() {
         int total = 0;
 
@@ -703,6 +748,9 @@ public class VendingMachine {
 
     }
 
+    /**
+     * This method displays the inventories of a user.
+     */
     public void displayInventories() {
         if (startingInventory != null) {
             VendingMachineInventory endingInventory = new VendingMachineInventory(this);
@@ -716,6 +764,11 @@ public class VendingMachine {
             System.out.println(NAME + " Vending Machine is Still New");
     }
 
+    /**
+     * This method displays the inventory of a vending machine.
+     * @param inventory the inventory to be displayed.
+     * @param info the info to be displayed.
+     */
     private void displayInventory(VendingMachineInventory inventory, String info) {
         System.out.println("=========================");
         System.out.println("---" + info + "---");
@@ -734,12 +787,18 @@ public class VendingMachine {
         inventory.getMoney().showMoney(info);
     }
 
+    /**
+     * This method clears the transaction logs.
+     */
     public void clearLog() {
         for (int i = 0; i < transactionLog.length; i++) {
             transactionLog[i].clearTransaction();
         }
     }
 
+    /**
+     * This method makes a new vending machine inventory.
+     */
     public void newStartingInventory() {
         startingInventory = null;
         startingInventory = new VendingMachineInventory(this);
