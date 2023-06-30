@@ -27,6 +27,49 @@ public class VendingMachineDriver {
         moneyList.add(unliMoney);
     }
 
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+
+        //default initialized factoryDriver
+        factoryDriverList.add(new VendingMachineDriver("REGULAR VENDING MACHINE"));
+
+        VendingMachineDriver factory = factoryDriverList.get(0);
+
+        {
+            factory.itemStockList.add(new ItemStock("Fried Egg", 30, 150, 10));
+            factory.itemStockList.add(new ItemStock("Chippy", 75, 170, 2));
+            factory.itemStockList.add(new ItemStock("Tapas", 100, 200, 20));
+            factory.itemStockList.add(new ItemStock("Hotdog", 75, 290, 5));
+            factory.itemStockList.add(new ItemStock("Piattos", 75, 150));
+            factory.itemStockList.add(new ItemStock("V-Cut", 75, 180));
+            factory.itemStockList.add(new ItemStock("Corn", 20, 88));
+            factory.itemStockList.add(new ItemStock("Fried Chicken", 100, 246));
+            factory.itemStockList.add(new ItemStock("Bangus", 100, 200));
+            factory.itemStockList.add(new ItemStock("Pork Chop", 100, 231));
+            factory.itemStockList.add(new ItemStock("Tosino", 100, 230));
+            factory.itemStockList.add(new ItemStock("Rice", 20, 206));
+            factory.itemStockList.add(new ItemStock("Coca Cola", 50, 139));
+            factory.itemStockList.add(new ItemStock("Royal", 50, 139));
+            factory.itemStockList.add(new ItemStock("Bottled Water", 25, 0));
+        }
+
+        factory.vendingMachineList.add(new VendingMachine("PH", 12, 15));
+        factory.vendingMachineList.add(new VendingMachine("FOODIES", 8, 10));
+
+        Money myMoney = new Money();
+        Money maintenanceMoney = new Money(); {
+            maintenanceMoney.setOnePeso(9999999);
+            maintenanceMoney.setFivePeso(9999999);
+            maintenanceMoney.setTwentyPeso(9999999);
+        }
+
+        factory.moneyList.add(myMoney);
+        factory.moneyList.add(maintenanceMoney);
+
+        programMenu();
+
+    }
+
     private static void displayItemStock(ArrayList<ItemStock> itemStocks) {
         Iterator<ItemStock> it = itemStocks.iterator();
 
@@ -1039,51 +1082,6 @@ public class VendingMachineDriver {
 
 
         } while (option != 0);
-    }
-
-    public static void main(String args[]) {
-        Scanner sc = new Scanner(System.in);
-
-        //default initialized factoryDriver
-        factoryDriverList.add(new VendingMachineDriver("REGULAR VENDING MACHINE"));
-
-        VendingMachineDriver factory = factoryDriverList.get(0);
-
-        {
-            factory.itemStockList.add(new ItemStock("Fried Egg", 30, 150, 10));
-            factory.itemStockList.add(new ItemStock("Chippy", 75, 170, 2));
-            factory.itemStockList.add(new ItemStock("Tapas", 100, 200, 20));
-            factory.itemStockList.add(new ItemStock("Hotdog", 75, 290, 5));
-            factory.itemStockList.add(new ItemStock("Piattos", 75, 150));
-            factory.itemStockList.add(new ItemStock("V-Cut", 75, 180));
-            factory.itemStockList.add(new ItemStock("Corn", 20, 88));
-            factory.itemStockList.add(new ItemStock("Fried Chicken", 100, 246));
-            factory.itemStockList.add(new ItemStock("Bangus", 100, 200));
-            factory.itemStockList.add(new ItemStock("Pork Chop", 100, 231));
-            factory.itemStockList.add(new ItemStock("Tosino", 100, 230));
-            factory.itemStockList.add(new ItemStock("Rice", 20, 206));
-            factory.itemStockList.add(new ItemStock("Coca Cola", 50, 139));
-            factory.itemStockList.add(new ItemStock("Royal", 50, 139));
-            factory.itemStockList.add(new ItemStock("Bottled Water", 25, 0));
-        }
-
-        factory.vendingMachineList.add(new VendingMachine("PH", 12, 15));
-        factory.vendingMachineList.add(new VendingMachine("FOODIES", 8, 10));
-
-        Money myMoney = new Money();
-        Money maintenanceMoney = new Money(); {
-            maintenanceMoney.setOnePeso(9999999);
-            maintenanceMoney.setFivePeso(9999999);
-            maintenanceMoney.setTwentyPeso(9999999);
-        }
-
-        factory.moneyList.add(myMoney);
-        factory.moneyList.add(maintenanceMoney);
-
-        factoryDriverList.add(factory);
-
-        programMenu();
-
     }
 
     private final String NAME;
