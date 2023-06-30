@@ -3,9 +3,6 @@ import java.util.*;
 import static java.lang.String.valueOf;
 
 public class VendingMachineDriver {
-
-
-
     public VendingMachineDriver(String name) {
         itemStockList = new ArrayList<ItemStock>();
 
@@ -34,7 +31,7 @@ public class VendingMachineDriver {
         Iterator<ItemStock> it = itemStocks.iterator();
 
         System.out.println("=========================");
-        System.out.println("Item Stocks: " + ItemStock.getCount());
+        System.out.println("Item Stocks: " + itemStocks.size());
         System.out.println("=========================");
 
         for (int i = 1; it.hasNext(); i++) {
@@ -477,7 +474,7 @@ public class VendingMachineDriver {
             System.out.println("=========================");
             System.out.println("(0) Cancel");
             System.out.print("Vending Machine Name: ");
-            name = sc.next();
+            name = sc.nextLine();
             if (!name.equalsIgnoreCase("0")) {
                 do {
                     System.out.println("=========================");
@@ -736,7 +733,7 @@ public class VendingMachineDriver {
             System.out.println("=========================");
             System.out.println("(0) Cancel");
             System.out.print("Item Name: ");
-            name = sc.next();
+            name = sc.nextLine();
             if (!name.equalsIgnoreCase("0")) {
                 do {
                     System.out.print("Calories: ");
@@ -881,7 +878,7 @@ public class VendingMachineDriver {
             System.out.println("=========================");
             System.out.println("(0) Cancel");
             System.out.print("Vending Machine Name: ");
-            name = sc.next();
+            name = sc.nextLine();
             if (!name.equalsIgnoreCase("0")) {
                 create = true;
             }
