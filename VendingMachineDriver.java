@@ -1085,7 +1085,7 @@ public class VendingMachineDriver {
 
         factoryDriverList.add(factory);
 
-
+        programMenu();
 
     }
 
