@@ -732,7 +732,7 @@ public class VendingMachine {
 
         System.out.println("=========================");
         for (ItemTransaction transactions : transactionLog) {
-            if (transactions.getItemSlot().getItemStock() != null) {
+            if (transactions.getSlot().getItemStock() != null) {
                 System.out.println(transactions.toString());
                 total += transactions.getTotal();
             }
