@@ -3,13 +3,32 @@ import java.util.*;
 import static java.lang.String.valueOf;
 
 public class VendingMachineDriver {
-    private static ArrayList<ItemStock> itemStockList = new ArrayList<ItemStock>();
 
-    private static ArrayList<VendingMachine> vendingMachineList = new ArrayList<VendingMachine>();
 
-    private static ArrayList<Money> moneyList = new ArrayList<Money>();
 
-    //VendingMachineDriver(){this.ItemList = new ArrayList<>();}
+    public VendingMachineDriver(String name) {
+        itemStockList = new ArrayList<ItemStock>();
+
+        vendingMachineList = new ArrayList<VendingMachine>();
+
+        moneyList = new ArrayList<Money>();
+
+        NAME = name;
+
+        Money unliMoney = new Money(); {
+            unliMoney.setOnePeso(99999);
+            unliMoney.setFivePeso(99999);
+            unliMoney.setTenPeso(99999);
+            unliMoney.setTwentyPeso(99999);
+            unliMoney.setFiftyPeso(99999);
+            unliMoney.setOneHundredPeso(99999);
+            unliMoney.setTwoHundredPeso(99999);
+            unliMoney.setFiveHundredPeso(99999);
+            unliMoney.setOneThousandPeso(99999);
+        }
+
+        moneyList.add(unliMoney);
+    }
 
     private static void displayItemStock(ArrayList<ItemStock> itemStocks) {
         Iterator<ItemStock> it = itemStocks.iterator();
@@ -96,7 +115,7 @@ public class VendingMachineDriver {
         return b;
     }
 
-    private static void execStocking(VendingMachine vendingMachine) {
+    private void execStocking(VendingMachine vendingMachine) {
         Scanner sc = new Scanner(System.in);
         int option, slot;
         ItemStock itemStock;
@@ -202,7 +221,7 @@ public class VendingMachineDriver {
         System.out.println("Going Back...");
     }
 
-    private static void execMaintenance(VendingMachine vendingMachine, Money wallet) {
+    private void execMaintenance(VendingMachine vendingMachine, Money wallet) {
         Scanner sc = new Scanner(System.in);
         int option;
 
@@ -343,7 +362,7 @@ public class VendingMachineDriver {
         return selectedWallet;
     }
 
-    private static ArrayList<Item> startInteraction(Money wallet) {
+    private ArrayList<Item> startInteraction(Money wallet) {
         boolean exit = false;
         ArrayList<Item> allItems = new ArrayList<Item>();
         int option;
@@ -522,7 +541,7 @@ public class VendingMachineDriver {
         return vm;
     }
 
-    private static void customizeVendingMachine() {
+    private void customizeVendingMachine() {
         Scanner sc = new Scanner(System.in);
         int option;
 
@@ -672,7 +691,7 @@ public class VendingMachineDriver {
         return money;
     }
 
-    private static void customizeMoney() {
+    private void customizeMoney() {
         Scanner sc = new Scanner(System.in);
         int option;
 
@@ -815,7 +834,7 @@ public class VendingMachineDriver {
         } while (stock != 0);
     }
 
-    private static void customizeItemStock() {
+    private void customizeItemStock() {
         Scanner sc = new Scanner(System.in);
         int option;
 
@@ -852,59 +871,55 @@ public class VendingMachineDriver {
         System.out.println("Going Back...");
     }
 
-    public static void main(String args[]) {
+    private static void createFactory() {
         Scanner sc = new Scanner(System.in);
+        int option;
+        String name;
+        boolean create = false;
 
-        //    VendingMachineDriver vm = new VendingMachineDriver();
+        do {
+            System.out.println("=========================");
+            System.out.println("(0) Cancel");
+            System.out.print("Vending Machine Name: ");
+            name = sc.next();
+            if (!name.equalsIgnoreCase("0")) {
+                create = true;
+            }
 
-        {
-            itemStockList.add(new ItemStock("Fried Egg", 30, 150, 10));
-            itemStockList.add(new ItemStock("Chippy", 75, 170, 2));
-            itemStockList.add(new ItemStock("Tapas", 100, 200, 20));
-            itemStockList.add(new ItemStock("Hotdog", 75, 290, 5));
-            itemStockList.add(new ItemStock("Piattos", 75, 150));
-            itemStockList.add(new ItemStock("V-Cut", 75, 180));
-            itemStockList.add(new ItemStock("Corn", 20, 88));
-            itemStockList.add(new ItemStock("Fried Chicken", 100, 246));
-            itemStockList.add(new ItemStock("Bangus", 100, 200));
-            itemStockList.add(new ItemStock("Pork Chop", 100, 231));
-            itemStockList.add(new ItemStock("Tosino", 100, 230));
-            itemStockList.add(new ItemStock("Rice", 20, 206));
-            itemStockList.add(new ItemStock("Coca Cola", 50, 139));
-            itemStockList.add(new ItemStock("Royal", 50, 139));
-            itemStockList.add(new ItemStock("Bottled Water", 25, 0));
-        }
+            if (create) {
+                factoryDriverList.add(new VendingMachineDriver(name));
+                System.out.println("New Factory Created");
+            }
+            else
+                System.out.println("Factory Creation Cancelled");
 
-        vendingMachineList.add(new VendingMachine("PH", 12, 15));
-        vendingMachineList.add(new VendingMachine("FOODIES", 8, 10));
+            create = false;
 
-        Money unliMoney = new Money(); {
-            unliMoney.setOnePeso(99999);
-            unliMoney.setFivePeso(99999);
-            unliMoney.setTenPeso(99999);
-            unliMoney.setTwentyPeso(99999);
-            unliMoney.setFiftyPeso(99999);
-            unliMoney.setOneHundredPeso(99999);
-            unliMoney.setTwoHundredPeso(99999);
-            unliMoney.setFiveHundredPeso(99999);
-            unliMoney.setOneThousandPeso(99999);
-        }
+            do {
+                System.out.println("=========================");
+                System.out.println("(0) Finish");
+                System.out.println("(1) Create Another");
+                System.out.println("(2) Show All Factories");
+                System.out.println("=========================");
 
+                do {
+                    System.out.print("Option: ");
+                    option = sc.nextInt();
+                    if (option > 2 || option < 0)
+                        System.out.println("Error: Invalid Option");
+                } while (option > 2 || option < 0);
 
-        ArrayList<Item> myInventory = new ArrayList<Item>();
-        Money myMoney = new Money();
-        Money maintenanceMoney = new Money(); {
-            maintenanceMoney.setOnePeso(9999999);
-            maintenanceMoney.setFivePeso(9999999);
-            maintenanceMoney.setTwentyPeso(9999999);
-        }
+                if (option == 2)
+                    displayFactoryDrivers();
 
-        {
-            moneyList.add(unliMoney);
-            moneyList.add(myMoney);
-            moneyList.add(maintenanceMoney);
-        }
+            } while (option != 0 && option != 1);
+        } while(option != 0);
 
+        System.out.println("Going Back...");
+    }
+
+    private static void driverMenu(VendingMachineDriver factory) {
+        Scanner sc = new Scanner(System.in);
         int option;
 
         do {
@@ -927,13 +942,13 @@ public class VendingMachineDriver {
             } while (option > 5 || option < 0);
 
             switch(option) {
-                case 2 -> customizeVendingMachine();
-                case 3 -> customizeMoney();
-                case 4 -> customizeItemStock();
+                case 2 -> factory.customizeVendingMachine();
+                case 3 -> factory.customizeMoney();
+                case 4 -> factory.customizeItemStock();
                 case 5 -> displayItemInventory(myInventory);
                 case 1 -> {
                     do {
-                        myInventory.addAll(startInteraction(myMoney));
+                        myInventory.addAll(factory.startInteraction(factory.moneyList.get(0)));
                         System.out.println("-----Resulting myInventory------");
                         displayItemInventory(myInventory);
 
@@ -950,39 +965,140 @@ public class VendingMachineDriver {
 
 
         } while (option != 0);
-
-
-
-
-
-
-/*
-        //=================================TESTING CODE=================================================
-        VendingMachine vm = vendingMachineList.get(0);
-        System.out.println("+++++++++++++");
-        vm.displayItemMenu();
-        vm.newStock(1, 2, itemStockList.get(1), 22);
-   //     vm.displayItemMenu();
-//        vm.newStock(2, 0, itemStockList.get(1));
-//        System.out.println("+++++++++++++");
-//        vm.restock(1, 1);
-//        System.out.println("+++++++++++++");
-//        vm.restock(2, 1);
-//        System.out.println("+++++++++++++");
-//        vm.changePrice(1, 30);
-        vm.displayItemMenu();
-    //    vm.mainMenu(unliMoney);
-        System.out.println("+++++++++++++");
-        vm.replenishMoney(maintenanceMoney);
-        System.out.println("+++++++++++++");
-
-        myInventory.add(vm.mainMenu(unliMoney));
-        myInventory.add(vm.mainMenu(unliMoney));
-        myInventory.add(vm.mainMenu(unliMoney));
-        System.out.println("Resulting myInventory");
-        displayItemInventory(myInventory);
-
-        */
     }
+
+    private static void displayFactoryDrivers() {
+        Iterator<VendingMachineDriver> it = factoryDriverList.iterator();
+
+        System.out.println("=========================");
+        System.out.println("Vending Machine Factory: " + factoryDriverList.size());
+        System.out.println("=========================");
+
+        for (int i = 1; it.hasNext(); i++) {
+            VendingMachineDriver factory;
+            factory = it.next();
+
+            System.out.println("(" + i + ") " + factory.NAME);
+        }
+        System.out.println("=========================");
+    }
+
+    private static VendingMachineDriver selectFactoryDriver() {
+        Scanner sc = new Scanner(System.in);
+        VendingMachineDriver factory = null;
+        int option;
+
+
+        displayFactoryDrivers();
+
+        do {
+            System.out.println("(0) Back");
+            option = sc.nextInt();
+            if (option > factoryDriverList.size() || option < 0)
+                System.out.println("Error: Invalid Option");
+        } while (option > factoryDriverList.size() || option < 0);
+
+        if (option != 0)
+            factory = factoryDriverList.get(option - 1);
+        else
+            System.out.println("Going Back...");
+
+        return factory;
+    }
+
+    private static void programMenu() {
+        Scanner sc = new Scanner(System.in);
+        int option;
+
+        do {
+            System.out.println("=========================");
+            System.out.println("        Main Menu");
+            System.out.println("=========================");
+            System.out.println("(0) Exit");
+            System.out.println("(1) Select Factory");
+            System.out.println("(2) Create Factory");
+            System.out.println("(3) Show Inventory");
+            System.out.println("=========================");
+
+            do {
+                System.out.print("Option: ");
+                option = sc.nextInt();
+                if (option > 3 || option < 0)
+                    System.out.println("Error: Invalid Option");
+            } while (option > 3 || option < 0);
+
+            switch(option) {
+                case 1 -> {
+                    VendingMachineDriver factory;
+                    do {
+                        factory = selectFactoryDriver();
+                        if (factory != null)
+                            driverMenu(factory);
+                    } while (factory != null);
+                }
+                case 2 -> createFactory();
+                case 3 -> displayItemInventory(myInventory);
+            }
+
+
+        } while (option != 0);
+    }
+
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+
+        //default initialized factoryDriver
+        factoryDriverList.add(new VendingMachineDriver("REGULAR VENDING MACHINE"));
+
+        VendingMachineDriver factory = factoryDriverList.get(0);
+
+        {
+            factory.itemStockList.add(new ItemStock("Fried Egg", 30, 150, 10));
+            factory.itemStockList.add(new ItemStock("Chippy", 75, 170, 2));
+            factory.itemStockList.add(new ItemStock("Tapas", 100, 200, 20));
+            factory.itemStockList.add(new ItemStock("Hotdog", 75, 290, 5));
+            factory.itemStockList.add(new ItemStock("Piattos", 75, 150));
+            factory.itemStockList.add(new ItemStock("V-Cut", 75, 180));
+            factory.itemStockList.add(new ItemStock("Corn", 20, 88));
+            factory.itemStockList.add(new ItemStock("Fried Chicken", 100, 246));
+            factory.itemStockList.add(new ItemStock("Bangus", 100, 200));
+            factory.itemStockList.add(new ItemStock("Pork Chop", 100, 231));
+            factory.itemStockList.add(new ItemStock("Tosino", 100, 230));
+            factory.itemStockList.add(new ItemStock("Rice", 20, 206));
+            factory.itemStockList.add(new ItemStock("Coca Cola", 50, 139));
+            factory.itemStockList.add(new ItemStock("Royal", 50, 139));
+            factory.itemStockList.add(new ItemStock("Bottled Water", 25, 0));
+        }
+
+        factory.vendingMachineList.add(new VendingMachine("PH", 12, 15));
+        factory.vendingMachineList.add(new VendingMachine("FOODIES", 8, 10));
+
+        Money myMoney = new Money();
+        Money maintenanceMoney = new Money(); {
+            maintenanceMoney.setOnePeso(9999999);
+            maintenanceMoney.setFivePeso(9999999);
+            maintenanceMoney.setTwentyPeso(9999999);
+        }
+
+        factory.moneyList.add(myMoney);
+        factory.moneyList.add(maintenanceMoney);
+
+        factoryDriverList.add(factory);
+
+
+
+    }
+
+    private final String NAME;
+
+    private ArrayList<ItemStock> itemStockList;
+
+    private ArrayList<VendingMachine> vendingMachineList;
+
+    private ArrayList<Money> moneyList;
+
+    private static ArrayList<VendingMachineDriver> factoryDriverList = new ArrayList<VendingMachineDriver>();
+
+    private static ArrayList<Item> myInventory = new ArrayList<Item>();
 
 }
