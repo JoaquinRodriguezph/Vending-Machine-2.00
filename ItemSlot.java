@@ -91,6 +91,7 @@ public class ItemSlot {
         return false;
     }
 
+
     public void removeStock() {
         this.stock--;
     }
@@ -102,6 +103,7 @@ public class ItemSlot {
     public boolean isAvailable() {
         return stock > 0;
     }
+
 
     public boolean isEmpty() {
         return stock == 0;
