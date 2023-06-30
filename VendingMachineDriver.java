@@ -70,7 +70,7 @@ public class VendingMachineDriver {
 
     }
 
-    private static void displayItemStock(ArrayList<ItemStock> itemStocks) {
+    private void displayItemStock(ArrayList<ItemStock> itemStocks) {
         Iterator<ItemStock> it = itemStocks.iterator();
 
         System.out.println("=========================");
@@ -86,7 +86,7 @@ public class VendingMachineDriver {
         System.out.println("=========================");
     }
 
-    private static ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
+    private ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
         Scanner sc = new Scanner(System.in);
         ItemStock item = null;
         int option;
@@ -116,11 +116,11 @@ public class VendingMachineDriver {
         return item;
     }
 
-    private static Item execBuyer(VendingMachine vendingMachine, Money wallet) {
+    private Item execBuyer(VendingMachine vendingMachine, Money wallet) {
         return vendingMachine.mainMenu(wallet);
     }
 
-    private static boolean addNewStock(ItemStock itemStock, VendingMachine vendingMachine) {
+    private boolean addNewStock(ItemStock itemStock, VendingMachine vendingMachine) {
         boolean b = false;
         Scanner sc = new Scanner(System.in);
         int quantity, temp, slot, price = 0;
@@ -204,7 +204,7 @@ public class VendingMachineDriver {
         System.out.println("Going Back...");
     }
 
-    private static void execChangePrice(VendingMachine vendingMachine) {
+    private void execChangePrice(VendingMachine vendingMachine) {
         Scanner sc = new Scanner(System.in);
         int option;
         int slot = 0;
@@ -252,15 +252,6 @@ public class VendingMachineDriver {
         System.out.println("Going Back...");
     }
 
-    private static void execMoney(VendingMachine vendingMachine, boolean collect, Money wallet) {
-        if (collect)
-            vendingMachine.collectMoney(wallet);
-        else
-            vendingMachine.replenishMoney(wallet);
-
-        System.out.println("Going Back...");
-    }
-
     private void execMaintenance(VendingMachine vendingMachine, Money wallet) {
         Scanner sc = new Scanner(System.in);
         int option;
@@ -299,10 +290,10 @@ public class VendingMachineDriver {
                     execChangePrice(vendingMachine);
                     break;
                 case 3:
-                    execMoney(vendingMachine, true, wallet);
+                    vendingMachine.collectMoney(wallet);
                     break;
                 case 4:
-                    execMoney(vendingMachine, false, wallet);
+                    vendingMachine.replenishMoney(wallet);
                     break;
                 case 5:
                     vendingMachine.displayItemMenu();
@@ -325,7 +316,7 @@ public class VendingMachineDriver {
         System.out.println("Going Back...");
     }
 
-    private static void displayVendingMachine(ArrayList<VendingMachine> vendingMachines) {
+    private void displayVendingMachine(ArrayList<VendingMachine> vendingMachines) {
         Iterator<VendingMachine> it = vendingMachines.iterator();
 
         System.out.println("=========================");
@@ -342,7 +333,7 @@ public class VendingMachineDriver {
         System.out.println("=========================");
     }
 
-    private static VendingMachine selectVendingMachine(ArrayList<VendingMachine> vendingMachines) {
+    private VendingMachine selectVendingMachine(ArrayList<VendingMachine> vendingMachines) {
         Scanner sc = new Scanner(System.in);
         VendingMachine vm = null;
         int option;
@@ -363,7 +354,7 @@ public class VendingMachineDriver {
         return vm;
     }
 
-    private static void displayMoneyList(ArrayList<Money> moneyList) {
+    private void displayMoneyList(ArrayList<Money> moneyList) {
         Iterator<Money> it = moneyList.iterator();
 
         System.out.println("=========================");
@@ -378,7 +369,7 @@ public class VendingMachineDriver {
         System.out.println("=========================");
     }
 
-    private static Money selectWallet(ArrayList<Money> wallets, Money currentWallet) {
+    private Money selectWallet(ArrayList<Money> wallets, Money currentWallet) {
         Scanner sc = new Scanner(System.in);
 
         int option;
@@ -472,7 +463,6 @@ public class VendingMachineDriver {
         return allItems;
 }
 
-
     private static void displayItemInventory(ArrayList<Item> items) {
         ArrayList<Item> itemSets = new ArrayList<Item>();
         ArrayList<Integer> itemQuantity = new ArrayList<Integer>();
@@ -498,13 +488,13 @@ public class VendingMachineDriver {
         }
     }
 
-    private static void showVendingMachine(VendingMachine vendingMachine) {
+    private void showVendingMachine(VendingMachine vendingMachine) {
         vendingMachine.displayItemMenu();
         vendingMachine.displayInventories();
         vendingMachine.displayTransactions();
     }
 
-    private static ArrayList<VendingMachine> createVendingMachine() {
+    private ArrayList<VendingMachine> createVendingMachine() {
         ArrayList<VendingMachine> vm = new ArrayList<VendingMachine>();
         Scanner sc = new Scanner(System.in);
         int option;
@@ -618,7 +608,7 @@ public class VendingMachineDriver {
         System.out.println("Going Back...");
     }
 
-    private static ArrayList<Money> createMoney() {
+    private ArrayList<Money> createMoney() {
         ArrayList<Money> money = new ArrayList<Money>();
         Scanner sc = new Scanner(System.in);
         int option, quantity = 0;
@@ -762,7 +752,7 @@ public class VendingMachineDriver {
         System.out.println("Going Back...");
     }
 
-    private static ArrayList<ItemStock> createItemStock() {
+    private ArrayList<ItemStock> createItemStock() {
         ArrayList<ItemStock> itemStocks = new ArrayList<ItemStock>();
         Scanner sc = new Scanner(System.in);
         int option;
@@ -844,17 +834,7 @@ public class VendingMachineDriver {
         return itemStocks;
     }
 
-  /*  private static void showItemStock(ItemStock itemStock) {
-        System.out.println("=========================");
-        System.out.println(itemStock.getName());
-        System.out.println("=========================");
-        System.out.println("SRP: " + itemStock.getSRP() + " PHP");
-        System.out.println("Calories: " + itemStock.getCalories());
-        System.out.println("Stock: " + itemStock.getStock());
-        System.out.println("=========================");
-    }*/
-
-    private static void addItemStock(ItemStock itemStock) {
+    private void addItemStock(ItemStock itemStock) {
         Scanner sc = new Scanner(System.in);
         int stock;
         boolean b = true;
