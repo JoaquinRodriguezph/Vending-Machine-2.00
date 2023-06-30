@@ -8,8 +8,6 @@ public class VendingMachineInventory {
             itemSlots[i].setItemStock(tempSlots[i].getItemStock());
             itemSlots[i].setStock(tempSlots[i].getStock());
             itemSlots[i].setPrice(tempSlots[i].getPrice());
-//            if (itemSlots[i].getItemStock() != null)
-//                System.out.println("......................... "+itemSlots[i].getItemStock().getName()+" stock: "+itemSlots[i].getStock());
         }
     }
 
