@@ -40,19 +40,6 @@ public class Money {
         total += onePeso + fivePeso * 5 + tenPeso * 10 + twentyPeso * 20 + fiftyPeso * 50 + oneHundredPeso * 100;
         return (total + twoHundredPeso * 200 + fiveHundredPeso * 500 + oneThousandPeso * 1000);
     }
-/*
-    public void setMoney(Money money) {
-        onePeso = money.onePeso;
-        fivePeso = money.fivePeso;
-        tenPeso = money.tenPeso;
-        twentyPeso = money.twentyPeso;
-        fiftyPeso = money.fiftyPeso;
-        oneHundredPeso = money.oneHundredPeso;
-        twoHundredPeso = money.twoHundredPeso;
-        fiveHundredPeso = money.fiveHundredPeso;
-        oneThousandPeso = money.oneThousandPeso;
-    }
-*/
 
     /**
      * This method returns the total amount of one peso coins.
