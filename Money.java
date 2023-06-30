@@ -487,7 +487,7 @@ public class Money {
     /**
      * Makes a list of integers from 0 to 8 corresponding the denominations and their respective
      * totals.
-     * @return list of 9 integers containing the nine dominations and their respective totals.
+     * @return list of 9 integers containing the nine denominations and their respective totals.
      */
     private int[] toList() {
         int[] list = new int[9];
