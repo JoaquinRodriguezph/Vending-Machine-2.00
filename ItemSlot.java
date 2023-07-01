@@ -119,13 +119,17 @@ public class ItemSlot {
 
     /**
      * The method checks if there is stock left of an item.
-     * @return true or false depending if there is at least one stock
+     * @return true or false depending if there is at least one stock.
      */
     public boolean isAvailable() {
         return stock > 0;
     }
 
 
+    /**
+     * This method checks if there is no stock left of an item.
+     * @return true if stock is 0 and false if not.
+     */
     public boolean isEmpty() {
         return stock == 0;
     }
