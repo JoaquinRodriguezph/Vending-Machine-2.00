@@ -58,7 +58,7 @@ public class VendingMachine {
     public Item mainMenu(Money wallet) {
         Item theItem = null;
 
-        if (startingInventory != null) {
+        if (startingInventory != null) {    //if the vendingMachine has never been done maintenance on
             boolean bCon = false;
             boolean bTransaction = false;
             Scanner sc = new Scanner(System.in);
@@ -110,7 +110,7 @@ public class VendingMachine {
         System.out.println("=========================");
         System.out.println("Slot Number || Item");
         System.out.println("=========================");
-        for (int i = 0; i < itemSlots.length; i++){
+        for (int i = 0; i < itemSlots.length; i++){ //loop for displaying all the items and their details and if it is available or not
             if (itemSlots[i] != null){
                 System.out.print(itemSlots[i].getSlotNumber() + " || ");
                 if (itemSlots[i].getItemStock() != null) {
@@ -126,209 +126,6 @@ public class VendingMachine {
         }
         System.out.println("=========================");
     }
-
-    /**
-     * This is a private method that chooses item based on:
-     * @param slot the slot to be chosen.
-     * @return true if successful and false if not.
-     */
-    private boolean chooseItem(int slot){
-        boolean b = false;
-        ItemSlot selectedSlot = null;
-        ItemStock selectedItemStock = null;
-
-        if (slot == 0)  //slot selection at 0 for exit per user input
-            return true;
-
-        for (ItemSlot itemSlot: itemSlots){ //looks for the corresponding slot number in the itemSlots array
-            if (slot == itemSlot.getSlotNumber() && itemSlot.isAvailable()) {   //only accept item slots that are valid and have available stock/s
-                b = true;
-                selectedSlot = itemSlot;
-                selectedItemStock = selectedSlot.getItemStock();
-            }
-        }
-
-        if (!b) //identifying whether the item selection is valid
-            System.out.println("Error: Invalid Item Selection");
-        else {  //details of the selected item
-            System.out.println("=========================");
-            System.out.println("(" + slot + ")Selected Item: " + selectedItemStock.getName());
-            System.out.println("Price:           " + itemSlots[slot - 1].getPrice() + "PHP");
-            System.out.println("Calorie/s:       " + selectedItemStock.getCalories());
-            System.out.println("=========================");
-        }
-
-
-        return b;
-    }
-
-    /**
-     * This private method deals with the transaction when buying an item.
-     * @param cost cost of the item.
-     * @param wallet money of the user.
-     * @return true if successful and false if not.
-     */
-    private boolean receivePayment(int cost, Money wallet) {
-        int change;
-        int temp = -1;
-        Money payment = new Money();
-        Money tempWallet = new Money(wallet);
-        Scanner sc = new Scanner(System.in);
-        boolean b = false;
-
-        System.out.println("Amount to Pay: " + cost + " PHP");
-        System.out.println("=========================");
-        System.out.println("(0) Cancel Payment");
-        System.out.println("Insert Bills/Coins: ");
-        System.out.println("(1) 1 Peso");
-        System.out.println("(2) 5 Pesos");
-        System.out.println("(3) 10 Pesos");
-        System.out.println("(4) 20 Pesos");
-        System.out.println("(5) 50 Pesos");
-        System.out.println("(6) 100 Pesos");
-        System.out.println("(7) 200 Pesos");
-        System.out.println("(8) 500 Pesos");
-        System.out.println("(9) 1000 Pesos");
-        System.out.println("=========================");
-
-        do {
-            System.out.println("Insert: ");
-            temp = sc.nextInt();
-            switch (temp) {
-                case 1:
-                    payment.changeOnePeso(1);
-                    break;
-                case 2:
-                    payment.changeFivePeso(1);
-                    break;
-                case 3:
-                    payment.changeTenPeso(1);
-                    break;
-                case 4:
-                    payment.changeTwentyPeso(1);
-                    break;
-                case 5:
-                    payment.changeFiftyPeso(1);
-                    break;
-                case 6:
-                    payment.changeOneHundredPeso(1);
-                    break;
-                case 7:
-                    payment.changeTwoHundredPeso(1);
-                    break;
-                case 8:
-                    payment.changeFiveHundredPeso(1);
-                    break;
-                case 9:
-                    payment.changeOneThousandPeso(1);
-                case 0:
-                    break;
-                default:
-                    System.out.println("Error: Invalid Option");
-            }
-
-            if (temp <= 9 && temp >= 1) {
-                if (tempWallet.removeMoney(payment)) {
-                    System.out.println("Paid: " + payment.getMoney());
-                    if (payment.getMoney() < cost)
-                        tempWallet.replace(wallet);
-                }
-                else
-                    System.out.println("Error: Invalid Money Availability");
-            }
-        } while (payment.getMoney() < cost && temp != 0);
-
-        if (temp != 0)
-            do {
-                System.out.println("Confirm Transaction: (1) Yes   (0) No");
-                temp = sc.nextInt();
-                if (temp != 1 && temp != 0)
-                    System.out.println("Error: Invalid Option");
-            } while (temp != 1 && temp != 0);
-
-        if (temp == 0) {
-            System.out.println("Cancelling Transaction...");
-        }
-        else if (payment.getMoney() >= cost) {
-            if (payment.getMoney() != cost)
-                System.out.println("Calculating Change...");
-
-            change = payment.getMoney() - cost;
-            //Display Details of the Transaction
-            System.out.println("=========================");
-            System.out.println("Amount Paid: " + payment.getMoney());
-            System.out.println("Total Cost:  " + cost);
-            System.out.println("Amount Paid - Total Cost");
-            System.out.println("(Change):    " + change);
-            System.out.println("=========================");
-
-    //        money.showMoney("11111111111111111111");
-
-            money.addMoney(payment);
-
-    //        money.showMoney("22222222222222222222");
-
-            if (money.removeMoney(change)) {
-                wallet.replace(tempWallet);
-                System.out.println("Transaction Successful");
-     //           money.showMoney("3333333333333333333333333");
-                b = true;
-            }
-            else {
-                money.removeMoney(payment);
-                System.out.println("The Machine Does Not Have Enough Change\nCancelling Transaction...");
-    //            money.showMoney("4444444444444444444444444");
-            }
-        }
-
-        payment = null;
-        tempWallet = null;
-        sc = null;
-
-        if (!b)
-            System.out.println("Transaction Failed");
-        return b;   //true transaction is successful, false otherwise (cancelling of payment or no change)
-    }
-/*
-    private void maintenance(Money wallet) {
-//reminder to make ItemSlot reflect directly onto transactionLog
-        boolean bMaintenance = true;
-        Scanner sc = new Scanner(System.in);
-        int nOption;
-
-        displayMaintenanceMenu();   //displays the maintenance menu
-        do {
-            nOption = sc.nextInt();
-
-            switch (nOption) {
-                case 0:
-                    bMaintenance = false;
-                    break;
-                case 1:
-                    displayItemMenu();
-                    break;
-                case 2:
-                    break;
-                case 3:
-
-            }
-
-            maintenance(wallet);    //recurrence after the user finish performing their action
-        } while (bMaintenance);
-
-    }
-
-    private void displayMaintenanceMenu() {
-//this includes Exit (0), ....
-        System.out.println("============Maintenance=============");
-        System.out.println("(0) Exit");
-        System.out.println("(1) Display Slot Information");
-        System.out.println("(2) Stock/Restock");
-        System.out.println("(3) Modify");
-
-    }
-
-    */
 
     /**
      * This method checks if the amount of itemstock is valid.
@@ -445,8 +242,8 @@ public class VendingMachine {
         boolean b = false;
 
         if (isValidSlot(slot))
-            if (itemSlots[slot - 1].getItemStock() != null) {
-                b = itemSlots[slot - 1].addStock(quantity);
+            if (itemSlots[slot - 1].getItemStock() != null) {   //making sure the object is not null
+                b = itemSlots[slot - 1].addStock(quantity); //retrieving the boolean if the adding of stock is successful
                 if (b) {
                     //resets when stocking
                     newStartingInventory();
@@ -499,7 +296,7 @@ public class VendingMachine {
         boolean b = false;
 
         if (isValidSlot(slot))
-            if (itemSlots[slot - 1].getItemStock() != null) {
+            if (itemSlots[slot - 1].getItemStock() != null) {   //making usre the object is not null
                 itemSlots[slot - 1].setSRP();
                 b = true;
             }
@@ -514,7 +311,7 @@ public class VendingMachine {
      */
     public void setAllSRP() {
         for (int slot = 1; slot <= itemSlots.length; slot++) {
-            if (itemSlots[slot - 1].getItemStock() != null)
+            if (itemSlots[slot - 1].getItemStock() != null) //assuring non-initialized slot will obtain a change in price
                 itemSlots[slot - 1].setSRP();
         }
 
@@ -537,23 +334,14 @@ public class VendingMachine {
         Scanner sc = new Scanner(System.in);
         int temp;
 
-        Money tempMoney = new Money(money);
-        wallet.addMoney(money);
+        wallet.addMoney(money); //add all money in the vending machine to the user wallet
         System.out.println("Money Collected");
         money.showMoney();
 
         System.out.println("Money in Vending Machine " + NAME + " Has Been Emptied.\nReminder: Replenish Change");
 
-       /* do {
-            System.out.println("Proceed to Replenish Change: (1) Yes   (0) No");
-            temp = sc.nextInt();
-            if (temp != 1 && temp != 0)
-                System.out.println("Error: Invalid Option");
-        } while (temp != 1 && temp != 0);
+        money.empty();  //empties the vending machine money
 
-        if (temp == 1)
-            replenishMoney(wallet);
-*/
         sc = null;
     }
 
@@ -568,9 +356,8 @@ public class VendingMachine {
         Money emptyWallet = new Money();
         Money tempWallet = new Money(wallet);
         Scanner sc = new Scanner(System.in);
- //       boolean replace = false;
-///*
 
+        //similar with receive payment method but allows maintenance person to replenish
         while (temp != 0) {
             System.out.println("Replenish Change");
             System.out.println("=========================");
@@ -633,14 +420,13 @@ public class VendingMachine {
                     break;
                 case 10:
                     change.replace(wallet);
-                 //  replace = true;
                 case 0:
             }
 
             if (temp <= 9 && temp >= 1) {
-                if (tempWallet.removeMoney(change)) {
+                if (tempWallet.removeMoney(change)) {   //if the user wallet contains the approriate deonominations for the replenish change
                     change.showMoney(NAME + "Change");
-                    tempWallet.replace(wallet);
+                    tempWallet.replace(wallet); //replace the temp wallet with the actual wallet to continue the loop
                 }
                 else {
                     switch (temp) {
@@ -676,9 +462,6 @@ public class VendingMachine {
                 }
             }
         }
-//*/
-
-    //    change.replace(wallet); //temp code
 
         change.showMoney(NAME + " Change");
 
@@ -690,7 +473,7 @@ public class VendingMachine {
         } while (temp != 1 && temp != 0);
 
 
-        if (temp == 1) {
+        if (temp == 1) {    //if user confirms to replenish the change
             tempWallet.removeMoney(change);
             wallet.replace(tempWallet);
             money.addMoney(change);
@@ -732,9 +515,9 @@ public class VendingMachine {
 
         System.out.println("=========================");
         for (ItemTransaction transactions : transactionLog) {
-            if (transactions.getSlot().getItemStock() != null) {
+            if (transactions.getSlot().getItemStock() != null) {    //assuring the transaction of the specific
                 System.out.println(transactions.toString());
-                total += transactions.getTotal();
+                total += transactions.getTotal();   //adds the total earnings
             }
         }
 
@@ -753,7 +536,7 @@ public class VendingMachine {
      */
     public void displayInventories() {
         if (startingInventory != null) {
-            VendingMachineInventory endingInventory = new VendingMachineInventory(this);
+            VendingMachineInventory endingInventory = new VendingMachineInventory(this);    //creating the ending inventory using the current inventory
 
             displayInventory(startingInventory, "Starting Inventory");
             displayInventory(endingInventory, "Ending Inventory");
@@ -762,29 +545,6 @@ public class VendingMachine {
         }
         else
             System.out.println(NAME + " Vending Machine is Still New");
-    }
-
-    /**
-     * This method displays the inventory of a vending machine.
-     * @param inventory the inventory to be displayed.
-     * @param info the info to be displayed.
-     */
-    private void displayInventory(VendingMachineInventory inventory, String info) {
-        System.out.println("=========================");
-        System.out.println("---" + info + "---");
-        System.out.println("Slot Number || Item");
-        System.out.println("=========================");
-        for (int i = 0; i < inventory.getItemSlots().length; i++){
-            if (inventory.getItemSlots()[i] != null){
-                System.out.print(inventory.getItemSlots()[i].getSlotNumber() + " || ");
-                if (inventory.getItemSlots()[i].getItemStock() != null)
-                    System.out.println(inventory.getItemSlots()[i].getItemStock().getName() + " - " + inventory.getItemSlots()[i].getStock());
-                else
-                    System.out.println("X");
-            }
-        }
-        System.out.println("=========================");
-        inventory.getMoney().showMoney(info);
     }
 
     /**
@@ -802,6 +562,186 @@ public class VendingMachine {
     public void newStartingInventory() {
         startingInventory = null;
         startingInventory = new VendingMachineInventory(this);
+    }
+
+    /**
+     * This is a private method that chooses item based on:
+     * @param slot the slot to be chosen.
+     * @return true if successful and false if not.
+     */
+    private boolean chooseItem(int slot){
+        boolean b = false;
+        ItemSlot selectedSlot = null;
+        ItemStock selectedItemStock = null;
+
+        if (slot == 0)  //slot selection at 0 for exit per user input
+            return true;
+
+        for (ItemSlot itemSlot: itemSlots){ //looks for the corresponding slot number in the itemSlots array
+            if (slot == itemSlot.getSlotNumber() && itemSlot.isAvailable()) {   //only accept item slots that are valid and have available stock/s
+                b = true;
+                selectedSlot = itemSlot;
+                selectedItemStock = selectedSlot.getItemStock();
+            }
+        }
+
+        if (!b) //identifying whether the item selection is valid
+            System.out.println("Error: Invalid Item Selection");
+        else {  //details of the selected item
+            System.out.println("=========================");
+            System.out.println("(" + slot + ")Selected Item: " + selectedItemStock.getName());
+            System.out.println("Price:           " + itemSlots[slot - 1].getPrice() + "PHP");
+            System.out.println("Calorie/s:       " + selectedItemStock.getCalories());
+            System.out.println("=========================");
+        }
+
+
+        return b;
+    }
+
+    /**
+     * This private method deals with the transaction when buying an item.
+     * @param cost cost of the item.
+     * @param wallet money of the user.
+     * @return true if successful and false if not.
+     */
+    private boolean receivePayment(int cost, Money wallet) {
+        int change;
+        int temp = -1;
+        Money payment = new Money();
+        Money tempWallet = new Money(wallet);
+        Scanner sc = new Scanner(System.in);
+        boolean b = false;
+
+        System.out.println("Amount to Pay: " + cost + " PHP");
+        System.out.println("=========================");
+        System.out.println("(0) Cancel Payment");
+        System.out.println("Insert Bills/Coins: ");
+        System.out.println("(1) 1 Peso");
+        System.out.println("(2) 5 Pesos");
+        System.out.println("(3) 10 Pesos");
+        System.out.println("(4) 20 Pesos");
+        System.out.println("(5) 50 Pesos");
+        System.out.println("(6) 100 Pesos");
+        System.out.println("(7) 200 Pesos");
+        System.out.println("(8) 500 Pesos");
+        System.out.println("(9) 1000 Pesos");
+        System.out.println("=========================");
+
+        do {
+            System.out.println("Insert: "); //this retrieves the denominations from the user
+            temp = sc.nextInt();
+            switch (temp) { //adding the denominations to the total payment in Money Object
+                case 1:
+                    payment.changeOnePeso(1);
+                    break;
+                case 2:
+                    payment.changeFivePeso(1);
+                    break;
+                case 3:
+                    payment.changeTenPeso(1);
+                    break;
+                case 4:
+                    payment.changeTwentyPeso(1);
+                    break;
+                case 5:
+                    payment.changeFiftyPeso(1);
+                    break;
+                case 6:
+                    payment.changeOneHundredPeso(1);
+                    break;
+                case 7:
+                    payment.changeTwoHundredPeso(1);
+                    break;
+                case 8:
+                    payment.changeFiveHundredPeso(1);
+                    break;
+                case 9:
+                    payment.changeOneThousandPeso(1);
+                case 0:
+                    break;
+                default:
+                    System.out.println("Error: Invalid Option");
+            }
+
+            if (temp <= 9 && temp >= 1) {   //checking of the valid denominations
+                if (tempWallet.removeMoney(payment)) {  //if the wallet of the user contains enough of the payment with respect to their deonominations
+                    System.out.println("Paid: " + payment.getMoney());
+                    if (payment.getMoney() < cost)
+                        tempWallet.replace(wallet);
+                }
+                else
+                    System.out.println("Error: Invalid Money Availability");
+            }
+        } while (payment.getMoney() < cost && temp != 0);
+
+        if (temp != 0)  //checking if user wants to exit or not
+            do {
+                System.out.println("Confirm Transaction: (1) Yes   (0) No");
+                temp = sc.nextInt();
+                if (temp != 1 && temp != 0)
+                    System.out.println("Error: Invalid Option");
+            } while (temp != 1 && temp != 0);
+
+        if (temp == 0) {
+            System.out.println("Cancelling Transaction...");
+        }
+        else if (payment.getMoney() >= cost) {  // if the total payment is more than the cost
+            if (payment.getMoney() != cost)
+                System.out.println("Calculating Change...");
+
+            change = payment.getMoney() - cost;
+            //Display Details of the Transaction
+            System.out.println("=========================");
+            System.out.println("Amount Paid: " + payment.getMoney());
+            System.out.println("Total Cost:  " + cost);
+            System.out.println("Amount Paid - Total Cost");
+            System.out.println("(Change):    " + change);
+            System.out.println("=========================");
+
+            money.addMoney(payment);    //adding the payment to the vending machine money
+
+            if (money.removeMoney(change)) {    //checking if the removing of change in the vending machine is successful
+                wallet.replace(tempWallet); //replace the actual wallet of the user with the resulting wallet considering the successful payment
+                System.out.println("Transaction Successful");
+                b = true;
+            }
+            else {
+                money.removeMoney(payment); //remove the payment from the vending machine money if the vending machine money don't have the appropriate denominations for the change (if there is)
+                System.out.println("The Machine Does Not Have Enough Change\nCancelling Transaction...");
+            }
+        }
+
+        payment = null;
+        tempWallet = null;
+        sc = null;
+
+        if (!b) //if transaction failed
+            System.out.println("Transaction Failed");
+        return b;   //true transaction is successful, false otherwise (cancelling of payment or no change)
+    }
+
+    /**
+     * This method displays the inventory of a vending machine.
+     * @param inventory the inventory to be displayed.
+     * @param info the info to be displayed.
+     */
+    private void displayInventory(VendingMachineInventory inventory, String info) {
+        System.out.println("=========================");
+        System.out.println("---" + info + "---");
+        System.out.println("Slot Number || Item");
+        System.out.println("=========================");
+        for (int i = 0; i < inventory.getItemSlots().length; i++){  //displays the vending machine inventory of when the VendingMachineInventory is constructed
+            if (inventory.getItemSlots()[i] != null){   //the item slots must be initialized for it to be considered as a valid inventory space
+                System.out.print(inventory.getItemSlots()[i].getSlotNumber() + " || ");
+                if (inventory.getItemSlots()[i].getItemStock() != null)
+                    System.out.println(inventory.getItemSlots()[i].getItemStock().getName() + " - " + inventory.getItemSlots()[i].getStock());
+                else
+                    System.out.println("X");
+            }
+        }
+        System.out.println("=========================");
+        inventory.getMoney().showMoney(info);
     }
 
     private final String NAME;

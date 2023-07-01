@@ -96,7 +96,7 @@ public class ItemSlot {
      * @return true or false depending on if the stocking is successful
      */
     public boolean addStock(int stock){
-        if (stock > 0 && MAX >= this.stock + stock){
+        if (stock > 0 && MAX >= this.stock + stock){    //the stock must be positive and must add to less than or equal to MAX
             if (itemStock.removeStock(stock)) {
                 this.stock += stock;
 

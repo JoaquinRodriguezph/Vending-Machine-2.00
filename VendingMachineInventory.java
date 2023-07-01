@@ -5,13 +5,13 @@
 public class VendingMachineInventory {
     /**
      * This method is a constructor which creates an instance using:
-     * @param vm the vending machine to be inventoried.
+     * @param vm the vending machine to be inventoried/created a record of.
      */
-    public VendingMachineInventory(VendingMachine vm) {
-        money = new Money(vm.getMoney());
-        ItemSlot[] tempSlots = vm.getItemSlots();
+    public VendingMachineInventory(VendingMachine vm) { //utilizes a VendingMachine instance to provide the details of the inventory (it acts as a record)
+        money = new Money(vm.getMoney());   //obtains the money from the vending machine
+        ItemSlot[] tempSlots = vm.getItemSlots();   //gets the ItemSlots in the vending machine
         itemSlots = new ItemSlot[tempSlots.length];
-        for (int i = 0; i < tempSlots.length; i++) {
+        for (int i = 0; i < tempSlots.length; i++) {    //reflecting each itemSlot by creating a new instance for the VendingMachine inventory in case of change in price
             itemSlots[i] = new ItemSlot(tempSlots[i].getSlotNumber(), tempSlots[i].getMax());
             itemSlots[i].setItemStock(tempSlots[i].getItemStock());
             itemSlots[i].setStock(tempSlots[i].getStock());
