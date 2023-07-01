@@ -66,14 +66,25 @@ public class ItemSlot {
         this.itemStock = itemStock;
     }
 
+    /**
+     * This method sets the price of the item slot.
+     * @param price the price of item slot.
+     */
     public void setPrice(int price) {
         this.price = price;
     }
 
+    /**
+     * This method sets the price of the item slot to the suggested retail price.
+     */
     public void setSRP() {
         setPrice(itemStock.getSRP());
     }
 
+    /**
+     * This method sets the stock of the items to the given:
+     * @param stock the new stock of the item slot.
+     */
     public void setStock(int stock) {
         this.stock = stock;
     }
@@ -99,7 +110,9 @@ public class ItemSlot {
         return false;
     }
 
-
+    /**
+     * This method decrements the stock of the item slot by 1.
+     */
     public void removeStock() {
         this.stock--;
     }
