@@ -20,6 +20,10 @@ public class Item {
         return NAME;
     }
 
+    /**
+     * Gets the calories of the item.
+     * @return the calories of the item.
+     */
     public int getCalories() {
         return CALORIES;
     }
