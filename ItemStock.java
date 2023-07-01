@@ -73,6 +73,10 @@ public class ItemStock {
         return stock;
     }
 
+    /**
+     * This method gets the item.
+     * @return the item.
+     */
     public Item getItem() {
         return ITEM;
     }
@@ -98,10 +102,14 @@ public class ItemStock {
             System.out.println("Current Stock: " + this.stock);
             b = true;
         }
-
         return b;
     }
 
+    /**
+     * This method removes the amount of stocks of the item.
+     * @param stock the amount of item to remove in stock.
+     * @return true if stock to be removed is greater than 0, false otherwise.
+     */
     public boolean removeStock(int stock) {
         boolean b = false;
         if (stock > 0) {    //stocks should be positive
