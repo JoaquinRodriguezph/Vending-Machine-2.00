@@ -585,7 +585,7 @@ public class VendingMachineDriver {
     }
 
     /**
-     * This private method displays the vending machine's item menu,
+         * This private method displays the vending machine's item menu,
      * inventories, and transactions.
      * @param vendingMachine the vending machine to be displayed.
      */
