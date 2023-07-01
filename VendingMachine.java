@@ -158,8 +158,6 @@ public class VendingMachine {
         }
     }
 
-    //newStock method: make sure to check if the slot is currently empty
-
     /**
      * This method makes sure to check if the slot is currently empty.
      * @param slot the slot to be checked.
@@ -177,7 +175,7 @@ public class VendingMachine {
      * @param quantity the quantity of the slot to be checked.
      * @param itemStock the itemStock of the slot to be checked.
      * @param price the price to be checked.
-     * @return
+     * @return true if successful and false if not
      */
     public boolean newStock(int slot, int quantity, ItemStock itemStock, int price) {
         boolean b = false, found = false;
