@@ -36,16 +36,24 @@ public class ItemSlot {
 
     /**
      * This method gets the stock of the item in the slot.
-     * @return the stock
+     * @return the stock.
      */
     public int getStock() {
         return stock;
     }
 
+    /**
+     * This method gets the price of item in the slot.
+     * @return the price.
+     */
     public int getPrice() {
         return price;
     }
 
+    /**
+     * This method gets the max amount of items in the slot.
+     * @return the max amount of items in the slot.
+     */
     public int getMax() {
         return MAX;
     }

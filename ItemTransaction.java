@@ -37,10 +37,16 @@ public class ItemTransaction {
         return SLOT.getPrice() * quantity;
     }
 
+    /**
+     * This method increments the quantity of the ItemTransaction instance by one.
+     */
     public void addTransaction() {
         quantity++;
     }
 
+    /**
+     * This method sets the quantity of the ItemTransaction instance to 0.
+     */
     public void clearTransaction() {
         quantity = 0;
     }
