@@ -45,6 +45,10 @@ public class ItemTransaction {
         quantity = 0;
     }
 
+    /**
+     * This method overrides the toString method.
+     * @return the name, price, and total of the itemSlot.
+     */
     @Override
     public String toString() {
         return SLOT.getItemStock().getName() + ": " + SLOT.getPrice() + " PHP * " + quantity + "   " + getTotal() + " PHP";

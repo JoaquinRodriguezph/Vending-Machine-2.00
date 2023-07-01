@@ -16,6 +16,14 @@ public class ItemStock {
         this(name, srp, calories, 0);   //stock set to zero by default
     }
 
+    /**
+     * This method is a constructor used to create an item instance
+     * from the following parameters:
+     * @param name This is the name of the item. IT IS FINAL.
+     * @param srp This is the SRP of the item. IT IS FINAL
+     * @param calories This is the amount of calories in the item. IT IS FINAL.
+     * @param stock This is the amount of stock for the item.
+     */
     public ItemStock(String name, int srp, int calories, int stock){
         this.NAME = name;
         this.SRP = srp;
