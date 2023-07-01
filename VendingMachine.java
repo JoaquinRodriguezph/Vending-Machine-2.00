@@ -165,7 +165,7 @@ public class VendingMachine {
      * @param slot the slot to be checked.
      * @param quantity the quantity of the slot to be checked.
      * @param itemStock the itemStock of the slot to be checked.
-     * @return
+     * @return true if successful and false if not.
      */
     public boolean newStock(int slot, int quantity, ItemStock itemStock) {
         return newStock(slot, quantity, itemStock, itemStock.getSRP());
