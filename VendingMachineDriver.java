@@ -556,12 +556,18 @@ public class VendingMachineDriver {
         Iterator<Item> item = itemSets.iterator();
         Iterator<Integer> quantity = itemQuantity.iterator();
 
-        while (item.hasNext() && quantity.hasNext()) {
-            Item it = item.next();
-            Integer in = quantity.next();
-            if (it != null && in != null)
-                System.out.println(it.getName() + ": " + in);
+        System.out.println("Total Items Bought: " + myInventory.size());
+
+        if (!(itemSets.size() == 0 || itemQuantity.size() == 0)) {
+            while (item.hasNext() && quantity.hasNext()) {
+                Item it = item.next();
+                Integer in = quantity.next();
+                if (it != null && in != null)
+                    System.out.println(it.getName() + ": " + in);
+            }
         }
+        else
+            System.out.println("No Items Have Has Bought");
     }
 
     /**
