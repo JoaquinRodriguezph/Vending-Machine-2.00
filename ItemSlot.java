@@ -128,7 +128,7 @@ public class ItemSlot {
 
     /**
      * This method checks if there is no stock left of an item.
-     * @return true if stock is 0 and false if not.
+     * @return true if stock is 0 and false if not
      */
     public boolean isEmpty() {
         return stock == 0;
