@@ -612,7 +612,7 @@ public class VendingMachineDriver {
             System.out.println("=========================");
             System.out.println("(0) Cancel");
             System.out.print("Vending Machine Name: ");
-            name = sc.nextLine();
+            name = sc.next();
             if (!name.equalsIgnoreCase("0")) {  //checking if the provided string is 0
                 do {    //prompts users for the number of item slots they would like the vending machine to have (should be more than or equal to 8)
                     System.out.println("=========================");
@@ -885,7 +885,7 @@ public class VendingMachineDriver {
             System.out.println("=========================");
             System.out.println("(0) Cancel");
             System.out.print("Item Name: ");
-            name = sc.nextLine();
+            name = sc.next();
             if (!name.equalsIgnoreCase("0")) {  //check if the user inputted string is 0, prompting a cancellation of creation of the Item Stock
                 do {    //prompts user the input valid calories
                     System.out.print("Calories: ");
@@ -1030,7 +1030,7 @@ public class VendingMachineDriver {
             System.out.println("=========================");
             System.out.println("(0) Cancel");
             System.out.print("Vending Machine Name: ");
-            name = sc.nextLine();
+            name = sc.next();
             if (!name.equalsIgnoreCase("0")) {  //cancellation detection when user input String is 0
                 create = true;
             }
