@@ -491,23 +491,14 @@ public class VendingMachine {
         Scanner sc = new Scanner(System.in);
         int temp;
 
-        Money tempMoney = new Money(money);
-        wallet.addMoney(money);
+        wallet.addMoney(money); //add all money in the vending machine to the user wallet
         System.out.println("Money Collected");
         money.showMoney();
 
         System.out.println("Money in Vending Machine " + NAME + " Has Been Emptied.\nReminder: Replenish Change");
 
-       /* do {
-            System.out.println("Proceed to Replenish Change: (1) Yes   (0) No");
-            temp = sc.nextInt();
-            if (temp != 1 && temp != 0)
-                System.out.println("Error: Invalid Option");
-        } while (temp != 1 && temp != 0);
+        money.empty();  //empties the vending machine money
 
-        if (temp == 1)
-            replenishMoney(wallet);
-*/
         sc = null;
     }
 
@@ -522,9 +513,8 @@ public class VendingMachine {
         Money emptyWallet = new Money();
         Money tempWallet = new Money(wallet);
         Scanner sc = new Scanner(System.in);
- //       boolean replace = false;
-///*
 
+        //similar with receive payment method but allows maintenance person to replenish
         while (temp != 0) {
             System.out.println("Replenish Change");
             System.out.println("=========================");
@@ -587,14 +577,13 @@ public class VendingMachine {
                     break;
                 case 10:
                     change.replace(wallet);
-                 //  replace = true;
                 case 0:
             }
 
             if (temp <= 9 && temp >= 1) {
-                if (tempWallet.removeMoney(change)) {
+                if (tempWallet.removeMoney(change)) {   //if the user wallet contains the approriate deonominations for the replenish change
                     change.showMoney(NAME + "Change");
-                    tempWallet.replace(wallet);
+                    tempWallet.replace(wallet); //replace the temp wallet with the actual wallet to continue the loop
                 }
                 else {
                     switch (temp) {
@@ -630,9 +619,6 @@ public class VendingMachine {
                 }
             }
         }
-//*/
-
-    //    change.replace(wallet); //temp code
 
         change.showMoney(NAME + " Change");
 
@@ -644,7 +630,7 @@ public class VendingMachine {
         } while (temp != 1 && temp != 0);
 
 
-        if (temp == 1) {
+        if (temp == 1) {    //if user confirms to replenish the change
             tempWallet.removeMoney(change);
             wallet.replace(tempWallet);
             money.addMoney(change);
@@ -686,9 +672,9 @@ public class VendingMachine {
 
         System.out.println("=========================");
         for (ItemTransaction transactions : transactionLog) {
-            if (transactions.getSlot().getItemStock() != null) {
+            if (transactions.getSlot().getItemStock() != null) {    //assuring the transaction of the specific
                 System.out.println(transactions.toString());
-                total += transactions.getTotal();
+                total += transactions.getTotal();   //adds the total earnings
             }
         }
 
@@ -707,7 +693,7 @@ public class VendingMachine {
      */
     public void displayInventories() {
         if (startingInventory != null) {
-            VendingMachineInventory endingInventory = new VendingMachineInventory(this);
+            VendingMachineInventory endingInventory = new VendingMachineInventory(this);    //creating the ending inventory using the current inventory
 
             displayInventory(startingInventory, "Starting Inventory");
             displayInventory(endingInventory, "Ending Inventory");
