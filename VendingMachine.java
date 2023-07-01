@@ -714,8 +714,8 @@ public class VendingMachine {
         System.out.println("---" + info + "---");
         System.out.println("Slot Number || Item");
         System.out.println("=========================");
-        for (int i = 0; i < inventory.getItemSlots().length; i++){
-            if (inventory.getItemSlots()[i] != null){
+        for (int i = 0; i < inventory.getItemSlots().length; i++){  //displays the vending machine inventory of when the VendingMachineInventory is constructed
+            if (inventory.getItemSlots()[i] != null){   //the item slots must be initialized for it to be considered as a valid inventory space
                 System.out.print(inventory.getItemSlots()[i].getSlotNumber() + " || ");
                 if (inventory.getItemSlots()[i].getItemStock() != null)
                     System.out.println(inventory.getItemSlots()[i].getItemStock().getName() + " - " + inventory.getItemSlots()[i].getStock());

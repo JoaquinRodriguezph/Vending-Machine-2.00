@@ -221,7 +221,7 @@ public class Money {
         temp.fiveHundredPeso -= money.fiveHundredPeso;
         temp.oneThousandPeso -= money.oneThousandPeso;
 
-        if (temp.isValid()) {
+        if (temp.isValid()) {   //making sure the denominations does not become a negative value
             this.onePeso = temp.onePeso;
             this.fivePeso = temp.fivePeso;
             this.tenPeso = temp.tenPeso;
@@ -247,6 +247,7 @@ public class Money {
         Money temp = new Money(this);
         boolean b = false;
 
+        //deducting money while providing suffice denominations for each level
         while (temp.oneThousandPeso > 0 && money >= 1000) {
             temp.oneThousandPeso--;
             money -= 1000;
@@ -292,7 +293,7 @@ public class Money {
             money -= 1;
         }
 
-        if (money == 0) {
+        if (money == 0) {   //money == 0 meaning the money was given enough and sufficient denominations to equal the money
             this.onePeso = temp.onePeso;
             this.fivePeso = temp.fivePeso;
             this.tenPeso = temp.tenPeso;
@@ -433,7 +434,7 @@ public class Money {
      * Displays the total amount of each denomination.
      */
     private void displayDenominations() {
-        int[] list = toList();
+        int[] list = toList();  //utilizing an array to display the number of each denominations
         String temp = "";
 
         for (int i = 0; i < 9; i++) {
