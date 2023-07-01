@@ -16,7 +16,7 @@ public class Money {
      * This method is a constructor that is used to create a money instance
      * from a given money instance.
      * It initializes all attributes to the values of the given instance.
-     * @param money
+     * @param money is the money instance that this instance will be based off of
      */
     public Money(Money money) {
         onePeso = money.onePeso;
