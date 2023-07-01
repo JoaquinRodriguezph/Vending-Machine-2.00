@@ -21,17 +21,18 @@ public class VendingMachineDriver {
 
         NAME = name;
 
-        Money unliMoney = new Money(); {
-            unliMoney.setOnePeso(99999);
-            unliMoney.setFivePeso(99999);
-            unliMoney.setTenPeso(99999);
-            unliMoney.setTwentyPeso(99999);
-            unliMoney.setFiftyPeso(99999);
-            unliMoney.setOneHundredPeso(99999);
-            unliMoney.setTwoHundredPeso(99999);
-            unliMoney.setFiveHundredPeso(99999);
-            unliMoney.setOneThousandPeso(99999);
-        }
+        Money unliMoney = new Money();  //a default Money object for each VendingMachine for the user
+
+        unliMoney.setOnePeso(99999);
+        unliMoney.setFivePeso(99999);
+        unliMoney.setTenPeso(99999);
+        unliMoney.setTwentyPeso(99999);
+        unliMoney.setFiftyPeso(99999);
+        unliMoney.setOneHundredPeso(99999);
+        unliMoney.setTwoHundredPeso(99999);
+        unliMoney.setFiveHundredPeso(99999);
+        unliMoney.setOneThousandPeso(99999);
+
 
         moneyList.add(unliMoney);
     }
@@ -44,10 +45,11 @@ public class VendingMachineDriver {
         Scanner sc = new Scanner(System.in);
 
         //default initialized factoryDriver
-        factoryDriverList.add(new VendingMachineDriver("REGULAR VENDING MACHINE"));
+        factoryDriverList.add(new VendingMachineDriver("REGULAR VENDING MACHINE")); //default factory containing all the preset details
 
         VendingMachineDriver factory = factoryDriverList.get(0);
 
+        //default ItemStocks for the factory
         {
             factory.itemStockList.add(new ItemStock("Fried Egg", 30, 150, 10));
             factory.itemStockList.add(new ItemStock("Chippy", 75, 170, 2));
@@ -66,9 +68,11 @@ public class VendingMachineDriver {
             factory.itemStockList.add(new ItemStock("Bottled Water", 25, 0));
         }
 
+        //default VendingMachines for the factory
         factory.vendingMachineList.add(new VendingMachine("PH", 12, 15));
         factory.vendingMachineList.add(new VendingMachine("FOODIES", 8, 10));
 
+        //default Moneys for the factory
         Money myMoney = new Money();
         Money maintenanceMoney = new Money(); {
             maintenanceMoney.setOnePeso(9999999);
@@ -94,7 +98,7 @@ public class VendingMachineDriver {
         System.out.println("Item Stocks: " + itemStocks.size());
         System.out.println("=========================");
 
-        for (int i = 1; it.hasNext(); i++) {
+        for (int i = 1; it.hasNext(); i++) {    //utilizing iterators in a forloop to display all the ItemStocks given the parameter
             ItemStock itemStock;
             itemStock = it.next();
 
@@ -129,7 +133,7 @@ public class VendingMachineDriver {
         } while (option > itemStocks.size() || option < 0);
 
         if (option != 0) {
-            item = itemStocks.get(option - 1);
+            item = itemStocks.get(option - 1);  //gets the item of what the user chooses
             System.out.println("Selected Item: " + item.getName());
         }
         else
@@ -145,7 +149,7 @@ public class VendingMachineDriver {
      * @return the bought item.
      */
     private Item execBuyer(VendingMachine vendingMachine, Money wallet) {
-        return vendingMachine.mainMenu(wallet);
+        return vendingMachine.mainMenu(wallet); //runs the mainMenu method in VendingMachine class for the user to buy items in the vendingMachine
     }
 
     /**
@@ -159,14 +163,14 @@ public class VendingMachineDriver {
         Scanner sc = new Scanner(System.in);
         int quantity, temp, slot, price = 0;
 
-        do {
+        do {    //a feature of letting users choose if they would like to set the price to its SRP by default
             System.out.println("Set to SRP: (1) Yes   (0) No");
             temp = sc.nextInt();
             if (temp != 1 && temp != 0)
                 System.out.println("Error: Invalid Option");
         } while (temp != 1 && temp != 0);
 
-        if (temp == 0) {
+        if (temp == 0) {    //if user did not choose to set to SRP and let them input a specific price
             System.out.print("Set Price (PHP): ");
             price = sc.nextInt();
         }
@@ -174,13 +178,14 @@ public class VendingMachineDriver {
         vendingMachine.displayItemMenu();
         slot = vendingMachine.selectSlot();
 
-        if (slot != 0) {
+        if (slot != 0) {    //if the user does not prompt to exit during the slot selection
+            //shows the max stocks and current stocks in the itemslots to assist the user
             System.out.println("Max Stocks: " + vendingMachine.getItemSlots()[slot - 1].getMax());
             System.out.println("Current Stocks: " + vendingMachine.getItemSlots()[slot - 1].getStock());
-            System.out.print("Quantity: ");
+            System.out.print("Quantity: "); //receives quantity of stocks to add from the user
             quantity = sc.nextInt();
 
-            if (temp == 1)
+            if (temp == 1)  //if temp == 1 then set to SRP
                 b = vendingMachine.newStock(slot, quantity, itemStock);
             else
                 b = vendingMachine.newStock(slot, quantity, itemStock, price);
@@ -221,16 +226,17 @@ public class VendingMachineDriver {
             switch (option) {
                 case 2 -> {
                     itemStock = selectItemStock(itemStockList);
-                    if (itemStock != null)
+                    if (itemStock != null)  //if the user did select an itemstock
                         addNewStock(itemStock, vendingMachine);
                 }
                 case 1 -> {
                     vendingMachine.displayItemMenu();
                     slot = vendingMachine.selectSlot();
-                    if (slot != 0) {
+                    if (slot != 0) {    //if the user selects a slot
+                        //displays max and current stocks to assist how much stock the users should add
                         System.out.println("Max Stocks: " + vendingMachine.getItemSlots()[slot - 1].getMax());
                         System.out.println("Current Stocks: " + vendingMachine.getItemSlots()[slot - 1].getStock());
-                        System.out.print("Quantity: ");
+                        System.out.print("Quantity: "); //quantity of how much stock would the user wants to add
                         option = sc.nextInt();
                         vendingMachine.restock(slot, option);
                     }
@@ -275,10 +281,10 @@ public class VendingMachineDriver {
             if (option == 0)
                 exit = true;
 
-            if (option < 3 && option > 0)
+            if (option < 3 && option > 0)   //options 1 and 2 prompts the user to select a slot
                 slot = vendingMachine.selectSlot();
 
-            if (slot != 0 || (option == 4 || option == 3))
+            if (slot != 0 || (option == 4 || option == 3))  //if user did not choose to go back during the slot selection process, or when the user option is 3 or 4
                 switch (option) {
                     case 1 -> {
                         System.out.print("Set Price (PHP): ");
@@ -306,6 +312,9 @@ public class VendingMachineDriver {
 
         vendingMachine.displayInventories();
         vendingMachine.displayTransactions();
+
+        //a normal functioning menu for maintenance
+
         do {
             System.out.println("=========================");
             System.out.println("       Maintenance");
@@ -375,6 +384,7 @@ public class VendingMachineDriver {
         System.out.println("=========================");
         System.out.println("(0) Back");
 
+        //displays the vending machines using an iterator and forloop
         for (int i = 1; it.hasNext(); i++) {
             VendingMachine machine;
             machine = it.next();
@@ -396,7 +406,7 @@ public class VendingMachineDriver {
 
         displayVendingMachine(vendingMachines);
 
-        do {
+        do {    //let user selects one of the vending machines
             option = sc.nextInt();
             if (option > vendingMachines.size() || option < 0)
                 System.out.println("Error: Invalid Option");
@@ -419,6 +429,7 @@ public class VendingMachineDriver {
 
         System.out.println("=========================");
 
+        //display all the money option exists within the factory interface
         for (int i = 1; it.hasNext(); i++) {
             Money money;
             money = it.next();
@@ -446,7 +457,7 @@ public class VendingMachineDriver {
 
         System.out.println("(0) Back");
 
-        do {
+        do {    //lets users select a specific Money object for themselves to use
             System.out.print("Select Wallet: ");
             option = sc.nextInt();
             if (option > wallets.size() || option < 0)
@@ -495,25 +506,25 @@ public class VendingMachineDriver {
                     exit = true;
                     break;
                 case 3:
-                    wallet = selectWallet(moneyList, wallet);
+                    wallet = selectWallet(moneyList, wallet);   //sets the current wallet to the wallet the method returns
                     break;
                 case 4:
-                    wallet.showMoney("Current Wallet");
+                    wallet.showMoney("Current Wallet"); //shows the current wallet information
                     break;
                 case 1:
                 case 2:
                     vm = selectVendingMachine(vendingMachineList);  //let user select vending machine
-                    if (vm == null)
+                    if (vm == null) //if the user decides to exit within the vending machine selection
                         option = 0;
                     switch (option) {
                         case 1:
                             do {
-                                Item anItem = execBuyer(vm, wallet);
+                                Item anItem = execBuyer(vm, wallet);    //executes the buyer method and it either returns an item that the user purchased or null if no transactions were done
                                 if (anItem != null)
                                     allItems.add(anItem);
                                 anItem = null; //make anItem null
 
-                                do {
+                                do {    //prompts the user whether they would like to continue buying within this vending machine
                                     System.out.println("Continue Buying: (1) Yes   (0) No");
                                     option = sc.nextInt();
                                     if (option != 1 && option != 0)
@@ -543,7 +554,9 @@ public class VendingMachineDriver {
         ArrayList<Item> itemSets = new ArrayList<Item>();
         ArrayList<Integer> itemQuantity = new ArrayList<Integer>();
 
-        for (Item item : items) {
+        //display the inventory of what the user have bought
+
+        for (Item item : items) {   //utilizing two arrayList by counting the number of repeated instances
             if (!itemSets.contains(item)) {
                 itemSets.add(item);
                 itemQuantity.add(1);
@@ -558,8 +571,9 @@ public class VendingMachineDriver {
 
         System.out.println("Total Items Bought: " + myInventory.size());
 
-        if (!(itemSets.size() == 0 || itemQuantity.size() == 0)) {
-            while (item.hasNext() && quantity.hasNext()) {
+
+        if (!(itemSets.size() == 0 || itemQuantity.size() == 0)) {  //checking if the user have bought anything
+            while (item.hasNext() && quantity.hasNext()) {  //displaying the item and quantity using an iterator
                 Item it = item.next();
                 Integer in = quantity.next();
                 if (it != null && in != null)
@@ -599,8 +613,8 @@ public class VendingMachineDriver {
             System.out.println("(0) Cancel");
             System.out.print("Vending Machine Name: ");
             name = sc.nextLine();
-            if (!name.equalsIgnoreCase("0")) {
-                do {
+            if (!name.equalsIgnoreCase("0")) {  //checking if the provided string is 0
+                do {    //prompts users for the number of item slots they would like the vending machine to have (should be more than or equal to 8)
                     System.out.println("=========================");
                     System.out.println("(0) Cancel");
                     System.out.print("Number of Item Slots: ");
@@ -609,9 +623,9 @@ public class VendingMachineDriver {
                         System.out.println("Error: Invalid Number of Slots");
                 } while (numSlots < 8 && numSlots != 0);
 
-                if (numSlots != 0) {
+                if (numSlots != 0) {    //if the user did not decide to cancel the creation of vending machine
 
-                    do {
+                    do {    //prompts users for the max number of items an item slot can contain (should be more than or equal to 10)
                         System.out.println("=========================");
                         System.out.println("(0) Cancel");
                         System.out.print("Max Items Per Slot: ");
@@ -625,14 +639,14 @@ public class VendingMachineDriver {
                 }
             }
 
-            if (create) {
+            if (create) {   //if the user provides the necessary valid information for creating a vending machine
                 vm.add(new VendingMachine(name, numSlots, slotSize));
                 System.out.println("New Vending Machine Created");
             }
             else
                 System.out.println("Vending Machine Creation Cancelled");
 
-            create = false;
+            create = false; //reset this boolean
 
             do {
                 System.out.println("=========================");
@@ -649,7 +663,7 @@ public class VendingMachineDriver {
                 } while (option > 2 || option < 0);
 
                 if (option == 2)
-                    if (vm.size() != 0)
+                    if (vm.size() != 0) //no vending machine is created if the size of the arraylist is zero
                         displayVendingMachine(vm);
                     else
                         System.out.println("No New Vending Machines Have Been Created");
@@ -687,13 +701,13 @@ public class VendingMachineDriver {
             } while (option > 3 || option < 0);
 
             switch(option) {
-                case 1 -> vendingMachineList.addAll(createVendingMachine());
+                case 1 -> vendingMachineList.addAll(createVendingMachine());    //arraylist of vending machine of the factory adds the arraylist returned by the method of creating a vending machine
                 case 2 -> {
                     VendingMachine vm = selectVendingMachine(vendingMachineList);
-                    if (vm != null)
+                    if (vm != null) //if the user did choose a vending machine
                         showVendingMachine(vm);
                 }
-                case 3 -> displayVendingMachine(vendingMachineList);
+                case 3 -> displayVendingMachine(vendingMachineList);    //displays all the vending machine within the factory
             }
 
 
@@ -733,7 +747,7 @@ public class VendingMachineDriver {
 
                 do {
                     System.out.println("=========================");
-                    System.out.print("Choose Bills/Coins: ");
+                    System.out.print("Choose Bills/Coins: ");   //lets user choose the type of denomination they would like to customize
                     option = sc.nextInt();
                     if (option < 0 || option > 9)
                         System.out.println("Error: Invalid Option");
@@ -741,13 +755,13 @@ public class VendingMachineDriver {
 
                 if (option != 0)
                     do {
-                        System.out.print("Quantity: ");
+                        System.out.print("Quantity: "); //lets the users choose the quantity of denominations they would like to add to the newly created money class
                         quantity = sc.nextInt();
                         if (quantity < 0)
                             System.out.println("Error: Invalid Quantity");
                     } while (quantity < 0);
 
-                if (quantity == 0)
+                if (quantity == 0)  //quantity == 0 meaning user intends to finish the creation
                     option = 0;
 
 
@@ -768,7 +782,7 @@ public class VendingMachineDriver {
 
 
 
-            do {
+            do {    //prompts user whether they would like to confirm the creation
                 System.out.println("Confirm Creation: (1) Yes   (0) No");
                 option = sc.nextInt();
                 if (option != 1 && option != 0)
@@ -779,19 +793,19 @@ public class VendingMachineDriver {
                 create = true;
 
 
-            if (create) {
+            if (create) {   //the create boolean is true, new money will be created
                 money.add(newMoney);
                 System.out.println("New Money Created");
             }
             else
                 System.out.println("Money Creation Cancelled");
 
-            create = false;
+            create = false; //reset this boolean
 
             do {
                 System.out.println("=========================");
                 System.out.println("(0) Finish");
-                System.out.println("(1) Create Another");
+                System.out.println("(1) Create Another");   //option 1 utilizes the outside loop itself
                 System.out.println("(2) Show Created Money");
                 System.out.println("=========================");
 
@@ -803,7 +817,7 @@ public class VendingMachineDriver {
                 } while (option > 2 || option < 0);
 
                 if (option == 2)
-                    if (money.size() != 0)
+                    if (money.size() != 0)  //if there are money object newly created
                         displayMoneyList(money);
                     else
                         System.out.println("No New Vending Machines Have Been Created");
@@ -843,8 +857,8 @@ public class VendingMachineDriver {
             } while (option > 2 || option < 0);
 
             switch(option) {
-                case 1 -> moneyList.addAll(createMoney());
-                case 2 -> displayMoneyList(moneyList);
+                case 1 -> moneyList.addAll(createMoney());  //moneyList arraylist of the factory adds the money created from createMoney method
+                case 2 -> displayMoneyList(moneyList);  //displays all the money exists within the factory
             }
 
 
@@ -872,8 +886,8 @@ public class VendingMachineDriver {
             System.out.println("(0) Cancel");
             System.out.print("Item Name: ");
             name = sc.nextLine();
-            if (!name.equalsIgnoreCase("0")) {
-                do {
+            if (!name.equalsIgnoreCase("0")) {  //check if the user inputted string is 0, prompting a cancellation of creation of the Item Stock
+                do {    //prompts user the input valid calories
                     System.out.print("Calories: ");
                     calories = sc.nextInt();
                     if (calories < 0)
@@ -881,7 +895,7 @@ public class VendingMachineDriver {
                 } while (calories < 0);
 
 
-                do {
+                do {    //prompts user the input valid stocks
                     System.out.print("Stocks: ");
                     stock = sc.nextInt();
                     if (stock < 0)
@@ -891,30 +905,30 @@ public class VendingMachineDriver {
 
                 System.out.println("=========================");
                 System.out.println("(0) Cancel");
-                do {
+                do {    //prompts the user to input the srp for the item
                     System.out.print("SRP (PHP): ");
                     srp = sc.nextInt();
                     if (srp < 0)
                         System.out.println("Error: Invalid SRP");
                 } while (srp < 0);
 
-                if (srp != 0)
+                if (srp != 0)   //if srp is not zero, then user had provided valid information for the creation of the item stock
                     create = true;
             }
 
-            if (create) {
-                itemStocks.add(new ItemStock(name, srp, calories, stock));
+            if (create) {   //if creation boolean is true
+                itemStocks.add(new ItemStock(name, srp, calories, stock));  //itemStocks Arraylist adds the new itemStocks
                 System.out.println("New Item Stock Created");
             }
             else
                 System.out.println("Item Stock Creation Cancelled");
 
-            create = false;
+            create = false; //this boolean resets to false
 
             do {
                 System.out.println("=========================");
                 System.out.println("(0) Finish");
-                System.out.println("(1) Create Another");
+                System.out.println("(1) Create Another");   //option 1 utilizes the outside loop itself
                 System.out.println("(2) Show Created Item Stock/s");
                 System.out.println("=========================");
 
@@ -926,7 +940,7 @@ public class VendingMachineDriver {
                 } while (option > 2 || option < 0);
 
                 if (option == 2)
-                    if (itemStocks.size() != 0)
+                    if (itemStocks.size() != 0) //if there are item stock object newly created
                         displayItemStock(itemStocks);
                     else
                         System.out.println("No New Item Stocks Have Been Created");
@@ -954,7 +968,7 @@ public class VendingMachineDriver {
         System.out.println("=========================");
         System.out.println("(0) Back");
 
-        do {
+        do {    //prompts the user to input the amount of stock that they would like to an item stock
             System.out.println("=========================");
             System.out.print("Add Stock: ");
             stock = sc.nextInt();
@@ -988,14 +1002,14 @@ public class VendingMachineDriver {
             } while (option > 3 || option < 0);
 
             switch(option) {
-                case 1 -> itemStockList.addAll(createItemStock());
+                case 1 -> itemStockList.addAll(createItemStock());  //itemStockList arraylist of the factory adds the ItemStocks created from createItemStock method
                 case 2 -> {
                     ItemStock item = selectItemStock(itemStockList);
-                    if (item != null) {
+                    if (item != null) { //if the user has selected an ItemStock
                         addItemStock(item);
                     }
                 }
-                case 3 -> displayItemStock(itemStockList);
+                case 3 -> displayItemStock(itemStockList);  //displays all the itemStocks within the factory
             }
 
         } while (option != 0);
@@ -1017,23 +1031,23 @@ public class VendingMachineDriver {
             System.out.println("(0) Cancel");
             System.out.print("Vending Machine Name: ");
             name = sc.nextLine();
-            if (!name.equalsIgnoreCase("0")) {
+            if (!name.equalsIgnoreCase("0")) {  //cancellation detection when user input String is 0
                 create = true;
             }
 
-            if (create) {
+            if (create) {   //if user provides all valid information for the creation of the factory
                 factoryDriverList.add(new VendingMachineDriver(name));
                 System.out.println("New Factory Created");
             }
             else
                 System.out.println("Factory Creation Cancelled");
 
-            create = false;
+            create = false; //this boolean resets to false
 
             do {
                 System.out.println("=========================");
                 System.out.println("(0) Finish");
-                System.out.println("(1) Create Another");
+                System.out.println("(1) Create Another");   //option 1 utilizes the outside loop itself
                 System.out.println("(2) Show All Factories");
                 System.out.println("=========================");
 
@@ -1087,11 +1101,11 @@ public class VendingMachineDriver {
                 case 5 -> displayItemInventory(myInventory);
                 case 1 -> {
                     do {
-                        myInventory.addAll(factory.startInteraction(factory.moneyList.get(0)));
+                        myInventory.addAll(factory.startInteraction(factory.moneyList.get(0))); //myInventory arraylist adds Item arraylist returned from the startInteraction method given an instance by providing the parameter of the default Money object (unliMoney)
                         System.out.println("-----Resulting myInventory------");
                         displayItemInventory(myInventory);
 
-                        do {
+                        do {    //prompts the user whether they would like to exit
                             System.out.println("Exit: (1) Yes   (0) No");
                             option = sc.nextInt();
                             if (option != 1 && option != 0)
@@ -1116,6 +1130,7 @@ public class VendingMachineDriver {
         System.out.println("Vending Machine Factory: " + factoryDriverList.size());
         System.out.println("=========================");
 
+        //displays all the factories using iterative forloop
         for (int i = 1; it.hasNext(); i++) {
             VendingMachineDriver factory;
             factory = it.next();
@@ -1137,7 +1152,7 @@ public class VendingMachineDriver {
 
         displayFactoryDrivers();
 
-        do {
+        do {    //lets the user select a factory
             System.out.println("(0) Back");
             option = sc.nextInt();
             if (option > factoryDriverList.size() || option < 0)
@@ -1179,14 +1194,14 @@ public class VendingMachineDriver {
             switch(option) {
                 case 1 -> {
                     VendingMachineDriver factory;
-                    do {
+                    do {    //utilizes a loop so it prompts the user to select a factory by default when exiting a factory
                         factory = selectFactoryDriver();
-                        if (factory != null)
+                        if (factory != null)    //if the user selects a factory
                             driverMenu(factory);
                     } while (factory != null);
                 }
-                case 2 -> createFactory();
-                case 3 -> displayItemInventory(myInventory);
+                case 2 -> createFactory();  //creates a factory
+                case 3 -> displayItemInventory(myInventory);    //displays the inventory of the items bought across all factories
             }
 
 
