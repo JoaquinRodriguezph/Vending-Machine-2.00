@@ -430,47 +430,44 @@ public class VendingMachine {
         return slot;
     }
 
-    /**
-     * This method displays all the transactions of the user.
-     */
-    public void displayTransactions() {
+
+    public ArrayList<String> stringTransactions() {
+        ArrayList<String> str = new ArrayList<String>();
         int total = 0;
 
-        System.out.println("=========================");
+        str.add("=========================");
         for (ItemTransaction transactions : transactionLog) {
             if (transactions.getSlot().getItemStock() != null) {    //assuring the transaction of the specific
-                System.out.println(transactions.toString());
+                str.add(transactions.toString());
                 total += transactions.getTotal();   //adds the total earnings
             }
         }
 
 
         if (total == 0)
-            System.out.println(NAME + ": No Transactions Were Made");
-        System.out.println("Total Earnings: " + total + " PHP");
+            str.add(NAME + ": No Transactions Were Made");
+        str.add("Total Earnings: " + total + " PHP");
 
 
-        System.out.println("=========================");
-
+        str.add("=========================");
+        return str;
     }
 
-    /**
-     * This method displays the inventories of a user.
-     */
-    public ArrayList<String> displayInventories() {
-        ArrayList<String> strInventories = new
+
+    public ArrayList<String> stringInventories() {
+        ArrayList<String> strInventories = new ArrayList<String>();
         if (startingInventory != null) {
             VendingMachineInventory endingInventory = new VendingMachineInventory(this);    //creating the ending inventory using the current inventory
 
-            displayInventory(startingInventory, "Starting Inventory");
-            displayInventory(endingInventory, "Ending Inventory");
+            strInventories.addAll(stringInventory(startingInventory, "Starting Inventory"));
+            strInventories.addAll(stringInventory(endingInventory, "Ending Inventory"));
 
             endingInventory = null;
         }
         else
-            System.out.println(NAME + " Vending Machine is Still New");
+            strInventories.add(NAME + " Vending Machine is Still New");
 
-        return
+        return strInventories;
     }
 
     /**
@@ -494,6 +491,7 @@ public class VendingMachine {
         itemSlots[slotSelection - 1].removeStock();
         transactionLog[slotSelection - 1].addTransaction();
     }
+
 
     public Item performTransaction(Money payment, Money sourceWallet, Money wallet, int slotSelection) {
         int change;
@@ -529,27 +527,29 @@ public class VendingMachine {
 
 
 
-    /**
-     * This method displays the inventory of a vending machine.
-     * @param inventory the inventory to be displayed.
-     * @param info the info to be displayed.
-     */
-    private void displayInventory(VendingMachineInventory inventory, String info) {
-        System.out.println("=========================");
-        System.out.println("---" + info + "---");
-        System.out.println("Slot Number || Item");
-        System.out.println("=========================");
+
+    private ArrayList<String> stringInventory(VendingMachineInventory inventory, String info) {
+        ArrayList<String> strInventory = new ArrayList<String>();
+        strInventory.add("=========================");
+        strInventory.add("---" + info + "---");
+        strInventory.add("Slot Number || Item");
+        strInventory.add("=========================");
+
         for (int i = 0; i < inventory.getItemSlots().length; i++){  //displays the vending machine inventory of when the VendingMachineInventory is constructed
+            String temp = "";
             if (inventory.getItemSlots()[i] != null){   //the item slots must be initialized for it to be considered as a valid inventory space
-                System.out.print(inventory.getItemSlots()[i].getSlotNumber() + " || ");
+                temp = temp.concat(inventory.getItemSlots()[i].getSlotNumber() + " || ");
                 if (inventory.getItemSlots()[i].getItemStock() != null)
-                    System.out.println(inventory.getItemSlots()[i].getItemStock().getName() + " - " + inventory.getItemSlots()[i].getStock());
+                    temp = temp.concat(inventory.getItemSlots()[i].getItemStock().getName() + " - " + inventory.getItemSlots()[i].getStock());
                 else
-                    System.out.println("X");
+                    temp = temp.concat("X");
+
+                strInventory.add(temp);
             }
         }
-        System.out.println("=========================");
-        inventory.getMoney().showMoney(info);
+        strInventory.add("=========================");
+        strInventory.addAll(inventory.getMoney().moneyString(info));
+        return strInventory;
     }
 
     private final String NAME;

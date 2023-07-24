@@ -185,9 +185,9 @@ public class VendingMachineDriver {
         tempWallet = null;
         sc = null;
 
-        if (!b) //if transaction failed
+        if (theItem == null) //if transaction failed
             System.out.println("Transaction Failed");
-        return theItem;   //true transaction is successful, false otherwise (cancelling of payment or no change)
+        return theItem;
     }
 
 
@@ -477,7 +477,7 @@ public class VendingMachineDriver {
         boolean exit = false;
 
 
-        vendingMachine.displayInventories();
+        displayInventories(vendingMachine);
         do {
             System.out.println("=========================");
             System.out.println("     Price Change");
@@ -518,6 +518,7 @@ public class VendingMachineDriver {
         System.out.println("Going Back...");
     }
 
+
     /**
      * This private method facilitates the maintenance of the vending machines.
      * @param vendingMachine the vending machine to be maintained.
@@ -528,8 +529,8 @@ public class VendingMachineDriver {
         int option;
 
 
-        vendingMachine.displayInventories();
-        vendingMachine.displayTransactions();
+        displayInventories(vendingMachine);
+        displayTransactions(vendingMachine);
 
         //a normal functioning menu for maintenance
 
@@ -576,10 +577,10 @@ public class VendingMachineDriver {
                     displayItemStock(itemStockList);
                     break;
                 case 7:
-                    vendingMachine.displayInventories();
+                    displayInventories(vendingMachine);
                     break;
                 case 8:
-                    vendingMachine.displayTransactions();
+                    displayTransactions(vendingMachine);
                     break;
                 case 9:
                     vendingMachine.showMoney();
@@ -588,6 +589,18 @@ public class VendingMachineDriver {
         } while (option != 0);
 
         System.out.println("Going Back...");
+    }
+
+    public void displayInventories(VendingMachine vm) {
+        for (String str : vm.stringInventories()) {
+            System.out.println(str);
+        }
+    }
+
+    public void displayTransactions(VendingMachine vm) {
+        for (String str : vm.stringTransactions()) {
+            System.out.println(str);
+        }
     }
 
     /**
@@ -809,8 +822,8 @@ public class VendingMachineDriver {
      */
     private void showVendingMachine(VendingMachine vendingMachine) {
         displayItemMenu(vendingMachine);
-        vendingMachine.displayInventories();
-        vendingMachine.displayTransactions();
+        displayInventories(vendingMachine);
+        displayTransactions(vendingMachine);
     }
 
     /**

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * The Money Class contains attributes for each
  * denomination of money.
@@ -413,27 +415,43 @@ public class Money {
      * @param info the currency of the money.
      */
     public void showMoney(String info) {
-        System.out.println("*************************");
-        System.out.println("Money in " + info);
-        displayDenominations();
-        System.out.println("Total:      " + getMoney());
-        System.out.println("*************************");
+        ArrayList<String> str = moneyString(info);
+        for (String string : str) {
+            System.out.println(string);
+        }
     }
 
     /**
      * Displays the total amount of money without the currency.
      */
     public void showMoney() {
-        System.out.println("*************************");
-        displayDenominations();
-        System.out.println("Total:      " + getMoney());
-        System.out.println("*************************");
+        ArrayList<String> str = moneyString();
+        for (String string : str) {
+            System.out.println(string);
+        }
     }
 
-    /**
-     * Displays the total amount of each denomination.
-     */
-    private void displayDenominations() {
+    public ArrayList<String> moneyString(String info) {
+        ArrayList<String> str = new ArrayList<String>();
+        str.add("*************************");
+        str.add("Money in " + info);
+        str.addAll(denomString());
+        str.add("Total:      " + getMoney());
+        str.add("*************************");
+        return str;
+    }
+
+    public ArrayList<String> moneyString() {
+        ArrayList<String> str = new ArrayList<String>();
+        str.add("*************************");
+        str.addAll(denomString());
+        str.add("Total:      " + getMoney());
+        str.add("*************************");
+        return str;
+    }
+
+    public ArrayList<String> denomString() {
+        ArrayList<String> str = new ArrayList<String>();
         int[] list = toList();  //utilizing an array to display the number of each denominations
         String temp = "";
 
@@ -467,10 +485,13 @@ public class Money {
                     case 8:
                         temp = "1000 Pesos: ";
                 }
-                System.out.println(temp + list[i]);
+                str.add(temp + list[i]);
             }
         }
+
+        return str;
     }
+
 
     /**
      * Makes a list of integers from 0 to 8 corresponding the denominations and their respective
