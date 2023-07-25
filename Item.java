@@ -12,6 +12,11 @@ public class Item {
         CALORIES = calories;
     }
 
+    public Item(Item item) {
+        this.CALORIES = item.getCalories();
+        this.NAME = item.getName();
+    }
+
     /**
      * Gets the name of the item.
      * @return the name of the item.

@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * The ItemSlot Class contains the slot number
  * that contains a specific item type. The slot number
@@ -13,7 +15,7 @@ public class ItemSlot {
     public ItemSlot(int slot, int max){
         this.SLOTNUMBER = slot;
         this.itemStock = null;
-        this.stock = 0;
+        this.items = new ArrayList<Item>();
         this.MAX = max;
         this.price = 0;
     }
@@ -34,12 +36,12 @@ public class ItemSlot {
         return itemStock;
     }
 
-    /**
-     * This method gets the stock of the item in the slot.
-     * @return the stock.
-     */
     public int getStock() {
-        return stock;
+        return items.size();
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
     }
 
     /**
@@ -86,7 +88,9 @@ public class ItemSlot {
      * @param stock the new stock of the item slot.
      */
     public void setStock(int stock) {
-        this.stock = stock;
+        items.clear();
+        for (int i = 0; i < stock; i++)
+            items.add(new Item(itemStock.getItem()));
     }
 
     /**
@@ -96,9 +100,10 @@ public class ItemSlot {
      * @return true or false depending on if the stocking is successful
      */
     public boolean addStock(int stock){
-        if (stock > 0 && MAX >= this.stock + stock){    //the stock must be positive and must add to less than or equal to MAX
+        if (stock > 0 && MAX >= items.size() + stock){    //the stock must be positive and must add to less than or equal to MAX
             if (itemStock.removeStock(stock)) {
-                this.stock += stock;
+                for (int i = 0; i < stock; i++)
+                    items.add(new Item(itemStock.getItem()));
                 return true;
             }
         }
@@ -107,10 +112,10 @@ public class ItemSlot {
     }
 
     /**
-     * This method decrements the stock of the item slot by 1.
+     * This method removes an item from the slot
      */
     public void removeStock() {
-        this.stock--;
+        items.remove(0);
     }
 
     /**
@@ -118,7 +123,7 @@ public class ItemSlot {
      * @return true or false depending if there is at least one stock.
      */
     public boolean isAvailable() {
-        return stock > 0;
+        return items.size() > 0;
     }
 
 
@@ -127,14 +132,14 @@ public class ItemSlot {
      * @return true if stock is 0 and false if not
      */
     public boolean isEmpty() {
-        return stock == 0;
+        return items.size() == 0;
     }
 
     private final int SLOTNUMBER;
 
     private ItemStock itemStock;
 
-    private int stock;
+    private ArrayList<Item> items;
 
     private final int MAX;
 
