@@ -57,14 +57,14 @@ public class VendingMachine {
 
 
     /**
-     * This method checks if the amount of itemstock is valid.
-     * @param vendingStock itemStock to be validated.
+     * This method checks if the amount of VendingStock is valid.
+     * @param itemStock itemStock to be validated.
      * @return true if itemstock is valid and false if not.
      */
-    public boolean isValidItem(VendingStock vendingStock) {
+    public boolean isValidItem(ItemStock itemStock) {
         boolean b = true;
 
-        if (vendingStock.getSRP() <= 0 || vendingStock == null) //item is invalid if SRP <= 0 or is null
+        if (itemStock.getSRP() <= 0 || itemStock == null) //item is invalid if SRP <= 0 or is null
             b = false;
 
 
@@ -90,7 +90,7 @@ public class VendingMachine {
     }
 
     public void setSlotItem(int slot, VendingStock newItem) {
-        itemSlots[slot - 1].setItemStock(newItem);
+        itemSlots[slot - 1].setVendingStock(newItem);
     }
 
     /**
@@ -102,7 +102,7 @@ public class VendingMachine {
         boolean b = false;
 
         if (isValidSlot(slot))
-            if (itemSlots[slot - 1].getItemStock() != null) {   //making usre the object is not null
+            if (itemSlots[slot - 1].getVendingStock() != null) {   //making usre the object is not null
                 itemSlots[slot - 1].setSRP();
                 b = true;
             }
@@ -115,7 +115,7 @@ public class VendingMachine {
      */
     public void setAllSRP() {
         for (int slot = 1; slot <= itemSlots.length; slot++) {
-            if (itemSlots[slot - 1].getItemStock() != null) //assuring non-initialized slot will obtain a change in price
+            if (itemSlots[slot - 1].getVendingStock() != null) //assuring non-initialized slot will obtain a change in price
                 itemSlots[slot - 1].setSRP();
         }
     }
@@ -160,7 +160,7 @@ public class VendingMachine {
 
         str.add("=========================");
         for (ItemTransaction transactions : transactionLog) {
-            if (transactions.getSlot().getItemStock() != null) {    //assuring the transaction of the specific
+            if (transactions.getSlot().getVendingStock() != null) {    //assuring the transaction of the specific
                 str.add(transactions.toString());
                 total += transactions.getTotal();   //adds the total earnings
             }
@@ -249,8 +249,8 @@ public class VendingMachine {
             String temp = "";
             if (inventory.getItemSlots()[i] != null){   //the item slots must be initialized for it to be considered as a valid inventory space
                 temp = temp.concat(inventory.getItemSlots()[i].getSlotNumber() + " || ");
-                if (inventory.getItemSlots()[i].getItemStock() != null)
-                    temp = temp.concat(inventory.getItemSlots()[i].getItemStock().getName() + " - " + inventory.getItemSlots()[i].getStock());
+                if (inventory.getItemSlots()[i].getVendingStock() != null)
+                    temp = temp.concat(inventory.getItemSlots()[i].getVendingStock().getName() + " - " + inventory.getItemSlots()[i].getStock());
                 else
                     temp = temp.concat("X");
 

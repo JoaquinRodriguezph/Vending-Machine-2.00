@@ -1,5 +1,7 @@
+import java.util.ArrayList;
+
 public class Meal extends Item {
-    public Meal(String name, VendingStock[] itemList, int price) {
+    public Meal(String name, ArrayList<ItemStock> itemList, int price) {
         super(name, setCalories(itemList));
         this.itemList = itemList;
         this.price = price;
@@ -9,7 +11,12 @@ public class Meal extends Item {
         return price;
     }
 
-    public VendingStock[] getItemList() {
+    public void addAddOnStock(AddOnStock addOnStock, int price) {
+        itemList.add(addOnStock);
+        this.price += price;
+    }
+
+    public ArrayList<ItemStock> getItemList() {
         return itemList;
     }
 
@@ -21,16 +28,16 @@ public class Meal extends Item {
      * This private static method is used by the constructor to calculate the total calories in the meal.
      * @param itemList List of items that comprises the meal.
      */
-    private static int setCalories(VendingStock[] itemList) {
+    private static int setCalories(ArrayList<ItemStock> itemList) {
         int calories = 0;
-        for (VendingStock item : itemList) {
+        for (ItemStock item : itemList) {
             calories += item.getCalories();
         }
 
         return calories;
     }
 
-    private final VendingStock[] itemList;
+    private final ArrayList<ItemStock> itemList;
     private int price;
 
 }

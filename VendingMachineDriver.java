@@ -217,7 +217,7 @@ public class VendingMachineDriver {
             if (slot == itemSlot.getSlotNumber() && itemSlot.isAvailable()) {   //only accept item slots that are valid and have available stock/s
                 b = true;
                 selectedSlot = itemSlot;
-                selectedVendingStock = selectedSlot.getItemStock();
+                selectedVendingStock = selectedSlot.getVendingStock();
             }
         }
 
@@ -249,8 +249,8 @@ public class VendingMachineDriver {
         for (int i = 0; i < itemSlots.length; i++){ //loop for displaying all the items and their details and if it is available or not
             if (itemSlots[i] != null){
                 System.out.print(itemSlots[i].getSlotNumber() + " || ");
-                if (itemSlots[i].getItemStock() != null) {
-                    System.out.print(itemSlots[i].getItemStock().getName() + " " + itemSlots[i].getPrice() + " PHP");
+                if (itemSlots[i].getVendingStock() != null) {
+                    System.out.print(itemSlots[i].getVendingStock().getName() + " " + itemSlots[i].getPrice() + " PHP");
                 }
                 else
                     System.out.print("X");
@@ -448,11 +448,11 @@ public class VendingMachineDriver {
         ItemSlot[] itemSlots = vendingMachine.getItemSlots();
 
 
-        tempItem = itemSlots[slot - 1].getItemStock();  //keeps track of old item
+        tempItem = itemSlots[slot - 1].getVendingStock();  //keeps track of old item
         oldPrice = itemSlots[slot - 1].getPrice();  //keeps track of old price of the slot
         if (vendingMachine.isValidSlot(slot) && vendingMachine.isValidItem(vendingStock)) {
             for (int i = 0; i < itemSlots.length; i++) {
-                if (vendingStock == itemSlots[i].getItemStock())
+                if (vendingStock == itemSlots[i].getVendingStock())
                     found = true;
             }
             if (!found) {
@@ -468,7 +468,7 @@ public class VendingMachineDriver {
                     {
                         b = itemSlots[slot - 1].addStock(quantity);
                         if (b)
-                            System.out.println("Slot " + slot + ": " + itemSlots[slot - 1].getItemStock().getName() + " - Adding Stock Successful");
+                            System.out.println("Slot " + slot + ": " + itemSlots[slot - 1].getVendingStock().getName() + " - Adding Stock Successful");
                         else
                             System.out.println("Error: Invalid Amount/Stock");
                     }
@@ -480,7 +480,7 @@ public class VendingMachineDriver {
                     }
 
                     if (b) {
-                        System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getItemStock().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
+                        System.out.println("Slot " + slot + " Now Has " + itemSlots[slot - 1].getVendingStock().getName() + " at " + itemSlots[slot - 1].getPrice() + " PHP");
                         //resets when stocking
                         vendingMachine.resetLogs();
                     }
@@ -515,11 +515,11 @@ public class VendingMachineDriver {
         ItemSlot[] itemSlots = vendingMachine.getItemSlots();
 
         if (vendingMachine.isValidSlot(slot))
-            if (itemSlots[slot - 1].getItemStock() != null) {   //making sure the object is not null
+            if (itemSlots[slot - 1].getVendingStock() != null) {   //making sure the object is not null
                 b = itemSlots[slot - 1].addStock(quantity); //retrieving the boolean if the adding of stock is successful
 
                 if (b) {
-                    System.out.println("Slot " + slot + ": " + itemSlots[slot - 1].getItemStock().getName() + " - Adding Stock Successful");
+                    System.out.println("Slot " + slot + ": " + itemSlots[slot - 1].getVendingStock().getName() + " - Adding Stock Successful");
                     //resets when stocking
                     vendingMachine.resetLogs();
                 }
@@ -541,7 +541,7 @@ public class VendingMachineDriver {
         boolean b = false;
         ItemSlot[] itemSlots = vendingMachine.getItemSlots();
 
-        if (itemSlots[slot - 1].getItemStock() != null){
+        if (itemSlots[slot - 1].getVendingStock() != null){
             if (price > 0) {    //positive integer
                 System.out.print("Slot " + slot);
                 if (itemSlots[slot - 1].getPrice() != 0)    //if the item slot had contained any pre-existing assigned item
@@ -550,7 +550,7 @@ public class VendingMachineDriver {
                     System.out.print(" Has Been Set to ");
 
                 vendingMachine.setSlotPrice(slot, price);
-                System.out.println(itemSlots[slot - 1].getPrice() + " PHP (" + itemSlots[slot - 1].getItemStock().getName() + ")");
+                System.out.println(itemSlots[slot - 1].getPrice() + " PHP (" + itemSlots[slot - 1].getVendingStock().getName() + ")");
                 b = true;
             } else {
                 System.out.println("Error: Invalid Price");

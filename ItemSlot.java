@@ -32,7 +32,7 @@ public class ItemSlot {
      * This method gets the item in the slot.
      * @return the item in the Slot
      */
-    public VendingStock getItemStock() {
+    public VendingStock getVendingStock() {
         return vendingStock;
     }
 
@@ -64,7 +64,7 @@ public class ItemSlot {
      * This method sets the item that is in the item slot.
      * @param vendingStock the item to be set in the slot
      */
-    public void setItemStock(VendingStock vendingStock) {
+    public void setVendingStock(VendingStock vendingStock) {
         this.vendingStock = vendingStock;
     }
 

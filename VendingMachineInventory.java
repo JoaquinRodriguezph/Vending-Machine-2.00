@@ -13,7 +13,7 @@ public class VendingMachineInventory {
         itemSlots = new ItemSlot[tempSlots.length];
         for (int i = 0; i < tempSlots.length; i++) {    //reflecting each itemSlot by creating a new instance for the VendingMachine inventory in case of change in price
             itemSlots[i] = new ItemSlot(tempSlots[i].getSlotNumber(), tempSlots[i].getMax());
-            itemSlots[i].setItemStock(tempSlots[i].getItemStock());
+            itemSlots[i].setVendingStock(tempSlots[i].getVendingStock());
             itemSlots[i].setStock(tempSlots[i].getStock());
             itemSlots[i].setPrice(tempSlots[i].getPrice());
         }
