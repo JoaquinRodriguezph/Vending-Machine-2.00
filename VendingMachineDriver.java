@@ -195,7 +195,6 @@ public class VendingMachineDriver {
         else
             System.out.println("Transaction Successful");
 
-        sc.close();
         return theItem;
     }
 
