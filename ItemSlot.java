@@ -112,10 +112,13 @@ public class ItemSlot {
     }
 
     /**
-     * This method removes an item from the slot
+     * This method removes an item from the slot and returns the Item instance
+     * @return an Item instance within the slot
      */
-    public void removeStock() {
-        items.remove(0);
+    public Item removeStock() {
+        if (isAvailable())
+            return items.remove(0);
+        return null;
     }
 
     /**

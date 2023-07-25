@@ -212,7 +212,6 @@ public class VendingMachine {
     }
 
     public void successfulTransaction(int slotSelection) {
-        itemSlots[slotSelection - 1].removeStock();
         transactionLog[slotSelection - 1].addTransaction();
     }
 
@@ -226,7 +225,7 @@ public class VendingMachine {
 
         if (money.removeMoney(change)) {    //checking if the removing of change in the vending machine is successful
             sourceWallet.replace(wallet); //replace the actual wallet of the user with the resulting wallet considering the successful payment
-            theItem = itemSlots[slotSelection - 1].getItemStock().getItem();
+            theItem = itemSlots[slotSelection - 1].removeStock();
         }
         else {
             money.removeMoney(payment); //remove the payment from the vending machine money if the vending machine money don't have the appropriate denominations for the change (if there is)
