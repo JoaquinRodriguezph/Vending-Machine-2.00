@@ -410,10 +410,10 @@ public class Money {
         this.oneThousandPeso += n;
     }
 
-    /**
+   /* *//**
      * Displays the amount of money in info's currency and the total.
      * @param info the currency of the money.
-     */
+     *//*
     public void showMoney(String info) {
         ArrayList<String> str = moneyString(info);
         for (String string : str) {
@@ -421,15 +421,15 @@ public class Money {
         }
     }
 
-    /**
+    *//**
      * Displays the total amount of money without the currency.
-     */
+     *//*
     public void showMoney() {
         ArrayList<String> str = moneyString();
         for (String string : str) {
             System.out.println(string);
         }
-    }
+    }*/
 
     public ArrayList<String> moneyString(String info) {
         ArrayList<String> str = new ArrayList<String>();

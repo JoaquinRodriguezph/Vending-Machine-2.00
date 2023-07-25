@@ -99,13 +99,9 @@ public class ItemSlot {
         if (stock > 0 && MAX >= this.stock + stock){    //the stock must be positive and must add to less than or equal to MAX
             if (itemStock.removeStock(stock)) {
                 this.stock += stock;
-
-                System.out.println("Slot " + this.SLOTNUMBER + ": " + this.itemStock.getName() + " Adding Stock Successful");
                 return true;
             }
         }
-        else
-            System.out.println("Error: Invalid Amount/Stock");
 
         return false;
     }

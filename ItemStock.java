@@ -98,8 +98,6 @@ public class ItemStock {
         boolean b = false;
         if (stock > 0) {    //stocks should be positive
             this.stock += stock;
-            System.out.println(stock + " Stocks Have Been added to " + NAME);
-            System.out.println("Current Stock: " + this.stock);
             b = true;
         }
         return b;
@@ -117,11 +115,8 @@ public class ItemStock {
                 this.stock -= stock;
                 b = true;
             }
-            else
-                System.out.println("Error: Not Enough Stock");
         }
-        else
-            System.out.println("Error: Invalid Quantity");
+
 
         return b;
     }
