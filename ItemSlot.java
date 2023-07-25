@@ -14,7 +14,7 @@ public class ItemSlot {
      */
     public ItemSlot(int slot, int max){
         this.SLOTNUMBER = slot;
-        this.itemStock = null;
+        this.vendingStock = null;
         this.items = new ArrayList<Item>();
         this.MAX = max;
         this.price = 0;
@@ -32,8 +32,8 @@ public class ItemSlot {
      * This method gets the item in the slot.
      * @return the item in the Slot
      */
-    public ItemStock getItemStock() {
-        return itemStock;
+    public VendingStock getItemStock() {
+        return vendingStock;
     }
 
     public int getStock() {
@@ -62,10 +62,10 @@ public class ItemSlot {
 
     /**
      * This method sets the item that is in the item slot.
-     * @param itemStock the item to be set in the slot
+     * @param vendingStock the item to be set in the slot
      */
-    public void setItemStock(ItemStock itemStock) {
-        this.itemStock = itemStock;
+    public void setItemStock(VendingStock vendingStock) {
+        this.vendingStock = vendingStock;
     }
 
     /**
@@ -80,7 +80,7 @@ public class ItemSlot {
      * This method sets the price of the item slot to the suggested retail price.
      */
     public void setSRP() {
-        setPrice(itemStock.getSRP());
+        setPrice(vendingStock.getSRP());
     }
 
     /**
@@ -90,7 +90,7 @@ public class ItemSlot {
     public void setStock(int stock) {
         items.clear();
         for (int i = 0; i < stock; i++)
-            items.add(new Item(itemStock.getItem()));
+            items.add(new Item(vendingStock.getItem()));
     }
 
     /**
@@ -101,9 +101,9 @@ public class ItemSlot {
      */
     public boolean addStock(int stock){
         if (stock > 0 && MAX >= items.size() + stock){    //the stock must be positive and must add to less than or equal to MAX
-            if (itemStock.removeStock(stock)) {
+            if (vendingStock.removeStock(stock)) {
                 for (int i = 0; i < stock; i++)
-                    items.add(new Item(itemStock.getItem()));
+                    items.add(new Item(vendingStock.getItem()));
                 return true;
             }
         }
@@ -140,7 +140,7 @@ public class ItemSlot {
 
     private final int SLOTNUMBER;
 
-    private ItemStock itemStock;
+    private VendingStock vendingStock;
 
     private ArrayList<Item> items;
 

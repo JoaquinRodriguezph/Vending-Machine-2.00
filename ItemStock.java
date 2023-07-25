@@ -1,15 +1,9 @@
-/**
- * The Item Class contains the information and methods to change
- * the information of an item instance. There is a counter attribute
- * as well which contains the total amount of items.
- */
 public class ItemStock {
-
     /**
-     * This method is a constructor used to create an item instance
+     * This method is a constructor used to create an ItemStock instance
      * from the following parameters:
-     * @param name This is the name of the item. IT IS FINAL.
-     * @param srp This is the SRP of the item. IT IS FINAL
+     * @param name This is the name of the ItemStock. IT IS FINAL.
+     * @param srp This is the SRP of the ItemStock. IT IS FINAL
      * @param calories This is the amount of calories in the item. IT IS FINAL.
      */
     public ItemStock(String name, int srp, int calories){
@@ -17,10 +11,10 @@ public class ItemStock {
     }
 
     /**
-     * This method is a constructor used to create an item instance
+     * This method is a constructor used to create an ItemStock instance
      * from the following parameters:
-     * @param name This is the name of the item. IT IS FINAL.
-     * @param srp This is the SRP of the item. IT IS FINAL
+     * @param name This is the name of the ItemStock. IT IS FINAL.
+     * @param srp This is the SRP of the ItemStock. IT IS FINAL
      * @param calories This is the amount of calories in the item. IT IS FINAL.
      * @param stock This is the amount of stock for the item.
      */
@@ -141,4 +135,5 @@ public class ItemStock {
     private int stock;
 
     private static int count = 0;
+
 }

@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 /**
  * The VendingMachine class contains all the methods and
@@ -59,13 +58,13 @@ public class VendingMachine {
 
     /**
      * This method checks if the amount of itemstock is valid.
-     * @param itemStock itemStock to be validated.
+     * @param vendingStock itemStock to be validated.
      * @return true if itemstock is valid and false if not.
      */
-    public boolean isValidItem(ItemStock itemStock) {
+    public boolean isValidItem(VendingStock vendingStock) {
         boolean b = true;
 
-        if (itemStock.getSRP() <= 0 || itemStock == null) //item is invalid if SRP <= 0 or is null
+        if (vendingStock.getSRP() <= 0 || vendingStock == null) //item is invalid if SRP <= 0 or is null
             b = false;
 
 
@@ -90,7 +89,7 @@ public class VendingMachine {
         itemSlots[slot - 1].setPrice(newPrice);
     }
 
-    public void setSlotItem(int slot, ItemStock newItem) {
+    public void setSlotItem(int slot, VendingStock newItem) {
         itemSlots[slot - 1].setItemStock(newItem);
     }
 

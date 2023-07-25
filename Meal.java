@@ -1,5 +1,5 @@
 public class Meal extends Item {
-    public Meal(String name, ItemStock[] itemList, int price) {
+    public Meal(String name, VendingStock[] itemList, int price) {
         super(name, setCalories(itemList));
         this.itemList = itemList;
         this.price = price;
@@ -9,7 +9,7 @@ public class Meal extends Item {
         return price;
     }
 
-    public ItemStock[] getItemList() {
+    public VendingStock[] getItemList() {
         return itemList;
     }
 
@@ -21,16 +21,16 @@ public class Meal extends Item {
      * This private static method is used by the constructor to calculate the total calories in the meal.
      * @param itemList List of items that comprises the meal.
      */
-    private static int setCalories(ItemStock[] itemList) {
+    private static int setCalories(VendingStock[] itemList) {
         int calories = 0;
-        for (ItemStock item : itemList) {
+        for (VendingStock item : itemList) {
             calories += item.getCalories();
         }
 
         return calories;
     }
 
-    private final ItemStock[] itemList;
+    private final VendingStock[] itemList;
     private int price;
 
 }

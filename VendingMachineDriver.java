@@ -12,7 +12,7 @@ public class VendingMachineDriver {
      * @param name the name of the vending machine driver.
      */
     public VendingMachineDriver(String name) {
-        itemStockList = new ArrayList<ItemStock>();
+        vendingStockList = new ArrayList<VendingStock>();
 
         vendingMachineList = new ArrayList<VendingMachine>();
 
@@ -208,7 +208,7 @@ public class VendingMachineDriver {
         boolean b = false;
         ItemSlot[] itemSlots = vm.getItemSlots();
         ItemSlot selectedSlot = null;
-        ItemStock selectedItemStock = null;
+        VendingStock selectedVendingStock = null;
 
         if (slot == 0)  //slot selection at 0 for exit per user input
             return true;
@@ -217,7 +217,7 @@ public class VendingMachineDriver {
             if (slot == itemSlot.getSlotNumber() && itemSlot.isAvailable()) {   //only accept item slots that are valid and have available stock/s
                 b = true;
                 selectedSlot = itemSlot;
-                selectedItemStock = selectedSlot.getItemStock();
+                selectedVendingStock = selectedSlot.getItemStock();
             }
         }
 
@@ -225,9 +225,9 @@ public class VendingMachineDriver {
             System.out.println("Error: Invalid Item Selection");
         else {  //details of the selected item
             System.out.println("=========================");
-            System.out.println("(" + slot + ")Selected Item: " + selectedItemStock.getName());
+            System.out.println("(" + slot + ")Selected Item: " + selectedVendingStock.getName());
             System.out.println("Price:           " + itemSlots[slot - 1].getPrice() + "PHP");
-            System.out.println("Calorie/s:       " + selectedItemStock.getCalories());
+            System.out.println("Calorie/s:       " + selectedVendingStock.getCalories());
             System.out.println("=========================");
         }
 
@@ -274,21 +274,21 @@ public class VendingMachineDriver {
 
         //default ItemStocks for the factory
         {
-            factory.itemStockList.add(new ItemStock("Fried Egg", 30, 150, 10));
-            factory.itemStockList.add(new ItemStock("Chippy", 75, 170, 2));
-            factory.itemStockList.add(new ItemStock("Tapas", 100, 200, 20));
-            factory.itemStockList.add(new ItemStock("Hotdog", 75, 290, 5));
-            factory.itemStockList.add(new ItemStock("Piattos", 75, 150));
-            factory.itemStockList.add(new ItemStock("V-Cut", 75, 180));
-            factory.itemStockList.add(new ItemStock("Corn", 20, 88));
-            factory.itemStockList.add(new ItemStock("Fried Chicken", 100, 246));
-            factory.itemStockList.add(new ItemStock("Bangus", 100, 200));
-            factory.itemStockList.add(new ItemStock("Pork Chop", 100, 231));
-            factory.itemStockList.add(new ItemStock("Tosino", 100, 230));
-            factory.itemStockList.add(new ItemStock("Rice", 20, 206));
-            factory.itemStockList.add(new ItemStock("Coca Cola", 50, 139));
-            factory.itemStockList.add(new ItemStock("Royal", 50, 139));
-            factory.itemStockList.add(new ItemStock("Bottled Water", 25, 0));
+            factory.vendingStockList.add(new VendingStock("Fried Egg", 30, 150, 10));
+            factory.vendingStockList.add(new VendingStock("Chippy", 75, 170, 2));
+            factory.vendingStockList.add(new VendingStock("Tapas", 100, 200, 20));
+            factory.vendingStockList.add(new VendingStock("Hotdog", 75, 290, 5));
+            factory.vendingStockList.add(new VendingStock("Piattos", 75, 150));
+            factory.vendingStockList.add(new VendingStock("V-Cut", 75, 180));
+            factory.vendingStockList.add(new VendingStock("Corn", 20, 88));
+            factory.vendingStockList.add(new VendingStock("Fried Chicken", 100, 246));
+            factory.vendingStockList.add(new VendingStock("Bangus", 100, 200));
+            factory.vendingStockList.add(new VendingStock("Pork Chop", 100, 231));
+            factory.vendingStockList.add(new VendingStock("Tosino", 100, 230));
+            factory.vendingStockList.add(new VendingStock("Rice", 20, 206));
+            factory.vendingStockList.add(new VendingStock("Coca Cola", 50, 139));
+            factory.vendingStockList.add(new VendingStock("Royal", 50, 139));
+            factory.vendingStockList.add(new VendingStock("Bottled Water", 25, 0));
         }
 
         //default VendingMachines for the factory
@@ -312,32 +312,32 @@ public class VendingMachineDriver {
 
     /**
      * This method displays an item stock from a list of item stocks.
-     * @param itemStocks the list of item stocks.
+     * @param vendingStocks the list of item stocks.
      */
-    private void displayItemStock(ArrayList<ItemStock> itemStocks) {
-        Iterator<ItemStock> it = itemStocks.iterator();
+    private void displayItemStock(ArrayList<VendingStock> vendingStocks) {
+        Iterator<VendingStock> it = vendingStocks.iterator();
 
         System.out.println("=========================");
-        System.out.println("Item Stocks: " + itemStocks.size());
+        System.out.println("Item Stocks: " + vendingStocks.size());
         System.out.println("=========================");
 
         for (int i = 1; it.hasNext(); i++) {    //utilizing iterators in a forloop to display all the ItemStocks given the parameter
-            ItemStock itemStock;
-            itemStock = it.next();
+            VendingStock vendingStock;
+            vendingStock = it.next();
 
-            System.out.println("(" + i + ") " + itemStock.getName() + "; Stock: " + itemStock.getStock() + "; SRP: " + itemStock.getSRP() + "; Calories: " + itemStock.getCalories());
+            System.out.println("(" + i + ") " + vendingStock.getName() + "; Stock: " + vendingStock.getStock() + "; SRP: " + vendingStock.getSRP() + "; Calories: " + vendingStock.getCalories());
         }
         System.out.println("=========================");
     }
 
     /**
      * This method lets the user select an Item Stock from a list of item stocks.
-     * @param itemStocks the list of item stocks.
+     * @param vendingStocks the list of item stocks.
      * @return the ItemStock selected.
      */
-    private ItemStock selectItemStock(ArrayList<ItemStock> itemStocks) {
+    private VendingStock selectItemStock(ArrayList<VendingStock> vendingStocks) {
         Scanner sc = new Scanner(System.in);
-        ItemStock item = null;
+        VendingStock item = null;
         int option;
 
 
@@ -346,17 +346,17 @@ public class VendingMachineDriver {
         System.out.println("=========================");
         System.out.println("(0) Back");
 
-        displayItemStock(itemStocks);
+        displayItemStock(vendingStocks);
 
         do {
             System.out.print("Option: ");
             option = sc.nextInt();
-            if (option > itemStocks.size() || option < 0)
+            if (option > vendingStocks.size() || option < 0)
                 System.out.println("Error: Invalid Option");
-        } while (option > itemStocks.size() || option < 0);
+        } while (option > vendingStocks.size() || option < 0);
 
         if (option != 0) {
-            item = itemStocks.get(option - 1);  //gets the item of what the user chooses
+            item = vendingStocks.get(option - 1);  //gets the item of what the user chooses
             System.out.println("Selected Item: " + item.getName());
         }
         else
@@ -378,11 +378,11 @@ public class VendingMachineDriver {
     /**
      * This private method adds a new stock to a vending machine.
      *
-     * @param itemStock the item stock to be added.
+     * @param vendingStock the item stock to be added.
      * @param vendingMachine the vending machine to be used.
      * @return true if successful and false if not.
      */
-    private boolean addNewStock(ItemStock itemStock, VendingMachine vendingMachine) {
+    private boolean addNewStock(VendingStock vendingStock, VendingMachine vendingMachine) {
         boolean b = false;
         Scanner sc = new Scanner(System.in);
         int quantity, temp, slot, price = 0;
@@ -410,9 +410,9 @@ public class VendingMachineDriver {
             quantity = sc.nextInt();
 
             if (temp == 1)  //if temp == 1 then set to SRP
-                b = newVMStock(vendingMachine, slot, quantity, itemStock);
+                b = newVMStock(vendingMachine, slot, quantity, vendingStock);
             else
-                b = newVMStock(vendingMachine, slot, quantity, itemStock, price);
+                b = newVMStock(vendingMachine, slot, quantity, vendingStock, price);
         }
 
         return b;
@@ -425,11 +425,11 @@ public class VendingMachineDriver {
      * @param vendingMachine the vending in question
      * @param slot the slot to be checked.
      * @param quantity the quantity of the slot to be checked.
-     * @param itemStock the itemStock of the slot to be checked.
+     * @param vendingStock the itemStock of the slot to be checked.
      * @return true if successful and false if not.
      */
-    public boolean newVMStock(VendingMachine vendingMachine, int slot, int quantity, ItemStock itemStock) {
-        return newVMStock(vendingMachine, slot, quantity, itemStock, itemStock.getSRP());
+    public boolean newVMStock(VendingMachine vendingMachine, int slot, int quantity, VendingStock vendingStock) {
+        return newVMStock(vendingMachine, slot, quantity, vendingStock, vendingStock.getSRP());
     }
 
     /**
@@ -437,22 +437,22 @@ public class VendingMachineDriver {
      *
      * @param slot the slot to be checked.
      * @param quantity the quantity of the slot to be checked.
-     * @param itemStock the itemStock of the slot to be checked.
+     * @param vendingStock the itemStock of the slot to be checked.
      * @param price the price to be checked.
      * @return true if successful and false if not
      */
-    public boolean newVMStock(VendingMachine vendingMachine, int slot, int quantity, ItemStock itemStock, int price) {
+    public boolean newVMStock(VendingMachine vendingMachine, int slot, int quantity, VendingStock vendingStock, int price) {
         boolean b = false, found = false;
-        ItemStock tempItem;
+        VendingStock tempItem;
         int oldPrice;
         ItemSlot[] itemSlots = vendingMachine.getItemSlots();
 
 
         tempItem = itemSlots[slot - 1].getItemStock();  //keeps track of old item
         oldPrice = itemSlots[slot - 1].getPrice();  //keeps track of old price of the slot
-        if (vendingMachine.isValidSlot(slot) && vendingMachine.isValidItem(itemStock)) {
+        if (vendingMachine.isValidSlot(slot) && vendingMachine.isValidItem(vendingStock)) {
             for (int i = 0; i < itemSlots.length; i++) {
-                if (itemStock == itemSlots[i].getItemStock())
+                if (vendingStock == itemSlots[i].getItemStock())
                     found = true;
             }
             if (!found) {
@@ -460,7 +460,7 @@ public class VendingMachineDriver {
                     b = true;
                     System.out.println("Setting Up New Stock On Slot " + slot);
 
-                    vendingMachine.setSlotItem(slot, itemStock); //sets the slot to this new item for addStock to function
+                    vendingMachine.setSlotItem(slot, vendingStock); //sets the slot to this new item for addStock to function
 
                     b = changePrice(vendingMachine, slot, price);   //sets the price of the new item
 
@@ -490,7 +490,7 @@ public class VendingMachineDriver {
             else
                 System.out.println("Error: The Same Item Already Exists in Vending Machine " + vendingMachine.getName());
         }
-        else if (!vendingMachine.isValidItem(itemStock))
+        else if (!vendingMachine.isValidItem(vendingStock))
             System.out.println("Error: Invalid Item");
         else if (!vendingMachine.isValidSlot(slot))
             System.out.println("Error: Invalid Item Slot");
@@ -573,7 +573,7 @@ public class VendingMachineDriver {
     private void execStocking(VendingMachine vendingMachine) {
         Scanner sc = new Scanner(System.in);
         int option, slot;
-        ItemStock itemStock;
+        VendingStock vendingStock;
         boolean exit = false;
 
         do {
@@ -597,9 +597,9 @@ public class VendingMachineDriver {
 
             switch (option) {
                 case 2 -> {
-                    itemStock = selectItemStock(itemStockList);
-                    if (itemStock != null)  //if the user did select an itemstock
-                        addNewStock(itemStock, vendingMachine);
+                    vendingStock = selectItemStock(vendingStockList);
+                    if (vendingStock != null)  //if the user did select an itemstock
+                        addNewStock(vendingStock, vendingMachine);
                 }
                 case 1 -> {
                     displayItemMenu(vendingMachine);
@@ -755,7 +755,7 @@ public class VendingMachineDriver {
                     displayItemMenu(vendingMachine);
                     break;
                 case 6:
-                    displayItemStock(itemStockList);
+                    displayItemStock(vendingStockList);
                     break;
                 case 7:
                     displayInventories(vendingMachine);
@@ -1426,8 +1426,8 @@ public class VendingMachineDriver {
      * This private method lets the user create a new item stock.
      * @return
      */
-    private ArrayList<ItemStock> createItemStock() {
-        ArrayList<ItemStock> itemStocks = new ArrayList<ItemStock>();
+    private ArrayList<VendingStock> createItemStock() {
+        ArrayList<VendingStock> vendingStocks = new ArrayList<VendingStock>();
         Scanner sc = new Scanner(System.in);
         int option;
         String name;
@@ -1472,7 +1472,7 @@ public class VendingMachineDriver {
             }
 
             if (create) {   //if creation boolean is true
-                itemStocks.add(new ItemStock(name, srp, calories, stock));  //itemStocks Arraylist adds the new itemStocks
+                vendingStocks.add(new VendingStock(name, srp, calories, stock));  //itemStocks Arraylist adds the new itemStocks
                 System.out.println("New Item Stock Created");
             }
             else
@@ -1495,8 +1495,8 @@ public class VendingMachineDriver {
                 } while (option > 2 || option < 0);
 
                 if (option == 2)
-                    if (itemStocks.size() != 0) //if there are item stock object newly created
-                        displayItemStock(itemStocks);
+                    if (vendingStocks.size() != 0) //if there are item stock object newly created
+                        displayItemStock(vendingStocks);
                     else
                         System.out.println("No New Item Stocks Have Been Created");
 
@@ -1505,21 +1505,21 @@ public class VendingMachineDriver {
 
         System.out.println("Going Back...");
 
-        return itemStocks;
+        return vendingStocks;
     }
 
     /**
      * This private method lets the user add an item stock.
-     * @param itemStock the item stock to be added.
+     * @param vendingStock the item stock to be added.
      */
-    private void addItemStock(ItemStock itemStock) {
+    private void addItemStock(VendingStock vendingStock) {
         Scanner sc = new Scanner(System.in);
         int stock;
         boolean b = true;
 
         System.out.println("=========================");
-        System.out.println("Adding Stock to " + itemStock.getName());
-        System.out.println("Current Stock: "+ itemStock.getStock());
+        System.out.println("Adding Stock to " + vendingStock.getName());
+        System.out.println("Current Stock: "+ vendingStock.getStock());
         System.out.println("=========================");
         System.out.println("(0) Back");
 
@@ -1528,11 +1528,11 @@ public class VendingMachineDriver {
             System.out.print("Add Stock: ");
             stock = sc.nextInt();
             if (stock > 0) {
-                b = itemStock.addStock(stock);
+                b = vendingStock.addStock(stock);
 
                 if (b) {
-                    System.out.println(stock + " Stocks Have Been added to " + itemStock.getName());
-                    System.out.println("Current Stock: " + itemStock.getStock());
+                    System.out.println(stock + " Stocks Have Been added to " + vendingStock.getName());
+                    System.out.println("Current Stock: " + vendingStock.getStock());
                 }
             }
             else if (stock < 0)
@@ -1566,14 +1566,14 @@ public class VendingMachineDriver {
             } while (option > 3 || option < 0);
 
             switch(option) {
-                case 1 -> itemStockList.addAll(createItemStock());  //itemStockList arraylist of the factory adds the ItemStocks created from createItemStock method
+                case 1 -> vendingStockList.addAll(createItemStock());  //itemStockList arraylist of the factory adds the ItemStocks created from createItemStock method
                 case 2 -> {
-                    ItemStock item = selectItemStock(itemStockList);
+                    VendingStock item = selectItemStock(vendingStockList);
                     if (item != null) { //if the user has selected an ItemStock
                         addItemStock(item);
                     }
                 }
-                case 3 -> displayItemStock(itemStockList);  //displays all the itemStocks within the factory
+                case 3 -> displayItemStock(vendingStockList);  //displays all the itemStocks within the factory
             }
 
         } while (option != 0);
@@ -1650,7 +1650,7 @@ public class VendingMachineDriver {
     }
 
 
-    private ArrayList<ItemStock> itemStockList;
+    private ArrayList<VendingStock> vendingStockList;
 
     private ArrayList<VendingMachine> vendingMachineList;
 
