@@ -1,12 +1,17 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class FactoryView {
     private JFrame mainFrame;
     private JLabel menuLabel;
-    private JPanel btnPanel;
+    private JPanel btnPanel, cards;
+
+    private JPanel startProgramPanel, showInventoryPanel, customizeVMPanel, customizeMoneyPanel, customizeStocksPanel;
+
+    private CardLayout cardLayout;
 
     private JButton startProgramBtn, showInventoryBtn;
     private JButton customizeVmBtn, customizeMoneyBtn, customizeStocksBtn;
@@ -19,13 +24,14 @@ public class FactoryView {
 
         this.mainFrame = new JFrame("Vending Machine Factory");
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.mainFrame.setLayout(new FlowLayout(FlowLayout.CENTER));
         this.mainFrame.setSize(350, 400);
-
+        this.cardLayout = new CardLayout();
 
         setProgramMenuGrid();
+        setButtons();
 
         this.mainFrame.add(btnPanel);
+
 
         this.mainFrame.setVisible(true);
     }
@@ -38,6 +44,7 @@ public class FactoryView {
 
         this.menuLabel = new JLabel("Main Menu");
         menuLabel.setVerticalAlignment(JLabel.TOP);
+        menuLabel.setHorizontalAlignment(JLabel.CENTER);
         this.mainFrame.add(this.menuLabel);
 
         /*
@@ -66,8 +73,39 @@ public class FactoryView {
         buttonList.add(this.customizeStocksBtn);
         this.showInventoryBtn = new JButton("Show Inventory");
         buttonList.add(this.showInventoryBtn);
+        this.cards = new JPanel(new CardLayout());
+        for (JButton button : buttonList){
+            button.setBackground(Color.pink);
+            button.setVerticalTextPosition(SwingConstants.CENTER);
+            button.setHorizontalTextPosition(SwingConstants.CENTER);
+            btnPanel.add(button);
+        }
+        this.startProgramPanel = new JPanel(cardLayout);
+        startProgramPanel.add(createPanel("Main Program"), "Program");
+        this.mainFrame.add(startProgramPanel);
+        startProgramBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                    cardLayout.next(startProgramPanel);
+            }
+        });
     }
 
+    public void customizeVendingMachine(){
+        this.customizeVmBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //
+            }
+        });
+    }
+
+    private JPanel createPanel(String content) {
+        JPanel panel = new JPanel();
+        JLabel label = new JLabel(content);
+        panel.add(label);
+        return panel;
+    }
     public void setStartProgramBtn(ActionListener actionListener){this.startProgramBtn.addActionListener(actionListener);}
     public void setSelectVMBtnListener(ActionListener actionListener){this.customizeVmBtn.addActionListener(actionListener);}
     public void setCustomizeVmBtnListener(ActionListener actionListener){this.customizeMoneyBtn.addActionListener(actionListener);}
