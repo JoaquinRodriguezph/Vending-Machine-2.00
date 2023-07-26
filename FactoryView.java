@@ -8,11 +8,8 @@ public class FactoryView {
     private JFrame mainFrame;
     private JLabel menuLabel;
     private JPanel btnPanel, cards;
-
     private JPanel startProgramPanel, showInventoryPanel, customizeVMPanel, customizeMoneyPanel, customizeStocksPanel;
-
     private CardLayout cardLayout;
-
     private JButton startProgramBtn, showInventoryBtn;
     private JButton customizeVmBtn, customizeMoneyBtn, customizeStocksBtn;
     private ArrayList<JButton> buttonList;
@@ -21,18 +18,17 @@ public class FactoryView {
         this.btnPanel = new JPanel();
         btnPanel.setLayout(new GridLayout(10,1));
         this.buttonList = new ArrayList<JButton>();
+        this.cardLayout = new CardLayout();
 
         this.mainFrame = new JFrame("Vending Machine Factory");
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainFrame.setSize(350, 400);
-        this.cardLayout = new CardLayout();
 
-        setProgramMenuGrid();
+        //setProgramMenuGrid();
         setButtons();
 
         this.mainFrame.add(btnPanel);
-
-
+        //this.mainFrame.add(startProgramPanel);
         this.mainFrame.setVisible(true);
     }
 
@@ -82,22 +78,20 @@ public class FactoryView {
         }
         this.startProgramPanel = new JPanel(cardLayout);
         startProgramPanel.add(createPanel("Main Program"), "Program");
-        this.mainFrame.add(startProgramPanel);
         startProgramBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                    cardLayout.next(startProgramPanel);
+                cardLayout.first(startProgramPanel);
+                cardLayout.show(startProgramPanel, "Program");
+                invisible();
             }
         });
     }
 
-    public void customizeVendingMachine(){
-        this.customizeVmBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //
-            }
-        });
+    public void invisible(){
+        for (JButton button : buttonList){
+            button.setVisible(false);
+        }
     }
 
     private JPanel createPanel(String content) {
