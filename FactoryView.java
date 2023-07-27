@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class FactoryView {
     private JFrame mainFrame;
     private JLabel menuLabel;
-    private JPanel btnPanel, cards;
+    private JPanel btnPanel, ctrlPanel;
     private JPanel startProgramPanel, showInventoryPanel, customizeVMPanel, customizeMoneyPanel, customizeStocksPanel;
     private CardLayout cardLayout;
     private JButton startProgramBtn, showInventoryBtn;
@@ -16,18 +16,22 @@ public class FactoryView {
 
     public FactoryView() {
         this.btnPanel = new JPanel();
+        this.btnPanel.setLayout(cardLayout);
         btnPanel.setLayout(new GridLayout(10,1));
         this.buttonList = new ArrayList<JButton>();
+        this.ctrlPanel = new JPanel();
         this.cardLayout = new CardLayout();
+        this.ctrlPanel.setLayout(cardLayout);
 
         this.mainFrame = new JFrame("Vending Machine Factory");
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainFrame.setSize(350, 400);
 
+        this.mainFrame.add(ctrlPanel);
+
+
         //setProgramMenuGrid();
         setButtons();
-
-        this.mainFrame.add(btnPanel);
         //this.mainFrame.add(startProgramPanel);
         this.mainFrame.setVisible(true);
     }
@@ -69,7 +73,6 @@ public class FactoryView {
         buttonList.add(this.customizeStocksBtn);
         this.showInventoryBtn = new JButton("Show Inventory");
         buttonList.add(this.showInventoryBtn);
-        this.cards = new JPanel(new CardLayout());
         for (JButton button : buttonList){
             button.setBackground(Color.pink);
             button.setVerticalTextPosition(SwingConstants.CENTER);
@@ -77,13 +80,18 @@ public class FactoryView {
             btnPanel.add(button);
         }
         this.startProgramPanel = new JPanel(cardLayout);
-        startProgramPanel.add(createPanel("Main Program"), "Program");
+        //startProgramPanel.add(createPanel("Main Program"), "Program");
+        startProgramPanel.setBackground(Color.pink);
+        ctrlPanel.add(btnPanel, "Main Menu");
+        ctrlPanel.add(startProgramPanel, "Main Program");
         startProgramBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.first(startProgramPanel);
-                cardLayout.show(startProgramPanel, "Program");
-                invisible();
+                //cardLayout.next(startProgramPanel);
+                ctrlPanel.setBackground(Color.pink);
+                //ctrlPanel.setVisible(true);
+                cardLayout.show(ctrlPanel, "Main Program");
+                //invisible();
             }
         });
     }
