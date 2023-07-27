@@ -7,15 +7,32 @@ import java.util.ArrayList;
 public class FactoryView {
     private JFrame mainFrame;
     private JLabel menuLabel;
-    private JPanel btnPanel, ctrlPanel;
+    private JPanel btnPanel;
+
+    public JPanel getCardPanel() {
+        return cardPanel;
+    }
+
+    private JPanel cardPanel;
     private JPanel startProgramPanel, showInventoryPanel, customizeVMPanel, customizeMoneyPanel, customizeStocksPanel;
 
     private Icon backIcon;
+
+    public CardLayout getCardLayout() {
+        return cardLayout;
+    }
 
     private CardLayout cardLayout;
     private JButton backBtn;
     private JButton startProgramBtn, showInventoryBtn;
     private JButton customizeVmBtn, customizeMoneyBtn, customizeStocksBtn;
+
+    public JTextArea getShowInventoryText() {
+        return showInventoryText;
+    }
+
+    private JScrollPane scrollPane;
+    private JTextArea showInventoryText;
     private ArrayList<JButton> buttonList;
 
     public FactoryView() {
@@ -23,19 +40,21 @@ public class FactoryView {
         this.btnPanel.setLayout(cardLayout);
         btnPanel.setLayout(new GridLayout(10,1));
         this.buttonList = new ArrayList<JButton>();
-        this.ctrlPanel = new JPanel();
+        this.cardPanel = new JPanel();
         this.cardLayout = new CardLayout();
-        this.ctrlPanel.setLayout(cardLayout);
-        backIcon = new ImageIcon("resources/backButton.png");
-        this.backBtn = new JButton(backIcon);
-        backBtn.setSize(1, 1);
-
+        this.cardPanel.setLayout(cardLayout);
+        //backIcon = new ImageIcon("resources/backButton.png");
+        this.backBtn = new JButton("Back");
+        //backBtn.setSize(1, 1);
         this.mainFrame = new JFrame("Vending Machine Factory");
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainFrame.setSize(350, 400);
 
         setStartProgramPanel();
-        this.mainFrame.add(ctrlPanel);
+        setShowInventoryPanel();
+        JScrollPane scrollPane = new JScrollPane(showInventoryText);
+        showInventoryPanel.add(scrollPane);
+        this.mainFrame.add(cardPanel);
 
 
         //setProgramMenuGrid();
@@ -91,17 +110,18 @@ public class FactoryView {
             btnPanel.add(button);
         }
 
-        ctrlPanel.add(btnPanel, "Main Menu");
-        ctrlPanel.add(startProgramPanel, "Main Program");
-        startProgramBtn.addActionListener(new ActionListener() {
+        cardPanel.add(btnPanel, "Main Menu");
+        cardPanel.add(startProgramPanel, "Main Program");
+        cardPanel.add(showInventoryPanel, "Show Inventory");
+        /*startProgramBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //cardLayout.next(startProgramPanel);
                 //ctrlPanel.setBackground(Color.pink);
                 //ctrlPanel.setVisible(true);
-                cardLayout.show(ctrlPanel, "Main Program");
+                cardLayout.show(cardPanel, "Main Program");
             }
-        });
+        });*/
     }
 
     public void setStartProgramPanel(){
@@ -111,7 +131,7 @@ public class FactoryView {
         backBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.previous(ctrlPanel);
+                cardLayout.previous(cardPanel);
             }
         });
         startProgramPanel.setBackground(Color.pink);
@@ -135,6 +155,8 @@ public class FactoryView {
     public void setShowInventoryPanel(){
         this.showInventoryPanel = new JPanel(cardLayout);
         showInventoryPanel.setBackground(Color.darkGray);
+        this.showInventoryText = new JTextArea();
+        this.showInventoryText.setEditable(false);
     }
     public void invisible(){
         for (JButton button : buttonList){
