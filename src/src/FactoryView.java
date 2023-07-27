@@ -9,7 +9,11 @@ public class FactoryView {
     private JLabel menuLabel;
     private JPanel btnPanel, ctrlPanel;
     private JPanel startProgramPanel, showInventoryPanel, customizeVMPanel, customizeMoneyPanel, customizeStocksPanel;
+
+    private Icon backIcon;
+
     private CardLayout cardLayout;
+    private JButton backBtn;
     private JButton startProgramBtn, showInventoryBtn;
     private JButton customizeVmBtn, customizeMoneyBtn, customizeStocksBtn;
     private ArrayList<JButton> buttonList;
@@ -22,6 +26,9 @@ public class FactoryView {
         this.ctrlPanel = new JPanel();
         this.cardLayout = new CardLayout();
         this.ctrlPanel.setLayout(cardLayout);
+        backIcon = new ImageIcon("resources/backButton.png");
+        this.backBtn = new JButton(backIcon);
+        backBtn.setSize(1, 1);
 
         this.mainFrame = new JFrame("Vending Machine Factory");
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,6 +71,7 @@ public class FactoryView {
     }
 
     public void setButtons(){
+
         this.startProgramBtn = new JButton("Start Main Program");
         buttonList.add(this.startProgramBtn);
         this.customizeVmBtn = new JButton("Customize Vending Machines");
@@ -74,6 +82,8 @@ public class FactoryView {
         buttonList.add(this.customizeStocksBtn);
         this.showInventoryBtn = new JButton("Show Inventory");
         buttonList.add(this.showInventoryBtn);
+
+
         for (JButton button : buttonList){
             button.setBackground(Color.pink);
             button.setVerticalTextPosition(SwingConstants.CENTER);
@@ -96,6 +106,14 @@ public class FactoryView {
 
     public void setStartProgramPanel(){
         this.startProgramPanel = new JPanel(cardLayout);
+        startProgramPanel.add(backBtn);
+        startProgramPanel.setLayout(new GridLayout(10, 1));
+        backBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.previous(ctrlPanel);
+            }
+        });
         startProgramPanel.setBackground(Color.pink);
     }
 
