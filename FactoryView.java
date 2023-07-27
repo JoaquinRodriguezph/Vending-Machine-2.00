@@ -27,6 +27,7 @@ public class FactoryView {
         this.mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.mainFrame.setSize(350, 400);
 
+        setStartProgramPanel();
         this.mainFrame.add(ctrlPanel);
 
 
@@ -79,23 +80,44 @@ public class FactoryView {
             button.setHorizontalTextPosition(SwingConstants.CENTER);
             btnPanel.add(button);
         }
-        this.startProgramPanel = new JPanel(cardLayout);
-        //startProgramPanel.add(createPanel("Main Program"), "Program");
-        startProgramPanel.setBackground(Color.pink);
+
         ctrlPanel.add(btnPanel, "Main Menu");
         ctrlPanel.add(startProgramPanel, "Main Program");
         startProgramBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //cardLayout.next(startProgramPanel);
-                ctrlPanel.setBackground(Color.pink);
+                //ctrlPanel.setBackground(Color.pink);
                 //ctrlPanel.setVisible(true);
                 cardLayout.show(ctrlPanel, "Main Program");
-                //invisible();
             }
         });
     }
 
+    public void setStartProgramPanel(){
+        this.startProgramPanel = new JPanel(cardLayout);
+        startProgramPanel.setBackground(Color.pink);
+    }
+
+    public void setCustomizeVMPanel(){
+        this.customizeVMPanel = new JPanel(cardLayout);
+        customizeVMPanel.setBackground(Color.red);
+    }
+
+    public void setCustomizeMoneyPanel(){
+        this.customizeMoneyPanel = new JPanel(cardLayout);
+        customizeMoneyPanel.setBackground(Color.CYAN);
+    }
+
+    public void setCustomizeStocksPanel(){
+        this.customizeStocksPanel = new JPanel(cardLayout);
+        customizeMoneyPanel.setBackground(Color.orange);
+    }
+
+    public void setShowInventoryPanel(){
+        this.showInventoryPanel = new JPanel(cardLayout);
+        showInventoryPanel.setBackground(Color.darkGray);
+    }
     public void invisible(){
         for (JButton button : buttonList){
             button.setVisible(false);
