@@ -2,6 +2,7 @@ public class ItemStock {
     /**
      * This method is a constructor used to create an ItemStock instance
      * from the following parameters:
+     *
      * @param name This is the name of the ItemStock. IT IS FINAL.
      * @param srp This is the SRP of the ItemStock. IT IS FINAL
      * @param calories This is the amount of calories in the item. IT IS FINAL.
@@ -13,6 +14,7 @@ public class ItemStock {
     /**
      * This method is a constructor used to create an ItemStock instance
      * from the following parameters:
+     *
      * @param name This is the name of the ItemStock. IT IS FINAL.
      * @param srp This is the SRP of the ItemStock. IT IS FINAL
      * @param calories This is the amount of calories in the item. IT IS FINAL.
@@ -29,6 +31,7 @@ public class ItemStock {
 
     /**
      * This method gets the name of the item.
+     *
      * @return the name of the item
      */
     public String getName() {
@@ -37,6 +40,7 @@ public class ItemStock {
 
     /**
      * This method gets the amount of calories of the item.
+     *
      * @return the number of calories of the item
      */
     public int getCalories() {
@@ -45,6 +49,7 @@ public class ItemStock {
 
     /**
      * This method gets the SRP of the item.
+     *
      * @return the price of the item.
      */
     public int getSRP() {
@@ -53,6 +58,7 @@ public class ItemStock {
 
     /**
      * This static method gets the count of all item instances.
+     *
      * @return the count of all items.
      */
     public static int getCount() {
@@ -61,6 +67,7 @@ public class ItemStock {
 
     /**
      * This method gets the number of the item in stock.
+     *
      * @return the stock
      */
     public int getStock() {
@@ -69,6 +76,7 @@ public class ItemStock {
 
     /**
      * This method gets the item.
+     *
      * @return the item.
      */
     public Item getItem() {
@@ -77,6 +85,7 @@ public class ItemStock {
 
     /**
      * This method sets the number of items in stock of the item.
+     *
      * @param stock the amount of item to add in stock.
      */
     public void setStock(int stock) {
@@ -85,6 +94,7 @@ public class ItemStock {
 
     /**
      * This method adds the amount of items in stock of the item.
+     *
      * @param stock the amount of item to add in stock.
      * @return true if stock to be added is greater than 0, false otherwise.
      */
@@ -99,6 +109,7 @@ public class ItemStock {
 
     /**
      * This method removes the amount of stocks of the item.
+     *
      * @param stock the amount of item to remove in stock.
      * @return true if stock to be removed is greater than 0, false otherwise.
      */
@@ -117,6 +128,7 @@ public class ItemStock {
 
     /**
      * This method deletes the item by making it null.
+     *
      * @param itemStock the item to be deleted.
      */
     public static void delete(ItemStock itemStock) {
