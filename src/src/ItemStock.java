@@ -2,6 +2,7 @@ public class ItemStock {
     /**
      * This method is a constructor used to create an ItemStock instance
      * from the following parameters:
+     *
      * @param name This is the name of the ItemStock. IT IS FINAL.
      * @param srp This is the SRP of the ItemStock. IT IS FINAL
      * @param calories This is the amount of calories in the item. IT IS FINAL.
