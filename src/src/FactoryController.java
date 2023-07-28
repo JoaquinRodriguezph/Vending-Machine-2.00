@@ -18,6 +18,13 @@ public class FactoryController {
             }
         });
 
+        this.factoryView.setCustomizeStocksBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Customize Stocks");
+            }
+        });
+
         this.factoryView.setShowInventoryBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -25,15 +32,6 @@ public class FactoryController {
                 displayItemInventory(factoryModel.getMyInventory(), factoryView.getShowInventoryText());
             }
         });
-
-        /*this.factoryView.setBackBtn(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().previous(factoryView.getCardPanel());
-                factoryView.getCardLayout().previous(factoryView.getCardPanel());
-                //factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Menu");
-            }
-        });*/
 
     }
     private void displayItemInventory(ArrayList<Item> items, JTextArea textArea) {
