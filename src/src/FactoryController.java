@@ -25,6 +25,16 @@ public class FactoryController {
                 displayItemInventory(factoryModel.getMyInventory(), factoryView.getShowInventoryText());
             }
         });
+
+        /*this.factoryView.setBackBtn(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().previous(factoryView.getCardPanel());
+                factoryView.getCardLayout().previous(factoryView.getCardPanel());
+                //factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Menu");
+            }
+        });*/
+
     }
     private void displayItemInventory(ArrayList<Item> items, JTextArea textArea) {
         ArrayList<Item> itemSets = new ArrayList<Item>();
