@@ -4,17 +4,16 @@
 public class Item {
     /**
      * This method is a constructor which creates an instance using:
+     *
      * @param name the name of the item
      * @param calories the calories of the item.
      */
-    public Item(String name, int calories) {
+    public Item(String name, int calories) throws IllegalArgumentException {
+        if (calories < 0)
+            throw new IllegalArgumentException("Calories is less than 0");
+
         NAME = name;
         CALORIES = calories;
-    }
-
-    public Item(Item item) {
-        this.CALORIES = item.getCalories();
-        this.NAME = item.getName();
     }
 
     /**
@@ -33,7 +32,13 @@ public class Item {
         return CALORIES;
     }
 
+    /**
+     * The name of the item.
+     */
     private final String NAME;
 
+    /**
+     * The calories of the item.
+     */
     private final int CALORIES;
 }

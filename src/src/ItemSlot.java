@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.IllegalFormatException;
 
 /**
  * The ItemSlot Class contains the slot number
@@ -9,43 +10,20 @@ public class ItemSlot {
     /**
      * This method is a constructor which creates an ItemSlot instance
      * using the following parameters:
-     * @param slot the slot number to be inputted
+     *
      * @param max the max amount of items in the slot.
      */
-    public ItemSlot(int slot, int max){
-        this.SLOTNUMBER = slot;
-        this.vendingStock = null;
+    public ItemSlot(int max) throws IllegalFormatException {
+        if (max < 10)
+            throw new IllegalArgumentException("Number of Items in a Slot shall be 10 or more");
         this.items = new ArrayList<Item>();
         this.MAX = max;
-        this.price = 0;
     }
 
-    /**
-     * This method gets the slot Number.
-     * @return the slot number
-     */
-    public int getSlotNumber() {
-        return SLOTNUMBER;
-    }
-
-    /**
-     * This method gets the item in the slot.
-     * @return the item in the Slot
-     */
-    public VendingStock getVendingStock() {
-        return vendingStock;
-    }
-
-    public int getStock() {
-        return items.size();
-    }
-
-    public ArrayList<Item> getItems() {
-        return items;
-    }
 
     /**
      * This method gets the price of item in the slot.
+     *
      * @return the price.
      */
     public int getPrice() {
@@ -54,6 +32,7 @@ public class ItemSlot {
 
     /**
      * This method gets the max amount of items in the slot.
+     *
      * @return the max amount of items in the slot.
      */
     public int getMax() {
@@ -61,15 +40,26 @@ public class ItemSlot {
     }
 
     /**
-     * This method sets the item that is in the item slot.
-     * @param vendingStock the item to be set in the slot
+     * This method gets the amount of items in the slot.
+     *
+     * @return the amount of items in the slot.
      */
-    public void setVendingStock(VendingStock vendingStock) {
-        this.vendingStock = vendingStock;
+    public int getStock() {
+        return items.size();
+    }
+
+    /**
+     * This method gets the name of items that is contained the slot.
+     *
+     * @return the name of item within the slot.
+     */
+    public String getItemName() throws IndexOutOfBoundsException {
+        return items.get(0).getName();
     }
 
     /**
      * This method sets the price of the item slot.
+     *
      * @param price the price of item slot.
      */
     public void setPrice(int price) {
@@ -77,52 +67,43 @@ public class ItemSlot {
     }
 
     /**
-     * This method sets the price of the item slot to the suggested retail price.
+     * This method removes a single item from the item slot
+     *
+     * @return the item removed from the item slot.
      */
-    public void setSRP() {
-        setPrice(vendingStock.getSRP());
+    public Item removeItem() throws IndexOutOfBoundsException {
+        return items.remove(0);
     }
 
-    /**
-     * This method sets the stock of the items to the given:
-     * @param stock the new stock of the item slot.
-     */
-    public void setStock(int stock) {
-        items.clear();
-        for (int i = 0; i < stock; i++)
-            items.add(new Item(vendingStock.getItem()));
-    }
 
     /**
-     * This method adds the amount specified in the parameter if it is not
-     * below 0 and is not above the maximum capacity.
-     * @param stock the amount of stock to be added
-     * @return true or false depending on if the stocking is successful
+     * This method adds the item to the item slot. It is only added when
+     * the slot is empty or the item is of the same.
+     *
+     * @param item the item to be added to the item slot
+     * @return true if adding item is successful, false otherwise
      */
-    public boolean addStock(int stock){
-        if (stock > 0 && MAX >= items.size() + stock){    //the stock must be positive and must add to less than or equal to MAX
-            if (vendingStock.removeStock(stock)) {
-                for (int i = 0; i < stock; i++)
-                    items.add(new Item(vendingStock.getItem()));
-                return true;
+    public boolean addStock(Item item) {
+        boolean b = false;
+
+        if (items.isEmpty()) {
+            items.add(item);
+            b = true;
+        }
+        else {
+            Item temp = items.get(0);
+            if (temp.getName().equalsIgnoreCase(item.getName()) && temp.getCalories() == item.getCalories()) {
+                items.add(item);
+                b = true;
             }
         }
 
-        return false;
-    }
-
-    /**
-     * This method removes an item from the slot and returns the Item instance
-     * @return an Item instance within the slot
-     */
-    public Item removeStock() {
-        if (isAvailable())
-            return items.remove(0);
-        return null;
+        return b;
     }
 
     /**
      * The method checks if there is stock left of an item.
+     *
      * @return true or false depending if there is at least one stock.
      */
     public boolean isAvailable() {
@@ -132,15 +113,21 @@ public class ItemSlot {
 
     /**
      * This method checks if there is no stock left of an item.
+     *
      * @return true if stock is 0 and false if not
      */
     public boolean isEmpty() {
-        return items.size() == 0;
+        return items.isEmpty();
     }
 
-    private final int SLOTNUMBER;
-
-    private VendingStock vendingStock;
+    /**
+     * This method checks if there is no stock left of an item.
+     *
+     * @return true if stock is 0 and false if not
+     */
+    public boolean isFull() {
+        return items.size() == MAX;
+    }
 
     private ArrayList<Item> items;
 
