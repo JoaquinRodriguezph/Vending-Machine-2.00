@@ -20,12 +20,27 @@ public class FactoryView {
     private JPanel cardPanel;
 
     //Main Menu Panels
-    private JPanel startProgramPanel, showInventoryPanel, customizeVMPanel, customizeStocksPanel;
+    private JPanel startProgramPanel, showInventoryPanel, customizeVMPanel, customizeStocksPanel, pickVMPanel;
 
-    //Main Program Panels
+    //Main Program Components
     private JPanel buyFromVmPanel, doMaintenancePanel, selectWalletPanel, showCurrentWalletPanel;
+    private JButton backBtn26;//doMaintenanceBackBtn
+    private JButton backBtn27;//buyFromVmBackBtn
 
-    private JButton backBtn12, backBtn13, backBtn14, backBtn15;
+    private JLabel pickWalletLbl; private JTextField pickWalletTf;
+    private JLabel pickVMLbl; private JTextField pickVMTf; private JButton pickVMBtn, backBtn16;
+    private JButton pickWalletBtn, backBtn12, backBtn13, backBtn14, backBtn15;
+
+    //Do Maintenance Components
+
+    private JPanel restockPanel, changePricePanel, collectMoneyPanel, replenishChangePanel, showItemSlotsPanel;
+    private JButton restockBtn, changePriceBtn, collectMoneyBtn, replenishChangeBtn, showItemSlotsBtn;
+
+    private JButton backBtn17, backBtn18, backBtn19, backBtn20, backBtn21;
+    private JPanel showItemStocksPanel, displayInventoriesPanel, displayTransactionsPanel, displayMoneyPanel;
+    private JButton showItemStocksBtn, displayInventoriesBtn, displayTransactionsBtn, displayMoneyBtn;
+    private JButton backBtn22, backBtn23, backBtn24, backBtn25;
+
 
     //Customize Vending Machine Components
     private JPanel createVMPanel, showDetailsPanel, showVMPanel;
@@ -44,7 +59,7 @@ public class FactoryView {
 
     private JButton createStockBtn;
     private JTextField itemNameTf, caloriesTf, stocksTf, SRPtf, addItemTf, numItemTf, showItemTf;
-    private JTextArea itemsTa; //TextArea for showing the items
+    private JTextArea itemsTa, currentWalletTa, showItemsTa, walletTa, detailsTa, showVMTa, vmTa; //TextArea for showing the items
 
     public String getItemNameTf() {
         return this.itemNameTf.getText();
@@ -111,6 +126,13 @@ public class FactoryView {
 
         setStartProgramPanel();
         setCustomizeVMPanel();
+        //Main Program Panels
+        setPickVMPanel();
+        setBuyFromVmPanel();
+        setDoMaintenancePanel();
+        setSelectWalletPanel();
+        setShowCurrentWalletPanel();
+        //Do Maintenance Panels
         //Stocks Panel
         setCustomizeStocksPanel();
         setCreateItemsPanel();
@@ -135,31 +157,30 @@ public class FactoryView {
     }
 
     public void setBackButtons(){
-        this.backBtn1 = new JButton("Back");
-        this.backBtn2 = new JButton("Back");
-        this.backBtn3 = new JButton("Back");
-        this.backBtn4 = new JButton("Back");
-        this.backBtn5 = new JButton("Back");
-        this.backBtn6 = new JButton("Back");
-        this.backBtn7 = new JButton("Back");
-        this.backBtn8 = new JButton("Back");
-        this.backBtn9 = new JButton("Back");
-        this.backBtn10 = new JButton("Back");
-        this.backBtn11 = new JButton("Back");
-        this.backBtn12 = new JButton("Back");
-        this.backBtn13 = new JButton("Back");
-        this.backBtn14 = new JButton("Back");
-        this.backBtn15 = new JButton("Back");
+        this.backBtn1 = new JButton("Back"); this.backBtn2 = new JButton("Back"); this.backBtn3 = new JButton("Back");
+        this.backBtn4 = new JButton("Back"); this.backBtn5 = new JButton("Back"); this.backBtn6 = new JButton("Back");
+        this.backBtn7 = new JButton("Back"); this.backBtn8 = new JButton("Back"); this.backBtn9 = new JButton("Back");
+        this.backBtn10 = new JButton("Back"); this.backBtn11 = new JButton("Back"); this.backBtn12 = new JButton("Back");
+        this.backBtn13 = new JButton("Back"); this.backBtn14 = new JButton("Back"); this.backBtn15 = new JButton("Back");
+        this.backBtn16 = new JButton("Back"); this.backBtn17 = new JButton("Back"); this.backBtn18 = new JButton("Back");
+        this.backBtn19 = new JButton("Back"); this.backBtn20 = new JButton("Back"); this.backBtn21 = new JButton("Back"); this.backBtn22 = new JButton("Back");
+        this.backBtn23 = new JButton("Back"); this.backBtn24 = new JButton("Back"); this.backBtn25 = new JButton("Back");
+        this.backBtn26 = new JButton("Back"); this.backBtn27 = new JButton("Back");
+
 
         backBtnList.add(this.backBtn1);backBtnList.add(this.backBtn2);backBtnList.add(this.backBtn3);
         backBtnList.add(this.backBtn4);backBtnList.add(this.backBtn5);backBtnList.add(this.backBtn6);
         backBtnList.add(this.backBtn7);backBtnList.add(this.backBtn8);backBtnList.add(this.backBtn9);
         backBtnList.add(this.backBtn10);backBtnList.add(this.backBtn11);backBtnList.add(this.backBtn12);
         backBtnList.add(this.backBtn13);backBtnList.add(this.backBtn14);backBtnList.add(this.backBtn15);
+        backBtnList.add(this.backBtn16); backBtnList.add(this.backBtn17); backBtnList.add(this.backBtn18);
+        backBtnList.add(this.backBtn19); backBtnList.add(this.backBtn20); backBtnList.add(this.backBtn21);
+        backBtnList.add(this.backBtn22); backBtnList.add(this.backBtn23); backBtnList.add(this.backBtn24);
+        backBtnList.add(this.backBtn25); backBtnList.add(this.backBtn26); backBtnList.add(this.backBtn27);
         backBtn1.addActionListener(new ActionListener() { //Back button for Main Program to Main Menu
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.previous(cardPanel);
+                cardLayout.show(cardPanel,"Pick Vending Machine");
             }
         });
 
@@ -227,6 +248,55 @@ public class FactoryView {
                 cardLayout.show(cardPanel,"Customize Vending Machine");
             }
         });
+
+        backBtn12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Main Program");
+            }
+        });
+
+        backBtn13.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Main Menu");
+            }
+        });
+
+        backBtn14.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Main Program");
+            }
+        });
+
+        backBtn15.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Main Program");
+            }
+        });
+
+        backBtn16.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Main Menu");
+            }
+        });
+
+        backBtn26.addActionListener(new ActionListener() { //Back button for Do Maintenance to Main Program
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Main Program");
+            }
+        });
+
+        backBtn27.addActionListener(new ActionListener() { //Back Button for Buying from VM to Main Program
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Main Program");
+            }
+        });
     }
 
     public void setButtons(){
@@ -255,6 +325,13 @@ public class FactoryView {
         cardPanel.add(showInventoryPanel, "Show Inventory");
         cardPanel.add(customizeVMPanel, "Customize Vending Machine");
         cardPanel.add(customizeStocksPanel, "Customize Stocks");
+
+        //Main Program Panels
+        cardPanel.add(pickVMPanel, "Pick Vending Machine");
+        cardPanel.add(buyFromVmPanel, "Buy from Vending Machine");
+        cardPanel.add(doMaintenancePanel, "Do Maintenance");
+        cardPanel.add(selectWalletPanel, "Select Wallet");
+        cardPanel.add(showCurrentWalletPanel, "Show Current Wallet");
 
         //Customize Item Panels
         cardPanel.add(createItemPanel, "Create Item");
@@ -325,6 +402,85 @@ public class FactoryView {
         customizeVMPanel.setBackground(Color.red);
         customizeVMPanel.add(backBtn2);
     }
+    //Main Program Panels
+    public void setBuyFromVmPanel(){
+        this.buyFromVmPanel = new JPanel(cardLayout);
+    }
+
+    public void setPickVMPanel(){
+        this.pickVMPanel = new JPanel(cardLayout);
+        pickVMPanel.setLayout(new FlowLayout());
+        this.vmTa = new JTextArea();
+        vmTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(vmTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.pickVMBtn = new JButton("Pick Vending Machine");
+        this.pickVMLbl = new JLabel("Pick Vending Machine: ");
+        this.pickVMLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        this.pickVMTf = new JTextField(10);
+        this.pickVMTf.setHorizontalAlignment(SwingConstants.CENTER);
+        pickVMPanel.add(scrollPane);
+        pickVMPanel.add(pickVMLbl);
+        pickVMPanel.add(pickVMTf);
+        pickVMPanel.add(pickVMBtn);
+        pickVMPanel.add(backBtn13);
+    }
+    public void setDoMaintenancePanel(){
+        this.doMaintenancePanel = new JPanel(cardLayout);
+        doMaintenancePanel.setLayout(new GridLayout(10,1));
+        doMaintenancePanel.add(backBtn26);
+        this.restockBtn = new JButton("Restock");
+        doMaintenancePanel.add(restockBtn);
+        this.changePriceBtn = new JButton("Change Price");
+        doMaintenancePanel.add(changePriceBtn);
+        this.collectMoneyBtn = new JButton("Collect Money");
+        doMaintenancePanel.add(collectMoneyBtn);
+        this.replenishChangeBtn = new JButton("Replenish Change");
+        doMaintenancePanel.add(replenishChangeBtn);
+        this.showItemSlotsBtn = new JButton("Show Item Slots");
+        doMaintenancePanel.add(showItemSlotsBtn);
+        this.showItemStocksBtn = new JButton("Show Item Stocks");
+        doMaintenancePanel.add(showItemStocksBtn);
+        this.displayInventoriesBtn = new JButton("Display Inventories");
+        doMaintenancePanel.add(displayInventoriesBtn);
+        this.displayTransactionsBtn = new JButton("Display Transactions");
+        doMaintenancePanel.add(displayTransactionsBtn);
+        this.displayMoneyBtn = new JButton("Display Money");
+        doMaintenancePanel.add(displayMoneyBtn);
+        doMaintenancePanel.setBackground(Color.green);
+    }
+
+    public void setSelectWalletPanel(){
+        this.selectWalletPanel = new JPanel(cardLayout);
+        selectWalletPanel.setLayout(new FlowLayout());
+        this.walletTa = new JTextArea();
+        walletTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(walletTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.selectWalletPanel.add(scrollPane);
+        this.pickWalletBtn = new JButton("Pick Wallet");
+        this.pickWalletLbl = new JLabel("Pick Wallet: ");
+        this.pickWalletLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        this.pickWalletTf = new JTextField(10);
+        this.pickWalletTf.setHorizontalAlignment(SwingConstants.CENTER);
+        selectWalletPanel.add(pickWalletLbl);
+        selectWalletPanel.add(pickWalletTf);
+        selectWalletPanel.add(pickWalletBtn);
+        selectWalletPanel.add(backBtn14, BorderLayout.SOUTH);
+        selectWalletPanel.setBackground(Color.orange);
+    }
+
+    public void setShowCurrentWalletPanel(){
+        this.showCurrentWalletPanel = new JPanel(cardLayout);
+        showCurrentWalletPanel.setLayout(new FlowLayout());
+        this.currentWalletTa = new JTextArea();
+        currentWalletTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(itemsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 300));
+        this.showCurrentWalletPanel.add(scrollPane);
+        this.showCurrentWalletPanel.add(backBtn12);
+        showCurrentWalletPanel.setBackground(Color.pink);
+    }
 
     //Customize Vending Machine Panels
 
@@ -352,8 +508,10 @@ public class FactoryView {
 
     public void setShowDetailsPanel(){
         this.showDetailsPanel = new JPanel(cardLayout);
+        this.detailsTa = new JTextArea();
+        detailsTa.setEditable(false);
         showDetailsPanel.setLayout(new FlowLayout());
-        JScrollPane scrollPane = new JScrollPane(itemsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JScrollPane scrollPane = new JScrollPane(detailsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(300, 200));
         this.showDetailsPanel.add(scrollPane);
         this.pickBtn = new JButton("Pick");
@@ -371,8 +529,10 @@ public class FactoryView {
 
     public void setShowVMPanel(){
         this.showVMPanel = new JPanel(cardLayout);
+        this.showVMTa = new JTextArea();
+        showVMTa.setEditable(false);
         showVMPanel.setLayout(new FlowLayout());
-        JScrollPane scrollPane = new JScrollPane(itemsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        JScrollPane scrollPane = new JScrollPane(showVMTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(300, 300));
         this.showVMPanel.add(scrollPane);
         this.showVMPanel.add(backBtn11);
@@ -429,7 +589,9 @@ public class FactoryView {
     public void setShowItemsPanel(){
         this.showItemsPanel = new JPanel(cardLayout);
         showItemsPanel.setLayout(new FlowLayout());
-        JScrollPane scrollPane = new JScrollPane(itemsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        this.showItemsTa = new JTextArea();
+        showItemsTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(showItemsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(300, 300));
         this.showItemsPanel.add(scrollPane);
         this.showItemsPanel.add(backBtn8);
@@ -464,6 +626,15 @@ public class FactoryView {
     public void setCustomizeStocksBtnListener(ActionListener actionListener){this.customizeStocksBtn.addActionListener(actionListener);}
 
     public void setShowInventoryBtnListener(ActionListener actionListener){this.showInventoryBtn.addActionListener(actionListener);}
+
+    //Setters for Main Program Buttons
+    public void setPickVMBtnListener(ActionListener actionListener){this.pickVMBtn.addActionListener(actionListener);}
+    public void setBuyFromVmBtnListener(ActionListener actionListener){this.buyFromVmBtn.addActionListener(actionListener);}
+    public void setDoMaintenanceBtnListener(ActionListener actionListener){this.doMaintenanceBtn.addActionListener(actionListener);}
+
+    public void setSelectWalletBtnListener(ActionListener actionListener){this.selectWalletBtn.addActionListener(actionListener);}
+    public void setShowCurrentWalletBtnListener(ActionListener actionListener){this.showCurrentWalletBtn.addActionListener(actionListener);}
+
 
     //Setter for Vending Machine Buttons
     public void setCreateVMBtnListener(ActionListener actionListener){this.createVMBtn.addActionListener(actionListener);}

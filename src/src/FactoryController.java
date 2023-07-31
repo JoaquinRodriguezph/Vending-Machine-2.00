@@ -15,7 +15,7 @@ public class FactoryController {
         this.factoryView.setStartProgramBtn(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Program");
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Pick Vending Machine");
             }
         });
 
@@ -40,6 +40,33 @@ public class FactoryController {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Customize Vending Machine");
             }
         });
+
+        //Sets up Main Program Buttons
+        this.factoryView.setPickVMBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Program");
+            }
+        });
+
+        this.factoryView.setDoMaintenanceBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Do Maintenance");
+            }
+        });
+        this.factoryView.setSelectWalletBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Select Wallet");
+            }
+        });
+        this.factoryView.setShowCurrentWalletBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Current Wallet");}
+        });
+
 
         //Sets up Customize Item Stock Buttons
 
