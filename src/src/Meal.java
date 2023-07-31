@@ -14,6 +14,28 @@ public class Meal extends Item {
         super(name, setCalories(itemList));
         this.itemList = itemList;
         this.price = price;
+        this.itemElements = new ArrayList<Item>();
+    }
+
+
+    /**
+     * This method adds the item instance to the Meal.
+     *
+     * @param item the item to be added to the meal
+     */
+    public void addItem(Item item) {
+        itemElements.add(item);
+    }
+
+    /**
+     * This method gets the add-on item instance to the Meal.
+     *
+     * @param item the add-on item to be added to the meal
+     * @param price the price of the AddOn
+     */
+    public void addAddOn(Item item, int price) {
+        itemElements.add(item);
+        this.price += price;
     }
 
     /**
@@ -25,16 +47,6 @@ public class Meal extends Item {
         return price;
     }
 
-    /**
-     * This method gets the itemList of the Meal.
-     *
-     * @param addOnStock the add-on item to be added to the meal
-     * @param price the price of the addOnStock
-     */
-    public void addAddOnStock(AddOnStock addOnStock, int price) {
-        itemList.add(addOnStock);
-        this.price += price;
-    }
 
     /**
      * This method gets the itemList of the Meal.
@@ -53,14 +65,17 @@ public class Meal extends Item {
     public void setPrice(int price) {
         this.price = price;
     }
+/*
 
-    /**
+    */
+/**
      * This method is compares this meal to the meal given in the parameter by comparing
      * all the ItemStock objects in their respective ArrayList of ItemStock
      *
      * @param meal the Meal object to be compared with this Meal
      * @returns true if equal, false otherwise
-     */
+     *//*
+
     public boolean equals(Meal meal) {
         boolean b = true;
 
@@ -82,9 +97,11 @@ public class Meal extends Item {
 
         return b;
     }
+*/
 
     /**
      * This private static method is used by the constructor to calculate the total calories in the meal.
+     *
      * @param itemList List of items that comprises the meal.
      * @return the calories calculated
      */
@@ -98,6 +115,7 @@ public class Meal extends Item {
     }
 
     private final ArrayList<ItemStock> itemList;
+    private ArrayList<Item> itemElements;
     private int price;
 
 }
