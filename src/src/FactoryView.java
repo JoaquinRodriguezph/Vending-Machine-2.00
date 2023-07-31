@@ -39,6 +39,8 @@ public class FactoryView {
     private JButton backBtn17, backBtn18, backBtn19, backBtn20, backBtn21;
     private JPanel showItemStocksPanel, displayInventoriesPanel, displayTransactionsPanel, displayMoneyPanel;
     private JButton showItemStocksBtn, displayInventoriesBtn, displayTransactionsBtn, displayMoneyBtn;
+
+    private JTextArea itemStocksTa, inventoriesTa, transactionsTa, moneyTa, itemSlotsTa;
     private JButton backBtn22, backBtn23, backBtn24, backBtn25;
 
 
@@ -133,6 +135,15 @@ public class FactoryView {
         setSelectWalletPanel();
         setShowCurrentWalletPanel();
         //Do Maintenance Panels
+        setRestockPanel();
+        setChangePricePanel();
+        setCollectMoneyPanel();
+        setReplenishChangePanel();
+        setShowItemSlotsPanel();
+        setShowItemStocksPanel();
+        setDisplayInventoriesPanel();
+        setDisplayTransactionsPanel();
+        setDisplayMoneyPanel();
         //Stocks Panel
         setCustomizeStocksPanel();
         setCreateItemsPanel();
@@ -284,6 +295,66 @@ public class FactoryView {
             }
         });
 
+        backBtn17.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Do Maintenance");
+            }
+        });
+
+        backBtn18.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Do Maintenance");
+            }
+        });
+
+        backBtn19.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Do Maintenance");
+            }
+        });
+
+        backBtn20.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Do Maintenance");
+            }
+        });
+
+        backBtn21.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Do Maintenance");
+            }
+        });
+        backBtn22.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Do Maintenance");
+            }
+        });
+
+        backBtn23.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Do Maintenance");
+            }
+        });
+
+        backBtn24.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {cardLayout.show(cardPanel,"Do Maintenance");}
+        });
+
+        backBtn25.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Do Maintenance");
+            }
+        });
+
         backBtn26.addActionListener(new ActionListener() { //Back button for Do Maintenance to Main Program
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -332,6 +403,18 @@ public class FactoryView {
         cardPanel.add(doMaintenancePanel, "Do Maintenance");
         cardPanel.add(selectWalletPanel, "Select Wallet");
         cardPanel.add(showCurrentWalletPanel, "Show Current Wallet");
+
+        //Do Maintenance Panels
+
+        cardPanel.add(restockPanel, "Restock");
+        cardPanel.add(changePricePanel, "Change Price");
+        cardPanel.add(collectMoneyPanel, "Collect Money");
+        cardPanel.add(replenishChangePanel, "Replenish Change");
+        cardPanel.add(showItemSlotsPanel, "Show Item Slots");
+        cardPanel.add(showItemStocksPanel, "Show Item Stocks");
+        cardPanel.add(displayInventoriesPanel, "Display Inventories");
+        cardPanel.add(displayTransactionsPanel, "Display Transactions");
+        cardPanel.add(displayMoneyPanel, "Display Money");
 
         //Customize Item Panels
         cardPanel.add(createItemPanel, "Create Item");
@@ -450,6 +533,84 @@ public class FactoryView {
         doMaintenancePanel.setBackground(Color.green);
     }
 
+    //Do Maintenance Panels
+    public void setRestockPanel(){
+        this.restockPanel = new JPanel(cardLayout);
+        restockPanel.setLayout(new FlowLayout());
+
+        restockPanel.add(backBtn17);
+    }
+
+    public void setChangePricePanel(){
+        this.changePricePanel = new JPanel(cardLayout);
+        changePricePanel.add(backBtn18);
+    }
+
+    public void setCollectMoneyPanel(){
+        this.collectMoneyPanel = new JPanel(cardLayout);
+        collectMoneyPanel.add(backBtn19);
+    }
+
+    public void setReplenishChangePanel(){
+        this.replenishChangePanel = new JPanel(cardLayout);
+        replenishChangePanel.add(backBtn20);
+    }
+
+    public void setShowItemSlotsPanel(){
+        this.showItemSlotsPanel = new JPanel(cardLayout);
+        showItemSlotsPanel.setLayout(new FlowLayout());
+        this.itemSlotsTa = new JTextArea();
+        itemSlotsTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(itemSlotsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.showItemSlotsPanel.add(scrollPane);
+        this.showItemSlotsPanel.add(backBtn21);
+    }
+    public void setShowItemStocksPanel(){
+        this.showItemStocksPanel = new JPanel(cardLayout);
+        showItemStocksPanel.setLayout(new FlowLayout());
+        this.itemStocksTa = new JTextArea();
+        itemStocksTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(itemStocksTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.showItemStocksPanel.add(scrollPane);
+        this.showItemStocksPanel.add(backBtn22);
+    }
+
+    public void setDisplayInventoriesPanel(){
+        this.displayInventoriesPanel = new JPanel(cardLayout);
+        displayInventoriesPanel.setLayout(new FlowLayout());
+        this.inventoriesTa = new JTextArea();
+        inventoriesTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(inventoriesTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.displayInventoriesPanel.add(scrollPane);
+        this.displayInventoriesPanel.add(backBtn23);
+    }
+
+    public void setDisplayTransactionsPanel(){
+        this.displayTransactionsPanel = new JPanel(cardLayout);
+        displayTransactionsPanel.setLayout(new FlowLayout());
+        this.transactionsTa = new JTextArea();
+        transactionsTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(transactionsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.displayTransactionsPanel.add(scrollPane);
+        this.displayTransactionsPanel.add(backBtn24);
+    }
+
+    public void setDisplayMoneyPanel(){
+        this.displayMoneyPanel = new JPanel(cardLayout);
+        displayMoneyPanel.setLayout(new FlowLayout());
+        this.moneyTa = new JTextArea();
+        moneyTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(moneyTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.displayMoneyPanel.add(scrollPane);
+        this.displayMoneyPanel.add(backBtn25);
+    }
+
+    //Main program panels again
     public void setSelectWalletPanel(){
         this.selectWalletPanel = new JPanel(cardLayout);
         selectWalletPanel.setLayout(new FlowLayout());
@@ -635,6 +796,16 @@ public class FactoryView {
     public void setSelectWalletBtnListener(ActionListener actionListener){this.selectWalletBtn.addActionListener(actionListener);}
     public void setShowCurrentWalletBtnListener(ActionListener actionListener){this.showCurrentWalletBtn.addActionListener(actionListener);}
 
+    //Setters for Do Maintenance Buttons
+    public void setRestockBtnListener(ActionListener actionListener){this.restockBtn.addActionListener(actionListener);}
+    public void setChangePriceBtnListener(ActionListener actionListener){this.changePriceBtn.addActionListener(actionListener);}
+    public void setCollectMoneyBtnListener(ActionListener actionListener){this.collectMoneyBtn.addActionListener(actionListener);}
+    public void setReplenishChangeBtnListener(ActionListener actionListener){this.replenishChangeBtn.addActionListener(actionListener);}
+    public void setShowItemSlotsBtnListener(ActionListener actionListener){this.showItemSlotsBtn.addActionListener(actionListener);}
+    public void setShowItemStocksBtnListener(ActionListener actionListener){this.showItemStocksBtn.addActionListener(actionListener);}
+    public void setDisplayInventoriesBtnListener(ActionListener actionListener){this.displayInventoriesBtn.addActionListener(actionListener);}
+    public void setDisplayTransactionsBtnListener(ActionListener actionListener){this.displayTransactionsBtn.addActionListener(actionListener);}
+    public void setDisplayMoneyBtnListener(ActionListener actionListener){this.displayMoneyBtn.addActionListener(actionListener);}
 
     //Setter for Vending Machine Buttons
     public void setCreateVMBtnListener(ActionListener actionListener){this.createVMBtn.addActionListener(actionListener);}

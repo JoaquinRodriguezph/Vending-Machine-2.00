@@ -67,6 +67,41 @@ public class FactoryController {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Current Wallet");}
         });
 
+        //Sets up Do Maintenance Buttons
+
+        this.factoryView.setShowItemSlotsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Item Slots");
+            }
+        });
+        this.factoryView.setShowItemStocksBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Item Stocks");
+            }
+        });
+
+        this.factoryView.setDisplayInventoriesBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Inventories");
+            }
+        });
+
+        this.factoryView.setDisplayTransactionsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Transactions");
+            }
+        });
+
+        this.factoryView.setDisplayMoneyBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Money");
+            }
+        });
 
         //Sets up Customize Item Stock Buttons
 
