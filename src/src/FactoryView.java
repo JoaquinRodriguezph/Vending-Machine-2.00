@@ -22,6 +22,25 @@ public class FactoryView {
     private JPanel createItemStockPanel;
 
     private JLabel itemNamelbl, calorieslbl, stockslbl, SRPlbl;
+
+    private JButton createStockBtn;
+
+    public String getItemNameTf() {
+        return this.itemNameTf.getText();
+    }
+
+    public String getCaloriesTf() {
+        return this.caloriesTf.getText();
+    }
+
+    public String getStocksTf() {
+        return this.stocksTf.getText();
+    }
+
+    public String getSRPtf() {
+        return this.SRPtf.getText();
+    }
+
     private JTextField itemNameTf, caloriesTf, stocksTf, SRPtf;
 
     //
@@ -52,6 +71,7 @@ public class FactoryView {
     public JTextArea getShowInventoryText() {
         return showInventoryText;
     }
+
 
     private JScrollPane scrollPane;
     private JTextArea showInventoryText;
@@ -259,29 +279,41 @@ public class FactoryView {
 
     public void setCreateItemStockPanel(){
         this.createItemStockPanel = new JPanel(cardLayout);
-        createItemStockPanel.setLayout(new GridLayout(5,1));
+        createItemStockPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc= new GridBagConstraints();
         ArrayList<JLabel> labelList = new ArrayList<>();
         this.itemNamelbl = new JLabel("Item Name: ");
+        gbc.gridx = 0; gbc.gridy = 0; createItemStockPanel.add(itemNamelbl, gbc);
         this.calorieslbl = new JLabel("Calories: ");
+        gbc.gridx = 0; gbc.gridy = 1; createItemStockPanel.add(calorieslbl, gbc);
         this.stockslbl = new JLabel("Stocks: ");
+        gbc.gridx = 0; gbc.gridy = 2; createItemStockPanel.add(stockslbl, gbc);
         this.SRPlbl = new JLabel("SRP: ");
-        labelList.add(itemNamelbl); labelList.add(calorieslbl); labelList.add(stockslbl); labelList.add(SRPlbl);
-        //private JTextField itemNameTf, caloriesTf, stocksTf, SRPtf;
+        gbc.gridx = 0; gbc.gridy = 3; createItemStockPanel.add(SRPlbl, gbc);
         this.itemNameTf = new JTextField(10);
+        gbc.gridx = 1; gbc.gridy = 0; createItemStockPanel.add(itemNameTf, gbc);
         this.caloriesTf = new JTextField(10);
+        gbc.gridx = 1; gbc.gridy = 1; createItemStockPanel.add(caloriesTf, gbc);
         this.stocksTf = new JTextField(10);
+        gbc.gridx = 1; gbc.gridy = 2; createItemStockPanel.add(stocksTf, gbc);
         this.SRPtf = new JTextField(10);
-        ArrayList<JTextField> textFieldList = new ArrayList<>();
-        textFieldList.add(itemNameTf); textFieldList.add(caloriesTf); textFieldList.add(stocksTf); textFieldList.add(SRPtf);
-        for (JLabel label : labelList){
-            createItemStockPanel.add(label);
-        }
-        for (JTextField textField : textFieldList){
-            createItemStockPanel.add(textField);
-        }
+        gbc.gridx = 1; gbc.gridy = 3; createItemStockPanel.add(SRPtf, gbc);
+        this.createStockBtn = new JButton("Create Item");
+        gbc.gridx = 3; gbc.gridy = 4; createItemStockPanel.add(createStockBtn);
         createItemStockPanel.setBackground(Color.getHSBColor(21, 79, 94));
     }
 
+    public void hideButtons(ArrayList<JButton> buttons){
+        for (JButton button : buttons){
+            button.setVisible(false);
+        }
+    }
+
+    public void showButtons(ArrayList<JButton> buttons){
+        for (JButton button : buttons){
+            button.setVisible(true);
+        }
+    }
     public void setShowInventoryPanel(){
         this.showInventoryPanel = new JPanel(cardLayout);
         showInventoryPanel.setLayout(new GridLayout(2,1));
@@ -305,4 +337,5 @@ public class FactoryView {
     //Setter for Item Stock Buttons
 
     public void setCreateItemBtnListener(ActionListener actionListener){this.createItemBtn.addActionListener(actionListener);}
+    public void setCreateStockBtnListener(ActionListener actionListener){this.createStockBtn.addActionListener(actionListener);}
 }
