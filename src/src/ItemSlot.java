@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.IllegalFormatException;
 
 /**
  * The ItemSlot Class contains the slot number
@@ -13,7 +12,7 @@ public class ItemSlot {
      *
      * @param max the max amount of items in the slot.
      */
-    public ItemSlot(int max) throws IllegalFormatException {
+    public ItemSlot(int max) throws IllegalArgumentException {
         if (max < 10)
             throw new IllegalArgumentException("Number of Items in a Slot shall be 10 or more");
         this.items = new ArrayList<Item>();

@@ -13,7 +13,9 @@ public class VendingMachine {
      * @param maxSlots the max amount of Slots.
      * @param slotMaxItems the max amount of items in each Slot.
      */
-    public VendingMachine(String name, int maxSlots, int slotMaxItems) {
+    public VendingMachine(String name, int maxSlots, int slotMaxItems) throws IllegalArgumentException, IndexOutOfBoundsException{
+        if (maxSlots < 8)
+            throw new IllegalArgumentException("Number of slots in the vending machine shall be 8 or more");
         this.NAME = name;
         this.itemSlots = new ItemSlot[maxSlots];    //initializing the number of slots in the vending machine
         for (int i = 0; i < maxSlots; i++) {    //loop to assign SLOTNUMBER and max items in each slot
@@ -119,6 +121,7 @@ public class VendingMachine {
      *
      * @param slot the slot number to update the price with.
      * @param item the item to add to the slot.
+     * @return true if the item was successfully added to the slot, otherwise false
      */
     public boolean addSlotStock(int slot, Item item) throws IndexOutOfBoundsException {
         if (itemSlots[slot - 1].addStock(item)) {
@@ -270,7 +273,6 @@ public class VendingMachine {
     public void replenishMoney(Money money) {
         this.money.add(money);
     }
-
 
     /**
      * The name of the Vending Machine
