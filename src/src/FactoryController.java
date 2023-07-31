@@ -9,8 +9,8 @@ public class FactoryController {
     public FactoryController(FactoryView factoryView, FactoryModel factoryModel) {
         this.factoryModel = factoryModel;
         this.factoryView = factoryView;
-        this.inventory = new ArrayList<Item>();
 
+        //Sets up Main Menu Buttons
         this.factoryView.setStartProgramBtn(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -29,46 +29,32 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Inventory");
-                displayItemInventory(factoryModel.getMyInventory(), factoryView.getShowInventoryText());
+                factoryModel.displayItemInventory(factoryModel.getMyInventory(), factoryView.getShowInventoryText());
             }
         });
 
+        this.factoryView.setCustomizeVMBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Customize Vending Machine");
+            }
+        });
+        this.factoryView.setCustomizeMoneyBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Customize Money");
+            }
+        });
+
+        //Sets up Customize Item Stock Buttons
+
+        this.factoryView.setCreateItemBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Create Item");
+            }
+        });
     }
-    private void displayItemInventory(ArrayList<Item> items, JTextArea textArea) {
-        ArrayList<Item> itemSets = new ArrayList<Item>();
-        ArrayList<Integer> itemQuantity = new ArrayList<Integer>();
-
-        //display the inventory of what the user have bought
-
-        for (Item item : items) {   //utilizing two arrayList by counting the number of repeated instances
-            if (!itemSets.contains(item)) {
-                itemSets.add(item);
-                itemQuantity.add(1);
-            }
-            else {
-                itemQuantity.set(itemSets.indexOf(item), itemQuantity.get(itemSets.indexOf(item)) + 1) ;
-            }
-        }
-
-        Iterator<Item> item = itemSets.iterator();
-        Iterator<Integer> quantity = itemQuantity.iterator();
-
-        textArea.append("Total Items Bought: " + inventory.size());
-
-
-        if (!(itemSets.size() == 0 || itemQuantity.size() == 0)) {  //checking if the user have bought anything
-            while (item.hasNext() && quantity.hasNext()) {  //displaying the item and quantity using an iterator
-                Item it = item.next();
-                Integer in = quantity.next();
-                if (it != null && in != null)
-                    textArea.append(it.getName() + ": " + in);
-            }
-        }
-        else
-            textArea.append("No Items Has Been Bought");
-    }
-
-    private ArrayList<Item> inventory;
     private FactoryView factoryView;
     private FactoryModel factoryModel;
 }
