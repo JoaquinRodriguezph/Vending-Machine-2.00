@@ -40,12 +40,6 @@ public class FactoryController {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Customize Vending Machine");
             }
         });
-        this.factoryView.setCustomizeMoneyBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Customize Money");
-            }
-        });
 
         //Sets up Customize Item Stock Buttons
 
@@ -56,6 +50,7 @@ public class FactoryController {
             }
         });
 
+        /*
         this.factoryView.setCreateStockBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,12 +60,41 @@ public class FactoryController {
                 int stocks = Integer.parseInt(factoryView.getStocksTf());
                 factoryModel.createItemStock(name, srp, calories, stocks, errorFrame);
             }
-        });
+        });*/
 
         this.factoryView.setAddItemBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Add Item");
+            }
+        });
+
+        this.factoryView.setShowItemsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Items");
+            }
+        });
+
+
+        //Sets up Customize Vending Machine Buttons
+        this.factoryView.setCreateVMBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Create Vending Machine");
+            }
+        });
+        this.factoryView.setShowVMBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Vending Machines");
+            }
+        });
+
+        this.factoryView.setShowDetailsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Details");
             }
         });
     }
