@@ -13,8 +13,7 @@ public class FactoryModel {
     }
 
     private ArrayList<Item> myInventory;
-    private ArrayList<ItemStock> itemStockList;
-
+    private ArrayList<VendingStock> vendingStockList;
     public FactoryModel(){
         this.vendingMachines = new ArrayList<VendingMachine>();
         this.myInventory =  new ArrayList<Item>();
@@ -55,86 +54,36 @@ public class FactoryModel {
             textArea.append("No Items Has Been Bought");
     }
 
-    private ArrayList<VendingStock> createItemStock() {
+    public void createItemStock(String name, int srp, int calories, int stock, JFrame frame) {
         ArrayList<VendingStock> vendingStocks = new ArrayList<VendingStock>();
-        Scanner sc = new Scanner(System.in);
-        int option;
-        String name;
-        int srp = -1;
-        int calories = -1;
-        boolean create = false;
-        int stock = -1;
-
-        do {
-            System.out.println("=========================");
-            System.out.println("(0) Cancel");
-            System.out.print("Item Name: ");
-            name = sc.next();
-            if (!name.equalsIgnoreCase("0")) {  //check if the user inputted string is 0, prompting a cancellation of creation of the Item Stock
-                do {    //prompts user the input valid calories
-                    System.out.print("Calories: ");
-                    calories = sc.nextInt();
-                    if (calories < 0)
-                        System.out.println("Error: Invalid Calories");
-                } while (calories < 0);
-
-
-                do {    //prompts user the input valid stocks
-                    System.out.print("Stocks: ");
-                    stock = sc.nextInt();
-                    if (stock < 0)
-                        System.out.println("Error: Invalid Stock/s");
-                } while (stock < 0);
-
-
-                System.out.println("=========================");
-                System.out.println("(0) Cancel");
-                do {    //prompts the user to input the srp for the item
-                    System.out.print("SRP (PHP): ");
-                    srp = sc.nextInt();
-                    if (srp < 0)
-                        System.out.println("Error: Invalid SRP");
-                } while (srp < 0);
-
-                if (srp != 0)   //if srp is not zero, then user had provided valid information for the creation of the item stock
-                    create = true;
+            if (name == null){
+                JOptionPane.showMessageDialog(frame, "Name cannot be empty",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
 
-            if (create) {   //if creation boolean is true
-                vendingStocks.add(new VendingStock(name, srp, calories, stock));  //itemStocks Arraylist adds the new itemStocks
-                System.out.println("New Item Stock Created");
+            if (calories < 0 || calories == 0){
+                JOptionPane.showMessageDialog(frame, "Calories should be >= 0",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
-            else
-                System.out.println("Item Stock Creation Cancelled");
 
-            create = false; //this boolean resets to false
+            if (stock < 0 || stock == 0){
+                JOptionPane.showMessageDialog(frame, "Stock should be >= 0",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            if (srp <= 0 || srp == 0){
+                JOptionPane.showMessageDialog(frame, "SRP should be > 0",
+                        "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-            do {
-                System.out.println("=========================");
-                System.out.println("(0) Finish");
-                System.out.println("(1) Create Another");   //option 1 utilizes the outside loop itself
-                System.out.println("(2) Show Created Item Stock/s");
-                System.out.println("=========================");
 
-                do {
-                    System.out.print("Option: ");
-                    option = sc.nextInt();
-                    if (option > 2 || option < 0)
-                        System.out.println("Error: Invalid Option");
-                } while (option > 2 || option < 0);
-
-                if (option == 2)
-                    if (vendingStocks.size() != 0) //if there are item stock object newly created
-                        displayItemStock(vendingStocks);
-                    else
-                        System.out.println("No New Item Stocks Have Been Created");
-
-            } while (option != 0 && option != 1);
-        } while(option != 0);
-
-        System.out.println("Going Back...");
-
-        return vendingStocks;
+        JOptionPane.showMessageDialog(frame, "Success!",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        vendingStocks.add(new VendingStock(name, srp, calories, stock));  //itemStocks Arraylist adds the new itemStocks
+        this.vendingStockList.addAll(vendingStocks);
     }
 
     private void displayItemStock(ArrayList<VendingStock> vendingStocks) {

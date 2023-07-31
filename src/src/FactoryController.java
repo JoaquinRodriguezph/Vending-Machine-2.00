@@ -9,6 +9,7 @@ public class FactoryController {
     public FactoryController(FactoryView factoryView, FactoryModel factoryModel) {
         this.factoryModel = factoryModel;
         this.factoryView = factoryView;
+        this.errorFrame = new JFrame();
 
         //Sets up Main Menu Buttons
         this.factoryView.setStartProgramBtn(new ActionListener() {
@@ -54,7 +55,19 @@ public class FactoryController {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Create Item");
             }
         });
+
+        this.factoryView.setCreateStockBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = factoryView.getItemNameTf();
+                int srp = Integer.parseInt(factoryView.getSRPtf());
+                int calories = Integer.parseInt(factoryView.getCaloriesTf());
+                int stocks = Integer.parseInt(factoryView.getStocksTf());
+                factoryModel.createItemStock(name, srp, calories, stocks, errorFrame);
+            }
+        });
     }
+    private JFrame errorFrame;
     private FactoryView factoryView;
     private FactoryModel factoryModel;
 }
