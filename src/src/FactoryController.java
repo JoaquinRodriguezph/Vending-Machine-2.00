@@ -66,6 +66,13 @@ public class FactoryController {
                 factoryModel.createItemStock(name, srp, calories, stocks, errorFrame);
             }
         });
+
+        this.factoryView.setAddItemBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Add Item");
+            }
+        });
     }
     private JFrame errorFrame;
     private FactoryView factoryView;

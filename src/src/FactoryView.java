@@ -19,11 +19,13 @@ public class FactoryView {
     private JPanel startProgramPanel, showInventoryPanel, customizeVMPanel, customizeMoneyPanel, customizeStocksPanel;
 
     //Customize Item Stock Components
-    private JPanel createItemStockPanel;
+    private JPanel createItemStockPanel, addItemStockPanel, showItemStockPanel;
 
-    private JLabel itemNamelbl, calorieslbl, stockslbl, SRPlbl;
+    private JLabel itemNamelbl, calorieslbl, stockslbl, SRPlbl, itemNumberlbl, addItemlbl;
 
     private JButton createStockBtn;
+    private JTextField itemNameTf, caloriesTf, stocksTf, SRPtf, addItemTf, numItemTf, showItemTf;
+    private JTextArea itemsTa; //TextArea for showing the items
 
     public String getItemNameTf() {
         return this.itemNameTf.getText();
@@ -41,15 +43,13 @@ public class FactoryView {
         return this.SRPtf.getText();
     }
 
-    private JTextField itemNameTf, caloriesTf, stocksTf, SRPtf;
-
     //
     public CardLayout getCardLayout() {
         return cardLayout;
     }
 
     private CardLayout cardLayout;
-    private JButton backBtn1, backBtn2, backBtn3, backBtn4, backBtn5, backBtn6;
+    private JButton backBtn1, backBtn2, backBtn3, backBtn4, backBtn5, backBtn6, backBtn7;
 
     //Buttons for the Main Menu
     private JButton startProgramBtn, showInventoryBtn, customizeVmBtn, customizeMoneyBtn, customizeStocksBtn;
@@ -71,8 +71,6 @@ public class FactoryView {
     public JTextArea getShowInventoryText() {
         return showInventoryText;
     }
-
-
     private JScrollPane scrollPane;
     private JTextArea showInventoryText;
     private ArrayList<JButton> btnList, backBtnList, mainProgramBtnList, stocksBtnList, moneyBtnList, vendingMachineBtnList;
@@ -97,6 +95,7 @@ public class FactoryView {
         //Stocks Panel
         setCustomizeStocksPanel();
         setCreateItemStockPanel();
+        setAddItemStockPanel();
         //Money Panel
         setCustomizeMoneyPanel();
         setShowInventoryPanel();
@@ -121,13 +120,14 @@ public class FactoryView {
         this.backBtn4 = new JButton("Back");
         this.backBtn5 = new JButton("Back");
         this.backBtn6 = new JButton("Back");
+        this.backBtn7 = new JButton("Back");
         backBtnList.add(this.backBtn1);
         backBtnList.add(this.backBtn2);
         backBtnList.add(this.backBtn3);
         backBtnList.add(this.backBtn4);
         backBtnList.add(this.backBtn5);
         backBtnList.add(this.backBtn6);
-
+        backBtnList.add(this.backBtn7);
         backBtn1.addActionListener(new ActionListener() { //Back button for Main Program to Main Menu
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -158,6 +158,19 @@ public class FactoryView {
             }
         });
 
+        backBtn6.addActionListener(new ActionListener() {//Back button for Create Item Stock to Customize Item Stocks
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Customize Stocks");
+            }
+        });
+
+        backBtn7.addActionListener(new ActionListener() {//Back button for Create Item Stock to Customize Item Stocks
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Customize Stocks");
+            }
+        });
     }
 
     public void setButtons(){
@@ -190,6 +203,7 @@ public class FactoryView {
         cardPanel.add(customizeMoneyPanel, "Customize Money");
         cardPanel.add(customizeStocksPanel, "Customize Stocks");
         cardPanel.add(createItemStockPanel, "Create Item");
+        cardPanel.add(addItemStockPanel, "Add Item");
 
         //Main Program Buttons
         this.buyFromVmBtn = new JButton("Buy from Vending Machine");
@@ -281,7 +295,6 @@ public class FactoryView {
         this.createItemStockPanel = new JPanel(cardLayout);
         createItemStockPanel.setLayout(new GridBagLayout());
         GridBagConstraints gbc= new GridBagConstraints();
-        ArrayList<JLabel> labelList = new ArrayList<>();
         this.itemNamelbl = new JLabel("Item Name: ");
         gbc.gridx = 0; gbc.gridy = 0; createItemStockPanel.add(itemNamelbl, gbc);
         this.calorieslbl = new JLabel("Calories: ");
@@ -299,10 +312,27 @@ public class FactoryView {
         this.SRPtf = new JTextField(10);
         gbc.gridx = 1; gbc.gridy = 3; createItemStockPanel.add(SRPtf, gbc);
         this.createStockBtn = new JButton("Create Item");
-        gbc.gridx = 3; gbc.gridy = 4; createItemStockPanel.add(createStockBtn);
+        gbc.gridx = 0; gbc.gridy = 4; createItemStockPanel.add(createStockBtn);
+        gbc.gridx = 1; gbc.gridy = 4; createItemStockPanel.add(backBtn6);
         createItemStockPanel.setBackground(Color.getHSBColor(21, 79, 94));
     }
 
+    public void setAddItemStockPanel(){
+        this.addItemStockPanel = new JPanel(cardLayout);
+        addItemStockPanel.setLayout(new FlowLayout());
+        //GridBagConstraints gbc = new GridBagConstraints();
+        this.addItemTf = new JTextField(10);
+        this.addItemBtn = new JButton("Add Item");
+        this.itemsTa = new JTextArea();
+        itemsTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(itemsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 300));
+        this.addItemStockPanel.add(scrollPane);
+        this.addItemStockPanel.add(addItemTf);
+        this.addItemStockPanel.add(addItemBtn);
+        this.addItemStockPanel.add(backBtn7);
+        addItemStockPanel.setBackground(Color.getHSBColor(10,9, 94));
+    }
     public void hideButtons(ArrayList<JButton> buttons){
         for (JButton button : buttons){
             button.setVisible(false);
@@ -338,4 +368,5 @@ public class FactoryView {
 
     public void setCreateItemBtnListener(ActionListener actionListener){this.createItemBtn.addActionListener(actionListener);}
     public void setCreateStockBtnListener(ActionListener actionListener){this.createStockBtn.addActionListener(actionListener);}
+    public void setAddItemBtnListener(ActionListener actionListener){this.addItemBtn.addActionListener(actionListener);}
 }

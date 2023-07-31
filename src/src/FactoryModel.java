@@ -16,6 +16,7 @@ public class FactoryModel {
     private ArrayList<VendingStock> vendingStockList;
     public FactoryModel(){
         this.vendingMachines = new ArrayList<VendingMachine>();
+        this.vendingStockList = new ArrayList<VendingStock>();
         this.myInventory =  new ArrayList<Item>();
     }
 
