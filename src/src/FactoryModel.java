@@ -13,10 +13,8 @@ public class FactoryModel {
     }
 
     private ArrayList<Item> myInventory;
-    private ArrayList<VendingStock> vendingStockList;
     public FactoryModel(){
         this.vendingMachines = new ArrayList<VendingMachine>();
-        this.vendingStockList = new ArrayList<VendingStock>();
         this.myInventory =  new ArrayList<Item>();
     }
 
@@ -55,51 +53,4 @@ public class FactoryModel {
             textArea.append("No Items Has Been Bought");
     }
 
-    public void createItemStock(String name, int srp, int calories, int stock, JFrame frame) {
-        ArrayList<VendingStock> vendingStocks = new ArrayList<VendingStock>();
-            if (name == null){
-                JOptionPane.showMessageDialog(frame, "Name cannot be empty",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (calories < 0 || calories == 0){
-                JOptionPane.showMessageDialog(frame, "Calories should be >= 0",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            if (stock < 0 || stock == 0){
-                JOptionPane.showMessageDialog(frame, "Stock should be >= 0",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            if (srp <= 0 || srp == 0){
-                JOptionPane.showMessageDialog(frame, "SRP should be > 0",
-                        "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-
-        JOptionPane.showMessageDialog(frame, "Success!",
-                "Error", JOptionPane.ERROR_MESSAGE);
-        vendingStocks.add(new VendingStock(name, srp, calories, stock));  //itemStocks Arraylist adds the new itemStocks
-        this.vendingStockList.addAll(vendingStocks);
-    }
-
-    private void displayItemStock(ArrayList<VendingStock> vendingStocks) {
-        Iterator<VendingStock> it = vendingStocks.iterator();
-
-        System.out.println("=========================");
-        System.out.println("Item Stocks: " + vendingStocks.size());
-        System.out.println("=========================");
-
-        for (int i = 1; it.hasNext(); i++) {    //utilizing iterators in a forloop to display all the ItemStocks given the parameter
-            VendingStock vendingStock;
-            vendingStock = it.next();
-
-            System.out.println("(" + i + ") " + vendingStock.getName() + "; Stock: " + vendingStock.getStock() + "; SRP: " + vendingStock.getSRP() + "; Calories: " + vendingStock.getCalories());
-        }
-        System.out.println("=========================");
-    }
 }
