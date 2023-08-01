@@ -15,7 +15,7 @@ public class FactoryController {
         this.factoryView.setStartProgramBtn(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Program");
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Pick Vending Machine");
             }
         });
 
@@ -40,10 +40,126 @@ public class FactoryController {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Customize Vending Machine");
             }
         });
-        this.factoryView.setCustomizeMoneyBtnListener(new ActionListener() {
+
+        //Sets up Main Program Buttons
+        this.factoryView.setPickVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Customize Money");
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Program");
+            }
+        });
+
+        this.factoryView.setBuyFromVmBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Buy from Vending Machine");
+            }
+        });
+
+        this.factoryView.setDoMaintenanceBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Do Maintenance");
+            }
+        });
+        this.factoryView.setSelectWalletBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Select Wallet");
+            }
+        });
+        this.factoryView.setShowCurrentWalletBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Current Wallet");}
+        });
+
+        //Sets up Do Maintenance Buttons
+
+        this.factoryView.setRestockBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Restock");
+            }
+        });
+
+        this.factoryView.setChangePriceBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Change Price");
+            }
+        });
+
+        //Change Price Buttons
+        this.factoryView.setEditPriceBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Edit Price");
+            }
+        });
+        this.factoryView.setSetToSRPBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Set to SRP");
+            }
+        });
+
+        this.factoryView.setSetAllToSRPBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        this.factoryView.setDisplaySlotsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Slots");
+            }
+        });
+
+        //Do Maintenance Buttons
+        this.factoryView.setCollectMoneyBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        this.factoryView.setReplenishChangeBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Replenish Change");
+            }
+        });
+        this.factoryView.setShowItemSlotsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Item Slots");
+            }
+        });
+        this.factoryView.setShowItemStocksBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Item Stocks");
+            }
+        });
+
+        this.factoryView.setDisplayInventoriesBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Inventories");
+            }
+        });
+
+        this.factoryView.setDisplayTransactionsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Transactions");
+            }
+        });
+
+        this.factoryView.setDisplayMoneyBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Money");
             }
         });
 
@@ -56,6 +172,7 @@ public class FactoryController {
             }
         });
 
+        /*
         this.factoryView.setCreateStockBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,12 +182,41 @@ public class FactoryController {
                 int stocks = Integer.parseInt(factoryView.getStocksTf());
                 factoryModel.createItemStock(name, srp, calories, stocks, errorFrame);
             }
-        });
+        });*/
 
         this.factoryView.setAddItemBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Add Item");
+            }
+        });
+
+        this.factoryView.setShowItemsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Items");
+            }
+        });
+
+
+        //Sets up Customize Vending Machine Buttons
+        this.factoryView.setCreateVMBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Create Vending Machine");
+            }
+        });
+        this.factoryView.setShowVMBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Vending Machines");
+            }
+        });
+
+        this.factoryView.setShowDetailsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Details");
             }
         });
     }
