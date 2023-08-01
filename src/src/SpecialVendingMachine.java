@@ -12,15 +12,6 @@ public class SpecialVendingMachine extends VendingMachine{
         super(name, maxSlots, slotMaxItems);
     }
 
-    public void setMealPrice(int index, int price) throws IndexOutOfBoundsException{
-        Meal meal = mealList.get(index);
-        meal.setPrice(price);
-    }
-
-    //public void successfulMealTransaction()
 
 
-
-    private ArrayList<Meal> mealList;
-    private ArrayList<Integer> mealTransactionCount;
 }

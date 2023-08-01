@@ -8,7 +8,7 @@ public class Item {
      * @param name the name of the item
      * @param calories the calories of the item.
      */
-    public Item(String name, int calories) throws IllegalArgumentException {
+    public Item (String name, int calories) throws IllegalArgumentException {
         if (calories < 0)
             throw new IllegalArgumentException("Calories should be 0 or more");
 

@@ -15,7 +15,7 @@ public class ItemSlot {
     public ItemSlot(int max) throws IllegalArgumentException {
         if (max < 10)
             throw new IllegalArgumentException("Number of Items in a Slot shall be 10 or more");
-        this.items = new ArrayList<Item>();
+        this.vendItems = new ArrayList<VendItem>();
         this.MAX = max;
     }
 
@@ -44,7 +44,7 @@ public class ItemSlot {
      * @return the amount of items in the slot.
      */
     public int getStock() {
-        return items.size();
+        return vendItems.size();
     }
 
     /**
@@ -53,7 +53,7 @@ public class ItemSlot {
      * @return the name of item within the slot.
      */
     public String getItemName() throws IndexOutOfBoundsException {
-        return items.get(0).getName();
+        return vendItems.get(0).getName();
     }
 
     /**
@@ -70,8 +70,8 @@ public class ItemSlot {
      *
      * @return the item removed from the item slot.
      */
-    public Item removeItem() throws IndexOutOfBoundsException {
-        return items.remove(0);
+    public VendItem removeItem() throws IndexOutOfBoundsException {
+        return vendItems.remove(0);
     }
 
 
@@ -79,20 +79,20 @@ public class ItemSlot {
      * This method adds the item to the item slot. It is only added when
      * the slot is empty or the item is of the same.
      *
-     * @param item the item to be added to the item slot
+     * @param vendItem the item to be added to the item slot
      * @return true if adding item is successful, false otherwise
      */
-    public boolean addStock(Item item) {
+    public boolean addStock(VendItem vendItem) {
         boolean b = false;
 
-        if (items.isEmpty()) {
-            items.add(item);
+        if (vendItems.isEmpty()) {
+            vendItems.add(vendItem);
             b = true;
         }
         else {
-            Item temp = items.get(0);
-            if (temp.getName().equalsIgnoreCase(item.getName()) && temp.getCalories() == item.getCalories()) {
-                items.add(item);
+            VendItem temp = vendItems.get(0);
+            if (temp.getName().equalsIgnoreCase(vendItem.getName()) && temp.getCalories() == vendItem.getCalories()) {
+                vendItems.add(vendItem);
                 b = true;
             }
         }
@@ -106,7 +106,7 @@ public class ItemSlot {
      * @return true or false depending if there is at least one stock.
      */
     public boolean isAvailable() {
-        return items.size() > 0;
+        return vendItems.size() > 0;
     }
 
 
@@ -116,7 +116,7 @@ public class ItemSlot {
      * @return true if stock is 0 and false if not
      */
     public boolean isEmpty() {
-        return items.isEmpty();
+        return vendItems.isEmpty();
     }
 
     /**
@@ -125,10 +125,10 @@ public class ItemSlot {
      * @return true if stock is 0 and false if not
      */
     public boolean isFull() {
-        return items.size() == MAX;
+        return vendItems.size() == MAX;
     }
 
-    private ArrayList<Item> items;
+    private ArrayList<VendItem> vendItems;
 
     private final int MAX;
 

@@ -122,11 +122,11 @@ public class VendingMachine {
      * This method adds an item given a slot number.
      *
      * @param slot the slot number to update the price with.
-     * @param item the item to add to the slot.
+     * @param vendItem the item to add to the slot.
      * @return true if the item was successfully added to the slot, otherwise false
      */
-    public boolean addSlotStock(int slot, Item item) throws IndexOutOfBoundsException {
-        if (itemSlots[slot - 1].addStock(item)) {
+    public boolean addSlotStock(int slot, VendItem vendItem) throws IndexOutOfBoundsException {
+        if (itemSlots[slot - 1].addStock(vendItem)) {
             newStartingInventory();
             return true;
         }
@@ -154,11 +154,11 @@ public class VendingMachine {
      * @param slot the item slot the item will be retrieved from
      * @return the item from the given item slot
      */
-    public Item dispenseItem(int slot) throws IndexOutOfBoundsException {
-        Item item = itemSlots[slot - 1].removeItem();
+    public VendItem dispenseItem(int slot) throws IndexOutOfBoundsException {
+        VendItem vendItem = itemSlots[slot - 1].removeItem();
 
-        addTransaction(item.getName(), itemSlots[slot - 1].getPrice());
-        return item;
+        addTransaction(vendItem.getName(), itemSlots[slot - 1].getPrice());
+        return vendItem;
     }
 
     /**

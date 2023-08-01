@@ -38,8 +38,8 @@ public class VendingMachineDriver {
      * @param wallet the wallet of the current User.
      * @return theItem that the user bought.
      */
-    public Item mainMenu(VendingMachine vm, Money wallet) {
-        Item theItem = null;
+    public VendItem mainMenu(VendingMachine vm, Money wallet) {
+        VendItem theVendItem = null;
 
         if (vm.getStartingInventory() != null) {    //if the vendingMachine has never been done maintenance on
             boolean bCon = false;
@@ -57,9 +57,9 @@ public class VendingMachineDriver {
                     bCon = chooseItem(vm, slotSelection);
                     if (bCon) {   //if valid user input (bCon)
 
-                        theItem = vmTransaction(vm, slotSelection, wallet); //vending machine transaction process
+                        theVendItem = vmTransaction(vm, slotSelection, wallet); //vending machine transaction process
 
-                        if (theItem != null) {  //updates the transaction log of that item if the transaction was successful
+                        if (theVendItem != null) {  //updates the transaction log of that item if the transaction was successful
                             vm.successfulTransaction(slotSelection);
                         }
                     }
@@ -68,7 +68,7 @@ public class VendingMachineDriver {
                     bCon = true;
             } while (!bCon);   //exit detection also exists within the chooseItem() method
 
-            if (theItem != null) {
+            if (theVendItem != null) {
                 System.out.println("Dispensing Item...");
                 System.out.println("Thank You for Your Purchase!");
             }
@@ -81,7 +81,7 @@ public class VendingMachineDriver {
         else
             System.out.println("Error: This New Vending Machine Has Not Yet Been Setup");
 
-        return theItem;
+        return theVendItem;
     }
 
     /**
@@ -90,8 +90,8 @@ public class VendingMachineDriver {
      * @param wallet money of the user.
      * @return an Item if transaction successful and null if not.
      */
-    private Item vmTransaction(VendingMachine vm, int slotSelection, Money wallet) {
-        Item theItem = null;
+    private VendItem vmTransaction(VendingMachine vm, int slotSelection, Money wallet) {
+        VendItem theVendItem = null;
 
         int temp = -1;
         Money payment = new Money();
@@ -184,18 +184,18 @@ public class VendingMachineDriver {
             System.out.println("(Change):    " + change);
             System.out.println("=========================");
 
-            theItem = vm.performTransaction(payment, wallet, tempWallet, slotSelection, change);
+            theVendItem = vm.performTransaction(payment, wallet, tempWallet, slotSelection, change);
 
-            if (theItem == null)
+            if (theVendItem == null)
                 System.out.println("The Machine Does Not Have Enough Change\nCancelling Transaction...");
         }
 
-        if (theItem == null) //if transaction failed
+        if (theVendItem == null) //if transaction failed
             System.out.println("Transaction Failed");
         else
             System.out.println("Transaction Successful");
 
-        return theItem;
+        return theVendItem;
     }
 
 
@@ -371,7 +371,7 @@ public class VendingMachineDriver {
      * @param wallet the wallet instance to be used.
      * @return the bought item.
      */
-    private Item execBuyer(VendingMachine vendingMachine, Money wallet) {
+    private VendItem execBuyer(VendingMachine vendingMachine, Money wallet) {
         return mainMenu(vendingMachine, wallet); //runs the mainMenu method in VendingMachine class for the user to buy items in the vendingMachine
     }
 
@@ -1031,9 +1031,9 @@ public class VendingMachineDriver {
      * @param wallet the Money instance to be used.
      * @return an array list of items.
      */
-    private ArrayList<Item> startInteraction(Money wallet) {
+    private ArrayList<VendItem> startInteraction(Money wallet) {
         boolean exit = false;
-        ArrayList<Item> allItems = new ArrayList<Item>();
+        ArrayList<VendItem> allVendItems = new ArrayList<VendItem>();
         int option;
         Scanner sc = new Scanner(System.in);
         VendingMachine vm;
@@ -1074,10 +1074,10 @@ public class VendingMachineDriver {
                     switch (option) {
                         case 1:
                             do {
-                                Item anItem = execBuyer(vm, wallet);    //executes the buyer method and it either returns an item that the user purchased or null if no transactions were done
-                                if (anItem != null)
-                                    allItems.add(anItem);
-                                anItem = null; //make anItem null
+                                VendItem anVendItem = execBuyer(vm, wallet);    //executes the buyer method and it either returns an item that the user purchased or null if no transactions were done
+                                if (anVendItem != null)
+                                    allVendItems.add(anVendItem);
+                                anVendItem = null; //make anItem null
 
                                 do {    //prompts the user whether they would like to continue buying within this vending machine
                                     System.out.println("Continue Buying: (1) Yes   (0) No");
@@ -1098,38 +1098,38 @@ public class VendingMachineDriver {
 
         System.out.println("Exiting...");
 
-        return allItems;
+        return allVendItems;
 }
 
     /**
      *  This private method displays the item inventory.
-     * @param items the list of items to be displayed.
+     * @param vendItems the list of items to be displayed.
      */
-    private void displayItemInventory(ArrayList<Item> items) {
-        ArrayList<Item> itemSets = new ArrayList<Item>();
+    private void displayItemInventory(ArrayList<VendItem> vendItems) {
+        ArrayList<VendItem> vendItemSets = new ArrayList<VendItem>();
         ArrayList<Integer> itemQuantity = new ArrayList<Integer>();
 
         //display the inventory of what the user have bought
 
-        for (Item item : items) {   //utilizing two arrayList by counting the number of repeated instances
-            if (!itemSets.contains(item)) {
-                itemSets.add(item);
+        for (VendItem vendItem : vendItems) {   //utilizing two arrayList by counting the number of repeated instances
+            if (!vendItemSets.contains(vendItem)) {
+                vendItemSets.add(vendItem);
                 itemQuantity.add(1);
             }
             else {
-                itemQuantity.set(itemSets.indexOf(item), itemQuantity.get(itemSets.indexOf(item)) + 1) ;
+                itemQuantity.set(vendItemSets.indexOf(vendItem), itemQuantity.get(vendItemSets.indexOf(vendItem)) + 1) ;
             }
         }
 
-        Iterator<Item> item = itemSets.iterator();
+        Iterator<VendItem> item = vendItemSets.iterator();
         Iterator<Integer> quantity = itemQuantity.iterator();
 
         System.out.println("Total Items Bought: " + myInventory.size());
 
 
-        if (!(itemSets.size() == 0 || itemQuantity.size() == 0)) {  //checking if the user have bought anything
+        if (!(vendItemSets.size() == 0 || itemQuantity.size() == 0)) {  //checking if the user have bought anything
             while (item.hasNext() && quantity.hasNext()) {  //displaying the item and quantity using an iterator
-                Item it = item.next();
+                VendItem it = item.next();
                 Integer in = quantity.next();
                 if (it != null && in != null)
                     System.out.println(it.getName() + ": " + in);
@@ -1656,6 +1656,6 @@ public class VendingMachineDriver {
 
     private ArrayList<Money> moneyList;
 
-    private ArrayList<Item> myInventory = new ArrayList<Item>();
+    private ArrayList<VendItem> myInventory = new ArrayList<VendItem>();
 
 }
