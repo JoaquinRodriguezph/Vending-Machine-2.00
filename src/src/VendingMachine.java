@@ -106,6 +106,23 @@ public class VendingMachine {
         return inventory;
     }
 
+    /**
+     * This method gets the number of slots in the vending machine.
+     *
+     * @return the current inventory of the vending machine.
+     */
+    public int getNumSlots() {
+        return itemSlots.length;
+    }
+
+    /**
+     * This method gets the max capacity of the item slots.
+     *
+     * @return the max capacity of the item slots.
+     */
+    public int getMaxSlotItem() {
+        return itemSlots[0].getMax();
+    }
 
 
     /**
