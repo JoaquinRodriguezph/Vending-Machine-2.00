@@ -87,7 +87,7 @@ public class VendingMachine {
      *
      * @return the starting inventory of the vending machine.
      */
-    public ArrayList<String> getStartingInventory() {
+    private ArrayList<String> getStartingInventory() {
         return startingInventory;
     }
 
@@ -96,7 +96,7 @@ public class VendingMachine {
      *
      * @return the current inventory of the vending machine.
      */
-    public ArrayList<String> getCurrentInventory() {
+    private ArrayList<String> getCurrentInventory() {
         ArrayList<String> inventory = new ArrayList<String>();
         for (ItemSlot slot : itemSlots) {
             if (slot.isAvailable())
@@ -104,6 +104,20 @@ public class VendingMachine {
         }
 
         return inventory;
+    }
+
+    /**
+     * This method gets the inventory log of the vending machine.
+     *
+     * @return the inventory log of the vending machine.
+     */
+    public ArrayList<String> getInventoryLog() {
+        ArrayList<String> log = new ArrayList<String>();
+        log.add("----- Starting Inventory " + NAME + " -----\n");
+        log.addAll(startingInventory);
+        log.add("----- Current Inventory " + NAME + " -----\n");
+        log.addAll(getCurrentInventory());
+        return log;
     }
 
     /**
