@@ -16,8 +16,10 @@ public class SpecialVendingMachine extends VendingMachine{
      * @param maxSlots     the max amount of Slots.
      * @param slotMaxItems the max amount of items in each Slot.
      */
-    public SpecialVendingMachine(String name, int maxSlots, int slotMaxItems, int inventoryMax) {
+    public SpecialVendingMachine(String name, int maxSlots, int slotMaxItems, int inventoryMax) throws IllegalArgumentException, IndexOutOfBoundsException {
         super(name, maxSlots, slotMaxItems);
+        if (inventoryMax < 10)
+            throw new IllegalArgumentException("Inventory Limit Shall be 10 or more");
         defaultSilogBase = new ArrayList<Item>();
         defaultSilogBase.add(new VendItem("Rice", 206));
         defaultSilogBase.add(new VendItem("Fried Egg", 120));
@@ -52,7 +54,6 @@ public class SpecialVendingMachine extends VendingMachine{
 
         return inventory;
     }
-    //updates all the methods abovve
 
     /**
      * This method gets the inventory log of the vending machine.
@@ -232,6 +233,7 @@ public class SpecialVendingMachine extends VendingMachine{
      * This method adds a given item to the inventory.
      *
      * @param item the item to be added to the inventory.
+     * @param price the price of the item
      * @return true if the item was successfully added, false otherwise.
      */
     public boolean addToInventory(Item item, int price) {
@@ -247,6 +249,11 @@ public class SpecialVendingMachine extends VendingMachine{
         return b;
     }
 
+    /**
+     * This method shows the Inventory in index.
+     *
+     * @return the showing of the Inventory in index.
+     */
     public ArrayList<String> getIndexInventoryInfo() {
         ArrayList<String> info = new ArrayList<String>();
 
@@ -260,16 +267,16 @@ public class SpecialVendingMachine extends VendingMachine{
     /**
      * This method returns price and instance of the item to be removed.
      *
-     * @param choice the of the item index + 1
+     * @param choice the item index + 1
      * @return price and instance of the item
      */
     public ArrayList<Object> releaseItem(int choice) {
         ArrayList<Object> item = new ArrayList<Object>(2);
 
-        item.add(itemInventory.remove((int) choice));
-        item.add(itemPriceList.remove((int) choice));
+        item.add(itemInventory.remove((int) choice - 1));
+        item.add(itemPriceList.remove((int) choice - 1));
 
-        return item;    //index 0 is the item instace, 1 is the price
+        return item;    //index 0 is the item instance, 1 is the price
     }
 
     /**
@@ -302,7 +309,7 @@ public class SpecialVendingMachine extends VendingMachine{
                 nameCount.add(str);
             }
         }
-        inventory.add("- - - Special Inventory" + NAME + " - - -\n");
+        inventory.add("- - - Special Inventory " + NAME + " - - -\n");
         for (int i = 0; i < nameCount.size(); i++) {
             inventory.add(nameCount.get(i) + ": " + nCount[i] + "\n");
         }

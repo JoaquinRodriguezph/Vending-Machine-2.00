@@ -14,7 +14,7 @@ public class VendingMachine {
      * @param maxSlots the max amount of Slots.
      * @param slotMaxItems the max amount of items in each Slot.
      */
-    public VendingMachine(String name, int maxSlots, int slotMaxItems) throws IllegalArgumentException, IndexOutOfBoundsException{
+    public VendingMachine(String name, int maxSlots, int slotMaxItems) throws IllegalArgumentException, IndexOutOfBoundsException {
         if (maxSlots < 8)
             throw new IllegalArgumentException("Number of slots in the vending machine shall be 8 or more");
         this.NAME = name;
