@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * The VendingMachine class contains all the methods and
@@ -46,10 +47,11 @@ public class VendingMachine {
         int[] tCount = new int[transactionLog.size()];
         boolean b;
 
+
         for (String temp1 : transactionLog) {
             b = false;
             for (int i = 0; i < stringFind.length; i++) {
-                if (temp1.equalsIgnoreCase(stringFind[i])) {
+                if (temp1.equalsIgnoreCase(stringFind[i]) && stringFind[i] != null) {
                     tCount[i] += 1;
                     b = true;
                     break;
@@ -58,7 +60,7 @@ public class VendingMachine {
             }
             if (!b) {
                 for (int i = 0; i < stringFind.length; i++) {
-                    if (stringFind[i].isEmpty()) {
+                    if (stringFind[i] == null || stringFind[i].isEmpty()) {
                         stringFind[i] = temp1;
                         tCount[i] += 1;
                         break;
@@ -67,13 +69,13 @@ public class VendingMachine {
             }
         }
 
+
+
         for (int i = 0; i < tCount.length; i++) {
-            if (stringFind[i].isEmpty())
-                break;
-            else {
+            if (!(stringFind[i] == null || stringFind[i].isEmpty())) {
                 int price = Integer.parseInt(stringFind[i].substring(stringFind[i].indexOf('-') + 1));
                 int totalItem = tCount[i] * price;
-                logs.add(stringFind[i].substring(0, stringFind[i].indexOf('-')) + ": " + tCount[i] + " * " + price + " = " + totalItem + " PHP");
+                logs.add(stringFind[i].substring(0, stringFind[i].indexOf('-')) + ": " + tCount[i] + " * " + price + " = " + totalItem + " PHP\n");
             }
         }
 
@@ -98,7 +100,7 @@ public class VendingMachine {
         ArrayList<String> inventory = new ArrayList<String>();
         for (ItemSlot slot : itemSlots) {
             if (slot.isAvailable())
-                inventory.add(slot.getItemName() + ": " + slot.getStock());
+                inventory.add(slot.getItemName() + ": " + slot.getStock() + "\n");
         }
 
         return inventory;
@@ -146,7 +148,8 @@ public class VendingMachine {
     }
 
     /**
-     * This method retrieves and dispenses the item given an item slot.
+     * This method retrieves and dispenses the item given an item slot,
+     * while also adding that transaction to the vending machine.
      *
      * @param slot the item slot the item will be retrieved from
      * @return the item from the given item slot
@@ -174,90 +177,169 @@ public class VendingMachine {
      *
      * @param payment the payment in denominations
      * @param cost the price of the item transaction
-     * @return an ArrayList of Money in change, and null if a change cannot be given
+     * @return an ArrayList of Money in change, and return payment if a change cannot be given
      */
     public ArrayList<Money> getChange(ArrayList<Money> payment, int cost) {
         ArrayList<Money> change = new ArrayList<Money>();
-        ArrayList<Money> tempMoney = new ArrayList<Money>(money);
-        tempMoney.addAll(payment);
-        int[] denominations = new int[9];
         int total = 0;
+        int nChange;
+        boolean b = true;
+        money.addAll(payment);
 
         //getting the payment value in terms of int
-        for (Money denom : payment) {
-            total += denom.getValue();
+        for (Money denomination : payment) {
+            total += denomination.getValue();
         }
 
-        //putting the denominations in a simple array for better code readability
-        for (Money denom : tempMoney) {
-            switch (denom.getValue()) {
-                case 1 -> denominations[0]++;
-                case 5 -> denominations[1]++;
-                case 10 -> denominations[2]++;
-                case 20 -> denominations[3]++;
-                case 50 -> denominations[4]++;
-                case 100 -> denominations[5]++;
-                case 200 -> denominations[6]++;
-                case 500 -> denominations[7]++;
-                case 1000 -> denominations[8]++;
+        nChange = total - cost;
+
+        while (nChange >= 1000 && b) {
+            b = false;
+            for (Money denomination : money) {
+                if (denomination.getValue() == 1000) {
+                    b = true;
+                    change.add(denomination);
+                    nChange -= 1000;
+                    money.remove(denomination);
+                    break;
+                }
             }
         }
 
-        while (denominations[8] > 0 && total >= 1000) {
-            denominations[8]--;
-            total -= 1000;
+        b = true;
+
+        while (nChange >= 500 && b) {
+            b = false;
+            for (Money denomination : money) {
+                if (denomination.getValue() == 500) {
+                    b = true;
+                    change.add(denomination);
+                    nChange -= 500;
+                    money.remove(denomination);
+                    break;
+                }
+            }
         }
 
-        while (denominations[7] > 0 && total >= 500) {
-            denominations[7]--;
-            total -= 500;
+        b = true;
+
+        while (nChange >= 200 && b) {
+            b = false;
+            for (Money denomination : money) {
+                if (denomination.getValue() == 200) {
+                    b = true;
+                    change.add(denomination);
+                    nChange -= 200;
+                    money.remove(denomination);
+                    break;
+                }
+            }
         }
 
-        while (denominations[6] > 0 && total >= 200) {
-            denominations[6]--;
-            total -= 200;
+        b = true;
+
+        while (nChange >= 100 && b) {
+            b = false;
+            for (Money denomination : money) {
+                if (denomination.getValue() == 100) {
+                    b = true;
+                    change.add(denomination);
+                    nChange -= 100;
+                    money.remove(denomination);
+                    break;
+                }
+            }
         }
 
-        while (denominations[5] > 0 && total >= 100) {
-            denominations[5]--;
-            total -= 100;
+        b = true;
+
+        while (nChange >= 50 && b) {
+            b = false;
+            for (Money denomination : money) {
+                if (denomination.getValue() == 50) {
+                    b = true;
+                    change.add(denomination);
+                    nChange -= 50;
+                    money.remove(denomination);
+                    break;
+                }
+            }
         }
 
-        while (denominations[4] > 0 && total >= 50) {
-            denominations[4]--;
-            total -= 50;
+        b = true;
+
+        while (nChange >= 20 && b) {
+            b = false;
+            for (Money denomination : money) {
+                if (denomination.getValue() == 20) {
+                    b = true;
+                    change.add(denomination);
+                    nChange -= 20;
+                    money.remove(denomination);
+                    break;
+                }
+            }
         }
 
-        while (denominations[3] > 0 && total >= 20) {
-            denominations[3]--;
-            total -= 20;
+        b = true;
+
+        while (nChange >= 10 && b) {
+            b = false;
+            for (Money denomination : money) {
+                if (denomination.getValue() == 10) {
+                    b = true;
+                    change.add(denomination);
+                    nChange -= 10;
+                    money.remove(denomination);
+                    break;
+                }
+            }
         }
 
-        while (denominations[2] > 0 && total >= 10) {
-            denominations[2]--;
-            total -= 10;
+        b = true;
+
+        while (nChange >= 5 && b) {
+            b = false;
+            for (Money denomination : money) {
+                if (denomination.getValue() == 5) {
+                    b = true;
+                    change.add(denomination);
+                    nChange -= 5;
+                    money.remove(denomination);
+                    break;
+                }
+            }
         }
 
-        while (denominations[1] > 0 && total >= 5) {
-            denominations[1]--;
-            total -= 5;
+        b = true;
+
+        while (nChange >= 1 && b) {
+            b = false;
+            for (Money denomination : money) {
+                if (denomination.getValue() == 1) {
+                    b = true;
+                    change.add(denomination);
+                    nChange -= 1;
+                    money.remove(denomination);
+                    break;
+                }
+            }
         }
 
-        while (denominations[0] > 0 && total >= 1) {
-            denominations[0]--;
-            total -= 1;
-        }
 
-        if (total == 0) {   //total = 0 meaning there is change
-            money = tempMoney;
+
+        if (nChange == 0) {   //nChange = 0 meaning there is change
             return change;
         }
-        return null;
+
+        money.addAll(change);
+        money.removeAll(payment);
+        return payment;
     }
 
 
     /**
-     * This method updates the starting inventory.
+     * This method collects the money in the vending machine.
      */
     public ArrayList<Money> collectMoney() {
         ArrayList<Money> temp = new ArrayList<Money>(money);
@@ -273,6 +355,62 @@ public class VendingMachine {
     public void addMoney(Money money) {
         this.money.add(money);
     }
+
+    /**
+     * This method returns an ArrayList of Strings to so show the money in the vending machine.
+     *
+     * @return ArrayList of String of denominations in the vending machine.
+     */
+    public ArrayList<String> showMoney() {
+        ArrayList<String> show = new ArrayList<String>();
+        HashMap<Integer, ArrayList<Money>> denominations = getDenominations(money);
+
+        show.add("Money in " + NAME + "\n");
+        show.add("------------------------" + "\n");
+        show.add("1 PHP: " + denominations.get(1).size() + "\n");
+        show.add("5 PHP: " + denominations.get(5).size() + "\n");
+        show.add("10 PHP: " + denominations.get(10).size() + "\n");
+        show.add("20 PHP: " + denominations.get(20).size() + "\n");
+        show.add("50 PHP: " + denominations.get(50).size() + "\n");
+        show.add("100 PHP: " + denominations.get(100).size() + "\n");
+        show.add("200 PHP: " + denominations.get(200).size() + "\n");
+        show.add("500 PHP: " + denominations.get(500).size() + "\n");
+        show.add("1000 PHP: " + denominations.get(1000).size() + "\n");
+
+        return show;
+    }
+
+
+    /**
+     * This is a helper method that returns a HashMap that contains the value of denominations as key and ArrayList of Money as values.
+     *
+     * @return HashMap that contains the value of denominations as key and ArrayList of Money as values.
+     */
+    private HashMap<Integer, ArrayList<Money>> getDenominations(ArrayList<Money> given) {
+
+        HashMap<Integer, ArrayList<Money>> denominations = new HashMap<Integer, ArrayList<Money>>();
+
+        denominations.put(1, new ArrayList<Money>());
+        denominations.put(5, new ArrayList<Money>());
+        denominations.put(10, new ArrayList<Money>());
+        denominations.put(20, new ArrayList<Money>());
+        denominations.put(50, new ArrayList<Money>());
+        denominations.put(100, new ArrayList<Money>());
+        denominations.put(200, new ArrayList<Money>());
+        denominations.put(500, new ArrayList<Money>());
+        denominations.put(1000, new ArrayList<Money>());
+
+
+        for (Money denom : given) {
+            if (denominations.containsKey(denom.getValue())) {
+                denominations.get(denom.getValue()).add(denom);
+            }
+        }
+
+        return denominations;
+    }
+
+
 
     /**
      * The name of the Vending Machine
@@ -303,11 +441,11 @@ public class VendingMachine {
 
 /*
 
-    */
+ */
 /**
-     * This method gets the total amount of money in the vending machine.
-     * @return the total amount of money in the vending machine.
-     *//*
+ * This method gets the total amount of money in the vending machine.
+ * @return the total amount of money in the vending machine.
+ *//*
 
     public Money getMoney() {
         return money;
@@ -315,9 +453,9 @@ public class VendingMachine {
 
     */
 /**
-     * This method gets the list of Item Slots in the vending machine.
-     * @return list of item slots in the vending machine.
-     *//*
+ * This method gets the list of Item Slots in the vending machine.
+ * @return list of item slots in the vending machine.
+ *//*
 
     public ItemSlot[] getItemSlots() {
         return itemSlots;
@@ -325,9 +463,9 @@ public class VendingMachine {
 
     */
 /**
-     * This method gets the name of the vending machine.
-     * @return the name of the vending machine.
-     *//*
+ * This method gets the name of the vending machine.
+ * @return the name of the vending machine.
+ *//*
 
     public String getName() {
         return NAME;
@@ -341,10 +479,10 @@ public class VendingMachine {
 
     */
 /**
-     * This method checks if the amount of VendingStock is valid.
-     * @param itemStock itemStock to be validated.
-     * @return true if itemstock is valid and false if not.
-     *//*
+ * This method checks if the amount of VendingStock is valid.
+ * @param itemStock itemStock to be validated.
+ * @return true if itemstock is valid and false if not.
+ *//*
 
     public boolean isValidItem(ItemStock itemStock) {
         boolean b = true;
@@ -358,10 +496,10 @@ public class VendingMachine {
 
     */
 /**
-     * This method checks if the itemSlot is valid.
-     * @param slot itemSlot to be validated.
-     * @return true if itemSlot is valid and false if not.
-     *//*
+ * This method checks if the itemSlot is valid.
+ * @param slot itemSlot to be validated.
+ * @return true if itemSlot is valid and false if not.
+ *//*
 
     public boolean isValidSlot(int slot) {
         if (slot > 0 && slot <= itemSlots.length)
@@ -382,10 +520,10 @@ public class VendingMachine {
 
     */
 /**
-     * This method sets the SRP of an item slot.
-     * @param slot the item slot to be set.
-     * @return true if successful and false if not.
-     *//*
+ * This method sets the SRP of an item slot.
+ * @param slot the item slot to be set.
+ * @return true if successful and false if not.
+ *//*
 
     public boolean setSRP(int slot) {
         boolean b = false;
@@ -401,8 +539,8 @@ public class VendingMachine {
 
     */
 /**
-     * This method sets all prices of existing items to its SRP.
-     *//*
+ * This method sets all prices of existing items to its SRP.
+ *//*
 
     public void setAllSRP() {
         for (int slot = 1; slot <= itemSlots.length; slot++) {
@@ -427,9 +565,9 @@ public class VendingMachine {
 
     */
 /**
-     * This method puts money into the following:
-     * @param change the Money to be replenishing the vending machine change.
-     *//*
+ * This method puts money into the following:
+ * @param change the Money to be replenishing the vending machine change.
+ *//*
 
     public void replenishMoney(Money change) {
         money.addMoney(change);
@@ -438,9 +576,9 @@ public class VendingMachine {
 
     */
 /**
-     * This determines validity of selected slot.
-     * @return true if valid, false otherwise
-     *//*
+ * This determines validity of selected slot.
+ * @return true if valid, false otherwise
+ *//*
 
     public boolean selectSlot(int slot) {
         if (slot < 1 || slot > itemSlots.length)
@@ -490,8 +628,8 @@ public class VendingMachine {
 
     */
 /**
-     * This method clears the transaction logs.
-     *//*
+ * This method clears the transaction logs.
+ *//*
 
     public void clearLog() {
         for (int i = 0; i < transactionLog.length; i++) {
@@ -501,8 +639,8 @@ public class VendingMachine {
 
     */
 /**
-     * This method makes a new vending machine inventory.
-     *//*
+ * This method makes a new vending machine inventory.
+ *//*
 
     public void newStartingInventory() {
         startingInventory = null;
