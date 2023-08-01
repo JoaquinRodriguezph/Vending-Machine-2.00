@@ -270,7 +270,7 @@ public class VendingMachine {
      *
      * @param money the given money denomination to be added to the vending machine.
      */
-    public void replenishMoney(Money money) {
+    public void addMoney(Money money) {
         this.money.add(money);
     }
 
