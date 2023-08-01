@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.Iterator;
 
 public class FactoryController {
 
@@ -23,14 +21,6 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Customize Stocks");
-            }
-        });
-
-        this.factoryView.setShowInventoryBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Inventory");
-                factoryModel.displayItemInventory(factoryModel.getMyInventory(), factoryView.getShowInventoryText());
             }
         });
 
@@ -172,17 +162,14 @@ public class FactoryController {
             }
         });
 
-        /*
         this.factoryView.setCreateStockBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String name = factoryView.getItemNameTf();
-                int srp = Integer.parseInt(factoryView.getSRPtf());
                 int calories = Integer.parseInt(factoryView.getCaloriesTf());
-                int stocks = Integer.parseInt(factoryView.getStocksTf());
-                factoryModel.createItemStock(name, srp, calories, stocks, errorFrame);
+                factoryModel.createItem(name, calories, errorFrame);
             }
-        });*/
+        });
 
         this.factoryView.setAddItemBtnListener(new ActionListener() {
             @Override
@@ -195,6 +182,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Items");
+                factoryModel.displayItems(factoryView.getShowItemsTa());
             }
         });
 

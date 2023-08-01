@@ -20,7 +20,7 @@ public class FactoryView {
     private JPanel cardPanel;
 
     //Main Menu Panels
-    private JPanel startProgramPanel, showInventoryPanel, customizeVMPanel, customizeStocksPanel, pickVMPanel;
+    private JPanel startProgramPanel, customizeVMPanel, customizeStocksPanel, pickVMPanel;
 
     //Main Program Components
     private JPanel buyFromVmPanel, doMaintenancePanel, selectWalletPanel, showCurrentWalletPanel;
@@ -84,7 +84,19 @@ public class FactoryView {
 
     private JButton createStockBtn;
     private JTextField itemNameTf, caloriesTf, stocksTf, SRPtf, addItemTf, numItemTf, showItemTf;
-    private JTextArea itemsTa, currentWalletTa, showItemsTa, walletTa, detailsTa, showVMTa, vmTa; //TextArea for showing the items
+    private JTextArea itemsTa;
+    private JTextArea currentWalletTa;
+
+    public JTextArea getShowItemsTa() {
+        return showItemsTa;
+    }
+
+    private JTextArea showItemsTa;
+    private JTextArea walletTa;
+    private JTextArea detailsTa;
+    private JTextArea showVMTa;
+    private JTextArea vmTa; //TextArea for showing the items
+
 
     public String getItemNameTf() {
         return this.itemNameTf.getText();
@@ -114,7 +126,7 @@ public class FactoryView {
     private JButton backBtn1, backBtn2, backBtn3, backBtn4, backBtn5, backBtn6, backBtn7, backBtn8;
 
     //Buttons for the Main Menu
-    private JButton startProgramBtn, showInventoryBtn, customizeVmBtn, customizeMoneyBtn, customizeStocksBtn;
+    private JButton startProgramBtn, customizeVmBtn, customizeMoneyBtn, customizeStocksBtn;
 
     //Buttons for the Main Program
 
@@ -129,18 +141,13 @@ public class FactoryView {
     //Buttons for the Customize Item Stock Menu
 
     private JButton createItemBtn, addItemBtn, showItemBtn;
-
-    public JTextArea getShowInventoryText() {
-        return showInventoryText;
-    }
     private JScrollPane scrollPane;
-    private JTextArea showInventoryText;
     private ArrayList<JButton> btnList, backBtnList, mainProgramBtnList, stocksBtnList, vendingMachineBtnList;
 
     public FactoryView() {
         this.btnPanel = new JPanel();
         this.btnPanel.setLayout(cardLayout);
-        btnPanel.setLayout(new GridLayout(10,1));
+        btnPanel.setLayout(new GridLayout(3,1));
         this.cardPanel = new JPanel();
         this.cardLayout = new CardLayout();
         this.cardPanel.setLayout(cardLayout);
@@ -181,7 +188,6 @@ public class FactoryView {
         setCreateItemsPanel();
         setAddItemsPanel();
         setShowItemsPanel();
-        setShowInventoryPanel();
         //Customize Vending Machine Panel
         setCreateVMPanel();
         setShowDetailsPanel();
@@ -442,8 +448,6 @@ public class FactoryView {
         btnList.add(this.customizeVmBtn);
         this.customizeStocksBtn = new JButton("Customize Item");
         btnList.add(this.customizeStocksBtn);
-        this.showInventoryBtn = new JButton("Show Inventory");
-        btnList.add(this.showInventoryBtn);
 
 
         for (JButton button : btnList){
@@ -456,7 +460,6 @@ public class FactoryView {
         //Main Menu Panels
         cardPanel.add(btnPanel, "Main Menu");
         cardPanel.add(startProgramPanel, "Main Program");
-        cardPanel.add(showInventoryPanel, "Show Inventory");
         cardPanel.add(customizeVMPanel, "Customize Vending Machine");
         cardPanel.add(customizeStocksPanel, "Customize Stocks");
 
@@ -922,17 +925,13 @@ public class FactoryView {
         gbc.gridx = 0; gbc.gridy = 0; createItemPanel.add(itemNamelbl, gbc);
         this.calorieslbl = new JLabel("Calories: ");
         gbc.gridx = 0; gbc.gridy = 1; createItemPanel.add(calorieslbl, gbc);
-        this.stockslbl = new JLabel("Stocks: ");
-        gbc.gridx = 0; gbc.gridy = 2; createItemPanel.add(stockslbl, gbc);
         this.itemNameTf = new JTextField(10);
         gbc.gridx = 1; gbc.gridy = 0; createItemPanel.add(itemNameTf, gbc);
         this.caloriesTf = new JTextField(5);
         gbc.gridx = 1; gbc.gridy = 1; createItemPanel.add(caloriesTf, gbc);
-        this.stocksTf = new JTextField(5);
-        gbc.gridx = 1; gbc.gridy = 2; createItemPanel.add(stocksTf, gbc);
         this.createStockBtn = new JButton("Create Item");
-        gbc.gridx = 0; gbc.gridy = 3; createItemPanel.add(createStockBtn);
-        gbc.gridx = 1; gbc.gridy = 3; createItemPanel.add(backBtn6);
+        gbc.gridx = 0; gbc.gridy = 2; createItemPanel.add(createStockBtn);
+        gbc.gridx = 1; gbc.gridy = 2; createItemPanel.add(backBtn6);
         createItemPanel.setBackground(Color.getHSBColor(21, 79, 94));
     }
 
@@ -975,25 +974,11 @@ public class FactoryView {
             button.setVisible(true);
         }
     }
-    public void setShowInventoryPanel(){
-        this.showInventoryPanel = new JPanel(cardLayout);
-        showInventoryPanel.setLayout(new GridLayout(2,1));
-        showInventoryPanel.setBackground(Color.darkGray);
-        this.showInventoryText = new JTextArea();
-        this.showInventoryText.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(showInventoryText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        showInventoryPanel.add(scrollPane);
-        showInventoryPanel.add(backBtn4);
-
-    }
 
     //Setters for Main Menu Buttons
     public void setStartProgramBtn(ActionListener actionListener){this.startProgramBtn.addActionListener(actionListener);}
     public void setCustomizeVMBtnListener(ActionListener actionListener){this.customizeVmBtn.addActionListener(actionListener);}
     public void setCustomizeStocksBtnListener(ActionListener actionListener){this.customizeStocksBtn.addActionListener(actionListener);}
-
-    public void setShowInventoryBtnListener(ActionListener actionListener){this.showInventoryBtn.addActionListener(actionListener);}
 
     //Setters for Main Program Buttons
     public void setPickVMBtnListener(ActionListener actionListener){this.pickVMBtn.addActionListener(actionListener);}
