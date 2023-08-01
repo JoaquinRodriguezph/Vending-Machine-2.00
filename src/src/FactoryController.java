@@ -49,6 +49,13 @@ public class FactoryController {
             }
         });
 
+        this.factoryView.setBuyFromVmBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Buy from Vending Machine");
+            }
+        });
+
         this.factoryView.setDoMaintenanceBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

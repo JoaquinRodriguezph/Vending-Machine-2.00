@@ -31,6 +31,12 @@ public class FactoryView {
     private JLabel pickVMLbl; private JTextField pickVMTf; private JButton pickVMBtn, backBtn16;
     private JButton pickWalletBtn, backBtn12, backBtn13, backBtn14, backBtn15;
 
+    //Buying Components
+    private JButton jcomp1; private JButton jcomp2; private JButton jcomp3; private JTextArea jcomp4; private JButton jcomp5;
+    private JButton jcomp6; private JButton jcomp7; private JButton jcomp8; private JButton jcomp9; private JButton jcomp10;
+    private JPasswordField jcomp11; private JLabel jcomp12; private JButton jcomp13;
+    private JButton jcomp14; private JButton jcomp15; private JComboBox jcomp16;
+
     //Do Maintenance Components
 
     private JPanel restockPanel, changePricePanel, collectMoneyPanel, replenishChangePanel, showItemSlotsPanel;
@@ -203,7 +209,7 @@ public class FactoryView {
         this.backBtn19 = new JButton("Back"); this.backBtn20 = new JButton("Back"); this.backBtn21 = new JButton("Back"); this.backBtn22 = new JButton("Back");
         this.backBtn23 = new JButton("Back"); this.backBtn24 = new JButton("Back"); this.backBtn25 = new JButton("Back");
         this.backBtn26 = new JButton("Back"); this.backBtn27 = new JButton("Back"); this.backBtn28 = new JButton("Back");
-        this.backBtn29 = new JButton("Back"); this.backBtn30 = new JButton("Back");
+        this.backBtn29 = new JButton("Back"); this.backBtn30 = new JButton("Back"); this.jcomp14 = new JButton("Back");
 
 
         backBtnList.add(this.backBtn1);backBtnList.add(this.backBtn2);backBtnList.add(this.backBtn3);
@@ -216,6 +222,7 @@ public class FactoryView {
         backBtnList.add(this.backBtn22); backBtnList.add(this.backBtn23); backBtnList.add(this.backBtn24);
         backBtnList.add(this.backBtn25); backBtnList.add(this.backBtn26); backBtnList.add(this.backBtn27);
         backBtnList.add(this.backBtn28); backBtnList.add(this.backBtn29); backBtnList.add(this.backBtn30);
+        backBtnList.add(this.jcomp14);
         backBtn1.addActionListener(new ActionListener() { //Back button for Main Program to Main Menu
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -417,6 +424,13 @@ public class FactoryView {
                 cardLayout.show(cardPanel,"Change Price");
             }
         });
+
+        jcomp14.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Main Program");
+            }
+        });
     }
 
     public void setButtons(){
@@ -543,6 +557,47 @@ public class FactoryView {
     //Main Program Panels
     public void setBuyFromVmPanel(){
         this.buyFromVmPanel = new JPanel(cardLayout);
+        buyFromVmPanel.setLayout(null);
+        String[] jcomp16Items = {"Item 1", "Item 2", "Item 3"};
+
+        //construct components
+        jcomp1 = new JButton ("1 Peso");
+        jcomp2 = new JButton ("5 Peso");
+        jcomp3 = new JButton ("10 Peso");
+        jcomp4 = new JTextArea (5, 5);
+        jcomp5 = new JButton ("20 Peso");
+        jcomp6 = new JButton ("50 Peso");
+        jcomp7 = new JButton ("100 Peso");
+        jcomp8 = new JButton ("200 Peso");
+        jcomp9 = new JButton ("500 Peso");
+        jcomp10 = new JButton ("1000 Peso");
+        jcomp11 = new JPasswordField (5);
+        jcomp12 = new JLabel ("Enter item slot:");
+        jcomp13 = new JButton ("Enter");
+        jcomp15 = new JButton ("Buy");
+        jcomp16 = new JComboBox (jcomp16Items);
+
+        buyFromVmPanel.add (jcomp1); buyFromVmPanel.add(jcomp2); buyFromVmPanel.add(jcomp3); buyFromVmPanel.add(jcomp4);
+        buyFromVmPanel.add (jcomp5); buyFromVmPanel.add(jcomp6); buyFromVmPanel.add(jcomp7); buyFromVmPanel.add(jcomp8);
+        buyFromVmPanel.add (jcomp9); buyFromVmPanel.add(jcomp10); buyFromVmPanel.add(jcomp11); buyFromVmPanel.add(jcomp12);
+        buyFromVmPanel.add (jcomp13); buyFromVmPanel.add(jcomp14); buyFromVmPanel.add(jcomp15); buyFromVmPanel.add(jcomp16);
+
+        jcomp1.setBounds (30, 285, 80, 20);
+        jcomp2.setBounds (115, 285, 80, 20);
+        jcomp3.setBounds (205, 285, 80, 20);
+        jcomp4.setBounds (15, 5, 560, 225);
+        jcomp5.setBounds (295, 285, 90, 20);
+        jcomp6.setBounds (395, 285, 100, 25);
+        jcomp7.setBounds (25, 320, 100, 25);
+        jcomp8.setBounds (135, 320, 100, 25);
+        jcomp9.setBounds (245, 320, 100, 25);
+        jcomp10.setBounds (360, 320, 100, 25);
+        jcomp11.setBounds (145, 245, 100, 25);
+        jcomp12.setBounds (40, 245, 100, 25);
+        jcomp13.setBounds (255, 245, 100, 25);
+        jcomp14.setBounds (465, 245, 100, 25);
+        jcomp15.setBounds (470, 320, 100, 25);
+        jcomp16.setBounds (360, 245, 100, 25);
     }
 
     public void setPickVMPanel(){
