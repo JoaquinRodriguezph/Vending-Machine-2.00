@@ -1,7 +1,5 @@
 import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
 
 public class FactoryModel {
     private ArrayList<VendingMachine> vendingMachines;
@@ -13,43 +11,46 @@ public class FactoryModel {
     }
 
     private ArrayList<Item> myInventory;
-    public FactoryModel(){
+
+    public FactoryModel() {
         this.vendingMachines = new ArrayList<VendingMachine>();
-        this.myInventory =  new ArrayList<Item>();
+        this.myInventory = new ArrayList<Item>();
     }
 
-    public void displayItemInventory(ArrayList<Item> items, JTextArea textArea) {
-        ArrayList<Item> itemSets = new ArrayList<Item>();
-        ArrayList<Integer> itemQuantity = new ArrayList<Integer>();
-
-        //display the inventory of what the user have bought
-
-        for (Item item : items) {   //utilizing two arrayList by counting the number of repeated instances
-            if (!itemSets.contains(item)) {
-                itemSets.add(item);
-                itemQuantity.add(1);
-            }
-            else {
-                itemQuantity.set(itemSets.indexOf(item), itemQuantity.get(itemSets.indexOf(item)) + 1) ;
-            }
+    public void createItem(String name, int calories, JFrame frame) {
+        ArrayList<Item> itemStocks = new ArrayList<Item>();
+        if (name == null) {
+            JOptionPane.showMessageDialog(frame, "Name cannot be empty",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
-        Iterator<Item> item = itemSets.iterator();
-        Iterator<Integer> quantity = itemQuantity.iterator();
-
-        textArea.append("Total Items Bought: " + myInventory.size() + "\n");
-
-
-        if (!(itemSets.size() == 0 || itemQuantity.size() == 0)) {  //checking if the user have bought anything
-            while (item.hasNext() && quantity.hasNext()) {  //displaying the item and quantity using an iterator
-                Item it = item.next();
-                Integer in = quantity.next();
-                if (it != null && in != null)
-                    textArea.append(it.getName() + ": " + in);
-            }
+        if (calories < 0 || calories == 0) {
+            JOptionPane.showMessageDialog(frame, "Calories should be >= 0",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
-        else
-            textArea.append("No Items Has Been Bought");
+
+        JOptionPane.showMessageDialog(frame, "Success!",
+                "Error", JOptionPane.ERROR_MESSAGE);
+
+        try{
+            itemStocks.add(new Item(name, calories));  //itemStocks Arraylist adds the new itemStocks
+            this.myInventory.addAll(itemStocks);
+            return;
+        }
+        catch (IllegalArgumentException e){
+            JOptionPane.showMessageDialog(frame, "Calories should be >= 0",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
     }
 
+    public void displayItems(JTextArea ta){
+        ta.append("Name ||  Calories\n");
+        for (Item item : myInventory) {
+            ta.append(item.getName() + " " + item.getCalories() + "\n");
+        }
+    }
 }
