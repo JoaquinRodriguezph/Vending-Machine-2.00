@@ -28,7 +28,13 @@ public class FactoryView {
     private JButton backBtn27;//buyFromVmBackBtn
 
     private JLabel pickWalletLbl; private JTextField pickWalletTf;
-    private JLabel pickVMLbl; private JTextField pickVMTf; private JButton pickVMBtn, backBtn16;
+    private JLabel pickVMLbl, pickVmLbl2;
+
+    public String getPickVMTf() {
+        return pickVMTf.getText();
+    }
+
+    private JTextField pickVMTf; private JButton pickVMBtn, backBtn16;
     private JButton pickWalletBtn, backBtn12, backBtn13, backBtn14, backBtn15;
 
     //Buying Components
@@ -86,7 +92,13 @@ public class FactoryView {
 
     private JTextField nameVmTf, numSlotsTf, maxItemsTf;
 
-    private JLabel pickVmLbl; private JTextField pickVmTf;
+    private JLabel pickVendingMachineLbl;
+
+    public String getPickVmTf2() {
+        return pickVmTf2.getText();
+    }
+
+    private JTextField pickVmTf2;
     private JButton createVmBtn, createVMBtn2, pickBtn, backBtn9, backBtn10, backBtn11;
 
     //Customize Item Stock Components
@@ -121,6 +133,11 @@ public class FactoryView {
 
     private JTextArea showItemsTa;
     private JTextArea walletTa;
+
+    public JTextArea getDetailsTa() {
+        return detailsTa;
+    }
+
     private JTextArea detailsTa;
 
     public JTextArea getShowVMTa() {
@@ -128,6 +145,12 @@ public class FactoryView {
     }
 
     private JTextArea showVMTa;
+
+
+    public JTextArea getVmTa() {
+        return vmTa;
+    }
+
     private JTextArea vmTa; //TextArea for showing the items
 
 
@@ -934,13 +957,13 @@ public class FactoryView {
         scrollPane.setPreferredSize(new Dimension(300, 200));
         this.showDetailsPanel.add(scrollPane);
         this.pickBtn = new JButton("Pick");
-        this.pickVmLbl = new JLabel("Pick Vending Machine:");
-        this.pickVmLbl.setHorizontalAlignment(SwingConstants.CENTER);
-        this.pickVmTf = new JTextField();
-        this.pickVmTf.setHorizontalAlignment(SwingConstants.CENTER);
-        this.pickVmTf.setColumns(10);
-        this.showDetailsPanel.add(pickVmLbl);
-        this.showDetailsPanel.add(pickVmTf);
+        this.pickVendingMachineLbl = new JLabel("Pick Vending Machine:");
+        this.pickVendingMachineLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        this.pickVmTf2 = new JTextField();
+        this.pickVmTf2.setHorizontalAlignment(SwingConstants.CENTER);
+        this.pickVmTf2.setColumns(10);
+        this.showDetailsPanel.add(pickVendingMachineLbl);
+        this.showDetailsPanel.add(pickVmTf2);
         this.showDetailsPanel.add(pickBtn);
         this.showDetailsPanel.add(backBtn10, BorderLayout.SOUTH);
         showDetailsPanel.setBackground(Color.pink);
@@ -1033,7 +1056,7 @@ public class FactoryView {
     }
 
     public void clearAllTextAreas(){
-        this.jcomp14.setText(""); this.editPriceTa.setText(""); this.restockTa.setText(""); this.displaySlotsTa.setText("");
+        this.jcomp4.setText(""); this.editPriceTa.setText(""); this.restockTa.setText(""); this.displaySlotsTa.setText("");
         this.setToSRPTa.setText(""); this.itemStocksTa.setText(""); this.inventoriesTa.setText(""); this.transactionsTa.setText("");
         this.moneyTa.setText(""); this.itemSlotsTa.setText(""); this.replenishChangeTa.setText(""); this.showItemsTa.setText("");
         this.walletTa.setText(""); this.detailsTa.setText(""); this.showVMTa.setText(""); this.vmTa.setText(""); this.itemsTa.setText("");
@@ -1074,6 +1097,7 @@ public class FactoryView {
     public void setCreateVMBtnListener(ActionListener actionListener){this.createVMBtn.addActionListener(actionListener);}
     public void setCreateVMBtn2Listener(ActionListener actionListener){this.createVMBtn2.addActionListener(actionListener);}
     public void setShowDetailsBtnListener(ActionListener actionListener){this.showDetailsBtn.addActionListener(actionListener);}
+    public void setPickBtnListener(ActionListener actionListener){this.pickBtn.addActionListener(actionListener);}
     public void setShowVMBtnListener(ActionListener actionListener){this.showVMBtn.addActionListener(actionListener);}
 
     //Setter for Item Stock Buttons
@@ -1082,6 +1106,7 @@ public class FactoryView {
     public void setCreateStockBtnListener(ActionListener actionListener){this.createStockBtn.addActionListener(actionListener);}
 
     public void setSelectItemtoAddBtnListener(ActionListener actionListener){this.selectItemtoAddBtn.addActionListener(actionListener);}
+
     public void setAddItemBtn2Listener(ActionListener actionListener){this.addItemBtn2.addActionListener(actionListener);}
     public void setAddItemBtnListener(ActionListener actionListener){this.addItemBtn.addActionListener(actionListener);}
     public void setShowItemsBtnListener(ActionListener actionListener){this.showItemBtn.addActionListener(actionListener);}
