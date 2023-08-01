@@ -1,5 +1,5 @@
 /**
- * This class represents an vending machine slot item with a name and calories.
+ * This class represents a vending machine slot item with a name and calories.
  */
 public class VendItem extends Item {
     /**

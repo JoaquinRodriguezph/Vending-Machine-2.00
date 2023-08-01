@@ -124,6 +124,25 @@ public class VendingMachine {
         return itemSlots[0].getMax();
     }
 
+    public ArrayList<String> getSlotInfo() {
+        ArrayList<String> slotInfo = new ArrayList<String>();
+
+        slotInfo.add("-------- Vending Machine " + NAME + "--------\n");
+        slotInfo.add("Slot - Cost - Availability\n");
+        for (int i = 0; i < itemSlots.length; i++) {
+            String availability;
+            if (itemSlots[i].isAvailable())
+                availability = "Available";
+            else
+                availability = "Not Available";
+
+            slotInfo.add("[" + (i + 1) + "] - " + itemSlots[i].getPrice() + " - " + availability + "\n");
+
+        }
+
+        return slotInfo;
+    }
+
 
     /**
      * This method sets a new price given a slot number.
@@ -397,9 +416,19 @@ public class VendingMachine {
         return show;
     }
 
+    /**
+     * This is a method that returns whether a slot of the vending machine have available item for purchase.
+     *
+     * @return true if there are available items, false otherwise.
+     */
+    public boolean isSlotAvailable(int slot) {
+        return itemSlots[slot - 1].isAvailable();
+    }
+
 
     /**
-     * This is a helper method that returns a HashMap that contains the value of denominations as key and ArrayList of Money as values.
+     * This is a helper method that returns a HashMap that contains the value of denominations as key and ArrayList of
+     * Money as values.
      *
      * @return HashMap that contains the value of denominations as key and ArrayList of Money as values.
      */

@@ -1,4 +1,10 @@
 import java.util.ArrayList;
+
+/**
+ * The SpecialVendingMachine class is an extension of VendingMachine
+ * class (Regular Vending Machine), which contains all the methods and
+ * attributes and some additional features that would make Sisig Combo meals
+ */
 public class SpecialVendingMachine extends VendingMachine{
 
     /**
