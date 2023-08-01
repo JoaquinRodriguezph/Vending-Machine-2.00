@@ -80,10 +80,15 @@ public class FactoryView {
     //Customize Item Stock Components
     private JPanel createItemPanel, addItemPanel, showItemsPanel;
 
-    private JLabel itemNamelbl, calorieslbl, stockslbl, SRPlbl, itemNumberlbl, addItemlbl;
+    private JLabel itemNamelbl, calorieslbl, SRPlbl, itemNumberlbl, addItemlbl;
 
-    private JButton createStockBtn;
+    private JButton createStockBtn, addItemBtn2;
     private JTextField itemNameTf, caloriesTf, stocksTf, SRPtf, addItemTf, numItemTf, showItemTf;
+
+    public JTextArea getItemsTa() {
+        return itemsTa;
+    }
+
     private JTextArea itemsTa;
     private JTextArea currentWalletTa;
 
@@ -140,10 +145,20 @@ public class FactoryView {
 
     //Buttons for the Customize Item Stock Menu
 
-    private JButton createItemBtn, addItemBtn, showItemBtn;
+    private JButton createItemBtn, addItemBtn, showItemBtn, selectItemtoAddBtn;
+    private JLabel selectItemtoAddLbl, addItemLbl;
+
+    public String getSelectItemtoAddTf() {
+        return selectItemtoAddTf.getText();
+    }
+
+    private JTextField selectItemtoAddTf;
     private JScrollPane scrollPane;
     private ArrayList<JButton> btnList, backBtnList, mainProgramBtnList, stocksBtnList, vendingMachineBtnList;
 
+    /**
+     * This method is the constructor for the Factory View Class.
+     */
     public FactoryView() {
         this.btnPanel = new JPanel();
         this.btnPanel.setLayout(cardLayout);
@@ -197,6 +212,9 @@ public class FactoryView {
         this.mainFrame.setVisible(true);
     }
 
+    /**
+     * This method is used to set the list of buttonslists for the Factory View Class.
+     */
     public void setButtonsList() {
         this.btnList = new ArrayList<JButton>();
         this.backBtnList = new ArrayList<JButton>();
@@ -262,21 +280,21 @@ public class FactoryView {
         backBtn6.addActionListener(new ActionListener() {//Back button for Create Item Stock to Customize Item Stocks
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Customize Stocks");
+                cardLayout.show(cardPanel,"Customize Stocks"); clearAllTextAreas();
             }
         });
 
         backBtn7.addActionListener(new ActionListener() {//Back button for Create Item Stock to Customize Item Stocks
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Customize Stocks");
+                cardLayout.show(cardPanel,"Customize Stocks"); clearAllTextAreas();
             }
         });
 
         backBtn8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Customize Stocks");
+                cardLayout.show(cardPanel,"Customize Stocks"); clearAllTextAreas();
             }
         });
 
@@ -939,15 +957,23 @@ public class FactoryView {
         this.addItemPanel = new JPanel(cardLayout);
         addItemPanel.setLayout(new FlowLayout());
         //GridBagConstraints gbc = new GridBagConstraints();
+        this.selectItemtoAddLbl = new JLabel("Select Item to Add: ");
+        this.selectItemtoAddTf = new JTextField(10);
+        this.selectItemtoAddBtn = new JButton("Select Item");
+        this.addItemLbl = new JLabel("Add Item: ");
         this.addItemTf = new JTextField(10);
-        this.addItemBtn = new JButton("Add Item");
+        this.addItemBtn2 = new JButton("Add Item");
         this.itemsTa = new JTextArea();
         itemsTa.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(itemsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(300, 300));
         this.addItemPanel.add(scrollPane);
+        this.addItemPanel.add(selectItemtoAddLbl);
+        this.addItemPanel.add(selectItemtoAddTf);
+        this.addItemPanel.add(selectItemtoAddBtn);
+        this.addItemPanel.add(addItemLbl);
         this.addItemPanel.add(addItemTf);
-        this.addItemPanel.add(addItemBtn);
+        this.addItemPanel.add(addItemBtn2);
         this.addItemPanel.add(backBtn7);
         addItemPanel.setBackground(Color.getHSBColor(10,9, 94));
     }
@@ -973,6 +999,14 @@ public class FactoryView {
         for (JButton button : buttons){
             button.setVisible(true);
         }
+    }
+
+    public void clearAllTextAreas(){
+        this.jcomp14.setText(""); this.editPriceTa.setText(""); this.restockTa.setText(""); this.displaySlotsTa.setText("");
+        this.setToSRPTa.setText(""); this.itemStocksTa.setText(""); this.inventoriesTa.setText(""); this.transactionsTa.setText("");
+        this.moneyTa.setText(""); this.itemSlotsTa.setText(""); this.replenishChangeTa.setText(""); this.showItemsTa.setText("");
+        this.walletTa.setText(""); this.detailsTa.setText(""); this.showVMTa.setText(""); this.vmTa.setText(""); this.itemsTa.setText("");
+        this.currentWalletTa.setText("");
     }
 
     //Setters for Main Menu Buttons
@@ -1015,7 +1049,9 @@ public class FactoryView {
 
     public void setCreateItemBtnListener(ActionListener actionListener){this.createItemBtn.addActionListener(actionListener);}
     public void setCreateStockBtnListener(ActionListener actionListener){this.createStockBtn.addActionListener(actionListener);}
-    public void setAddItemBtnListener(ActionListener actionListener){this.addItemBtn.addActionListener(actionListener);}
 
+    public void setSelectItemtoAddBtnListener(ActionListener actionListener){this.selectItemtoAddBtn.addActionListener(actionListener);}
+    public void setAddItemBtn2Listener(ActionListener actionListener){this.addItemBtn2.addActionListener(actionListener);}
+    public void setAddItemBtnListener(ActionListener actionListener){this.addItemBtn.addActionListener(actionListener);}
     public void setShowItemsBtnListener(ActionListener actionListener){this.showItemBtn.addActionListener(actionListener);}
 }
