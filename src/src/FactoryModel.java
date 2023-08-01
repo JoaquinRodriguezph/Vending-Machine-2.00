@@ -33,6 +33,7 @@ public class FactoryModel {
         myInventory.add(new Item("Bottled Water", 0));
     }
 
+
     public void createVendingMachine(String name, int maxSlots, int slotMaxItems, JFrame frame){
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Name cannot be empty",

@@ -53,6 +53,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Buy from Vending Machine");
+                factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getJcomp4(), errorFrame);
             }
         });
 
@@ -61,17 +62,6 @@ public class FactoryController {
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Do Maintenance");
             }
-        });
-        this.factoryView.setSelectWalletBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Select Wallet");
-            }
-        });
-        this.factoryView.setShowCurrentWalletBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Current Wallet");}
         });
 
         //Sets up Do Maintenance Buttons
@@ -132,6 +122,7 @@ public class FactoryController {
         this.factoryView.setShowItemSlotsBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getItemSlotsTa(), errorFrame);
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Item Slots");
             }
         });
@@ -317,7 +308,7 @@ public class FactoryController {
             return false;
         }
     }
-    private int vendingMachineChosed;
+    private int vendingMachineChosed = 0;
     private int choice;
     private JFrame errorFrame;
     private FactoryView factoryView;
