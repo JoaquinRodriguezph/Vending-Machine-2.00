@@ -72,10 +72,22 @@ public class FactoryView {
 
     private JLabel nameVmLbl, numSlotsLbl, maxItemsLbl;
 
+    public String getNameVmTf() {
+        return nameVmTf.getText();
+    }
+
+    public String getNumSlotsTf() {
+        return numSlotsTf.getText();
+    }
+
+    public String getMaxItemsTf() {
+        return maxItemsTf.getText();
+    }
+
     private JTextField nameVmTf, numSlotsTf, maxItemsTf;
 
     private JLabel pickVmLbl; private JTextField pickVmTf;
-    private JButton createVmBtn, pickBtn, backBtn9, backBtn10, backBtn11;
+    private JButton createVmBtn, createVMBtn2, pickBtn, backBtn9, backBtn10, backBtn11;
 
     //Customize Item Stock Components
     private JPanel createItemPanel, addItemPanel, showItemsPanel;
@@ -83,7 +95,18 @@ public class FactoryView {
     private JLabel itemNamelbl, calorieslbl, SRPlbl, itemNumberlbl, addItemlbl;
 
     private JButton createStockBtn, addItemBtn2;
-    private JTextField itemNameTf, caloriesTf, stocksTf, SRPtf, addItemTf, numItemTf, showItemTf;
+    private JTextField itemNameTf;
+    private JTextField caloriesTf;
+    private JTextField stocksTf;
+    private JTextField SRPtf;
+
+    public String getAddItemTf() {
+        return this.addItemTf.getText();
+    }
+
+    private JTextField addItemTf;
+    private JTextField numItemTf;
+    private JTextField showItemTf;
 
     public JTextArea getItemsTa() {
         return itemsTa;
@@ -99,6 +122,11 @@ public class FactoryView {
     private JTextArea showItemsTa;
     private JTextArea walletTa;
     private JTextArea detailsTa;
+
+    public JTextArea getShowVMTa() {
+        return showVMTa;
+    }
+
     private JTextArea showVMTa;
     private JTextArea vmTa; //TextArea for showing the items
 
@@ -888,8 +916,8 @@ public class FactoryView {
         gbc.gridx = 1; gbc.gridy = 1; createVMPanel.add(numSlotsTf, gbc);
         this.maxItemsTf = new JTextField(5);
         gbc.gridx = 1; gbc.gridy = 2; createVMPanel.add(maxItemsTf, gbc);
-        this.createVMBtn = new JButton("Create Vending Machine");
-        gbc.gridx = 0; gbc.gridy = 3; createVMPanel.add(createVMBtn, gbc);
+        this.createVMBtn2 = new JButton("Create Vending Machine");
+        gbc.gridx = 0; gbc.gridy = 3; createVMPanel.add(createVMBtn2, gbc);
         createVMPanel.setBackground(Color.pink);
         gbc.gridx = 1; gbc.gridy = 3; createVMPanel.add(backBtn9, gbc);
     }
@@ -960,8 +988,8 @@ public class FactoryView {
         this.selectItemtoAddLbl = new JLabel("Select Item to Add: ");
         this.selectItemtoAddTf = new JTextField(10);
         this.selectItemtoAddBtn = new JButton("Select Item");
-        this.addItemLbl = new JLabel("Add Item: ");
-        this.addItemTf = new JTextField(10);
+        this.addItemLbl = new JLabel("Num_of_Items:");
+        this.addItemTf = new JTextField(5);
         this.addItemBtn2 = new JButton("Add Item");
         this.itemsTa = new JTextArea();
         itemsTa.setEditable(false);
@@ -1041,7 +1069,7 @@ public class FactoryView {
     public void setDisplaySlotsBtnListener(ActionListener actionListener){this.displaySlotsbtn.addActionListener(actionListener);}
     //Setter for Vending Machine Buttons
     public void setCreateVMBtnListener(ActionListener actionListener){this.createVMBtn.addActionListener(actionListener);}
-
+    public void setCreateVMBtn2Listener(ActionListener actionListener){this.createVMBtn2.addActionListener(actionListener);}
     public void setShowDetailsBtnListener(ActionListener actionListener){this.showDetailsBtn.addActionListener(actionListener);}
     public void setShowVMBtnListener(ActionListener actionListener){this.showVMBtn.addActionListener(actionListener);}
 
