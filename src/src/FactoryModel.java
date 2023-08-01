@@ -121,7 +121,7 @@ public class FactoryModel {
         ta.append("Vending Machine No || Name ||  Max Slots || Max Items\n");
         int i = 0;
         for (VendingMachine vm : vendingMachines) {
-            //ta.append(i + "\t" +  vm.getName() + "\t" + vm.getMaxSlots() + "\t" + vm.getSlotMaxItems() + "\n");
+            ta.append(i + "\t" + vm.getName() + "    " + vm.getNumSlots() + "    " + vm.getMaxSlotItem() + "\n");
             i++;
         }
     }

@@ -278,30 +278,32 @@ public class FactoryView {
         backBtn1.addActionListener(new ActionListener() { //Back button for Main Program to Main Menu
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Pick Vending Machine");
+                cardLayout.show(cardPanel,"Pick Vending Machine"); clearAllTextAreas();
             }
         });
 
         backBtn2.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {cardLayout.show(cardPanel,"Main Menu");}
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Main Menu"); clearAllTextAreas();}
         });
 
         backBtn3.addActionListener(new ActionListener() {//Back button for Customize Money to Main Menu
             @Override
-            public void actionPerformed(ActionEvent e) {cardLayout.show(cardPanel,"Main Menu");}
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Main Menu"); clearAllTextAreas();}
         });
         backBtn4.addActionListener(new ActionListener() { //Back button for Main Program to Main Menu
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Main Menu");
+                cardLayout.show(cardPanel,"Main Menu"); clearAllTextAreas();
             }
         });
 
         backBtn5.addActionListener(new ActionListener() {//Back button for Item Stocks to Main Menu
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Main Menu");
+                cardLayout.show(cardPanel,"Main Menu"); clearAllTextAreas();
             }
         });
 
@@ -329,158 +331,159 @@ public class FactoryView {
         backBtn9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Customize Vending Machine");
+                cardLayout.show(cardPanel,"Customize Vending Machine"); clearAllTextAreas();
             }
         });
 
         backBtn10.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Customize Vending Machine");
+                cardLayout.show(cardPanel,"Customize Vending Machine"); clearAllTextAreas();
             }
         });
 
         backBtn11.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Customize Vending Machine");
+                cardLayout.show(cardPanel,"Customize Vending Machine"); clearAllTextAreas();
             }
         });
 
         backBtn12.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Main Program");
+                cardLayout.show(cardPanel,"Main Program"); clearAllTextAreas();
             }
         });
 
         backBtn13.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Main Menu");
+                cardLayout.show(cardPanel,"Main Menu"); clearAllTextAreas();
             }
         });
 
         backBtn14.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Main Program");
+                cardLayout.show(cardPanel,"Main Program"); clearAllTextAreas();
             }
         });
 
         backBtn15.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Main Program");
+                cardLayout.show(cardPanel,"Main Program"); clearAllTextAreas();
             }
         });
 
         backBtn16.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Main Menu");
+                cardLayout.show(cardPanel,"Main Menu"); clearAllTextAreas();
             }
         });
 
         backBtn17.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Do Maintenance");
+                cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
             }
         });
 
         backBtn18.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Do Maintenance");
+                cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
             }
         });
 
         backBtn19.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Do Maintenance");
+                cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
             }
         });
 
         backBtn20.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Do Maintenance");
+                cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
             }
         });
 
         backBtn21.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Do Maintenance");
+                cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
             }
         });
         backBtn22.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Do Maintenance");
+                cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
             }
         });
 
         backBtn23.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Do Maintenance");
+                cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
             }
         });
 
         backBtn24.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {cardLayout.show(cardPanel,"Do Maintenance");}
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();}
         });
 
         backBtn25.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Do Maintenance");
+                cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
             }
         });
 
         backBtn26.addActionListener(new ActionListener() { //Back button for Do Maintenance to Main Program
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Main Program");
+                cardLayout.show(cardPanel,"Main Program"); clearAllTextAreas();
             }
         });
 
         backBtn27.addActionListener(new ActionListener() { //Back Button for Buying from  to Main Program
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Main Program");
+                cardLayout.show(cardPanel,"Main Program"); clearAllTextAreas();
             }
         });
 
         backBtn28.addActionListener(new ActionListener() { //Back Button for Buying from  to Main Program
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Change Price");
+                cardLayout.show(cardPanel,"Change Price"); clearAllTextAreas();
             }
         });
 
         backBtn29.addActionListener(new ActionListener() { //Back Button for Buying from  to Main Program
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Change Price");
+                cardLayout.show(cardPanel,"Change Price"); clearAllTextAreas();
             }
         });
 
         backBtn30.addActionListener(new ActionListener() { //Back Button for Buying from  to Main Program
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Change Price");
+                cardLayout.show(cardPanel,"Change Price"); clearAllTextAreas();
             }
         });
 
         jcomp14.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(cardPanel,"Main Program");
+                cardLayout.show(cardPanel,"Main Program"); clearAllTextAreas();
             }
         });
     }

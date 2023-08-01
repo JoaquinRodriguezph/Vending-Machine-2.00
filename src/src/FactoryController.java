@@ -262,7 +262,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Vending Machines");
-
+                factoryModel.displayVendingMachines(factoryView.getShowVMTa());
             }
         });
 
