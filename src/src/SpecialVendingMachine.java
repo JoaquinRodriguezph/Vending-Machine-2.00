@@ -14,10 +14,28 @@ public class SpecialVendingMachine extends VendingMachine{
      * @param maxSlots     the max amount of Slots.
      * @param slotMaxItems the max amount of items in each Slot.
      */
-    public SpecialVendingMachine(String name, int maxSlots, int slotMaxItems) {
+    public SpecialVendingMachine(String name, int maxSlots, int slotMaxItems, int inventoryMax) {
         super(name, maxSlots, slotMaxItems);
+        defaultSisigBase = new ArrayList<Item>();
+        defaultSisigBase.add(new VendItem("Rice", 206));
+        defaultSisigBase.add(new VendItem("Fried Egg", 120));
+        defaultSisigSide = new ArrayList<Item>();
+        defaultSisigSide.add(new VendItem("Fried Egg", 120))
+        defaultSisigSide.add(new VendItem("Fried Egg", 120))
+        defaultSisigSide.add(new VendItem("Fried Egg", 120))
+        defaultSisigSide.add(new VendItem("Fried Egg", 120))
+        defaultSisigSide.add(new VendItem("Fried Egg", 120))
+        MAX_INV = inventoryMax;
     }
 
+    /**
+     * The list of items that comprise the combo
+     */
+    private ArrayList<Item> defaultSisigBase;
 
+    private ArrayList<Item> defaultSisigSide;
 
+    private ArrayList<Item> itemInventory;
+
+    private final int MAX_INV;
 }
