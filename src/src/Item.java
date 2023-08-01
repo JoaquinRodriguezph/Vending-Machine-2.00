@@ -10,7 +10,7 @@ public class Item {
      */
     public Item(String name, int calories) throws IllegalArgumentException {
         if (calories < 0)
-            throw new IllegalArgumentException("Calories is less than 0");
+            throw new IllegalArgumentException("Calories should be 0 or more");
 
         NAME = name;
         CALORIES = calories;
