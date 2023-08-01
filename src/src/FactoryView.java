@@ -983,8 +983,9 @@ public class FactoryView {
         this.showInventoryText.setEditable(false);
         JScrollPane scrollPane = new JScrollPane(showInventoryText, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
                 JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-        showInventoryPanel.add(backBtn4);
         showInventoryPanel.add(scrollPane);
+        showInventoryPanel.add(backBtn4);
+
     }
 
     //Setters for Main Menu Buttons

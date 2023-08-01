@@ -18,7 +18,6 @@ public class FactoryModel {
         this.myInventory =  new ArrayList<Item>();
     }
 
-
     public void displayItemInventory(ArrayList<Item> items, JTextArea textArea) {
         ArrayList<Item> itemSets = new ArrayList<Item>();
         ArrayList<Integer> itemQuantity = new ArrayList<Integer>();
