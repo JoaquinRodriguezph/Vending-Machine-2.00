@@ -171,10 +171,30 @@ public class FactoryController {
             }
         });
 
+        this.factoryView.setSelectItemtoAddBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    choice = Integer.parseInt(factoryView.getSelectItemtoAddTf());
+                }
+                catch (NumberFormatException ex){
+                    errorFrame = new JFrame("Error");
+                    JOptionPane.showMessageDialog(errorFrame, "Please enter a valid number.");
+                }
+            }
+        });
+
+        this.factoryView.setAddItemBtn2Listener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryModel.addItem(choice, errorFrame);
+            }
+        });
         this.factoryView.setAddItemBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Add Item");
+                factoryModel.displayItems(factoryView.getItemsTa());
             }
         });
 
@@ -208,6 +228,7 @@ public class FactoryController {
             }
         });
     }
+    private int choice;
     private JFrame errorFrame;
     private FactoryView factoryView;
     private FactoryModel factoryModel;

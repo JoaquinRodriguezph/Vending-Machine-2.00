@@ -20,11 +20,11 @@ public class SpecialVendingMachine extends VendingMachine{
         defaultSisigBase.add(new VendItem("Rice", 206));
         defaultSisigBase.add(new VendItem("Fried Egg", 120));
         defaultSisigSide = new ArrayList<Item>();
-        defaultSisigSide.add(new VendItem("Fried Egg", 120))
-        defaultSisigSide.add(new VendItem("Fried Egg", 120))
-        defaultSisigSide.add(new VendItem("Fried Egg", 120))
-        defaultSisigSide.add(new VendItem("Fried Egg", 120))
-        defaultSisigSide.add(new VendItem("Fried Egg", 120))
+        defaultSisigSide.add(new VendItem("Fried Egg", 120));
+        defaultSisigSide.add(new VendItem("Fried Egg", 120));
+        defaultSisigSide.add(new VendItem("Fried Egg", 120));
+        defaultSisigSide.add(new VendItem("Fried Egg", 120));
+        defaultSisigSide.add(new VendItem("Fried Egg", 120));
         MAX_INV = inventoryMax;
     }
 

@@ -47,10 +47,29 @@ public class FactoryModel {
 
     }
 
+    public void addItem(int choice, JFrame frame) {
+        if (choice < 0 || choice > myInventory.size()) {
+            JOptionPane.showMessageDialog(frame, "Please enter a valid number.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(frame, "Success!",
+                "Error", JOptionPane.ERROR_MESSAGE);
+        myInventory.add(myInventory.get(choice));
+    }
+
+
+    /**
+     * This method displays the items in the inventory.
+     * @param ta, the text area of the view to be utilized
+     */
     public void displayItems(JTextArea ta){
-        ta.append("Name ||  Calories\n");
+        ta.append("Item No || Name ||  Calories\n");
+        int i = 0;
         for (Item item : myInventory) {
-            ta.append(item.getName() + " " + item.getCalories() + "\n");
+            ta.append(i + "\t" +  item.getName() + "\t" + item.getCalories() + "\n");
+            i++;
         }
     }
+
 }
