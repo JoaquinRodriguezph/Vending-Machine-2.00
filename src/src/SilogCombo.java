@@ -1,16 +1,16 @@
 import java.util.ArrayList;
 /**
- * This class represents a Sisig Combo made from the special vending machine with a name, items, and calories.
+ * This class represents a Silog Combo made from the special vending machine with a name, items, and calories.
  */
-public class SisigCombo {
+public class SilogCombo {
     /**
      * This method is a constructor which utilizes the following parameters:
      *
-     * @param name the name of the Sisig Combo.
+     * @param name the name of the Silog Combo.
      * @param items the list of items that comprise the combo.
      * @param calories the total calories of the combo meal.
      */
-    public SisigCombo(String name, ArrayList<Item> items, int calories) {
+    public SilogCombo(String name, ArrayList<Item> items, int calories) {
         NAME = name;
         ITEMS = items;
         CALORIES = calories;
@@ -41,7 +41,7 @@ public class SisigCombo {
     }
 
     /**
-     * The name of the Sisig Combo
+     * The name of the Silog Combo
      */
     private final String NAME;
 

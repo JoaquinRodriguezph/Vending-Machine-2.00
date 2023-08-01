@@ -96,7 +96,7 @@ public class VendingMachine {
      *
      * @return the current inventory of the vending machine.
      */
-    private ArrayList<String> getCurrentInventory() {
+    public ArrayList<String> getCurrentInventory() {
         ArrayList<String> inventory = new ArrayList<String>();
         for (ItemSlot slot : itemSlots) {
             if (slot.isAvailable())
@@ -475,27 +475,27 @@ public class VendingMachine {
     /**
      * The name of the Vending Machine
      */
-    private final String NAME;
+    protected final String NAME;
 
     /**
      * The item slots of the vending machine
      */
-    private ItemSlot[] itemSlots;
+    protected ItemSlot[] itemSlots;
 
     /**
      * The ArrayList of Money of the vending machine
      */
-    private ArrayList<Money> money;
+    protected ArrayList<Money> money;
 
     /**
      * The ArrayList of String for the transaction log of the vending machine
      */
-    private ArrayList<String> transactionLog;
+    protected ArrayList<String> transactionLog;
 
     /**
      * The ArrayList of String for the starting inventory of the vending machine
      */
-    private ArrayList<String> startingInventory;
+    protected ArrayList<String> startingInventory;
 
 }
 
