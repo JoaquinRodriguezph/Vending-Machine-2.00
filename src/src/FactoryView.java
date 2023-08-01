@@ -35,12 +35,29 @@ public class FactoryView {
 
     private JPanel restockPanel, changePricePanel, collectMoneyPanel, replenishChangePanel, showItemSlotsPanel;
     private JButton restockBtn, changePriceBtn, collectMoneyBtn, replenishChangeBtn, showItemSlotsBtn;
-
     private JButton backBtn17, backBtn18, backBtn19, backBtn20, backBtn21;
+
+    //Change Price Components
+    private JButton editPricebtn, setToSRPbtn, setAllToSRPbtn, displaySlotsbtn;
+
+    private JTextArea editPriceTa; private JLabel enterSlotLbl, enterPriceLbl; private JTextField enterSlotTf, enterPriceTf;
+    private JTextArea displaySlotsTa, setToSRPTa;
+    private JLabel enterItemLbl; private JTextField enterItemTf; private JButton SRPbtn, editBtn;
+
+    //Restock Components
+    private JTextArea restockTa; private JLabel selectItemLbl, quantityItemLbl; private JButton stockBtn;
+    private JTextField selectItemTf, quantityItemTf;
+    private JPanel editPricePanel, setToSRPPanel, setAllToSRPPanel, displaySlotsPanel;
+
+    private JButton backBtn28, backBtn29, backBtn30;
+
+    //Replenish Components
+    private JLabel replenishBillslbl; private JTextField replenishBillsTf; private JButton replenishBillsBtn;
+    private JLabel quantityBillsLbl; private JTextField quantityBillsTf; private JButton quantityBillsBtn;
     private JPanel showItemStocksPanel, displayInventoriesPanel, displayTransactionsPanel, displayMoneyPanel;
     private JButton showItemStocksBtn, displayInventoriesBtn, displayTransactionsBtn, displayMoneyBtn;
 
-    private JTextArea itemStocksTa, inventoriesTa, transactionsTa, moneyTa, itemSlotsTa;
+    private JTextArea itemStocksTa, inventoriesTa, transactionsTa, moneyTa, itemSlotsTa, replenishChangeTa;
     private JButton backBtn22, backBtn23, backBtn24, backBtn25;
 
 
@@ -79,7 +96,10 @@ public class FactoryView {
         return this.SRPtf.getText();
     }
 
-    //
+    /**
+     * This method is used to get the card layout
+     * @return the card layout
+     */
     public CardLayout getCardLayout() {
         return cardLayout;
     }
@@ -144,6 +164,12 @@ public class FactoryView {
         setDisplayInventoriesPanel();
         setDisplayTransactionsPanel();
         setDisplayMoneyPanel();
+        //Change Price Panels
+        setEditPricePanel();
+        setSetToSRPPanel();
+        setSetAllToSRPPanel();
+        setDisplaySlotsPanel();
+
         //Stocks Panel
         setCustomizeStocksPanel();
         setCreateItemsPanel();
@@ -176,7 +202,8 @@ public class FactoryView {
         this.backBtn16 = new JButton("Back"); this.backBtn17 = new JButton("Back"); this.backBtn18 = new JButton("Back");
         this.backBtn19 = new JButton("Back"); this.backBtn20 = new JButton("Back"); this.backBtn21 = new JButton("Back"); this.backBtn22 = new JButton("Back");
         this.backBtn23 = new JButton("Back"); this.backBtn24 = new JButton("Back"); this.backBtn25 = new JButton("Back");
-        this.backBtn26 = new JButton("Back"); this.backBtn27 = new JButton("Back");
+        this.backBtn26 = new JButton("Back"); this.backBtn27 = new JButton("Back"); this.backBtn28 = new JButton("Back");
+        this.backBtn29 = new JButton("Back"); this.backBtn30 = new JButton("Back");
 
 
         backBtnList.add(this.backBtn1);backBtnList.add(this.backBtn2);backBtnList.add(this.backBtn3);
@@ -188,6 +215,7 @@ public class FactoryView {
         backBtnList.add(this.backBtn19); backBtnList.add(this.backBtn20); backBtnList.add(this.backBtn21);
         backBtnList.add(this.backBtn22); backBtnList.add(this.backBtn23); backBtnList.add(this.backBtn24);
         backBtnList.add(this.backBtn25); backBtnList.add(this.backBtn26); backBtnList.add(this.backBtn27);
+        backBtnList.add(this.backBtn28); backBtnList.add(this.backBtn29); backBtnList.add(this.backBtn30);
         backBtn1.addActionListener(new ActionListener() { //Back button for Main Program to Main Menu
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -362,10 +390,31 @@ public class FactoryView {
             }
         });
 
-        backBtn27.addActionListener(new ActionListener() { //Back Button for Buying from VM to Main Program
+        backBtn27.addActionListener(new ActionListener() { //Back Button for Buying from  to Main Program
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel,"Main Program");
+            }
+        });
+
+        backBtn28.addActionListener(new ActionListener() { //Back Button for Buying from  to Main Program
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Change Price");
+            }
+        });
+
+        backBtn29.addActionListener(new ActionListener() { //Back Button for Buying from  to Main Program
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Change Price");
+            }
+        });
+
+        backBtn30.addActionListener(new ActionListener() { //Back Button for Buying from  to Main Program
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Change Price");
             }
         });
     }
@@ -416,6 +465,12 @@ public class FactoryView {
         cardPanel.add(displayTransactionsPanel, "Display Transactions");
         cardPanel.add(displayMoneyPanel, "Display Money");
 
+        //Change Price Panels
+
+        cardPanel.add(editPricePanel, "Edit Price");
+        cardPanel.add(setToSRPPanel, "Set to SRP");
+        cardPanel.add(setAllToSRPPanel, "Set All to SRP");
+        cardPanel.add(displaySlotsPanel, "Display Slots");
         //Customize Item Panels
         cardPanel.add(createItemPanel, "Create Item");
         cardPanel.add(addItemPanel, "Add Item");
@@ -537,15 +592,94 @@ public class FactoryView {
     public void setRestockPanel(){
         this.restockPanel = new JPanel(cardLayout);
         restockPanel.setLayout(new FlowLayout());
-
+        this.restockTa = new JTextArea();
+        restockTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(restockTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.restockPanel.add(scrollPane);
+        this.selectItemLbl = new JLabel("Select Item: ");
+        this.selectItemLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        this.selectItemTf = new JTextField(20);
+        this.selectItemTf.setHorizontalAlignment(SwingConstants.CENTER);
+        this.quantityItemLbl = new JLabel("Quantity: ");
+        this.quantityItemLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        this.quantityItemTf = new JTextField(20);
+        this.quantityItemTf.setHorizontalAlignment(SwingConstants.CENTER);
+        this.stockBtn = new JButton("Stock");
+        restockPanel.add(selectItemLbl);
+        restockPanel.add(selectItemTf);
+        restockPanel.add(quantityItemLbl);
+        restockPanel.add(quantityItemTf);
+        restockPanel.add(stockBtn);
         restockPanel.add(backBtn17);
     }
 
     public void setChangePricePanel(){
         this.changePricePanel = new JPanel(cardLayout);
+        changePricePanel.setLayout(new GridLayout(5,1));
         changePricePanel.add(backBtn18);
+        this.editPricebtn = new JButton("Edit Price");
+        this.setToSRPbtn = new JButton("Set to SRP");
+        this.setAllToSRPbtn = new JButton("Set All to SRP");
+        this.displaySlotsbtn = new JButton("Display Slots");
+        changePricePanel.add(editPricebtn);
+        changePricePanel.add(setToSRPbtn);
+        changePricePanel.add(setAllToSRPbtn);
+        changePricePanel.add(displaySlotsbtn);
+        changePricePanel.setBackground(Color.blue);
     }
 
+    //Change Price Panels
+    public void setEditPricePanel(){
+        this.editPricePanel = new JPanel(cardLayout);
+        editPricePanel.setLayout(new FlowLayout());
+        this.editPriceTa = new JTextArea();
+        editPriceTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(editPriceTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        editPricePanel.add(scrollPane);
+        this.enterSlotLbl = new JLabel("Enter Slot: ");
+        this.enterSlotTf = new JTextField(20);
+        this.enterPriceLbl = new JLabel("Enter Price: ");
+        this.enterPriceTf = new JTextField(10);
+        this.editBtn = new JButton("Edit");
+        editPricePanel.add(enterSlotLbl);
+        editPricePanel.add(enterSlotTf);
+        editPricePanel.add(enterPriceLbl);
+        editPricePanel.add(enterPriceTf);
+        editPricePanel.add(editBtn);
+        editPricePanel.add(backBtn28);
+    }
+
+    public void setSetToSRPPanel(){
+        this.setToSRPPanel = new JPanel(cardLayout);
+        setToSRPPanel.setLayout(new FlowLayout());
+        this.setToSRPTa = new JTextArea();
+        setToSRPTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(setToSRPTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.setToSRPPanel.add(scrollPane);
+        this.enterItemLbl = new JLabel("Enter Slot: ");
+        this.enterItemTf = new JTextField(10);
+        this.SRPbtn = new JButton("Set to SRP");
+        setToSRPPanel.add(backBtn29);
+    }
+
+    public void setSetAllToSRPPanel(){
+        this.setAllToSRPPanel = new JPanel(cardLayout);
+    }
+
+    public void setDisplaySlotsPanel(){
+        this.displaySlotsPanel = new JPanel(cardLayout);
+        displaySlotsPanel.setLayout(new FlowLayout());
+        this.displaySlotsTa = new JTextArea();
+        displaySlotsTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(displaySlotsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.displaySlotsPanel.add(scrollPane);
+        displaySlotsPanel.add(backBtn30);
+    }
+    //Do maintenance panels
     public void setCollectMoneyPanel(){
         this.collectMoneyPanel = new JPanel(cardLayout);
         collectMoneyPanel.add(backBtn19);
@@ -553,6 +687,23 @@ public class FactoryView {
 
     public void setReplenishChangePanel(){
         this.replenishChangePanel = new JPanel(cardLayout);
+        replenishChangePanel.setLayout(new FlowLayout());
+        this.replenishChangeTa = new JTextArea();
+        replenishChangeTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(replenishChangeTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.replenishChangePanel.add(scrollPane);
+        this.replenishBillslbl = new JLabel("Replenish Bills: ");
+        this.replenishBillsTf = new JTextField(20);
+        this.quantityBillsLbl = new JLabel("Quantity: ");
+        this.quantityBillsTf = new JTextField(20);
+        replenishChangePanel.add(replenishBillslbl);
+        replenishChangePanel.add(replenishBillsTf);
+        replenishChangePanel.add(quantityBillsLbl);
+        replenishChangePanel.add(quantityBillsTf);
+        this.replenishBillsBtn = new JButton("Replenish");
+        replenishChangePanel.add(replenishBillsBtn);
+        replenishChangePanel.setBackground(Color.yellow);
         replenishChangePanel.add(backBtn20);
     }
 
@@ -807,6 +958,12 @@ public class FactoryView {
     public void setDisplayTransactionsBtnListener(ActionListener actionListener){this.displayTransactionsBtn.addActionListener(actionListener);}
     public void setDisplayMoneyBtnListener(ActionListener actionListener){this.displayMoneyBtn.addActionListener(actionListener);}
 
+    //Setter for Change Price Buttons
+
+    public void setEditPriceBtnListener(ActionListener actionListener){this.editPricebtn.addActionListener(actionListener);}
+    public void setSetToSRPBtnListener(ActionListener actionListener){this.setToSRPbtn.addActionListener(actionListener);}
+    public void setSetAllToSRPBtnListener(ActionListener actionListener){this.setAllToSRPbtn.addActionListener(actionListener);}
+    public void setDisplaySlotsBtnListener(ActionListener actionListener){this.displaySlotsbtn.addActionListener(actionListener);}
     //Setter for Vending Machine Buttons
     public void setCreateVMBtnListener(ActionListener actionListener){this.createVMBtn.addActionListener(actionListener);}
 

@@ -69,6 +69,59 @@ public class FactoryController {
 
         //Sets up Do Maintenance Buttons
 
+        this.factoryView.setRestockBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Restock");
+            }
+        });
+
+        this.factoryView.setChangePriceBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Change Price");
+            }
+        });
+
+        //Change Price Buttons
+        this.factoryView.setEditPriceBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Edit Price");
+            }
+        });
+        this.factoryView.setSetToSRPBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Set to SRP");
+            }
+        });
+
+        this.factoryView.setSetAllToSRPBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+        this.factoryView.setDisplaySlotsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Slots");
+            }
+        });
+
+        //Do Maintenance Buttons
+        this.factoryView.setCollectMoneyBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+            }
+        });
+        this.factoryView.setReplenishChangeBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Replenish Change");
+            }
+        });
         this.factoryView.setShowItemSlotsBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
