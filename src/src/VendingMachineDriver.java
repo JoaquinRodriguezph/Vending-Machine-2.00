@@ -6,11 +6,14 @@ import java.util.*;
  * It is where the program is run from. It contains maintenance features,
  * buying features, and wallet features.
  */
+
 public class VendingMachineDriver {
     /**
      * This method is a constructor which creates an instance from
      * @param name the name of the vending machine driver.
      */
+}
+/*
     public VendingMachineDriver(String name) {
         vendingStockList = new ArrayList<VendingStock>();
 
@@ -38,6 +41,8 @@ public class VendingMachineDriver {
      * @param wallet the wallet of the current User.
      * @return theItem that the user bought.
      */
+
+/*
     public VendItem mainMenu(VendingMachine vm, Money wallet) {
         VendItem theVendItem = null;
 
@@ -90,6 +95,8 @@ public class VendingMachineDriver {
      * @param wallet money of the user.
      * @return an Item if transaction successful and null if not.
      */
+
+/*
     private VendItem vmTransaction(VendingMachine vm, int slotSelection, Money wallet) {
         VendItem theVendItem = null;
 
@@ -204,6 +211,8 @@ public class VendingMachineDriver {
      * @param slot the slot to be chosen.
      * @return true if successful and false if not.
      */
+
+/*
     private boolean chooseItem(VendingMachine vm, int slot){
         boolean b = false;
         ItemSlot[] itemSlots = vm.getItemSlots();
@@ -239,6 +248,7 @@ public class VendingMachineDriver {
      * This method displays the item menu.
      * It shows each slot number with its corresponding item.
      */
+/*
     public void displayItemMenu(VendingMachine vm){
         ItemSlot[] itemSlots = vm.getItemSlots();
 
@@ -267,6 +277,8 @@ public class VendingMachineDriver {
      * This method is the main where the program runs from.
      * @param args The string arguments the user inputs.
      */
+
+/*
     public static void main(String args[]) {
         Scanner sc = new Scanner(System.in);
 
@@ -314,6 +326,7 @@ public class VendingMachineDriver {
      * This method displays an item stock from a list of item stocks.
      * @param vendingStocks the list of item stocks.
      */
+/*
     private void displayItemStock(ArrayList<VendingStock> vendingStocks) {
         Iterator<VendingStock> it = vendingStocks.iterator();
 
@@ -334,7 +347,8 @@ public class VendingMachineDriver {
      * This method lets the user select an Item Stock from a list of item stocks.
      * @param vendingStocks the list of item stocks.
      * @return the ItemStock selected.
-     */
+     *//*
+
     private VendingStock selectItemStock(ArrayList<VendingStock> vendingStocks) {
         Scanner sc = new Scanner(System.in);
         VendingStock item = null;
@@ -370,7 +384,8 @@ public class VendingMachineDriver {
      * @param vendingMachine the vending machine instance to be used.
      * @param wallet the wallet instance to be used.
      * @return the bought item.
-     */
+     *//*
+
     private VendItem execBuyer(VendingMachine vendingMachine, Money wallet) {
         return mainMenu(vendingMachine, wallet); //runs the mainMenu method in VendingMachine class for the user to buy items in the vendingMachine
     }
@@ -381,7 +396,8 @@ public class VendingMachineDriver {
      * @param vendingStock the item stock to be added.
      * @param vendingMachine the vending machine to be used.
      * @return true if successful and false if not.
-     */
+     *//*
+
     private boolean addNewStock(VendingStock vendingStock, VendingMachine vendingMachine) {
         boolean b = false;
         Scanner sc = new Scanner(System.in);
@@ -427,7 +443,8 @@ public class VendingMachineDriver {
      * @param quantity the quantity of the slot to be checked.
      * @param vendingStock the itemStock of the slot to be checked.
      * @return true if successful and false if not.
-     */
+     *//*
+
     public boolean newVMStock(VendingMachine vendingMachine, int slot, int quantity, VendingStock vendingStock) {
         return newVMStock(vendingMachine, slot, quantity, vendingStock, vendingStock.getSRP());
     }
@@ -440,7 +457,8 @@ public class VendingMachineDriver {
      * @param vendingStock the itemStock of the slot to be checked.
      * @param price the price to be checked.
      * @return true if successful and false if not
-     */
+     *//*
+
     public boolean newVMStock(VendingMachine vendingMachine, int slot, int quantity, VendingStock vendingStock, int price) {
         boolean b = false, found = false;
         VendingStock tempItem;
@@ -509,7 +527,8 @@ public class VendingMachineDriver {
      * @param slot the item slot to be restocked.
      * @param quantity how many stocks would be put.
      * @return true if successful and false if not.
-     */
+     *//*
+
     public boolean restock(VendingMachine vendingMachine, int slot, int quantity) {
         boolean b = false;
         ItemSlot[] itemSlots = vendingMachine.getItemSlots();
@@ -536,7 +555,8 @@ public class VendingMachineDriver {
      * @param slot the item slot to be changed.
      * @param price the new price of the item slot.
      * @return true if successful and false if not.
-     */
+     *//*
+
     public boolean changePrice(VendingMachine vendingMachine, int slot, int price) {
         boolean b = false;
         ItemSlot[] itemSlots = vendingMachine.getItemSlots();
@@ -569,7 +589,8 @@ public class VendingMachineDriver {
     /**
      * This private method facilitates the stocking procedures in the vending machine.
      * @param vendingMachine the vending machine to be stocked.
-     */
+     *//*
+
     private void execStocking(VendingMachine vendingMachine) {
         Scanner sc = new Scanner(System.in);
         int option, slot;
@@ -626,7 +647,8 @@ public class VendingMachineDriver {
     /**
      * This method changes the suggested retail price of an item.
      * @param vendingMachine the vending machine to be changed.
-     */
+     *//*
+
     private void execChangePrice(VendingMachine vendingMachine) {
         Scanner sc = new Scanner(System.in);
         int option;
@@ -704,7 +726,8 @@ public class VendingMachineDriver {
      * This private method facilitates the maintenance of the vending machines.
      * @param vendingMachine the vending machine to be maintained.
      * @param wallet the wallet to be maintained.
-     */
+     *//*
+
     private void execMaintenance(VendingMachine vendingMachine, Money wallet) {
         Scanner sc = new Scanner(System.in);
         int option;
@@ -930,7 +953,8 @@ public class VendingMachineDriver {
     /**
      * This private method displays the vending machines.
      * @param vendingMachines the list of vending machines.
-     */
+     *//*
+
     private void displayVendingMachine(ArrayList<VendingMachine> vendingMachines) {
         Iterator<VendingMachine> it = vendingMachines.iterator();
 
@@ -953,7 +977,8 @@ public class VendingMachineDriver {
      * This private method lets the user select a vending machine.
      * @param vendingMachines the list of vending machines to be selected from.
      * @return the vending machine selected.
-     */
+     *//*
+
     private VendingMachine selectVendingMachine(ArrayList<VendingMachine> vendingMachines) {
         Scanner sc = new Scanner(System.in);
         VendingMachine vm = null;
@@ -978,7 +1003,8 @@ public class VendingMachineDriver {
     /**
      * This private method displays the list of money instances.
      * @param moneyList the list of money instances.
-     */
+     *//*
+
     private void displayMoneyList(ArrayList<Money> moneyList) {
         Iterator<Money> it = moneyList.iterator();
 
@@ -1001,7 +1027,8 @@ public class VendingMachineDriver {
      * @param wallets the list of money instances.
      * @param currentWallet the current money instance.
      * @return
-     */
+     *//*
+
     private Money selectWallet(ArrayList<Money> wallets, Money currentWallet) {
         Scanner sc = new Scanner(System.in);
 
@@ -1030,7 +1057,8 @@ public class VendingMachineDriver {
      * This private method lets the user interact with the vending machine.
      * @param wallet the Money instance to be used.
      * @return an array list of items.
-     */
+     *//*
+
     private ArrayList<VendItem> startInteraction(Money wallet) {
         boolean exit = false;
         ArrayList<VendItem> allVendItems = new ArrayList<VendItem>();
@@ -1104,7 +1132,8 @@ public class VendingMachineDriver {
     /**
      *  This private method displays the item inventory.
      * @param vendItems the list of items to be displayed.
-     */
+     *//*
+
     private void displayItemInventory(ArrayList<VendItem> vendItems) {
         ArrayList<VendItem> vendItemSets = new ArrayList<VendItem>();
         ArrayList<Integer> itemQuantity = new ArrayList<Integer>();
@@ -1143,7 +1172,8 @@ public class VendingMachineDriver {
          * This private method displays the vending machine's item menu,
      * inventories, and transactions.
      * @param vendingMachine the vending machine to be displayed.
-     */
+     *//*
+
     private void showVendingMachine(VendingMachine vendingMachine) {
         displayItemMenu(vendingMachine);
         displayInventories(vendingMachine);
@@ -1153,7 +1183,8 @@ public class VendingMachineDriver {
     /**
      * This private method lets the user create a new vending machine.
      * @return an array list of vending machines.
-     */
+     *//*
+
     private ArrayList<VendingMachine> createVendingMachine() {
         ArrayList<VendingMachine> vm = new ArrayList<VendingMachine>();
         Scanner sc = new Scanner(System.in);
@@ -1233,7 +1264,8 @@ public class VendingMachineDriver {
 
     /**
      * This private method lets the user customize vending machines.
-     */
+     *//*
+
     private void customizeVendingMachine() {
         Scanner sc = new Scanner(System.in);
         int option;
@@ -1274,7 +1306,8 @@ public class VendingMachineDriver {
     /**
      * This private method lets the user create a new money instance.
      * @return an array list of money instances.
-     */
+     *//*
+
     private ArrayList<Money> createMoney() {
         ArrayList<Money> money = new ArrayList<Money>();
         Scanner sc = new Scanner(System.in);
@@ -1390,7 +1423,8 @@ public class VendingMachineDriver {
 
     /**
      * This private method lets the user customize money.
-     */
+     *//*
+
     private void customizeMoney() {
         Scanner sc = new Scanner(System.in);
         int option;
@@ -1425,7 +1459,8 @@ public class VendingMachineDriver {
     /**
      * This private method lets the user create a new item stock.
      * @return
-     */
+     *//*
+
     private ArrayList<VendingStock> createItemStock() {
         ArrayList<VendingStock> vendingStocks = new ArrayList<VendingStock>();
         Scanner sc = new Scanner(System.in);
@@ -1511,7 +1546,8 @@ public class VendingMachineDriver {
     /**
      * This private method lets the user add an item stock.
      * @param vendingStock the item stock to be added.
-     */
+     *//*
+
     private void addItemStock(VendingStock vendingStock) {
         Scanner sc = new Scanner(System.in);
         int stock;
@@ -1543,7 +1579,8 @@ public class VendingMachineDriver {
 
     /**
      * This private method lets the user customize the item stock.
-     */
+     *//*
+
     private void customizeItemStock() {
         Scanner sc = new Scanner(System.in);
         int option;
@@ -1585,7 +1622,8 @@ public class VendingMachineDriver {
     /**
      * This private method displays the main menu of the vending machine driver.
      * @param factory the factory instance to be performed on.
-     */
+     *//*
+
     private static void programMenu(VendingMachineDriver factory) {
         Scanner sc = new Scanner(System.in);
         int option;
@@ -1658,4 +1696,4 @@ public class VendingMachineDriver {
 
     private ArrayList<VendItem> myInventory = new ArrayList<VendItem>();
 
-}
+}/**/
