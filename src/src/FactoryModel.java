@@ -315,7 +315,11 @@ public class FactoryModel {
     public void displayVendingMachineMoney(int vendingMachineNum, JTextArea ta){
         int vendingMachineNum2 = vendingMachineNum - 1;
         ArrayList<String> money = vendingMachines.get(vendingMachineNum2).showMoney();
+        int count = -2;
         for (String string : money) {
+            count++;
+            if (count > 0)
+                ta.append("[" + count + "] ");
             ta.append(string);
         }
     }
