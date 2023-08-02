@@ -756,6 +756,27 @@ public class FactoryController {
                 }
             }
         });
+
+        this.factoryView.setChangePriceofItemMenuBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Change Price of Item");
+                factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getChangePriceofItemTa());
+            }
+        });
+
+        this.factoryView.setChangePriceofItemBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isParsable(factoryView.getSelectIndexTf()) && isParsable(factoryView.getSetItemPriceTf())){
+
+                }
+                else{
+                    factoryModel.invalidNumberError(errorFrame);
+                }
+            }
+        });
+
         //
         this.factoryView.setShowVMBtnListener(new ActionListener() {
             @Override

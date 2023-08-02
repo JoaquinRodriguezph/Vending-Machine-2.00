@@ -364,6 +364,7 @@ public class FactoryView {
         this.backBtn26 = new JButton("Back"); this.backBtn27 = new JButton("Back"); this.backBtn28 = new JButton("Back");
         this.backBtn29 = new JButton("Back"); this.backBtn30 = new JButton("Back"); this.jcomp14 = new JButton("Back");
         this.backBtn31 = new JButton("Back"); this.addItemtoInventoryBackBtn = new JButton("Back");
+        this.changePriceofItemBackBtn = new JButton("Back");
 
         backBtnList.add(this.backBtn1);backBtnList.add(this.backBtn2);backBtnList.add(this.backBtn3);
         backBtnList.add(this.backBtn4);backBtnList.add(this.backBtn5);backBtnList.add(this.backBtn6);
@@ -376,6 +377,7 @@ public class FactoryView {
         backBtnList.add(this.backBtn25); backBtnList.add(this.backBtn26); backBtnList.add(this.backBtn27);
         backBtnList.add(this.backBtn28); backBtnList.add(this.backBtn29); backBtnList.add(this.backBtn30);
         backBtnList.add(this.jcomp14); backBtnList.add(this.backBtn31); backBtnList.add(this.addItemtoInventoryBackBtn);
+        backBtnList.add(this.changePriceofItemBackBtn);
         backBtn1.addActionListener(new ActionListener() { //Back button for Main Program to Main Menu
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -573,6 +575,13 @@ public class FactoryView {
             }
         });
         addItemtoInventoryBackBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
+            }
+        });
+
+        changePriceofItemBackBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
@@ -1160,7 +1169,7 @@ public class FactoryView {
         this.jcomp4.setText(""); this.restockTa.setText(""); this.itemStocksTa.setText(""); this.inventoriesTa.setText(""); this.transactionsTa.setText("");
         this.moneyTa.setText(""); this.itemSlotsTa.setText(""); this.replenishChangeTa.setText(""); this.showItemsTa.setText("");
         this.detailsTa.setText(""); this.showVMTa.setText(""); this.vmTa.setText(""); this.itemsTa.setText(""); this.changePriceTa.setText("");
-        this.restockTa2.setText("");
+        this.restockTa2.setText(""); this.addItemTa.setText(""); this.changePriceofItemTa.setText("");
     }
 
     public void showDisplayInventoriesBtn(){
@@ -1432,16 +1441,38 @@ public class FactoryView {
      * @param actionListener, is to be overdriven.
      */
     public void setAddItemtoInventoryBtnListener(ActionListener actionListener){this.addItemtoInventoryBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Change Price of Item Menu Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setChangePriceofItemMenuBtnListener(ActionListener actionListener){this.changePriceofItemMenuBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Change Price of Item Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setChangePriceofItemBtnListener(ActionListener actionListener){this.changePriceofItemBtn.addActionListener(actionListener);}
+
+    /**
+     * This method shows the Special Vending Machine Buttons.
+     */
     public void showSpecialVMButtons(){
         this.addItemtoInventoryMenuBtn.setVisible(true);
         this.changePriceofItemMenuBtn.setVisible(true);
     }
 
+    /**
+     * This method hides the Special Vending Machine Buttons.
+     */
     public void hideSpecialVMButtons(){
         this.addItemtoInventoryMenuBtn.setVisible(false);
         this.changePriceofItemMenuBtn.setVisible(false);
     }
 
+    /**
+     * This method sets the Add Item to Inventory Panel.
+     */
     public void setAddItemtoInventoryPanel(){
         this.addItemtoInventoryPanel = new JPanel();
         this.addItemtoInventoryPanel.setLayout(new FlowLayout());
@@ -1454,7 +1485,6 @@ public class FactoryView {
         this.setSpecialPriceLbl = new JLabel("Set Price: ");
         this.setSpecialPriceTf = new JTextField(10);
         this.addItemtoInventoryBtn = new JButton("Add Item");
-        this.addItemtoInventoryBackBtn = new JButton("Back");
         this.addItemtoInventoryPanel.add(scrollPane);
         this.addItemtoInventoryPanel.add(this.selectSpecialItemLbl);
         this.addItemtoInventoryPanel.add(this.selectSpecialItemTf);
@@ -1464,15 +1494,42 @@ public class FactoryView {
         this.addItemtoInventoryPanel.add(this.addItemtoInventoryBackBtn);
     }
 
+    /**
+     * This method sets the change to Price of Item Panel.
+     */
     public void setChangePriceofItemPanel(){
         this.changePriceofItemPanel = new JPanel();
         this.changePriceofItemPanel.setLayout(new FlowLayout());
+        this.changePriceofItemTa = new JTextArea();
+        this.changePriceofItemTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(this.changePriceofItemTa, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        this.selectIndexLbl = new JLabel("Select Index: ");
+        this.selectIndexTf = new JTextField(18);
+        this.setItemPriceLbl = new JLabel("Set Price: ");
+        this.setItemPriceTf = new JTextField(10);
+        this.changePriceofItemBtn = new JButton("Change Price");
+        this.changePriceofItemPanel.add(scrollPane);
+        this.changePriceofItemPanel.add(this.selectIndexLbl);
+        this.changePriceofItemPanel.add(this.selectIndexTf);
+        this.changePriceofItemPanel.add(this.setItemPriceLbl);
+        this.changePriceofItemPanel.add(this.setItemPriceTf);
+        this.changePriceofItemPanel.add(this.changePriceofItemBtn);
+        this.changePriceofItemPanel.add(this.changePriceofItemBackBtn);
+        changePriceofItemPanel.setBackground(Color.WHITE);
     }
 
+    /**
+     * This method shows the Set Price Components.
+     */
     public void showSpecialPrice(){
         this.setSpecialPriceLbl.setVisible(true);
         this.setSpecialPriceTf.setVisible(true);
     }
+
+    /**
+     * This method hides the Set Price Components.
+     */
     public void hideSpecialPrice(){
         this.setSpecialPriceLbl.setVisible(false);
         this.setSpecialPriceTf.setVisible(false);
@@ -1548,7 +1605,23 @@ public class FactoryView {
 
     private JTextField setSpecialPriceTf; private JButton addItemtoInventoryBtn, addItemtoInventoryBackBtn;
 
+    public JTextArea getChangePriceofItemTa() {
+        return changePriceofItemTa;
+    }
 
+    private JTextArea changePriceofItemTa; private JLabel selectIndexLbl, setItemPriceLbl;
+
+    public String getSelectIndexTf() {
+        return selectIndexTf.getText();
+    }
+
+    private JTextField selectIndexTf;
+
+    public String getSetItemPriceTf() {
+        return setItemPriceTf.getText();
+    }
+
+    private JTextField setItemPriceTf; private JButton changePriceofItemBtn, changePriceofItemBackBtn;
     //Restock Components
     private JTextArea restockTa;
 

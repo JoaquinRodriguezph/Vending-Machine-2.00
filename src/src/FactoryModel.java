@@ -35,6 +35,10 @@ public class FactoryModel {
     }
 
     //Special Vending Machine Features
+    public void setItemPrice(int vendingMachineChosed, int slot, int price){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
+        svm.setItemPrice(slot, price);
+    }
     public boolean addToInventoryTest(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         Item item = myInventory.get(slot - 1);
@@ -320,6 +324,13 @@ public class FactoryModel {
         }
     }
 
+    public void displaySpecialVendingMachineInventory(int vendingMachineNum ,JTextArea ta){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineNum - 1)));
+        ArrayList<String> inventory = svm.getIndexInventoryInfo();
+        for (String string : inventory){
+            ta.append(string);
+        }
+    }
     public void invalidNumberError(JFrame frame){
         JOptionPane.showMessageDialog(frame, "Please enter a valid number.",
                 "Error", JOptionPane.ERROR_MESSAGE);
