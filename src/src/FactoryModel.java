@@ -45,7 +45,7 @@ public class FactoryModel {
             for (int i = 0; i < quantity; i++) {
                 vendItems.add(selected2);
             }
-            vendingMachines.get(choice).addSlotStock(selected, vendItems);
+            vendingMachines.get(choice2).addSlotStock(selected, vendItems);
 
         }
         else {
