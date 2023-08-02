@@ -39,17 +39,20 @@ public class FactoryModel {
         int choice2 = choice - 1;
         int item2 = item - 1;
 
-        if(myInventory.get(item2) instanceof Item){
+        if(myInventory.get(item2) instanceof VendItem){
+            VendItem selected2 = (VendItem) myInventory.get(item2);
+            ArrayList<VendItem> vendItems = new ArrayList<VendItem>();
+            for (int i = 0; i < quantity; i++) {
+                vendItems.add(selected2);
+            }
+            vendingMachines.get(choice).addSlotStock(selected, vendItems);
+
+        }
+        else {
             JOptionPane.showMessageDialog(frame, "Can only place VendItem!",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        VendItem selected2 = (VendItem) myInventory.get(item2);
-        ArrayList<VendItem> vendItems = new ArrayList<VendItem>();
-        for (int i = 0; i < quantity; i++) {
-            vendItems.add(selected2);
-        }
-        vendingMachines.get(choice).addSlotStock(selected, vendItems);
     }
     public void changeItemSlotPrice(int choice, int selected, int price, JFrame frame) {
         int choice2 = choice - 1;
