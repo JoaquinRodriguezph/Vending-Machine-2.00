@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class FactoryController {
 
@@ -58,6 +59,19 @@ public class FactoryController {
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Buy from Vending Machine");
                 factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getJcomp4(), errorFrame);
+                ArrayList<String> comboBox = factoryModel.comboboxChoices(vendingMachineChosed);
+                for (String string: comboBox){
+                    factoryView.getJcomp11().addItem(string);
+                }
+            }
+        });
+
+        this.factoryView.setJcomp13BtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                slotChosed = factoryView.getJcomp11().getSelectedIndex() + 1;
+                factoryModel.success(errorFrame);
+
             }
         });
 
@@ -196,6 +210,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Transactions");
+                factoryModel.displayTransactions(vendingMachineChosed, factoryView.getTransactionsTa());
             }
         });
 
@@ -357,7 +372,7 @@ public class FactoryController {
         }
     }
     private int vendingMachineChosed;
-    private int choice;
+    private int choice, slotChosed;
     private JFrame errorFrame;
     private FactoryView factoryView;
     private FactoryModel factoryModel;

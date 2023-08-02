@@ -35,6 +35,17 @@ public class FactoryModel {
         myInventory.add(new VendItem("Bottled Water", 0));
     }
 
+    public ArrayList<String> comboboxChoices(int choice) {
+        ArrayList<String> choices = new ArrayList<String>();
+        for (int i = 0; i < vendingMachines.get(choice-1).getNumSlots(); i++) {
+            choices.add("" + (i + 1));
+        }
+        return choices;
+    }
+
+    public void displayMoneyNeeded(int choice, int selected, JFrame frame) {
+
+    }
     public void setStock(int choice, int selected, int item, int quantity, JFrame frame){
         int choice2 = choice - 1;
         int item2 = item - 1;
@@ -205,6 +216,13 @@ public class FactoryModel {
     }
 
 
+    public void displayTransactions(int choice, JTextArea ta){
+        ArrayList<String> transactionLog = vendingMachines.get(choice - 1).getTransactionLog();
+        for (String transaction : transactionLog) {
+            ta.append(transaction);
+        }
+    }
+
     /**
      * This method displays the items in the inventory.
      * @param ta, the text area of the view to be utilized
@@ -246,6 +264,11 @@ public class FactoryModel {
     public void invalidNumberError(JFrame frame){
         JOptionPane.showMessageDialog(frame, "Please enter a valid number.",
                 "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void success(JFrame frame){
+        JOptionPane.showMessageDialog(frame, "Success!",
+                "Error", JOptionPane.INFORMATION_MESSAGE);
     }
     public int getVendingMachineSize(){
         return vendingMachines.size();

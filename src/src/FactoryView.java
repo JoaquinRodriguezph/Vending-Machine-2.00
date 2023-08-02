@@ -58,6 +58,11 @@ public class FactoryView {
 
     private JTextArea jcomp4; private JButton jcomp5;
     private JButton jcomp6; private JButton jcomp7; private JButton jcomp8; private JButton jcomp9; private JButton jcomp10;
+
+    public JComboBox getJcomp11() {
+        return jcomp11;
+    }
+
     private JComboBox jcomp11; private JLabel jcomp12; private JButton jcomp13;
     private JButton jcomp14; private JButton jcomp15; private JComboBox jcomp16;
 
@@ -159,6 +164,15 @@ public class FactoryView {
     }
 
     private JTextArea inventoriesTa;
+
+    /**
+     * This method is used to return the JTextArea getTransactionsTa.
+     * @return the JTextArea getTransactionsTa.
+     */
+    public JTextArea getTransactionsTa() {
+        return transactionsTa;
+    }
+
     private JTextArea transactionsTa;
 
     /**
@@ -852,7 +866,7 @@ public class FactoryView {
      */
     public void setDoMaintenancePanel(){
         this.doMaintenancePanel = new JPanel(cardLayout);
-        doMaintenancePanel.setLayout(new GridLayout(10,1));
+        doMaintenancePanel.setLayout(new GridLayout(13,1));
         doMaintenancePanel.add(backBtn26);
         this.restockBtn = new JButton("Restock");
         doMaintenancePanel.add(restockBtn);
@@ -867,7 +881,6 @@ public class FactoryView {
         this.showItemStocksBtn = new JButton("Show Item Stocks");
         doMaintenancePanel.add(showItemStocksBtn);
         this.displayInventoriesBtn = new JButton("Display Inventories");
-        displayInventoriesBtn.setVisible(false);
         doMaintenancePanel.add(displayInventoriesBtn);
         this.displayTransactionsBtn = new JButton("Display Transactions");
         doMaintenancePanel.add(displayTransactionsBtn);
@@ -1241,9 +1254,17 @@ public class FactoryView {
     public void setBuyFromVmBtnListener(ActionListener actionListener){this.buyFromVmBtn.addActionListener(actionListener);}
 
     /**
+     * This method sets the Jcomp13 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp13BtnListener(ActionListener actionListener){this.jcomp13.addActionListener(actionListener);}
+
+    /**
      * This method sets the Do Maintenance Button on what to do when pressed.
      * @param actionListener, is to be overdriven.
      */
+
+
     public void setDoMaintenanceBtnListener(ActionListener actionListener){this.doMaintenanceBtn.addActionListener(actionListener);}
 
     //Setters for Do Maintenance Buttons
