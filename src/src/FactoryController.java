@@ -89,12 +89,16 @@ public class FactoryController {
                             };
                             payment.clear();
                         }
-
-                    }
-                    else{
-                        factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
-                        factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
-                        selectedItem = false;
+                        else{
+                            if(payment.size() != 0){
+                                for (Money money1: payment){
+                                    factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
+                                }
+                            }
+                            factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
+                            factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
+                            selectedItem = false;
+                        }
                     }
                 }
                 else{
@@ -118,7 +122,7 @@ public class FactoryController {
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
-                        if (before.equals(payment)){
+                        if (before.equals(payment)) {
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
                             for (Money money2 : payment){
                                 factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
@@ -126,6 +130,11 @@ public class FactoryController {
                             payment.clear();
                         }
                         else{
+                            if(payment.size() != 0){
+                                for (Money money1: payment){
+                                    factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
+                                }
+                            }
                             factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
                             factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
                             selectedItem = false;
@@ -153,7 +162,7 @@ public class FactoryController {
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
-                        if (before.equals(payment)){
+                        if (before.equals(payment)) {
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
                             for (Money money2 : payment){
                                 factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
@@ -161,6 +170,11 @@ public class FactoryController {
                             payment.clear();
                         }
                         else{
+                            if(payment.size() != 0){
+                                for (Money money1: payment){
+                                    factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
+                                }
+                            }
                             factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
                             factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
                             selectedItem = false;
@@ -187,8 +201,7 @@ public class FactoryController {
                     factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
-                        payment = factoryModel.getChange(vendingMachineChosed, payment, price);
-                        if (before.equals(payment)){
+                        if (before.equals(payment)) {
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
                             for (Money money2 : payment){
                                 factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
@@ -196,6 +209,11 @@ public class FactoryController {
                             payment.clear();
                         }
                         else{
+                            if(payment.size() != 0){
+                                for (Money money1: payment){
+                                    factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
+                                }
+                            }
                             factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
                             factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
                             selectedItem = false;
@@ -223,7 +241,7 @@ public class FactoryController {
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
-                        if (before.equals(payment)){
+                        if (before.equals(payment)) {
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
                             for (Money money2 : payment){
                                 factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
@@ -231,6 +249,11 @@ public class FactoryController {
                             payment.clear();
                         }
                         else{
+                            if(payment.size() != 0){
+                                for (Money money1: payment){
+                                    factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
+                                }
+                            }
                             factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
                             factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
                             selectedItem = false;
@@ -257,8 +280,7 @@ public class FactoryController {
                     factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
-                        payment = factoryModel.getChange(vendingMachineChosed, payment, price);
-                        if (before.equals(payment)){
+                        payment = factoryModel.getChange(vendingMachineChosed, payment, price);  if (before.equals(payment)) {
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
                             for (Money money2 : payment){
                                 factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
@@ -266,6 +288,11 @@ public class FactoryController {
                             payment.clear();
                         }
                         else{
+                            if(payment.size() != 0){
+                                for (Money money1: payment){
+                                    factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
+                                }
+                            }
                             factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
                             factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
                             selectedItem = false;
@@ -293,7 +320,7 @@ public class FactoryController {
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
-                        if (before.equals(payment)){
+                        if (before.equals(payment)) {
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
                             for (Money money2 : payment){
                                 factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
@@ -301,6 +328,11 @@ public class FactoryController {
                             payment.clear();
                         }
                         else{
+                            if(payment.size() != 0){
+                                for (Money money1: payment){
+                                    factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
+                                }
+                            }
                             factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
                             factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
                             selectedItem = false;
@@ -328,7 +360,7 @@ public class FactoryController {
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
-                        if (before.equals(payment)){
+                        if (before.equals(payment)) {
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
                             for (Money money2 : payment){
                                 factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
@@ -336,6 +368,11 @@ public class FactoryController {
                             payment.clear();
                         }
                         else{
+                            if(payment.size() != 0){
+                                for (Money money1: payment){
+                                    factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
+                                }
+                            }
                             factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
                             factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
                             selectedItem = false;
@@ -348,6 +385,45 @@ public class FactoryController {
             }
         });
 
+        this.factoryView.setJcomp10BtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (selectedItem){
+                    Money money = new Money(1000);
+                    payment.add(money);
+                    int tempTotal = 0;
+                    for (Money money2 : payment){
+                        tempTotal += money2.getValue();
+                    }
+                    total = tempTotal;
+                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    if (total > price || total == price){
+                        ArrayList<Money> before = payment;
+                        payment = factoryModel.getChange(vendingMachineChosed, payment, price);
+                        if (before.equals(payment)) {
+                            factoryView.getJcomp4().append("Not enough change, your money is returned\n");
+                            for (Money money2 : payment){
+                                factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
+                            };
+                            payment.clear();
+                        }
+                        else{
+                            if(payment.size() != 0){
+                                for (Money money1: payment){
+                                    factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
+                                }
+                            }
+                            factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
+                            factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
+                            selectedItem = false;
+                        }
+                    }
+                }
+                else{
+                    factoryModel.noItemSelectedError(errorFrame);
+                }
+            }
+        });
         this.factoryView.setJcomp13BtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
