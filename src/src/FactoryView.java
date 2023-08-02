@@ -1470,6 +1470,11 @@ public class FactoryView {
     public void setChangePriceofItemBtnListener(ActionListener actionListener){this.changePriceofItemBtn.addActionListener(actionListener);}
 
     /**
+     * This method sets the Add Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setAddBtnListener(ActionListener actionListener){this.Add.addActionListener(actionListener);}
+    /**
      * This method shows the Special Vending Machine Buttons.
      */
     public void showSpecialVMButtons(){
@@ -1682,6 +1687,11 @@ public class FactoryView {
 
     private JComboBox itemSlot;
     private JButton Add;
+
+    public JTextArea getSelected_Items() {
+        return Selected_Items;
+    }
+
     private JTextArea Selected_Items;
 
     //Buying Components

@@ -2,65 +2,63 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class FactoryModel {
-    /**
-     * This method gets the ArrayList of vending machines.
-     * @return ArrayList of vending machines.
-     */
     public ArrayList<VendingMachine> getVendingMachines() {
         return vendingMachines;
     }
 
-    /**
-     * This method is a constructor which creates and initializes the instance:
-     */
+    private ArrayList<VendingMachine> vendingMachines;
+
+    private ArrayList<Item> myInventory;
+
     public FactoryModel() {
         this.vendingMachines = new ArrayList<VendingMachine>();
-        this.myItems = new ArrayList<Item>();
+        this.myInventory = new ArrayList<Item>();
         vendingMachines.add(new VendingMachine("Regular Vending Machine", 10, 10));
         vendingMachines.add(new SpecialVendingMachine("Special Vending Machine", 10, 10 ,10));
         SpecialVendingMachine svm = (SpecialVendingMachine) vendingMachines.get(1);
 
-        myItems.add(new VendItem("Sunny Side Up", 120));
-        myItems.add(new VendItem("Chippy", 170));
-        myItems.add(new VendItem("Tapas", 200));
-        myItems.add(new VendItem("Hotdog", 75));
-        myItems.add(new VendItem("Piattos", 180));
-        myItems.add(new VendItem("V-Cut", 180));
-        myItems.add(new VendItem("Corn", 88));
-        myItems.add(new VendItem("Fried Chicken", 246));
-        myItems.add(new VendItem("Bangus", 200));
-        myItems.add(new VendItem("Pork Chop", 231));
-        myItems.add(new VendItem("Tosino", 230));
-        myItems.add(new VendItem("Rice", 206));
-        myItems.add(new VendItem("Coca Cola", 140));
-        myItems.add(new VendItem("Royal", 140));
-        myItems.add(new VendItem("Bottled Water", 0));
-        myItems.add(new Item("Gravy", 79));
-        myItems.add(new Item("Toyo", 53));
+        myInventory.add(new VendItem("Sunny Side Up", 120));
+        myInventory.add(new VendItem("Chippy", 170));
+        myInventory.add(new VendItem("Tapas", 200));
+        myInventory.add(new VendItem("Hotdog", 75));
+        myInventory.add(new VendItem("Piattos", 180));
+        myInventory.add(new VendItem("V-Cut", 180));
+        myInventory.add(new VendItem("Corn", 88));
+        myInventory.add(new VendItem("Fried Chicken", 246));
+        myInventory.add(new VendItem("Bangus", 200));
+        myInventory.add(new VendItem("Pork Chop", 231));
+        myInventory.add(new VendItem("Tosino", 230));
+        myInventory.add(new VendItem("Rice", 206));
+        myInventory.add(new VendItem("Coca Cola", 140));
+        myInventory.add(new VendItem("Royal", 140));
+        myInventory.add(new VendItem("Bottled Water", 0));
+        myInventory.add(new Item("Gravy", 79));
+        myInventory.add(new Item("Toyo", 53));
 
-        svm.addToInventory(myItems.get(0), 30);
-        svm.addToInventory(myItems.get(1), 75);
-        svm.addToInventory(myItems.get(2), 100);
-        svm.addToInventory(myItems.get(3), 75);
-        svm.addToInventory(myItems.get(4), 75);
-        svm.addToInventory(myItems.get(5), 75);
-        svm.addToInventory(myItems.get(6), 20);
-        svm.addToInventory(myItems.get(7), 100);
-        svm.addToInventory(myItems.get(8), 100);
-        svm.addToInventory(myItems.get(9), 100);
-        svm.addToInventory(myItems.get(10), 100);
-        svm.addToInventory(myItems.get(11), 20);
-        svm.addToInventory(myItems.get(12), 50);
-        svm.addToInventory(myItems.get(13), 50);
-        svm.addToInventory(myItems.get(14), 25);
+        svm.addToInventory(myInventory.get(0), 30);
+        svm.addToInventory(myInventory.get(1), 75);
+        svm.addToInventory(myInventory.get(2), 100);
+        svm.addToInventory(myInventory.get(3), 75);
+        svm.addToInventory(myInventory.get(4), 75);
+        svm.addToInventory(myInventory.get(5), 75);
+        svm.addToInventory(myInventory.get(6), 20);
+        svm.addToInventory(myInventory.get(7), 100);
+        svm.addToInventory(myInventory.get(8), 100);
+        svm.addToInventory(myInventory.get(9), 100);
+        svm.addToInventory(myInventory.get(10), 100);
+        svm.addToInventory(myInventory.get(11), 20);
+        svm.addToInventory(myInventory.get(12), 50);
+        svm.addToInventory(myInventory.get(13), 50);
+        svm.addToInventory(myInventory.get(14), 25);
 
     }
 
     //Special Vending Machine Features
-    /**
-     * This method gets an ArrayList of Strings for the Silog Combo feature combo box.
-     * @return ArrayList of strings use for the combo box.
-     */
+    //public ArrayList<String> selledItems(){}
+    public Item getItem(int vendingMachineChosed, int slot){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
+        return svm.releaseItem(slot);
+    }
     public ArrayList<String> specialComboBox(int vendingMachine){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachine - 1)));
         ArrayList<String> choices = new ArrayList<String>();
@@ -69,37 +67,18 @@ public class FactoryModel {
         }
         return choices;
     }
-
-    /**
-     * This method sets a new item price of vending machine slot.
-     * @param vendingMachineChosed the chosen vending machine
-     * @param slot the selected item slot
-     * @param price the price to be set
-     */
     public void setItemPrice(int vendingMachineChosed, int slot, int price){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         svm.setItemPrice(slot, price);
     }
 
-    /**
-     * This method gets the size of special vending machine item list.
-     * @param vendingMachineChosed the chosen special vending machine
-     * @return the item list size of the selected vending machine
-     */
     public int getSVMItemListSize(int vendingMachineChosed){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         return svm.getItemListSize();
     }
-
-    /**
-     * This adds the chosen item to the special vending machine.
-     * @param vendingMachineChosed the chosen special vending machine
-     * @param slot the selected item
-     * @return true if successfully added, false otherwise
-     */
     public boolean addToInventoryTest(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
-        Item item = myItems.get(slot - 1);
+        Item item = myInventory.get(slot - 1);
         if (svm.addToInventory(item)){
             return true;
         }
@@ -108,23 +87,15 @@ public class FactoryModel {
         }
     }
 
-
     public void addToInventoryTrue(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
-        Item item = myItems.get(slot - 1);
+        Item item = myInventory.get(slot - 1);
         svm.addToInventory(item);
     }
 
-    /**
-     * This adds the chosen new item to the special vending machine.
-     * @param vendingMachineChosed the chosen special vending machine
-     * @param slot the selected item
-     * @param price the price to be set
-     * @return true if successfully added, false otherwise
-     */
     public void addToInventoryFalse(int vendingMachineChosed, int slot, int price){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
-        Item item = myItems.get(slot - 1);
+        Item item = myInventory.get(slot - 1);
         svm.addToInventory(item, price);
     }
     //
@@ -146,8 +117,8 @@ public class FactoryModel {
         int choice2 = choice - 1;
         int item2 = item - 1;
 
-        if(myItems.get(item2) instanceof VendItem){
-            VendItem selected2 = (VendItem) myItems.get(item2);
+        if(myInventory.get(item2) instanceof VendItem){
+            VendItem selected2 = (VendItem) myInventory.get(item2);
             ArrayList<VendItem> vendItems = new ArrayList<VendItem>();
             for (int i = 0; i < quantity; i++) {
                 vendItems.add(new VendItem(selected2.getName(), selected2.getCalories()));
@@ -280,6 +251,7 @@ public class FactoryModel {
                 "Error", JOptionPane.INFORMATION_MESSAGE);
     }
     public void createItem(String name, int calories, JFrame frame) {
+        ArrayList<Item> itemStocks = new ArrayList<Item>();
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Name cannot be empty",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -296,8 +268,8 @@ public class FactoryModel {
                 "Error", JOptionPane.ERROR_MESSAGE);
 
         try{
-            Item newItem = new Item(name, calories);
-            myItems.add(newItem);
+            itemStocks.add(new Item(name, calories));  //itemStocks Arraylist adds the new itemStocks
+            this.myInventory.addAll(itemStocks);
             return;
         }
         catch (IllegalArgumentException e){
@@ -309,7 +281,7 @@ public class FactoryModel {
     }
 
     public void selectItem(int choice, JFrame errorFrame){
-        if (choice <= myItems.size() && choice >= 0){
+        if (choice <= myInventory.size() && choice >= 0){
             JOptionPane.showMessageDialog(errorFrame, "Successfully selected item.",
                     "Success", JOptionPane.ERROR_MESSAGE);;
         }
@@ -319,14 +291,14 @@ public class FactoryModel {
         }
     }
     public void addItem(int choice, int num, JFrame frame) {
-        if (choice < 0 || choice > myItems.size()) {
+        if (choice < 0 || choice > myInventory.size()) {
             JOptionPane.showMessageDialog(frame, "Please enter a valid number.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         JOptionPane.showMessageDialog(frame, "Success!",
                 "Error", JOptionPane.ERROR_MESSAGE);
-        myItems.add(myItems.get(choice));
+        myInventory.add(myInventory.get(choice));
     }
 
 
@@ -344,7 +316,7 @@ public class FactoryModel {
     public void displayItems(JTextArea ta){
         ta.append("Item No || Name ||  Calories\n");
         int i = 1;
-        for (Item item : myItems) {
+        for (Item item : myInventory) {
             ta.append(i + "\t" +  item.getName() + "\t" + item.getCalories() + "\n");
             i++;
         }
@@ -431,13 +403,7 @@ public class FactoryModel {
         return vendingMachines.size();
     }
     public int myInventoryNum(){
-        return myItems.size();
+        return myInventory.size();
     }
-
-
-    private ArrayList<VendingMachine> vendingMachines;
-
-    private ArrayList<Item> myItems;
-
 
 }

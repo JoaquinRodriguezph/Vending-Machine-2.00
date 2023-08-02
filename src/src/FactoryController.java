@@ -9,6 +9,7 @@ public class FactoryController {
         this.factoryModel = factoryModel;
         this.factoryView = factoryView;
         this.errorFrame = new JFrame();
+        this.silog = new ArrayList<Item>();
         this.payment = new ArrayList<Money>();
 
         //Sets up Main Menu Buttons
@@ -469,6 +470,7 @@ public class FactoryController {
                         factoryView.getItemSlot().addItem(string);
                     }
                     factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getSelledItems());
+                    factoryView.getSelected_Items().append("Selected Items\n");
                 }
                 else {
                     factoryModel.notSpecialVendingMachine(errorFrame);
@@ -728,6 +730,16 @@ public class FactoryController {
         });
 
         //Special Vending Machine Listeners
+        this.factoryView.setAddBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.clearAllTextAreas();
+                slotChosed = factoryView.getItemSlot().getSelectedIndex() + 1;
+                Item item = factoryModel.getItem(vendingMachineChosed, slotChosed);
+                factoryView.getSelected_Items().append(item.getName() + "\n");
+                silog.add(item);
+            }
+        });
         this.factoryView.setCreateSpecialVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -870,6 +882,8 @@ public class FactoryController {
             return false;
         }
     }
+
+    private ArrayList<Item> silog;
     private boolean isSVM = false;
     private int price, moneyPayed, total;
     private ArrayList<Money> payment;
