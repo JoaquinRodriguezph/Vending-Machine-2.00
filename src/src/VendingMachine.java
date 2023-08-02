@@ -162,6 +162,16 @@ public class VendingMachine {
         return slotInfo;
     }
 
+    /**
+     * This method gets the price of the item on the slot.
+     *
+     * @param slot the slot number given
+     * @return the price of the item on the slot.
+     */
+    public int getSlotPrice(int slot) {
+        return itemSlots[slot - 1].getPrice();
+    }
+
 
     /**
      * This method sets a new price given a slot number if it contains items.
