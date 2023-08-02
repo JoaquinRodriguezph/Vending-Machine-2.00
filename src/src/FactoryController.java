@@ -15,6 +15,7 @@ public class FactoryController {
         this.errorFrame = new JFrame();
         this.silog = new ArrayList<Item>();
         this.payment = new ArrayList<Money>();
+        this.specialSilog = new ArrayList<Money>();
 
         //Sets up Main Menu Buttons
         this.factoryView.setStartProgramBtn(new ActionListener() {
@@ -733,6 +734,47 @@ public class FactoryController {
             }
         });
 
+        //Peso Listeners
+        this.factoryView.setOnePesoBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Money money = new Money(1);
+                specialSilog.add(money);
+                int tempTotal = 0;
+                for (Money m : specialSilog){
+                    tempTotal += m.getValue();
+                }
+                total = tempTotal;
+                factoryView.getSelected_Items().append("You have paid" + total + "pesos.\n");
+                if (total > specialPayment || total == specialPayment){
+                   ArrayList<Money> before = specialSilog;
+                   specialSilog = factoryModel.getChange(vendingMachineChosed, specialSilog, specialPayment);
+                   if (before.equals(specialSilog)){
+                       factoryView.getSelected_Items().append("Not enough change, your money is returned..\n");
+                       for (Money m : specialSilog){
+                           factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                       }
+                          specialSilog.clear();
+                   }
+                   else{
+                       if (specialSilog.size() != 0){
+                           factoryView.getSelected_Items().append("Your change is being returned. \n");
+                           for (Money m : specialSilog){
+                               factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                           }
+                       }
+                       SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
+                       SilogCombo silogCombo = svm.produceSilogCombo(silog);
+                       ArrayList<String> silogComboNames = svm.silogProcess(silogCombo);
+                       for (String s : silogComboNames){
+                           factoryView.getSelected_Items().append(s);
+                       }
+                       factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getSelledItems());
+                       factoryView.getSelected_Items().append(silogCombo.getCalories() + "calories \n");
+                   }
+                }
+            }
+        });
         //Special Vending Machine Listeners
         this.factoryView.setAddBtnListener(new ActionListener() {
             @Override
@@ -772,6 +814,8 @@ public class FactoryController {
                 }
             }
         });
+
+
         this.factoryView.setCreateSpecialVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -923,6 +967,8 @@ public class FactoryController {
     private Integer specialPayment;
     private boolean isSVM = false;
     private int price, moneyPayed, total;
+
+    private ArrayList<Money> specialSilog;
     private ArrayList<Money> payment;
     private boolean selectedItem = false;
     private int vendingMachineChosed;
