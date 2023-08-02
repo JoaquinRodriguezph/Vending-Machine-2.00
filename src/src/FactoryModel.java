@@ -2,10 +2,6 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class FactoryModel {
-    private boolean selectedItem = false;
-    private int vendingMachineChosed;
-    private int choice, slotChosed;
-    private JFrame errorFrame;
     public ArrayList<VendingMachine> getVendingMachines() {
         return vendingMachines;
     }
@@ -39,9 +35,9 @@ public class FactoryModel {
     }
 
     //Special Vending Machine Features
-    public boolean addToInventory(int vendingMachineChosed, int slot){
+    public boolean addToInventoryTest(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
-        Item item = myInventory.get(choice - 1);
+        Item item = myInventory.get(slot - 1);
         if (svm.addToInventory(item)){
             return true;
         }
@@ -50,6 +46,17 @@ public class FactoryModel {
         }
     }
 
+    public void addToInventoryTrue(int vendingMachineChosed, int slot){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
+        Item item = myInventory.get(slot - 1);
+        svm.addToInventory(item);
+    }
+
+    public void addToInventoryFalse(int vendingMachineChosed, int slot, int price){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
+        Item item = myInventory.get(slot - 1);
+        svm.addToInventory(item, price);
+    }
     //
     public ArrayList<String> comboboxChoices(int choice) {
         ArrayList<String> choices = new ArrayList<String>();

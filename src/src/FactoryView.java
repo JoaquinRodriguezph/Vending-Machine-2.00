@@ -1468,6 +1468,15 @@ public class FactoryView {
         this.changePriceofItemPanel = new JPanel();
         this.changePriceofItemPanel.setLayout(new FlowLayout());
     }
+
+    public void showSpecialPrice(){
+        this.setSpecialPriceLbl.setVisible(true);
+        this.setSpecialPriceTf.setVisible(true);
+    }
+    public void hideSpecialPrice(){
+        this.setSpecialPriceLbl.setVisible(false);
+        this.setSpecialPriceTf.setVisible(false);
+    }
     private JFrame mainFrame;
     private JLabel menuLabel;
     private JPanel btnPanel;
