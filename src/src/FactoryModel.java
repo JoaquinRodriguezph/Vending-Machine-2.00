@@ -391,6 +391,36 @@ public class FactoryModel {
 
     }
 
+    public void createVendingItem(String name, int calories, JFrame frame) {
+        ArrayList<Item> itemStocks = new ArrayList<Item>();
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Name cannot be empty",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (calories < 0) {
+            JOptionPane.showMessageDialog(frame, "Calories should be > 0",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        JOptionPane.showMessageDialog(frame, "Success!",
+                "Error", JOptionPane.ERROR_MESSAGE);
+
+        try{
+            itemStocks.add(new VendItem(name, calories));  //itemStocks Arraylist adds the new itemStocks
+            this.myInventory.addAll(itemStocks);
+            return;
+        }
+        catch (IllegalArgumentException e){
+            JOptionPane.showMessageDialog(frame, "Calories should be >= 0",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+    }
+
     public void selectItem(int choice, JFrame errorFrame){
         if (choice <= myInventory.size() && choice >= 0){
             JOptionPane.showMessageDialog(errorFrame, "Successfully selected item.",

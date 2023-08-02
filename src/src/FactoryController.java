@@ -636,6 +636,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Create Item");
+                factoryView.getMainFrame().setSize(750 , 500);
             }
         });
 
@@ -653,51 +654,6 @@ public class FactoryController {
                     JOptionPane.showMessageDialog(errorFrame, "Please enter a valid number.",
                             "Error", JOptionPane.ERROR_MESSAGE);;
                 }
-            }
-        });
-
-        this.factoryView.setSelectItemtoAddBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    if (isParsable(factoryView.getSelectItemtoAddTf())){
-                        choice = Integer.parseInt(factoryView.getSelectItemtoAddTf());
-                        factoryModel.selectItem(choice, errorFrame);
-                    };
-                }
-                catch (NumberFormatException ex){
-                    errorFrame = new JFrame("Error");
-                    JOptionPane.showMessageDialog(errorFrame, "Please enter a valid number.",
-                            "Error", JOptionPane.ERROR_MESSAGE);;
-                }
-            }
-        });
-
-        this.factoryView.setAddItemBtn2Listener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try{
-                    if (isParsable(factoryView.getAddItemTf())){
-                        int num = Integer.parseInt(factoryView.getAddItemTf());
-                        if (num > 0){
-                            factoryModel.addItem(choice, num, errorFrame);
-                            factoryView.clearAllTextAreas();
-                            factoryModel.displayItems(factoryView.getItemsTa());
-                        }
-                    };
-                }
-                catch (NumberFormatException ex){
-                    errorFrame = new JFrame("Error");
-                    JOptionPane.showMessageDialog(errorFrame, "Please enter a valid number.",
-                            "Error", JOptionPane.ERROR_MESSAGE);;
-                }
-            }
-        });
-        this.factoryView.setAddItemBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Add Item");
-                factoryModel.displayItems(factoryView.getItemsTa());
             }
         });
 
@@ -1185,7 +1141,7 @@ public class FactoryController {
                 Item item = factoryModel.getItem(vendingMachineChosed, slotChosed);
 
                 if(item != null){
-                    factoryView.clearAllTextAreas();
+                    factoryView.getSelledItems().setText("");
                     factoryView.getSelected_Items().append(item.getName() + " - " + ((SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed - 1)).priceItem(item) + " PHP\n");
                     silog.add(item);
                     factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getSelledItems());
@@ -1285,6 +1241,21 @@ public class FactoryController {
             }
         });
 
+        this.factoryView.setCreateStockBtn2Listener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String name = factoryView.getItemNameTf();
+                try{
+                    if (isParsable(factoryView.getCaloriesTf()));
+                    int calories = Integer.parseInt(factoryView.getCaloriesTf());
+                    factoryModel.createItem(name, calories, errorFrame);
+                }
+                catch (NumberFormatException ex){
+                    errorFrame = new JFrame("Error");
+                    JOptionPane.showMessageDialog(errorFrame, "Please enter a valid number.",
+                            "Error", JOptionPane.ERROR_MESSAGE);;
+                }            }
+        });
         this.factoryView.setChangePriceofItemMenuBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
