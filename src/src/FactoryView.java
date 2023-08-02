@@ -9,9 +9,6 @@ import java.util.ArrayList;
  * It is also responsible for the creation of the buttons and the panels.
  */
 public class FactoryView {
-    private JFrame mainFrame;
-    private JLabel menuLabel;
-    private JPanel btnPanel;
 
     /**
      * This method is used to return the cardPanel.
@@ -21,18 +18,6 @@ public class FactoryView {
         return cardPanel;
     }
 
-    private JPanel cardPanel;
-
-    //Main Menu Panels
-    private JPanel startProgramPanel, customizeVMPanel, customizeStocksPanel, pickVMPanel;
-
-    //Main Program Components
-    private JPanel buyFromVmPanel, doMaintenancePanel;
-    private JButton backBtn26;//doMaintenanceBackBtn
-    private JButton backBtn27;//buyFromVmBackBtn
-
-    private JLabel pickWalletLbl; private JTextField pickWalletTf;
-    private JLabel pickVMLbl, pickVmLbl2;
 
     /**
      * This method is used to return the string from text field getPickVMTf.
@@ -42,11 +27,6 @@ public class FactoryView {
         return pickVMTf.getText();
     }
 
-    private JTextField pickVMTf; private JButton pickVMBtn, backBtn16;
-    private JButton pickWalletBtn, backBtn12, backBtn13, backBtn14, backBtn15;
-
-    //Buying Components
-    private JButton jcomp1; private JButton jcomp2; private JButton jcomp3;
 
     /**
      * This method is used to return the JTextArea jcomp4.
@@ -56,27 +36,12 @@ public class FactoryView {
         return jcomp4;
     }
 
-    private JTextArea jcomp4; private JButton jcomp5;
-    private JButton jcomp6; private JButton jcomp7; private JButton jcomp8; private JButton jcomp9; private JButton jcomp10;
+
 
     public JComboBox getJcomp11() {
         return jcomp11;
     }
 
-    private JComboBox jcomp11; private JLabel jcomp12; private JButton jcomp13;
-    private JButton jcomp14; private JButton jcomp15; private JComboBox jcomp16;
-
-    //Do Maintenance Components
-
-    private JPanel restockPanel, changePricePanel, collectMoneyPanel, replenishChangePanel, showItemSlotsPanel;
-    private JButton restockBtn, changePriceBtn, collectMoneyBtn, replenishChangeBtn, showItemSlotsBtn;
-    private JButton backBtn17, backBtn18, backBtn19, backBtn20, backBtn21;
-    private JLabel enterItemLbl; private JTextField enterItemTf; private JButton SRPbtn, editBtn;
-    private JButton setPriceBtn;
-
-    //Special Vending Machine Components
-    private JButton addItemtoInventoryMenuBtn, changePriceofItemMenuBtn;
-    private JPanel addItemtoInventoryPanel, changePriceofItemPanel;
 
     //Change Price
 
@@ -88,76 +53,52 @@ public class FactoryView {
         return changePriceTa;
     }
 
-    private JTextArea changePriceTa; private JLabel selectItemLbl2;
+
 
     public String getSelectItemTf() {
         return selectItemTf.getText();
     }
 
-    private JTextField selectItemTf;
-
-    private JLabel priceItemLbl;
 
     public String getPriceItemTf() {
         return priceItemTf.getText();
     }
 
-    private JTextField priceItemTf; private JButton priceItemBtn;
+
 
     public JTextArea getRestockTa() {
         return restockTa;
     }
 
-    //Restock Components
-    private JTextArea restockTa;
-
     public JTextArea getRestockTa2() {
         return restockTa2;
     }
 
-    private JTextArea restockTa2; private JLabel selectItemLbl, quantityItemLbl; private JButton stockBtn;
 
     public String getSelectItemTf2() {
         return selectItemTf2.getText();
     }
 
-    private JTextField selectItemTf2;
+
 
     public String getQuantityItemTf() {
         return quantityItemTf.getText();
     }
 
-    private JLabel selectSlotLbl;
 
     public String getSelectSlotTf() {
         return selectSlotTf.getText();
     }
 
-    private JTextField selectSlotTf;
-    private JTextField quantityItemTf;
-    private JPanel editPricePanel, setToSRPPanel, setAllToSRPPanel, displaySlotsPanel;
-
-    private JButton backBtn28, backBtn29, backBtn30;
-
-    //Replenish Components
-    private JLabel replenishBillslbl;
-
     public String getReplenishBillsTf() {
         return replenishBillsTf.getText();
     }
 
-    private JTextField replenishBillsTf; private JButton replenishBillsBtn;
-    private JLabel quantityBillsLbl;
 
     public String getQuantityBillsTf() {
         return quantityBillsTf.getText();
     }
 
-    private JTextField quantityBillsTf; private JButton quantityBillsBtn;
-    private JPanel showItemStocksPanel, displayInventoriesPanel, displayTransactionsPanel, displayMoneyPanel;
-    private JButton showItemStocksBtn, displayInventoriesBtn, displayTransactionsBtn, displayMoneyBtn;
-
-    private JTextArea itemStocksTa;
 
     /**
      * This method is used to return the JTextArea getInventoriesTa.
@@ -167,7 +108,6 @@ public class FactoryView {
         return inventoriesTa;
     }
 
-    private JTextArea inventoriesTa;
 
     /**
      * This method is used to return the JTextArea getTransactionsTa.
@@ -177,7 +117,6 @@ public class FactoryView {
         return transactionsTa;
     }
 
-    private JTextArea transactionsTa;
 
     /**
      * This method is used to return the JTextArea moneyTa.
@@ -187,7 +126,6 @@ public class FactoryView {
         return moneyTa;
     }
 
-    private JTextArea moneyTa;
 
     /**
      * This method is used to return the JTextArea itemStocksTa.
@@ -205,7 +143,6 @@ public class FactoryView {
         return itemSlotsTa;
     }
 
-    private JTextArea itemSlotsTa;
 
     /**
      * This method is used to return the JTextArea getReplenishChangeTa.
@@ -215,18 +152,6 @@ public class FactoryView {
     public JTextArea getReplenishChangeTa() {
         return replenishChangeTa;
     }
-
-    private JTextArea replenishChangeTa;
-    private JButton backBtn22, backBtn23, backBtn24, backBtn25;
-
-
-    //Customize Vending Machine Components
-    private JPanel createVMPanel, showDetailsPanel, showVMPanel;
-
-    private JPanel createSpecialVMPanel;
-
-    private JLabel nameVmLbl2, numSlotsLbl2, maxItemsLbl2; private JTextField nameVmTf2;
-    private JTextField numSlotsTf2;
 
     public String getNameVmTf2() {
         return nameVmTf2.getText();
@@ -243,14 +168,6 @@ public class FactoryView {
     public String getInventoryLimitTf2() {
         return inventoryLimitTf2.getText();
     }
-    private JTextField maxItemsTf2;
-    private JLabel inventoryLimitLbl2;
-
-
-
-    private JTextField inventoryLimitTf2;
-    private JButton createVMBtn3; private JButton backBtn31;
-    private JLabel nameVmLbl, numSlotsLbl, maxItemsLbl;
 
     /**
      * This method is used to return the string from text field getNameVmTf.
@@ -276,10 +193,6 @@ public class FactoryView {
         return maxItemsTf.getText();
     }
 
-    private JTextField nameVmTf, numSlotsTf, maxItemsTf;
-
-    private JLabel pickVendingMachineLbl;
-
     /**
      * This method is used to return the string from text field getPickVmTf.
      * @return the string from text field getPickVmTf.
@@ -287,20 +200,6 @@ public class FactoryView {
     public String getPickVmTf2() {
         return pickVmTf2.getText();
     }
-
-    private JTextField pickVmTf2;
-    private JButton createVmBtn, createVMBtn2, pickBtn, backBtn9, backBtn10, backBtn11;
-
-    //Customize Item Stock Components
-    private JPanel createItemPanel, addItemPanel, showItemsPanel;
-
-    private JLabel itemNamelbl, calorieslbl, SRPlbl, itemNumberlbl, addItemlbl;
-
-    private JButton createStockBtn, addItemBtn2;
-    private JTextField itemNameTf;
-    private JTextField caloriesTf;
-    private JTextField stocksTf;
-    private JTextField SRPtf;
 
     /**
      * This method is used to return the string from text field getItemNameTf.
@@ -310,10 +209,6 @@ public class FactoryView {
         return this.addItemTf.getText();
     }
 
-    private JTextField addItemTf;
-    private JTextField numItemTf;
-    private JTextField showItemTf;
-
     /**
      * This method is used to return the JTextArea itemsTa.
      * @return the JTextArea itemsTa.
@@ -322,32 +217,24 @@ public class FactoryView {
         return itemsTa;
     }
 
-    private JTextArea itemsTa;
     public JTextArea getShowItemsTa() {
         return showItemsTa;
     }
 
-    private JTextArea showItemsTa;
-    private JTextArea walletTa;
 
     public JTextArea getDetailsTa() {
         return detailsTa;
     }
 
-    private JTextArea detailsTa;
-
     public JTextArea getShowVMTa() {
         return showVMTa;
     }
-
-    private JTextArea showVMTa;
 
 
     public JTextArea getVmTa() {
         return vmTa;
     }
 
-    private JTextArea vmTa; //TextArea for showing the items
 
 
     /**
@@ -390,27 +277,6 @@ public class FactoryView {
         return cardLayout;
     }
 
-    private CardLayout cardLayout;
-    private JButton backBtn1, backBtn2, backBtn3, backBtn4, backBtn5, backBtn6, backBtn7, backBtn8;
-
-    //Buttons for the Main Menu
-    private JButton startProgramBtn, customizeVmBtn, customizeMoneyBtn, customizeStocksBtn;
-
-    //Buttons for the Main Program
-
-    private JButton buyFromVmBtn, doMaintenanceBtn;
-
-    //Buttons for the Vending Machine
-    private JButton createVMBtn, createSpecialVMBtn, showDetailsBtn, showVMBtn;
-
-    //Buttons for the Customize Money Menu
-    private JButton createMoneyBtn, showMoneyBtn;
-
-    //Buttons for the Customize Item Stock Menu
-
-    private JButton createItemBtn, addItemBtn, showItemBtn, selectItemtoAddBtn;
-    private JLabel selectItemtoAddLbl, addItemLbl;
-
     /**
      * This method is used to return the string from text field getSelectItemtoAddTf.
      * @return the string from text field getSelectItemtoAddTf.
@@ -418,10 +284,6 @@ public class FactoryView {
     public String getSelectItemtoAddTf() {
         return selectItemtoAddTf.getText();
     }
-
-    private JTextField selectItemtoAddTf;
-    private JScrollPane scrollPane;
-    private ArrayList<JButton> btnList, backBtnList, mainProgramBtnList, stocksBtnList, vendingMachineBtnList;
 
     /**
      * This method is the constructor for the Factory View Class. It is used to initialize the components of the GUI.
@@ -1535,4 +1397,181 @@ public class FactoryView {
      * @param actionListener, is to be overdriven.
      */
     public void setShowItemsBtnListener(ActionListener actionListener){this.showItemBtn.addActionListener(actionListener);}
+
+
+    private JFrame mainFrame;
+    private JLabel menuLabel;
+    private JPanel btnPanel;
+
+    private JPanel cardPanel;
+
+    //Main Menu Panels
+    private JPanel startProgramPanel, customizeVMPanel, customizeStocksPanel, pickVMPanel;
+
+    //Main Program Components
+    private JPanel buyFromVmPanel, doMaintenancePanel;
+    private JButton backBtn26;//doMaintenanceBackBtn
+    private JButton backBtn27;//buyFromVmBackBtn
+
+    private JLabel pickWalletLbl; private JTextField pickWalletTf;
+    private JLabel pickVMLbl, pickVmLbl2;
+
+
+    private JTextField pickVMTf; private JButton pickVMBtn, backBtn16;
+    private JButton pickWalletBtn, backBtn12, backBtn13, backBtn14, backBtn15;
+
+    //Buying Components
+    private JButton jcomp1; private JButton jcomp2; private JButton jcomp3;
+
+
+    private JTextArea jcomp4; private JButton jcomp5;
+    private JButton jcomp6; private JButton jcomp7; private JButton jcomp8; private JButton jcomp9; private JButton jcomp10;
+
+    private JComboBox jcomp11; private JLabel jcomp12; private JButton jcomp13;
+    private JButton jcomp14; private JButton jcomp15; private JComboBox jcomp16;
+
+    //Do Maintenance Components
+
+    private JPanel restockPanel, changePricePanel, collectMoneyPanel, replenishChangePanel, showItemSlotsPanel;
+    private JButton restockBtn, changePriceBtn, collectMoneyBtn, replenishChangeBtn, showItemSlotsBtn;
+    private JButton backBtn17, backBtn18, backBtn19, backBtn20, backBtn21;
+    private JLabel enterItemLbl; private JTextField enterItemTf; private JButton SRPbtn, editBtn;
+    private JButton setPriceBtn;
+
+    //Special Vending Machine Components
+    private JButton addItemtoInventoryMenuBtn, changePriceofItemMenuBtn;
+    private JPanel addItemtoInventoryPanel, changePriceofItemPanel;
+
+    private JTextArea changePriceTa; private JLabel selectItemLbl2;
+
+    private JTextField selectItemTf;
+
+    private JLabel priceItemLbl;
+
+    private JTextField priceItemTf; private JButton priceItemBtn;
+
+
+    //Restock Components
+    private JTextArea restockTa;
+
+    private JTextArea restockTa2; private JLabel selectItemLbl, quantityItemLbl; private JButton stockBtn;
+
+    private JTextField selectItemTf2;
+
+
+    private JLabel selectSlotLbl;
+
+
+    private JTextField selectSlotTf;
+    private JTextField quantityItemTf;
+    private JPanel editPricePanel, setToSRPPanel, setAllToSRPPanel, displaySlotsPanel;
+
+    private JButton backBtn28, backBtn29, backBtn30;
+
+    //Replenish Components
+    private JLabel replenishBillslbl;
+
+
+    private JTextField replenishBillsTf; private JButton replenishBillsBtn;
+    private JLabel quantityBillsLbl;
+
+
+    private JTextField quantityBillsTf; private JButton quantityBillsBtn;
+    private JPanel showItemStocksPanel, displayInventoriesPanel, displayTransactionsPanel, displayMoneyPanel;
+    private JButton showItemStocksBtn, displayInventoriesBtn, displayTransactionsBtn, displayMoneyBtn;
+
+    private JTextArea itemStocksTa;
+
+    private JTextArea inventoriesTa;
+
+    private JTextArea transactionsTa;
+
+    private JTextArea moneyTa;
+
+
+    private JTextArea itemSlotsTa;
+
+    private JTextArea replenishChangeTa;
+    private JButton backBtn22, backBtn23, backBtn24, backBtn25;
+
+
+    //Customize Vending Machine Components
+    private JPanel createVMPanel, showDetailsPanel, showVMPanel;
+
+    private JPanel createSpecialVMPanel;
+
+    private JLabel nameVmLbl2, numSlotsLbl2, maxItemsLbl2; private JTextField nameVmTf2;
+    private JTextField numSlotsTf2;
+
+    private JTextField maxItemsTf2;
+    private JLabel inventoryLimitLbl2;
+
+
+
+    private JTextField inventoryLimitTf2;
+    private JButton createVMBtn3; private JButton backBtn31;
+    private JLabel nameVmLbl, numSlotsLbl, maxItemsLbl;
+
+
+    private JTextField nameVmTf, numSlotsTf, maxItemsTf;
+
+    private JLabel pickVendingMachineLbl;
+
+
+    private JTextField pickVmTf2;
+    private JButton createVmBtn, createVMBtn2, pickBtn, backBtn9, backBtn10, backBtn11;
+
+    //Customize Item Stock Components
+    private JPanel createItemPanel, addItemPanel, showItemsPanel;
+
+    private JLabel itemNamelbl, calorieslbl, SRPlbl, itemNumberlbl, addItemlbl;
+
+    private JButton createStockBtn, addItemBtn2;
+    private JTextField itemNameTf;
+    private JTextField caloriesTf;
+    private JTextField stocksTf;
+    private JTextField SRPtf;
+
+
+    private JTextField addItemTf;
+    private JTextField numItemTf;
+    private JTextField showItemTf;
+
+
+    private JTextArea itemsTa;
+    private JTextArea showItemsTa;
+    private JTextArea walletTa;
+
+
+    private JTextArea detailsTa;
+
+    private JTextArea showVMTa;
+    private JTextArea vmTa; //TextArea for showing the items
+
+    private CardLayout cardLayout;
+    private JButton backBtn1, backBtn2, backBtn3, backBtn4, backBtn5, backBtn6, backBtn7, backBtn8;
+
+    //Buttons for the Main Menu
+    private JButton startProgramBtn, customizeVmBtn, customizeMoneyBtn, customizeStocksBtn;
+
+    //Buttons for the Main Program
+
+    private JButton buyFromVmBtn, doMaintenanceBtn;
+
+    //Buttons for the Vending Machine
+    private JButton createVMBtn, createSpecialVMBtn, showDetailsBtn, showVMBtn;
+
+    //Buttons for the Customize Money Menu
+    private JButton createMoneyBtn, showMoneyBtn;
+
+    //Buttons for the Customize Item Stock Menu
+
+    private JButton createItemBtn, addItemBtn, showItemBtn, selectItemtoAddBtn;
+    private JLabel selectItemtoAddLbl, addItemLbl;
+    private JTextField selectItemtoAddTf;
+    private JScrollPane scrollPane;
+    private ArrayList<JButton> btnList, backBtnList, mainProgramBtnList, stocksBtnList, vendingMachineBtnList;
+
+
+
 }
