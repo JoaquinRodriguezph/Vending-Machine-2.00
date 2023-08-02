@@ -185,12 +185,20 @@ public class VendingMachine {
      *
      * @param slot the slot number to update the price with.
      * @param vendItem the item to add to the slot.
+     * @param quantity the quantity of the item to be added
      * @return true if the item was successfully added to the slot, otherwise false
      */
-    public boolean addSlotStock(int slot, VendItem vendItem) throws IndexOutOfBoundsException {
-        if (itemSlots[slot - 1].addStock(vendItem)) {
-            newStartingInventory();
-            return true;
+    public boolean addSlotStock(int slot, VendItem vendItem, int quantity) throws IndexOutOfBoundsException {
+        if (getMaxSlotItem() < itemSlots[slot - 1].getStock() + quantity) {
+            for (int i = 0; i < quantity; i++) {
+                VendItem newItem = new VendItem(vendItem.getName(), vendItem.getCalories());
+                if (itemSlots[slot - 1].addStock(newItem)) {
+                    newStartingInventory();
+                    return true;
+                }
+                else
+                    break;
+            }
         }
         return false;
     }
