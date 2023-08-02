@@ -223,6 +223,11 @@ public class FactoryView {
     //Customize Vending Machine Components
     private JPanel createVMPanel, showDetailsPanel, showVMPanel;
 
+    private JPanel createSpecialVMPanel;
+
+    private JLabel nameVmLbl2, numSlotsLbl2, maxItemsLbl2; private JTextField nameVmTf2, numSlotsTf2, maxItemsTf2;
+    private JLabel inventoryLimitLbl2; private JTextField inventoryLimitTf2;
+    private JButton createVMBtn3; private JButton backBtn31;
     private JLabel nameVmLbl, numSlotsLbl, maxItemsLbl;
 
     /**
@@ -374,7 +379,7 @@ public class FactoryView {
     private JButton buyFromVmBtn, doMaintenanceBtn;
 
     //Buttons for the Vending Machine
-    private JButton createVMBtn, showDetailsBtn, showVMBtn;
+    private JButton createVMBtn, createSpecialVMBtn, showDetailsBtn, showVMBtn;
 
     //Buttons for the Customize Money Menu
     private JButton createMoneyBtn, showMoneyBtn;
@@ -438,6 +443,7 @@ public class FactoryView {
         setShowItemsPanel();
         //Customize Vending Machine Panel
         setCreateVMPanel();
+        setCreateSpecialVMPanel();
         setShowDetailsPanel();
         setShowVMPanel();
 
@@ -470,7 +476,7 @@ public class FactoryView {
         this.backBtn23 = new JButton("Back"); this.backBtn24 = new JButton("Back"); this.backBtn25 = new JButton("Back");
         this.backBtn26 = new JButton("Back"); this.backBtn27 = new JButton("Back"); this.backBtn28 = new JButton("Back");
         this.backBtn29 = new JButton("Back"); this.backBtn30 = new JButton("Back"); this.jcomp14 = new JButton("Back");
-
+        this.backBtn31 = new JButton("Back");
 
         backBtnList.add(this.backBtn1);backBtnList.add(this.backBtn2);backBtnList.add(this.backBtn3);
         backBtnList.add(this.backBtn4);backBtnList.add(this.backBtn5);backBtnList.add(this.backBtn6);
@@ -482,7 +488,7 @@ public class FactoryView {
         backBtnList.add(this.backBtn22); backBtnList.add(this.backBtn23); backBtnList.add(this.backBtn24);
         backBtnList.add(this.backBtn25); backBtnList.add(this.backBtn26); backBtnList.add(this.backBtn27);
         backBtnList.add(this.backBtn28); backBtnList.add(this.backBtn29); backBtnList.add(this.backBtn30);
-        backBtnList.add(this.jcomp14);
+        backBtnList.add(this.jcomp14); backBtnList.add(this.backBtn31);
         backBtn1.addActionListener(new ActionListener() { //Back button for Main Program to Main Menu
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -673,6 +679,12 @@ public class FactoryView {
                 cardLayout.show(cardPanel,"Main Program"); clearAllTextAreas();
             }
         });
+        backBtn31.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Customize Vending Machine"); clearAllTextAreas();
+            }
+        });
     }
 
     /**
@@ -730,6 +742,7 @@ public class FactoryView {
 
         //Customize Vending Machine Panels
         cardPanel.add(createVMPanel, "Create Regular Vending Machine");
+        cardPanel.add(createSpecialVMPanel, "Create Special Vending Machine");
         cardPanel.add(showDetailsPanel, "Show Details");
         cardPanel.add(showVMPanel, "Show Vending Machines");
 
@@ -748,6 +761,8 @@ public class FactoryView {
         //Customize Vending Machine Buttons
         this.createVMBtn = new JButton("Create Regular Vending Machine");
         vendingMachineBtnList.add(createVMBtn);
+        this.createSpecialVMBtn = new JButton("Create Special Vending Machine");
+        vendingMachineBtnList.add(createSpecialVMBtn);
         this.showDetailsBtn = new JButton("Show Details");
         vendingMachineBtnList.add(showDetailsBtn);
         this.showVMBtn = new JButton("Show Vending Machines");
@@ -790,7 +805,7 @@ public class FactoryView {
      */
     public void setCustomizeVMPanel(){
         this.customizeVMPanel = new JPanel(cardLayout);
-        customizeVMPanel.setLayout(new GridLayout(4,1));
+        customizeVMPanel.setLayout(new GridLayout(5,1));
         customizeVMPanel.setBackground(Color.red);
         customizeVMPanel.add(backBtn2);
     }
@@ -1100,6 +1115,32 @@ public class FactoryView {
         gbc.gridx = 0; gbc.gridy = 3; createVMPanel.add(createVMBtn2, gbc);
         createVMPanel.setBackground(Color.pink);
         gbc.gridx = 1; gbc.gridy = 3; createVMPanel.add(backBtn9, gbc);
+    }
+
+    public void setCreateSpecialVMPanel(){
+        this.createSpecialVMPanel = new JPanel(cardLayout);
+        createSpecialVMPanel.setLayout(new GridBagLayout());
+        GridBagConstraints gbc = new GridBagConstraints();
+        this.nameVmLbl2 = new JLabel("Vending Machine Name: ");
+        gbc.gridx = 0; gbc.gridy = 0; createSpecialVMPanel.add(nameVmLbl2, gbc);
+        this.numSlotsLbl2 = new JLabel("Number of Slots: ");
+        gbc.gridx = 0; gbc.gridy = 1; createSpecialVMPanel.add(numSlotsLbl2, gbc);
+        this.maxItemsLbl2 = new JLabel("Max Items per Slot: ");
+        gbc.gridx = 0; gbc.gridy = 2; createSpecialVMPanel.add(maxItemsLbl2, gbc);
+        this.inventoryLimitLbl2 = new JLabel("Inventory Limit: ");
+        gbc.gridx = 0; gbc.gridy = 3; createSpecialVMPanel.add(inventoryLimitLbl2, gbc);
+        this.nameVmTf2 = new JTextField(10);
+        gbc.gridx = 1; gbc.gridy = 0; createSpecialVMPanel.add(nameVmTf2, gbc);
+        this.numSlotsTf2 = new JTextField(5);
+        gbc.gridx = 1; gbc.gridy = 1; createSpecialVMPanel.add(numSlotsTf2, gbc);
+        this.maxItemsTf2 = new JTextField(5);
+        gbc.gridx = 1; gbc.gridy = 2; createSpecialVMPanel.add(maxItemsTf2, gbc);
+        this.inventoryLimitTf2 = new JTextField(5);
+        gbc.gridx = 1; gbc.gridy = 3; createSpecialVMPanel.add(inventoryLimitTf2, gbc);
+        this.createVMBtn3 = new JButton("Create Special Vending Machine");
+        gbc.gridx = 0; gbc.gridy = 4; createSpecialVMPanel.add(createVMBtn3, gbc);
+        createSpecialVMPanel.setBackground(Color.pink);
+        gbc.gridx = 1; gbc.gridy = 4; createSpecialVMPanel.add(backBtn31, gbc);
     }
 
     /**
@@ -1422,6 +1463,7 @@ public class FactoryView {
      */
     public void setShowDetailsBtnListener(ActionListener actionListener){this.showDetailsBtn.addActionListener(actionListener);}
 
+    public void setCreateSpecialVMBtnListener(ActionListener actionListener){this.createSpecialVMBtn.addActionListener(actionListener);}
     /**
      * This method sets the Pick Button on what to do when pressed.
      * @param actionListener, is to be overdriven.

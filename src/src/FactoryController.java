@@ -691,6 +691,13 @@ public class FactoryController {
                 }
             }
         });
+
+        this.factoryView.setCreateSpecialVMBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Create Special Vending Machine");
+            }
+        });
         this.factoryView.setShowVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
