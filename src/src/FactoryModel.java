@@ -2,6 +2,11 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class FactoryModel {
+    /**
+     * This method gets the vending machines.
+     *
+     * @return the ArrayList of vending machines
+     */
     public ArrayList<VendingMachine> getVendingMachines() {
         return vendingMachines;
     }
@@ -10,6 +15,10 @@ public class FactoryModel {
 
     private ArrayList<Item> myInventory;
 
+    /**
+     * This method is the constructor for the Factory Model Class.
+     * It is used to initialize the components of the factory.
+     */
     public FactoryModel() {
         this.vendingMachines = new ArrayList<VendingMachine>();
         this.myInventory = new ArrayList<Item>();
@@ -54,14 +63,36 @@ public class FactoryModel {
     }
 
     //Special Vending Machine Features
+    /**
+     * This method checks if the list of items compose of a valid silog combo meal.
+     *
+     * @param items the items in the potential silog combo meal
+     * @param vendingMachine the vending machine choice
+     * @return the true if it is valid combo meal, false otherwise
+     */
     public boolean isSilog(ArrayList<Item> items, int vendingMachine){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachine - 1)));
         return svm.isSilog(items);
     }
+
+    /**
+     * This method removes and gets the Item from the special vending machine.
+     *
+     * @param vendingMachineChosed the selected vending machine
+     * @param slot the choice
+     * @return the true if it is valid combo meal, false otherwise
+     */
     public Item getItem(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         return svm.releaseItem(slot);
     }
+
+    /**
+     * This method gets the ArrayList of String used for the combo box of the special vending machine feature
+     *
+     * @param vendingMachine the selected vending machine
+     * @return ArrayList of String used for the combo box of the special vending machine feature
+     */
     public ArrayList<String> specialComboBox(int vendingMachine){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachine - 1)));
         ArrayList<String> choices = new ArrayList<String>();
@@ -70,20 +101,49 @@ public class FactoryModel {
         }
         return choices;
     }
+
+    /**
+     * This method sets the item price of the special vending machine.
+     *
+     * @param vendingMachineChosed the selected vending machine
+     * @param slot the choice
+     * @param price the price to be set
+     */
     public void setItemPrice(int vendingMachineChosed, int slot, int price){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         svm.setItemPrice(slot, price);
     }
 
+    /**
+     * This method gets the size of the special vending machine item list.
+     *
+     * @param vendingMachineChosed the selected vending machine
+     * @return the size of the special vending machine item list
+     */
     public int getSVMItemListSize(int vendingMachineChosed){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         return svm.getItemListSize();
     }
+
+    /**
+     * This method adds the item to the special vending machine inventory.
+     *
+     * @param vendingMachineChosed the selected vending machine
+     * @param item the item to be added
+     */
     public void addToInventory(int vendingMachineChosed, Item item){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         svm.addToInventory(item);
 
     }
+
+    /**
+     * This method adds the item to the special vending machine inventory, and check if it is new or not.
+     *
+     * @param vendingMachineChosed the selected vending machine
+     * @param slot the choice
+     * @return true if it is not new, false if new.
+     */
     public boolean addToInventoryTest(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         Item item = myInventory.get(slot - 1);
@@ -95,12 +155,27 @@ public class FactoryModel {
         }
     }
 
-    public void addToInventoryFalse(int vendingMachineChosed, int slot, int price){
+    /**
+     * This method adds the item and sets the item to the special vending machine inventory,
+     * and check if it is new or not, and also if it is full.
+     *
+     * @param vendingMachineChosed the selected vending machine
+     * @param slot the choice
+     * @param price the set price
+     * @return true if it is new and not full, false if new or full.
+     */
+    public boolean addToInventoryFalse(int vendingMachineChosed, int slot, int price){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         Item item = myInventory.get(slot - 1);
-        svm.addToInventory(item, price);
+        return svm.addToInventory(item, price);
     }
-    //
+
+    /**
+     * This method gets the ArrayList of String used for the combo box of the vending machine feature
+     *
+     * @param choice the selected vending machine
+     * @return ArrayList of String used for the combo box of the vending machine feature
+     */
     public ArrayList<String> comboboxChoices(int choice) {
         ArrayList<String> choices = new ArrayList<String>();
         for (int i = 0; i < vendingMachines.get(choice-1).getNumSlots(); i++) {
@@ -109,12 +184,37 @@ public class FactoryModel {
         return choices;
     }
 
+    /**
+     * This method gets the ArrayList of Money of the change of the transaction
+     *
+     * @param choice the selected vending machine
+     * @param payment the payment
+     * @param cost the cost of the item
+     * @return ArrayList of Money as change
+     */
     public ArrayList<Money> getChange(int choice, ArrayList<Money> payment, int cost){
         return vendingMachines.get(choice-1).getChange(payment, cost);
     }
-    public void dispenseItem(int choice, int slotChosed){
-        vendingMachines.get(choice-1).dispenseItem(slotChosed);
+
+    /**
+     * This method dispenses the item from the vending machine
+     *
+     * @param choice the selected vending machine
+     * @param slotChosed the selected slot
+     * @return the dispensed item
+     */
+    public Item dispenseItem(int choice, int slotChosed){
+        return vendingMachines.get(choice-1).dispenseItem(slotChosed);
     }
+
+    /**
+     * This method restocks the item to the item slot of the vending machine
+     *
+     * @param choice the selected vending machine
+     * @param selected the selected slot
+     * @param quantity the quantity to be added
+     * @param frame the frame to notify events
+     */
     public void setStock(int choice, int selected, int item, int quantity, JFrame frame){
         int choice2 = choice - 1;
         int item2 = item - 1;
@@ -137,6 +237,15 @@ public class FactoryModel {
             return;
         }
     }
+
+    /**
+     * This method restocks the item to the item slot of the vending machine
+     *
+     * @param choice the selected vending machine
+     * @param selected the selected slot
+     * @param price the price to be set
+     * @param frame the frame to notify events
+     */
     public void changeItemSlotPrice(int choice, int selected, int price, JFrame frame) {
         int choice2 = choice - 1;
         if (vendingMachines.get(choice2).setSlotPrice(selected, price))
