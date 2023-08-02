@@ -151,11 +151,14 @@ public class VendingMachine {
         for (int i = 0; i < itemSlots.length; i++) {
             String availability;
             if (itemSlots[i].isAvailable())
-                availability = " - "+ itemSlots[i].getPrice() + " PHP (Available)";
+                availability = "(Available)";
             else
                 availability = "(Not Available)";
 
-            slotInfo.add("[" + (i + 1) + "] " + itemSlots[i].getItemName() + " - " + itemSlots[i].getItemCalories() + " Calories" +  availability + "\n");
+            if (itemSlots[i].getStock() > 0)
+                slotInfo.add("[" + (i + 1) + "] " + itemSlots[i].getItemName() + " - " + itemSlots[i].getItemCalories() + " Calories - "+ itemSlots[i].getPrice() + " PHP " + availability + "\n");
+            else
+                slotInfo.add("[" + (i + 1) + "] "  + availability + "\n");
 
         }
 
