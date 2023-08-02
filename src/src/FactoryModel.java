@@ -33,7 +33,11 @@ public class FactoryModel {
         myInventory.add(new Item("Bottled Water", 0));
     }
 
-
+    public void collectMoney(int choice, JFrame frame){
+        vendingMachines.get(choice).collectMoney();
+        JOptionPane.showMessageDialog(frame, "Success!",
+                "Information", JOptionPane.INFORMATION_MESSAGE);
+    }
     public void replenishBills(int choice, int num, int quantity, JFrame frame) {
         Money money = null;
         switch(num){
@@ -181,7 +185,7 @@ public class FactoryModel {
 
     public void displayVendingMachines(JTextArea ta){
         ta.append("Vending Machine No || Name ||  Max Slots || Max Items\n");
-        int i = 0;
+        int i = 1;
         for (VendingMachine vm : vendingMachines) {
             ta.append(i + "\t" + vm.getName() + "    " + vm.getNumSlots() + "    " + vm.getMaxSlotItem() + "\n");
             i++;
@@ -189,10 +193,11 @@ public class FactoryModel {
     }
 
     public void displayVendingMachineInfo(int vendingMachineNum, JTextArea ta, JFrame frame){
+        int vendingMachineNum2 = vendingMachineNum - 1;
         try{
-            if (vendingMachineNum >= 0 && vendingMachineNum <= vendingMachines.size()){
+            if (vendingMachineNum > 0 && vendingMachineNum <= vendingMachines.size()){
                 ta.append("Slot No || Item Name ||  Calories\n");
-                for (String string : vendingMachines.get(vendingMachineNum).getSlotInfo()) {
+                for (String string : vendingMachines.get(vendingMachineNum2).getSlotInfo()) {
                     ta.append(string);
                 }
             }
