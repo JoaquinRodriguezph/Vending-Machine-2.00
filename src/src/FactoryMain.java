@@ -1,6 +1,3 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public class FactoryMain {
     public static void main(String args[]) {
 

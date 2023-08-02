@@ -47,54 +47,80 @@ public class FactoryView {
 
     /**
      * This method is used to return the JTextArea changePriceTa.
-     * @return
+     * @return the JTextArea changePriceTa.
      */
     public JTextArea getChangePriceTa() {
         return changePriceTa;
     }
 
 
-
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getSelectItemTf() {
         return selectItemTf.getText();
     }
 
-
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getPriceItemTf() {
         return priceItemTf.getText();
     }
 
-
-
+    /**
+     * This method is used to return the text area.
+     * @return the text area
+     */
     public JTextArea getRestockTa() {
         return restockTa;
     }
 
+    /**
+     * This method is used to return the text area.
+     * @return the text area
+     */
     public JTextArea getRestockTa2() {
         return restockTa2;
     }
 
-
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getSelectItemTf2() {
         return selectItemTf2.getText();
     }
 
-
-
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getQuantityItemTf() {
         return quantityItemTf.getText();
     }
 
-
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getSelectSlotTf() {
         return selectSlotTf.getText();
     }
-
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getReplenishBillsTf() {
         return replenishBillsTf.getText();
     }
 
-
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getQuantityBillsTf() {
         return quantityBillsTf.getText();
     }
@@ -153,18 +179,34 @@ public class FactoryView {
         return replenishChangeTa;
     }
 
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getNameVmTf2() {
         return nameVmTf2.getText();
     }
 
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getNumSlotsTf2() {
         return numSlotsTf2.getText();
     }
 
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getMaxItemsTf2() {
         return maxItemsTf2.getText();
     }
 
+    /**
+     * This method is used to return the String of the text frame.
+     * @return the String of the text frame
+     */
     public String getInventoryLimitTf2() {
         return inventoryLimitTf2.getText();
     }
@@ -217,25 +259,37 @@ public class FactoryView {
         return itemsTa;
     }
 
+    /**
+     * This method is used to return the JTextArea showItemsTa.
+     * @return the JTextArea showItemsTa.
+     */
     public JTextArea getShowItemsTa() {
         return showItemsTa;
     }
 
-
+    /**
+     * This method is used to return the JTextArea DetailsTa.
+     * @return the JTextArea DetailsTa.
+     */
     public JTextArea getDetailsTa() {
         return detailsTa;
     }
 
+    /**
+     * This method is used to return the JTextArea getShowVMTa.
+     * @return the JTextArea getShowVMTa.
+     */
     public JTextArea getShowVMTa() {
         return showVMTa;
     }
 
-
+    /**
+     * This method is used to return the JTextArea getVmTa.
+     * @return the JTextArea getVmTa.
+     */
     public JTextArea getVmTa() {
         return vmTa;
     }
-
-
 
     /**
      * This method is used to get the String value in the text field.
@@ -1031,6 +1085,9 @@ public class FactoryView {
         gbc.gridx = 1; gbc.gridy = 3; createVMPanel.add(backBtn9, gbc);
     }
 
+    /**
+     * This method sets the Create Special Vending Machine Panel.
+     */
     public void setCreateSpecialVMPanel(){
         this.createSpecialVMPanel = new JPanel(cardLayout);
         createSpecialVMPanel.setLayout(new GridBagLayout());
@@ -1182,6 +1239,9 @@ public class FactoryView {
         this.restockTa2.setText(""); this.addItemTa.setText(""); this.changePriceofItemTa.setText("");
     }
 
+    /**
+     * This method shows the displayInventories Btn.
+     */
     public void showDisplayInventoriesBtn(){
         this.displayInventoriesBtn.setVisible(true);
     }
@@ -1290,12 +1350,11 @@ public class FactoryView {
      * @param actionListener, is to be overdriven.
      */
     public void setJcomp15BtnListener(ActionListener actionListener){this.jcomp15.addActionListener(actionListener);}
+
     /**
      * This method sets the Do Maintenance Button on what to do when pressed.
      * @param actionListener, is to be overdriven.
      */
-
-
     public void setDoMaintenanceBtnListener(ActionListener actionListener){this.doMaintenanceBtn.addActionListener(actionListener);}
 
     //Setters for Do Maintenance Buttons
@@ -1318,11 +1377,15 @@ public class FactoryView {
     public void setChangePriceBtnListener(ActionListener actionListener){this.changePriceBtn.addActionListener(actionListener);}
 
     /**
+     * This method sets the Set Price Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setSetPriceBtnListener(ActionListener actionListener){this.setPriceBtn.addActionListener(actionListener);}
+
+    /**
      * This method sets the Collect Money Button on what to do when pressed.
      * @param actionListener, is to be overdriven.
      */
-
-    public void setSetPriceBtnListener(ActionListener actionListener){this.setPriceBtn.addActionListener(actionListener);}
     public void setCollectMoneyBtnListener(ActionListener actionListener){this.collectMoneyBtn.addActionListener(actionListener);}
 
     /**
@@ -1332,11 +1395,15 @@ public class FactoryView {
     public void setReplenishChangeBtnListener(ActionListener actionListener){this.replenishChangeBtn.addActionListener(actionListener);}
 
     /**
+     * This method sets the Replenish Bills Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setReplenishBillsBtnListener(ActionListener actionListener){this.replenishBillsBtn.addActionListener(actionListener);}
+
+    /**
      * This method sets the Show Item Slots Button on what to do when pressed.
      * @param actionListener, is to be overdriven.
      */
-
-    public void setReplenishBillsBtnListener(ActionListener actionListener){this.replenishBillsBtn.addActionListener(actionListener);}
     public void setShowItemSlotsBtnListener(ActionListener actionListener){this.showItemSlotsBtn.addActionListener(actionListener);}
 
     /**
@@ -1562,6 +1629,9 @@ public class FactoryView {
         this.setSpecialPriceTf.setVisible(false);
     }
 
+    /**
+     * This method sets the SVMPanel.
+     */
     public void setSVMPanel(){
         this.svmPanel = new JPanel();
         String[] itemSlotItems = {};
@@ -1625,13 +1695,96 @@ public class FactoryView {
         Add.setBounds (220, 240, 100, 25);
         Selected_Items.setBounds (345, 5, 230, 225);
     }
+
+    /**
+     * This method hides jcomp15.
+     */
     public void hideBuysilog(){
         jcomp15.setVisible(false);
     }
 
+    /**
+     * This method shows jcomp15.
+     */
     public void showBuysilog(){
         jcomp15.setVisible(true);
     }
+
+
+    /**
+     * This method returns the Selled Items Text Area.
+     * @return SelledItems text area.
+     */
+    public JTextArea getSelledItems() {
+        return SelledItems;
+    }
+
+    /**
+     * This method returns the Item Slot Combo Box.
+     * @return itemSlot combo box.
+     */
+    public JComboBox getItemSlot() {
+        return itemSlot;
+    }
+
+    /**
+     * This method returns the Item text area.
+     * @return item JTextArea.
+     */
+    public JTextArea getSelected_Items() {
+        return Selected_Items;
+    }
+
+
+    /**
+     * This method returns the Add Item Text Area
+     * @return the Add Item Text Area
+     */
+    public JTextArea getAddItemTa() {
+        return addItemTa;
+    }
+
+    /**
+     * This method returns the String from text frame selectSpecialItemTf
+     * @return the String from text frame selectSpecialItemTf
+     */
+    public String getSelectSpecialItemTf() {
+        return selectSpecialItemTf.getText();
+    }
+
+    /**
+     * This method returns the String from text frame setSpecialPriceTf
+     * @return the String from text frame setSpecialPriceTf
+     */
+    public String getSetSpecialPriceTf() {
+        return setSpecialPriceTf.getText();
+    }
+
+    /**
+     * This method returns the JTextArea from text area changePriceofItemTa
+     * @return the JTextArea from text area changePriceofItemTa
+     */
+    public JTextArea getChangePriceofItemTa() {
+        return changePriceofItemTa;
+    }
+
+    /**
+     * This method returns the String from text frame selectIndexTf
+     * @return the String from text frame selectIndexTf
+     */
+    public String getSelectIndexTf() {
+        return selectIndexTf.getText();
+    }
+
+    /**
+     * This method returns the String from text frame setItemPriceTf
+     * @return the String from text frame setItemPriceTf
+     */
+    public String getSetItemPriceTf() {
+        return setItemPriceTf.getText();
+    }
+
+
     private JFrame mainFrame;
     private JLabel menuLabel;
     private JPanel btnPanel;
@@ -1658,13 +1811,6 @@ public class FactoryView {
     private JButton fivePeso;
     private JButton tenPeso;
 
-    /**
-     * This method returns the Selled Items Text Area.
-     * @return SelledItems text area.
-     */
-    public JTextArea getSelledItems() {
-        return SelledItems;
-    }
 
     private JTextArea SelledItems;
     private JButton twentyPeso;
@@ -1677,20 +1823,8 @@ public class FactoryView {
     private JButton Back;
     private JButton Confirm;
 
-    /**
-     * This method returns the Item Slot Combo Box.
-     * @return itemSlot combo box.
-     */
-    public JComboBox getItemSlot() {
-        return itemSlot;
-    }
-
     private JComboBox itemSlot;
     private JButton Add;
-
-    public JTextArea getSelected_Items() {
-        return Selected_Items;
-    }
 
     private JTextArea Selected_Items;
 
@@ -1724,42 +1858,20 @@ public class FactoryView {
 
     private JTextField priceItemTf; private JButton priceItemBtn;
 
-    /**
-     * This method returns the Add Item Text Area
-     * @return the Add Item Text Area
-     */
-    public JTextArea getAddItemTa() {
-        return addItemTa;
-    }
 
     private JTextArea addItemTa; private JLabel selectSpecialItemLbl, setSpecialPriceLbl;
     private JTextField selectSpecialItemTf;
 
-    public String getSelectSpecialItemTf() {
-        return selectSpecialItemTf.getText();
-    }
-
-    public String getSetSpecialPriceTf() {
-        return setSpecialPriceTf.getText();
-    }
 
     private JTextField setSpecialPriceTf; private JButton addItemtoInventoryBtn, addItemtoInventoryBackBtn;
 
-    public JTextArea getChangePriceofItemTa() {
-        return changePriceofItemTa;
-    }
+
 
     private JTextArea changePriceofItemTa; private JLabel selectIndexLbl, setItemPriceLbl;
 
-    public String getSelectIndexTf() {
-        return selectIndexTf.getText();
-    }
 
     private JTextField selectIndexTf;
 
-    public String getSetItemPriceTf() {
-        return setItemPriceTf.getText();
-    }
 
     private JTextField setItemPriceTf; private JButton changePriceofItemBtn, changePriceofItemBackBtn;
     //Restock Components
