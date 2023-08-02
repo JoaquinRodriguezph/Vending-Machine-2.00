@@ -270,6 +270,16 @@ public class FactoryModel {
         JOptionPane.showMessageDialog(frame, "Success!",
                 "Error", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    public void noItemSelectedError(JFrame frame){
+        JOptionPane.showMessageDialog(frame, "Please select an item.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void slotNotAvailableError(JFrame frame){
+        JOptionPane.showMessageDialog(frame, "Slot not available.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
     public int getVendingMachineSize(){
         return vendingMachines.size();
     }

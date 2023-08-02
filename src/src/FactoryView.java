@@ -1213,6 +1213,7 @@ public class FactoryView {
         this.jcomp4.setText(""); this.restockTa.setText(""); this.itemStocksTa.setText(""); this.inventoriesTa.setText(""); this.transactionsTa.setText("");
         this.moneyTa.setText(""); this.itemSlotsTa.setText(""); this.replenishChangeTa.setText(""); this.showItemsTa.setText("");
         this.detailsTa.setText(""); this.showVMTa.setText(""); this.vmTa.setText(""); this.itemsTa.setText(""); this.changePriceTa.setText("");
+        this.restockTa2.setText("");
     }
 
     public void showDisplayInventoriesBtn(){
