@@ -138,12 +138,16 @@ public class VendingMachine {
         return itemSlots[0].getMax();
     }
 
-
+    /**
+     * This method gets the ArrayList of Strings that shows the slot information.
+     *
+     * @return the ArrayList of Strings that shows the slot information.
+     */
     public ArrayList<String> getSlotInfo() {
         ArrayList<String> slotInfo = new ArrayList<String>();
 
         slotInfo.add("-------- Vending Machine " + NAME + "--------\n");
-        slotInfo.add("Slot - Item - Cost - Availability\n");
+        slotInfo.add("Slot - Item - Calories - Cost - Availability\n");
         for (int i = 0; i < itemSlots.length; i++) {
             String availability;
             if (itemSlots[i].isAvailable())
