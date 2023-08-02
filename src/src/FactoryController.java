@@ -769,7 +769,18 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (isParsable(factoryView.getSelectIndexTf()) && isParsable(factoryView.getSetItemPriceTf())){
-
+                    int index = Integer.parseInt(factoryView.getSelectIndexTf());
+                    int price = Integer.parseInt(factoryView.getSetItemPriceTf());
+                    int listsize = factoryModel.getSVMItemListSize(vendingMachineChosed);
+                    if (index <= 0 || index > listsize){
+                        factoryModel.invalidNumberError(errorFrame);
+                    }
+                    else{
+                        factoryModel.setItemPrice(vendingMachineChosed, index, price);
+                        factoryView.clearAllTextAreas();
+                        factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getChangePriceofItemTa());
+                        factoryModel.success(errorFrame);
+                    }
                 }
                 else{
                     factoryModel.invalidNumberError(errorFrame);

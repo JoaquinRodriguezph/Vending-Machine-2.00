@@ -39,6 +39,11 @@ public class FactoryModel {
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         svm.setItemPrice(slot, price);
     }
+
+    public int getSVMItemListSize(int vendingMachineChosed){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
+        return svm.getItemListSize();
+    }
     public boolean addToInventoryTest(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         Item item = myInventory.get(slot - 1);
