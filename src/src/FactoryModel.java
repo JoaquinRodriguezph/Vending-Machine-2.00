@@ -34,6 +34,8 @@ public class FactoryModel {
         myInventory.add(new VendItem("Coca Cola", 140));
         myInventory.add(new VendItem("Royal", 140));
         myInventory.add(new VendItem("Bottled Water", 0));
+        myInventory.add(new Item("Gravy", 79));
+        myInventory.add(new Item("Toyo", 53));
     }
 
     public ArrayList<String> comboboxChoices(int choice) {
