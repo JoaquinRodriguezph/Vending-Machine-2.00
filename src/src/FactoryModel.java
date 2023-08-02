@@ -2,14 +2,17 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class FactoryModel {
+    /**
+     * This method gets the ArrayList of vending machines.
+     * @return ArrayList of vending machines.
+     */
     public ArrayList<VendingMachine> getVendingMachines() {
         return vendingMachines;
     }
 
-    private ArrayList<VendingMachine> vendingMachines;
-
-    private ArrayList<Item> myItems;
-
+    /**
+     * This method is a constructor which creates and initializes the instance:
+     */
     public FactoryModel() {
         this.vendingMachines = new ArrayList<VendingMachine>();
         this.myItems = new ArrayList<Item>();
@@ -54,6 +57,10 @@ public class FactoryModel {
     }
 
     //Special Vending Machine Features
+    /**
+     * This method gets an ArrayList of Strings for the Silog Combo feature combo box.
+     * @return ArrayList of strings use for the combo box.
+     */
     public ArrayList<String> specialComboBox(int vendingMachine){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachine - 1)));
         ArrayList<String> choices = new ArrayList<String>();
@@ -62,6 +69,13 @@ public class FactoryModel {
         }
         return choices;
     }
+
+    /**
+     * This method sets a new item price of vending machine slot.
+     * @param vendingMachineChosed the chosen vending machine
+     * @param slot the selected item slot
+     * @param price the price to be set
+     */
     public void setItemPrice(int vendingMachineChosed, int slot, int price){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         svm.setItemPrice(slot, price);
@@ -399,5 +413,11 @@ public class FactoryModel {
     public int myInventoryNum(){
         return myItems.size();
     }
+
+
+    private ArrayList<VendingMachine> vendingMachines;
+
+    private ArrayList<Item> myItems;
+
 
 }
