@@ -750,7 +750,7 @@ public class FactoryView {
         buyFromVmPanel.add (jcomp1); buyFromVmPanel.add(jcomp2); buyFromVmPanel.add(jcomp3); buyFromVmPanel.add(jcomp4Scroller);
         buyFromVmPanel.add (jcomp5); buyFromVmPanel.add(jcomp6); buyFromVmPanel.add(jcomp7); buyFromVmPanel.add(jcomp8);
         buyFromVmPanel.add (jcomp9); buyFromVmPanel.add(jcomp10); buyFromVmPanel.add(jcomp11); buyFromVmPanel.add(jcomp12);
-        buyFromVmPanel.add (jcomp13); buyFromVmPanel.add(jcomp14); buyFromVmPanel.add(jcomp15); buyFromVmPanel.add(jcomp16);
+        buyFromVmPanel.add (jcomp13); buyFromVmPanel.add(jcomp14); buyFromVmPanel.add(jcomp15);
 
         jcomp1.setBounds (30, 285, 80, 20);
         jcomp2.setBounds (115, 285, 80, 20);
