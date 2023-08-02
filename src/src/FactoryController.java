@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -733,11 +734,39 @@ public class FactoryController {
         this.factoryView.setAddBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                factoryView.clearAllTextAreas();
                 slotChosed = factoryView.getItemSlot().getSelectedIndex() + 1;
                 Item item = factoryModel.getItem(vendingMachineChosed, slotChosed);
-                factoryView.getSelected_Items().append(item.getName() + "\n");
-                silog.add(item);
+                if(item != null){
+                    factoryView.clearAllTextAreas();
+                    factoryView.getSelected_Items().append(item.getName() + "\n");
+                    silog.add(factoryModel.getItem(vendingMachineChosed, slotChosed));
+                    silog.add(item);
+                    factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getSelledItems());
+                }
+                else{
+                    factoryModel.nullError(errorFrame);
+                }
+            }
+        });
+
+        this.factoryView.setConfirmBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(factoryModel.isSilog(silog, vendingMachineChosed)){
+                    factoryModel.success(errorFrame);
+                    SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
+                    Integer sum = 0;
+                    for (Item item : silog){
+                        sum += svm.priceItem(item);
+                    }
+                    factoryView.getSelected_Items().append("Total: " + sum.toString());
+                }
+                else{
+                    factoryModel.invalidSilog(errorFrame);
+                    for (Item item : silog){
+                        factoryModel.addToInventory(vendingMachineChosed, item);
+                    }
+                }
             }
         });
         this.factoryView.setCreateSpecialVMBtnListener(new ActionListener() {
@@ -781,7 +810,6 @@ public class FactoryController {
                 if (isParsable(factoryView.getSelectSpecialItemTf())){
                       int choice = Integer.parseInt(factoryView.getSelectSpecialItemTf());
                       if (factoryModel.addToInventoryTest(vendingMachineChosed, choice)){
-                            factoryModel.addToInventoryTrue(vendingMachineChosed, choice);
                             factoryView.clearAllTextAreas();
                             factoryModel.displayItems(factoryView.getAddItemTa());
                             factoryModel.success(errorFrame);

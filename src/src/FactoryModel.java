@@ -54,7 +54,10 @@ public class FactoryModel {
     }
 
     //Special Vending Machine Features
-    //public ArrayList<String> selledItems(){}
+    public boolean isSilog(ArrayList<Item> items, int vendingMachine){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachine - 1)));
+        return svm.isSilog(items);
+    }
     public Item getItem(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         return svm.releaseItem(slot);
@@ -76,6 +79,11 @@ public class FactoryModel {
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         return svm.getItemListSize();
     }
+    public void addToInventory(int vendingMachineChosed, Item item){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
+        svm.addToInventory(item);
+
+    }
     public boolean addToInventoryTest(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         Item item = myInventory.get(slot - 1);
@@ -85,12 +93,6 @@ public class FactoryModel {
         else{
             return false;
         }
-    }
-
-    public void addToInventoryTrue(int vendingMachineChosed, int slot){
-        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
-        Item item = myInventory.get(slot - 1);
-        svm.addToInventory(item);
     }
 
     public void addToInventoryFalse(int vendingMachineChosed, int slot, int price){
@@ -397,6 +399,16 @@ public class FactoryModel {
 
     public void notSpecialVendingMachine(JFrame frame){
         JOptionPane.showMessageDialog(frame, "Not a special vending machine.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void nullError(JFrame frame){
+        JOptionPane.showMessageDialog(frame, "Object is null. Please select another.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void invalidSilog(JFrame frame){
+        JOptionPane.showMessageDialog(frame, "The items you chose cannot be made into a proper silog meal.",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
     public int getVendingMachineSize(){
