@@ -221,6 +221,7 @@ public class VendingMachine {
             if (itemSlots[slot - 1].addStock(vendItems)){
                 b = true;
                 newStartingInventory();
+                clearLog();
             }
         }
         return b;
