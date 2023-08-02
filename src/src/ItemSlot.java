@@ -57,6 +57,15 @@ public class ItemSlot {
     }
 
     /**
+     * This method gets the name of items that is contained the slot.
+     *
+     * @return the name of item within the slot.
+     */
+    public int getItemCalories() throws IndexOutOfBoundsException {
+        return vendItems.get(0).getCalories();
+    }
+
+    /**
      * This method sets the price of the item slot.
      *
      * @param price the price of item slot.

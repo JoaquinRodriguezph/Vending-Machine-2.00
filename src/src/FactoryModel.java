@@ -127,7 +127,7 @@ public class FactoryModel {
         }
 
         if (calories < 0) {
-            JOptionPane.showMessageDialog(frame, "Calories should be > 0",
+            JOptionPane.showMessageDialog(frame, "Calories should be >= 0",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }

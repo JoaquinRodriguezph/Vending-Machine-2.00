@@ -1,6 +1,4 @@
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * The SpecialVendingMachine class is an extension of VendingMachine
@@ -34,7 +32,7 @@ public class SpecialVendingMachine extends VendingMachine{
         defaultToppings.add(new Item("Toyo", 53));
         itemInventory = new ArrayList<Item>();
         MAX_INV = inventoryMax;
-        itemPriceList = new ArrayList<Integer>();
+        itemList = new ArrayList<ItemInfo>();
     }
 
 
@@ -89,6 +87,146 @@ public class SpecialVendingMachine extends VendingMachine{
         startingInventory = getCurrentInventory();
     }
 
+    /**
+     * This method check if the item exists within the list of items in the inventory.
+     *
+     * @param item the item to be checked.
+     * @return true if the item exists, false otherwise.
+     */
+    public boolean contains(Item item) {
+        boolean b = false;
+
+        for (ItemInfo itemInfo : itemList) {    //looking if item exists already in the list
+            if (itemInfo.getName().equalsIgnoreCase(item.getName()) && itemInfo.getCalories() == item.getCalories()) {
+                b = true;
+                break;
+            }
+        }
+
+        return b;
+    }
+
+    /**
+     * This method check if the item exists within the inventory.
+     *
+     * @param item the item to be checked.
+     * @return true if the item exists, false otherwise.
+     */
+    public boolean inventoryContains(Item item) {
+        boolean b = false;
+
+        for (Item itemInfo : itemInventory) {    //looking if item exists already in the list
+            if (itemInfo.getName().equalsIgnoreCase(item.getName()) && itemInfo.getCalories() == item.getCalories()) {
+                b = true;
+                break;
+            }
+        }
+
+        return b;
+    }
+
+    /**
+     * This method check if the item in the item list exists within the inventory.
+     *
+     * @param itemInfo the item to be checked.
+     * @return true if the item exists, false otherwise.
+     */
+    public boolean inventoryContains(ItemInfo itemInfo) {
+        boolean b = false;
+
+        for (Item item : itemInventory) {    //looking if item exists already in the list
+            if (itemInfo.getName().equalsIgnoreCase(item.getName()) && itemInfo.getCalories() == item.getCalories()) {
+                b = true;
+                break;
+            }
+        }
+
+        return b;
+    }
+
+    /**
+     * This method adds a given item to the inventory.
+     *
+     * @param item the item to be added to the inventory.
+     * @param price the price of the item
+     * @return true if the item was successfully added, false otherwise.
+     */
+    public boolean addToInventory(Item item, int price) {
+        boolean b = false;
+
+        if (itemInventory.size() < MAX_INV) {
+            itemInventory.add(item);
+            itemList.add(new ItemInfo(item.getName(), item.getCalories(), price));
+            newStartingInventory();
+            b = true;
+        }
+
+        return b;
+    }
+
+    /**
+     * This method adds a given item to the inventory.
+     *
+     * @param item the item to be added to the inventory.
+     * @return true if the item was successfully added, false otherwise.
+     */
+    public boolean addToInventory(Item item) {
+        boolean b = false;
+
+        if (itemInventory.size() < MAX_INV) {
+            itemInventory.add(item);
+            newStartingInventory();
+            b = true;
+        }
+
+        return b;
+    }
+
+    /**
+     * This method shows the Inventory in index.
+     *
+     * @return the showing of the Inventory in index.
+     */
+    public ArrayList<String> getIndexInventoryInfo() {
+        ArrayList<String> info = new ArrayList<String>();
+        String availability = "";
+
+        info.add("----- Item List of " + NAME + " -----\n");
+
+        for (int i = 0; i < itemList.size(); i++) {
+            ItemInfo itemInfo = itemList.get(i);
+            if (inventoryContains(itemInfo))
+                availability = "Available";
+            else
+                availability = "Not Available";
+
+            info.add("[" + (i + 1) + "] " + itemInfo.getName() + " - " + itemInfo.getCalories() + " Calories - " + itemInfo.getPrice() + " PHP (" + availability + ")\n");
+        }
+
+        return info;
+    }
+
+    /**
+     * This method returns instance of the item to be released, null if not found.
+     *
+     * @param choice the item index + 1
+     * @return instance of the item to be released, null if not found.
+     */
+    public Item releaseItem(int choice) {
+        Item item = null;
+        ItemInfo itemInfo = itemList.get(choice - 1);
+
+        for (int i = 0; i < itemInventory.size(); i++) {    //looks for the item in the inventory
+            Item find = itemInventory.get(i);
+            if (itemInfo.getName().equalsIgnoreCase(find.getName()) && itemInfo.getCalories() == find.getCalories()) {
+                item = itemInventory.remove(i);
+                break;
+            }
+        }
+
+        return item;
+    }
+
 
 
     /**
@@ -125,7 +263,8 @@ public class SpecialVendingMachine extends VendingMachine{
      * This method returns the process of making the silog meal
      *
      * @param items the silog combo meal
-     * @return the silog String if it is a silog meal, else return null.
+     * @param silog the silog String
+     * @return the String of the process of making the combo meal.
      */
     public ArrayList<String> silogProcess(ArrayList<Item> items, String silog) {
         ArrayList<String> process = new ArrayList<String>();
@@ -160,7 +299,7 @@ public class SpecialVendingMachine extends VendingMachine{
             process.add("Topping with " + str + "...\n");
         }
         process.add(getSilog(items) + " Done!\n");
-        process.add("Putting other items in bag...\n");
+        process.add("Putting everything in bag...\n");
         process.add("Done!\n");
         return process;
     }
@@ -229,55 +368,6 @@ public class SpecialVendingMachine extends VendingMachine{
         return silogCombo;
     }
 
-    /**
-     * This method adds a given item to the inventory.
-     *
-     * @param item the item to be added to the inventory.
-     * @param price the price of the item
-     * @return true if the item was successfully added, false otherwise.
-     */
-    public boolean addToInventory(Item item, int price) {
-        boolean b = false;
-
-        if (itemInventory.size() < MAX_INV) {
-            itemInventory.add(item);
-            itemPriceList.add(price);
-            newStartingInventory();
-            b = true;
-        }
-
-        return b;
-    }
-
-    /**
-     * This method shows the Inventory in index.
-     *
-     * @return the showing of the Inventory in index.
-     */
-    public ArrayList<String> getIndexInventoryInfo() {
-        ArrayList<String> info = new ArrayList<String>();
-
-        for (int i = 0; i < itemInventory.size(); i++) {
-            info.add("[" + (i + 1) + "] " + itemInventory.get(i).getName() + " - " + itemPriceList.get(i) + "PHP\n");
-        }
-
-        return info;
-    }
-
-    /**
-     * This method returns price and instance of the item to be removed.
-     *
-     * @param choice the item index + 1
-     * @return price and instance of the item
-     */
-    public ArrayList<Object> releaseItem(int choice) {
-        ArrayList<Object> item = new ArrayList<Object>(2);
-
-        item.add(itemInventory.remove((int) choice - 1));
-        item.add(itemPriceList.remove((int) choice - 1));
-
-        return item;    //index 0 is the item instance, 1 is the price
-    }
 
     /**
      * This method gets the current count of items in the inventory of this special vending machine.
@@ -340,7 +430,7 @@ public class SpecialVendingMachine extends VendingMachine{
     /**
      * The prices of items in the inventory with respect to index
      */
-    private ArrayList<Integer> itemPriceList;
+    private ArrayList<ItemInfo> itemList;
 
     /**
      * The maximum items in item inventory
