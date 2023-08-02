@@ -308,6 +308,7 @@ public class FactoryView {
         //Main Program Panels
         setPickVMPanel();
         setBuyFromVmPanel();
+        setSVMPanel();
         setDoMaintenancePanel();
         //Do Maintenance Panels
         setRestockPanel();
@@ -364,7 +365,7 @@ public class FactoryView {
         this.backBtn26 = new JButton("Back"); this.backBtn27 = new JButton("Back"); this.backBtn28 = new JButton("Back");
         this.backBtn29 = new JButton("Back"); this.backBtn30 = new JButton("Back"); this.jcomp14 = new JButton("Back");
         this.backBtn31 = new JButton("Back"); this.addItemtoInventoryBackBtn = new JButton("Back");
-        this.changePriceofItemBackBtn = new JButton("Back");
+        this.changePriceofItemBackBtn = new JButton("Back"); this.Back = new JButton("Back");
 
         backBtnList.add(this.backBtn1);backBtnList.add(this.backBtn2);backBtnList.add(this.backBtn3);
         backBtnList.add(this.backBtn4);backBtnList.add(this.backBtn5);backBtnList.add(this.backBtn6);
@@ -377,7 +378,7 @@ public class FactoryView {
         backBtnList.add(this.backBtn25); backBtnList.add(this.backBtn26); backBtnList.add(this.backBtn27);
         backBtnList.add(this.backBtn28); backBtnList.add(this.backBtn29); backBtnList.add(this.backBtn30);
         backBtnList.add(this.jcomp14); backBtnList.add(this.backBtn31); backBtnList.add(this.addItemtoInventoryBackBtn);
-        backBtnList.add(this.changePriceofItemBackBtn);
+        backBtnList.add(this.changePriceofItemBackBtn); backBtnList.add(this.Back);
         backBtn1.addActionListener(new ActionListener() { //Back button for Main Program to Main Menu
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -587,6 +588,13 @@ public class FactoryView {
                 cardLayout.show(cardPanel,"Do Maintenance"); clearAllTextAreas();
             }
         });
+
+        Back.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(cardPanel,"Buy from Vending Machine");
+            }
+        });
     }
 
     /**
@@ -619,6 +627,7 @@ public class FactoryView {
         //Main Program Panels
         cardPanel.add(pickVMPanel, "Pick Vending Machine");
         cardPanel.add(buyFromVmPanel, "Buy from Vending Machine");
+        cardPanel.add(svmPanel, "Special Vending Machine");
         cardPanel.add(doMaintenancePanel, "Do Maintenance");
 
         //Do Maintenance Panels
@@ -737,7 +746,7 @@ public class FactoryView {
         jcomp11 = new JComboBox ();
         jcomp12 = new JLabel ("Enter item slot:");
         jcomp13 = new JButton ("Enter");
-        jcomp15 = new JButton ("Buy");
+        jcomp15 = new JButton ("Buysilog");
         jcomp16 = new JComboBox (jcomp16Items);
 
         buyFromVmPanel.add (jcomp1); buyFromVmPanel.add(jcomp2); buyFromVmPanel.add(jcomp3); buyFromVmPanel.add(jcomp4Scroller);
@@ -1276,6 +1285,11 @@ public class FactoryView {
     public void setJcomp13BtnListener(ActionListener actionListener){this.jcomp13.addActionListener(actionListener);}
 
     /**
+     * This method sets the Jcomp15 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp15BtnListener(ActionListener actionListener){this.jcomp15.addActionListener(actionListener);}
+    /**
      * This method sets the Do Maintenance Button on what to do when pressed.
      * @param actionListener, is to be overdriven.
      */
@@ -1534,6 +1548,68 @@ public class FactoryView {
         this.setSpecialPriceLbl.setVisible(false);
         this.setSpecialPriceTf.setVisible(false);
     }
+
+    public void setSVMPanel(){
+        this.svmPanel = new JPanel();
+        String[] itemSlotItems = {};
+
+        //construct components
+        onePeso = new JButton ("1 Peso");
+        fivePeso = new JButton ("5 Peso");
+        tenPeso = new JButton ("10 Peso");
+        SelledItems = new JTextArea (5, 5);
+        twentyPeso = new JButton ("20 Peso");
+        fiftyPeso = new JButton ("50 Peso");
+        hundredPeso = new JButton ("100 Peso");
+        twoHundredPeso = new JButton ("200 Peso");
+        fiveHundredPeso = new JButton ("500 Peso");
+        thousandPeso = new JButton ("1000 Peso");
+        enterSpecialItemSlot = new JLabel ("Enter item slot:");
+        Confirm = new JButton ("Confirm");
+        itemSlot = new JComboBox (itemSlotItems);
+        Add = new JButton ("Add");
+        Selected_Items = new JTextArea (5, 5);
+
+        //adjust size and set layout
+        svmPanel.setPreferredSize (new Dimension (582, 359));
+        svmPanel.setLayout (null);
+
+        //add components
+        svmPanel.add (onePeso);
+        svmPanel.add (fivePeso);
+        svmPanel.add (tenPeso);
+        svmPanel.add (SelledItems);
+        svmPanel.add (twentyPeso);
+        svmPanel.add (fiftyPeso);
+        svmPanel.add (hundredPeso);
+        svmPanel.add (twoHundredPeso);
+        svmPanel.add (fiveHundredPeso);
+        svmPanel.add (thousandPeso);
+        svmPanel.add (enterSpecialItemSlot);
+        svmPanel.add (Back);
+        svmPanel.add (Confirm);
+        svmPanel.add (itemSlot);
+        svmPanel.add (Add);
+        svmPanel.add (Selected_Items);
+
+        //set component bounds (only needed by Absolute Positioning)
+        onePeso.setBounds (25, 285, 80, 20);
+        fivePeso.setBounds (115, 285, 80, 20);
+        tenPeso.setBounds (205, 285, 80, 20);
+        SelledItems.setBounds (20, 5, 320, 225);
+        twentyPeso.setBounds (295, 285, 90, 20);
+        fiftyPeso.setBounds (395, 285, 100, 25);
+        hundredPeso.setBounds (25, 320, 100, 25);
+        twoHundredPeso.setBounds (135, 320, 100, 25);
+        fiveHundredPeso.setBounds (245, 320, 100, 25);
+        thousandPeso.setBounds (360, 320, 100, 25);
+        enterSpecialItemSlot.setBounds (20, 240, 100, 25);
+        Back.setBounds (470, 245, 100, 25);
+        Confirm.setBounds (470, 320, 100, 25);
+        itemSlot.setBounds (110, 240, 100, 25);
+        Add.setBounds (220, 240, 100, 25);
+        Selected_Items.setBounds (345, 5, 230, 225);
+    }
     private JFrame mainFrame;
     private JLabel menuLabel;
     private JPanel btnPanel;
@@ -1553,6 +1629,34 @@ public class FactoryView {
 
     private JTextField pickVMTf; private JButton pickVMBtn, backBtn16;
     private JButton  backBtn12, backBtn13, backBtn14, backBtn15;
+
+    //Special Buying Components
+    private JPanel svmPanel;
+    private JButton onePeso;
+    private JButton fivePeso;
+    private JButton tenPeso;
+
+    /**
+     * This method returns the Selled Items Text Area.
+     * @return SelledItems text area.
+     */
+    public JTextArea getSelledItems() {
+        return SelledItems;
+    }
+
+    private JTextArea SelledItems;
+    private JButton twentyPeso;
+    private JButton fiftyPeso;
+    private JButton hundredPeso;
+    private JButton twoHundredPeso;
+    private JButton fiveHundredPeso;
+    private JButton thousandPeso;
+    private JLabel enterSpecialItemSlot;
+    private JButton Back;
+    private JButton Confirm;
+    private JComboBox itemSlot;
+    private JButton Add;
+    private JTextArea Selected_Items;
 
     //Buying Components
     private JButton jcomp1; private JButton jcomp2; private JButton jcomp3;

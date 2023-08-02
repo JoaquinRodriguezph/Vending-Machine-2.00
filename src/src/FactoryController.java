@@ -49,6 +49,7 @@ public class FactoryController {
                     factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Program");
                     int vendingMachineChosed2 = vendingMachineChosed - 1;
                     if (factoryModel.getVendingMachines().get(vendingMachineChosed2) instanceof SpecialVendingMachine){
+                        isSVM = true;
                         factoryView.showSpecialVMButtons();
                     }
                 }
@@ -440,6 +441,20 @@ public class FactoryController {
             }
         });
 
+        this.factoryView.setJcomp15BtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(isSVM){
+                    factoryView.getCardLayout().show(factoryView.getCardPanel(), "Special Vending Machine");
+                    factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getSelledItems());
+                }
+                else {
+                    factoryModel.notSpecialVendingMachine(errorFrame);
+                }
+            }
+        });
+        //Sets up Do Maintenance Buttons
+
         this.factoryView.setDoMaintenanceBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -447,7 +462,6 @@ public class FactoryController {
             }
         });
 
-        //Sets up Do Maintenance Buttons
 
         this.factoryView.setRestockBtnListener(new ActionListener() {
             @Override
@@ -834,6 +848,7 @@ public class FactoryController {
             return false;
         }
     }
+    private boolean isSVM = false;
     private int price, moneyPayed, total;
     private ArrayList<Money> payment;
     private boolean selectedItem = false;

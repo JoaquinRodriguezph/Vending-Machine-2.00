@@ -359,6 +359,11 @@ public class FactoryModel {
         JOptionPane.showMessageDialog(frame, "Slot not available.",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
+
+    public void notSpecialVendingMachine(JFrame frame){
+        JOptionPane.showMessageDialog(frame, "Not a special vending machine.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
     public int getVendingMachineSize(){
         return vendingMachines.size();
     }
