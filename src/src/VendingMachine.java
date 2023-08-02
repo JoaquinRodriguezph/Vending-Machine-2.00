@@ -193,6 +193,7 @@ public class VendingMachine {
         if (getMaxSlotItem() >= itemSlots[slot - 1].getStock() + vendItems.size()) {
             if (itemSlots[slot - 1].addStock(vendItems)){
                 b = true;
+                newStartingInventory();
             }
         }
         return b;
