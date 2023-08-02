@@ -999,6 +999,12 @@ public class FactoryView {
      */
     public void setCollectMoneyPanel(){
         this.collectMoneyPanel = new JPanel(cardLayout);
+        collectMoneyPanel.setLayout(new FlowLayout());
+        this.collectMoneyTa = new JTextArea();
+        collectMoneyTa.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(collectMoneyTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scrollPane.setPreferredSize(new Dimension(300, 200));
+        collectMoneyPanel.add(scrollPane);
         collectMoneyPanel.add(backBtn19);
     }
 
@@ -1968,6 +1974,12 @@ public class FactoryView {
     private JPanel addItemtoInventoryPanel, changePriceofItemPanel;
 
     private JTextArea changePriceTa; private JLabel selectItemLbl2;
+
+    public JTextArea getCollectMoneyTa() {
+        return collectMoneyTa;
+    }
+
+    private JTextArea collectMoneyTa;
 
     private JTextField selectItemTf;
 

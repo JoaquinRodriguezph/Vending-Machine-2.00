@@ -561,6 +561,8 @@ public class FactoryController {
         this.factoryView.setCollectMoneyBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Collect Money");
+                factoryModel.displayVendingMachineMoney(vendingMachineChosed, factoryView.getCollectMoneyTa());
                 factoryModel.collectMoney(vendingMachineChosed, errorFrame);
             }
         });
@@ -1216,24 +1218,32 @@ public class FactoryController {
             public void actionPerformed(ActionEvent e) {
                 if (isParsable(factoryView.getSelectSpecialItemTf())){
                       int choice = Integer.parseInt(factoryView.getSelectSpecialItemTf());
+                      SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
+                  if(svm.isFull())
+                  {
+                      factoryModel.fullInventoryError(errorFrame);
+                  }
+
+                  else{
                       if (factoryModel.addToInventoryTest(vendingMachineChosed, choice)){
-                            factoryView.clearAllTextAreas();
-                            factoryModel.displayItems(factoryView.getAddItemTa());
-                            factoryModel.success(errorFrame);
-                        }
+                          factoryView.getAddItemTa().setText("");
+                          factoryModel.displayItems(factoryView.getAddItemTa());
+                          factoryModel.success(errorFrame);
+                      }
                       else{
-                            factoryView.showSpecialPrice();
-                            if(isParsable(factoryView.getSetSpecialPriceTf())){
-                                int price = Integer.parseInt(factoryView.getSetSpecialPriceTf());
-                                factoryModel.addToInventoryFalse(vendingMachineChosed, choice, price);
-                                factoryView.clearAllTextAreas();
-                                factoryModel.displayItems(factoryView.getAddItemTa());
-                                factoryModel.success(errorFrame);
-                            }
-                            else{
-                                factoryModel.invalidNumberError(errorFrame);
-                            }
-                        }
+                          factoryView.showSpecialPrice();
+                          if(isParsable(factoryView.getSetSpecialPriceTf())){
+                              int price = Integer.parseInt(factoryView.getSetSpecialPriceTf());
+                              factoryModel.addToInventoryFalse(vendingMachineChosed, choice, price);
+                              factoryView.getAddItemTa().setText("");
+                              factoryModel.displayItems(factoryView.getAddItemTa());
+                              factoryModel.success(errorFrame);
+                          }
+                          else{
+                              factoryModel.invalidNumberError(errorFrame);
+                          }
+                      }
+                  }
                 }
                 else {
                     factoryModel.invalidNumberError(errorFrame);

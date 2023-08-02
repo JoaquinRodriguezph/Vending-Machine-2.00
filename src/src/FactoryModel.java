@@ -655,6 +655,10 @@ public class FactoryModel {
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    public void fullInventoryError(JFrame frame){
+        JOptionPane.showMessageDialog(frame, "Inventory is full.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
     /**
      * The method displays the null message
      *
