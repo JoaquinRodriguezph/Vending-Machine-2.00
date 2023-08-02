@@ -742,7 +742,6 @@ public class FactoryController {
                 if(item != null){
                     factoryView.clearAllTextAreas();
                     factoryView.getSelected_Items().append(item.getName() + "\n");
-                    silog.add(factoryModel.getItem(vendingMachineChosed, slotChosed));
                     silog.add(item);
                     factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getSelledItems());
                 }

@@ -403,7 +403,7 @@ public class FactoryModel {
     }
 
     public void nullError(JFrame frame){
-        JOptionPane.showMessageDialog(frame, "Object is null. Please select another.",
+        JOptionPane.showMessageDialog(frame, "Item Not Available. Please select another.",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
