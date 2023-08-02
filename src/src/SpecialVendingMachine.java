@@ -238,23 +238,39 @@ public class SpecialVendingMachine extends VendingMachine{
     public String getSilog(ArrayList<Item> items) {
         String silog = null;
         boolean b = false;
+        ArrayList<Item> counterList = new ArrayList<Item>();
 
-        for (Item def : defaultSilogSide) {
+        for (Item def : defaultSilogSide) { //counting for the different chosen side, there can only be one
             for (Item item : items) {
                 if (def.getName().equalsIgnoreCase(item.getName()) && def.getCalories() == item.getCalories()) {
-                    switch (def.getName()) {
-                        case "Tapas" -> silog = "Tapsilog";
-                        case "Bangus" -> silog = "Bangsilog";
-                        case "Tosino" -> silog = "Tosilog";
-                        case "Pork Chop" -> silog = "Porksilog";
-                        case "Fried Chicken" -> silog = "Chicksilog";
-                    }
-                    b = true;
+                    if (!counterList.contains(def))
+                        counterList.add(def);
                     break;
                 }
             }
-            if (b)
+            if (counterList.size() > 1)
                 break;
+        }
+
+        if (counterList.size() == 1) {
+        //    Item item = counter
+            for (Item def : counterList) {
+                for (Item item : items) {
+                    if (def.getName().equalsIgnoreCase(item.getName()) && def.getCalories() == item.getCalories()) {
+                        switch (def.getName()) {
+                            case "Tapas" -> silog = "Tapsilog";
+                            case "Bangus" -> silog = "Bangsilog";
+                            case "Tosino" -> silog = "Tosilog";
+                            case "Pork Chop" -> silog = "Porksilog";
+                            case "Fried Chicken" -> silog = "Chicksilog";
+                        }
+                        b = true;
+                        break;
+                    }
+                }
+                if (b)
+                    break;
+            }
         }
         return silog;
     }
@@ -264,7 +280,7 @@ public class SpecialVendingMachine extends VendingMachine{
      *
      * @param items the silog combo meal
      * @param silog the silog String
-     * @return the String of the process of making the combo meal.
+     * @return the ArrayList of Strings of the process of making the combo meal.
      */
     public ArrayList<String> silogProcess(ArrayList<Item> items, String silog) {
         ArrayList<String> process = new ArrayList<String>();
@@ -307,28 +323,17 @@ public class SpecialVendingMachine extends VendingMachine{
     /**
      * This method generates the silog combo meal.
      *
-     * @param itemList the items and their prices in the potential silog combo meal
+     * @param items the items in the potential silog combo meal
      * @return the silog combo meal, return null if not a silog combo meal
      */
-    public SilogCombo produceSilogCombo(ArrayList<ArrayList<Object>> itemList) {
-        ArrayList<Object> objectList = itemList.get(0);
-        ArrayList<Item> items = new ArrayList<Item>();
+    public SilogCombo produceSilogCombo(ArrayList<Item> items) {
         ArrayList<Integer> prices = new ArrayList<Integer>();
-        for (int i = 0; i < objectList.size(); i++) {
-            items.add((Item) objectList.remove(0));
-        }
-        objectList = itemList.get(1);
-        for (int i = 0; i < objectList.size(); i++) {
-            prices.add((Integer) objectList.remove(0));
-        }
-
-
         SilogCombo silogCombo = null;
         ArrayList<Item> counterList = new ArrayList<Item>();
         int calories = 0;
         boolean b = false;
 
-        for (Item def : defaultSilogBase) { //counting for the base items, it has to be two
+        for (Item def : defaultSilogBase) { //counting for the base items that defines a silog meal
             for (Item item : items) {
                 if (def.getName().equalsIgnoreCase(item.getName()) && def.getCalories() == item.getCalories()) {
                     if (!counterList.contains(def))
@@ -336,7 +341,7 @@ public class SpecialVendingMachine extends VendingMachine{
                     break;
                 }
             }
-            if (counterList.size() == 2) {
+            if (counterList.size() == defaultSilogBase.size()) {
                 b = true;
                 break;
             }
