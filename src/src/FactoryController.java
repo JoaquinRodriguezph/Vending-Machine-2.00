@@ -39,7 +39,7 @@ public class FactoryController {
                 if (isParsable(factoryView.getPickVMTf()))
                 {
                     vendingMachineChosed = Integer.parseInt(factoryView.getPickVMTf());
-                    if (vendingMachineChosed < 0 || vendingMachineChosed >= factoryModel.getVendingMachineSize())
+                    if (vendingMachineChosed < 0 || vendingMachineChosed > factoryModel.getVendingMachineSize())
                     {
                         factoryModel.invalidNumberError(errorFrame);
                         return;
@@ -104,6 +104,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Slots");
+                factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getDisplaySlotsTa(), errorFrame);
             }
         });
 
@@ -111,6 +112,7 @@ public class FactoryController {
         this.factoryView.setCollectMoneyBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                factoryModel.collectMoney(vendingMachineChosed, errorFrame);
             }
         });
         this.factoryView.setReplenishChangeBtnListener(new ActionListener() {
@@ -172,6 +174,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Money");
+                factoryModel.displayVendingMachineMoney(vendingMachineChosed, factoryView.getMoneyTa());
             }
         });
 
@@ -300,22 +303,17 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (isParsable(factoryView.getPickVmTf2())){
-                    try{
-                        choice = Integer.parseInt(factoryView.getPickVmTf2());
-                        if(choice >= 0 && choice < factoryModel.getVendingMachineSize()){
-                            factoryView.clearAllTextAreas();
-                            factoryModel.displayVendingMachineInfo(choice, factoryView.getDetailsTa(), errorFrame);
-                        }
+                    choice = Integer.parseInt(factoryView.getPickVmTf2());
+                    if(choice > 0 && choice <= factoryModel.getVendingMachineSize()){
+                        factoryView.clearAllTextAreas();
+                        factoryModel.displayVendingMachineInfo(choice, factoryView.getDetailsTa(), errorFrame);
                     }
-                    catch (NumberFormatException ex){
+                    else {
                         factoryModel.invalidNumberError(errorFrame);
-                        errorFrame = new JFrame("Error");
-                        JOptionPane.showMessageDialog(errorFrame, "Please enter a valid number.",
-                                "Error", JOptionPane.ERROR_MESSAGE);;
                     }
                 }
                 else {
-                    factoryModel.displayVendingMachineInfo(-1, factoryView.getDetailsTa(), errorFrame);
+                    factoryModel.invalidNumberError(errorFrame);
                 }
             }
         });

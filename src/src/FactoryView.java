@@ -72,10 +72,18 @@ public class FactoryView {
 
     private JTextArea editPriceTa; private JLabel enterSlotLbl, enterPriceLbl; private JTextField enterSlotTf, enterPriceTf;
 
+    /**
+     * This method is used to return the JTextArea displaySlotsTa.
+     * @return the JTextArea displaySlotsTa.
+     */
     public JTextArea getDisplaySlotsTa() {
         return displaySlotsTa;
     }
 
+    /**
+     * This method is used to return the JTextArea setToSRPTa.
+     * @return the JTextArea setToSRPTa.
+     */
     public JTextArea getSetToSRPTa() {
         return setToSRPTa;
     }
@@ -111,6 +119,15 @@ public class FactoryView {
     private JTextArea itemStocksTa;
     private JTextArea inventoriesTa;
     private JTextArea transactionsTa;
+
+    /**
+     * This method is used to return the JTextArea moneyTa.
+     * @return the JTextArea moneyTa.
+     */
+    public JTextArea getMoneyTa() {
+        return moneyTa;
+    }
+
     private JTextArea moneyTa;
 
     /**
