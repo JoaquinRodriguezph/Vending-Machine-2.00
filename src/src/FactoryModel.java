@@ -34,6 +34,66 @@ public class FactoryModel {
     }
 
 
+    public void replenishBills(int choice, int num, int quantity, JFrame frame) {
+        Money money = null;
+        switch(num){
+            case 1 ->
+            {
+                money = new Money(1);
+                for (int i = 0; i < quantity; i++) {
+                    vendingMachines.get(choice).addMoney(money);
+                }
+            }
+            case 2 -> {
+                money = new Money(5);
+                for (int i = 0; i < quantity; i++) {
+                    vendingMachines.get(choice).addMoney(money);
+                }
+            }
+            case 3 -> {
+                money = new Money(10);
+                for (int i = 0; i < quantity; i++) {
+                    vendingMachines.get(choice).addMoney(money);
+                }
+            }
+            case 4 -> {
+                money = new Money(20);
+                for (int i = 0; i < quantity; i++) {
+                    vendingMachines.get(choice).addMoney(money);
+                }
+            }
+            case 5 -> {
+                money = new Money(50);
+                for (int i = 0; i < quantity; i++) {
+                    vendingMachines.get(choice).addMoney(money);
+                }
+            }
+            case 6 -> {
+                money = new Money(100);
+                for (int i = 0; i < quantity; i++) {
+                    vendingMachines.get(choice).addMoney(money);
+                }
+            }
+            case 7 -> {
+                money = new Money(200);
+                for (int i = 0; i < quantity; i++) {
+                    vendingMachines.get(choice).addMoney(money);
+                }
+            }
+            case 8 -> {
+                money = new Money(500);
+                for (int i = 0; i < quantity; i++) {
+                    vendingMachines.get(choice).addMoney(money);
+                }
+            }
+            case 9 -> {
+                money = new Money(1000);
+                for (int i = 0; i < quantity; i++) {
+                    vendingMachines.get(choice).addMoney(money);
+                }
+            }
+        }
+    }
     public void createVendingMachine(String name, int maxSlots, int slotMaxItems, JFrame frame){
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Name cannot be empty",
@@ -141,6 +201,13 @@ public class FactoryModel {
             JOptionPane.showMessageDialog(frame, "Please enter a valid number.",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
+        }
+    }
+
+    public void displayVendingMachineMoney(int vendingMachineNum, JTextArea ta){
+        ArrayList<String> money = vendingMachines.get(vendingMachineNum).showMoney();
+        for (String string : money) {
+            ta.append(string);
         }
     }
 

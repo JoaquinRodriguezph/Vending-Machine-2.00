@@ -117,6 +117,27 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Replenish Change");
+                factoryModel.displayVendingMachineMoney(vendingMachineChosed, factoryView.getReplenishChangeTa());
+            }
+        });
+
+        this.factoryView.setReplenishBillsBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isParsable(factoryView.getReplenishBillsTf()) && isParsable(factoryView.getQuantityBillsTf())){
+                    int denomination = Integer.parseInt(factoryView.getReplenishBillsTf());
+                    int quantity = Integer.parseInt(factoryView.getQuantityBillsTf());
+                    if (denomination <= 0 || quantity <= 0 || denomination > 9)
+                    {
+                        factoryModel.invalidNumberError(errorFrame);
+                        return;
+                    }
+                    else{
+                        factoryModel.replenishBills(vendingMachineChosed, denomination, quantity, errorFrame);
+                        factoryView.clearAllTextAreas();
+                        factoryModel.displayVendingMachineMoney(vendingMachineChosed, factoryView.getReplenishChangeTa());
+                    }
+                }
             }
         });
         this.factoryView.setShowItemSlotsBtnListener(new ActionListener() {

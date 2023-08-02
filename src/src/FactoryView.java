@@ -91,8 +91,20 @@ public class FactoryView {
     private JButton backBtn28, backBtn29, backBtn30;
 
     //Replenish Components
-    private JLabel replenishBillslbl; private JTextField replenishBillsTf; private JButton replenishBillsBtn;
-    private JLabel quantityBillsLbl; private JTextField quantityBillsTf; private JButton quantityBillsBtn;
+    private JLabel replenishBillslbl;
+
+    public String getReplenishBillsTf() {
+        return replenishBillsTf.getText();
+    }
+
+    private JTextField replenishBillsTf; private JButton replenishBillsBtn;
+    private JLabel quantityBillsLbl;
+
+    public String getQuantityBillsTf() {
+        return quantityBillsTf.getText();
+    }
+
+    private JTextField quantityBillsTf; private JButton quantityBillsBtn;
     private JPanel showItemStocksPanel, displayInventoriesPanel, displayTransactionsPanel, displayMoneyPanel;
     private JButton showItemStocksBtn, displayInventoriesBtn, displayTransactionsBtn, displayMoneyBtn;
 
@@ -110,6 +122,16 @@ public class FactoryView {
     }
 
     private JTextArea itemSlotsTa;
+
+    /**
+     * This method is used to return the JTextArea getReplenishChangeTa.
+     * @return the JTextArea getReplenishChangeTa.
+     */
+
+    public JTextArea getReplenishChangeTa() {
+        return replenishChangeTa;
+    }
+
     private JTextArea replenishChangeTa;
     private JButton backBtn22, backBtn23, backBtn24, backBtn25;
 
@@ -949,7 +971,7 @@ public class FactoryView {
         JScrollPane scrollPane = new JScrollPane(replenishChangeTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         scrollPane.setPreferredSize(new Dimension(300, 200));
         this.replenishChangePanel.add(scrollPane);
-        this.replenishBillslbl = new JLabel("Replenish Bills: ");
+        this.replenishBillslbl = new JLabel("Enter No. : ");
         this.replenishBillsTf = new JTextField(20);
         this.quantityBillsLbl = new JLabel("Quantity: ");
         this.quantityBillsTf = new JTextField(20);
@@ -1255,6 +1277,8 @@ public class FactoryView {
      * This method sets the Show Item Slots Button on what to do when pressed.
      * @param actionListener, is to be overdriven.
      */
+
+    public void setReplenishBillsBtnListener(ActionListener actionListener){this.replenishBillsBtn.addActionListener(actionListener);}
     public void setShowItemSlotsBtnListener(ActionListener actionListener){this.showItemSlotsBtn.addActionListener(actionListener);}
 
     /**
