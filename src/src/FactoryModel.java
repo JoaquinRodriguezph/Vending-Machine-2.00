@@ -2,9 +2,11 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class FactoryModel {
-    private ArrayList<VendingMachine> vendingMachines;
+    public ArrayList<VendingMachine> getVendingMachines() {
+        return vendingMachines;
+    }
 
-    private ArrayList<Money> moneyList;
+    private ArrayList<VendingMachine> vendingMachines;
 
     public ArrayList<Item> getMyInventory() {
         return myInventory;
@@ -16,25 +18,55 @@ public class FactoryModel {
         this.vendingMachines = new ArrayList<VendingMachine>();
         this.myInventory = new ArrayList<Item>();
         vendingMachines.add(new VendingMachine("Vending Machine 1", 10, 10));
-        myInventory.add(new Item("Sunny Side Up", 120));
-        myInventory.add(new Item("Chippy", 170));
-        myInventory.add(new Item("Tapas", 200));
-        myInventory.add(new Item("Hotdog", 75));
-        myInventory.add(new Item("Piattos", 180));
-        myInventory.add(new Item("V-Cut", 180));
-        myInventory.add(new Item("Corn", 88));
-        myInventory.add(new Item("Fried Chicken", 246));
-        myInventory.add(new Item("Bangus", 200));
-        myInventory.add(new Item("Pork Chop", 231));
-        myInventory.add(new Item("Tosino", 230));
-        myInventory.add(new Item("Rice", 206));
-        myInventory.add(new Item("Coca Cola", 140));
-        myInventory.add(new Item("Royal", 140));
-        myInventory.add(new Item("Bottled Water", 0));
+        myInventory.add(new VendItem("Sunny Side Up", 120));
+        myInventory.add(new VendItem("Chippy", 170));
+        myInventory.add(new VendItem("Tapas", 200));
+        myInventory.add(new VendItem("Hotdog", 75));
+        myInventory.add(new VendItem("Piattos", 180));
+        myInventory.add(new VendItem("V-Cut", 180));
+        myInventory.add(new VendItem("Corn", 88));
+        myInventory.add(new VendItem("Fried Chicken", 246));
+        myInventory.add(new VendItem("Bangus", 200));
+        myInventory.add(new VendItem("Pork Chop", 231));
+        myInventory.add(new VendItem("Tosino", 230));
+        myInventory.add(new VendItem("Rice", 206));
+        myInventory.add(new VendItem("Coca Cola", 140));
+        myInventory.add(new VendItem("Royal", 140));
+        myInventory.add(new VendItem("Bottled Water", 0));
     }
 
+    public void setStock(int choice, int selected, int item, int quantity, JFrame frame){
+        int choice2 = choice - 1;
+        int item2 = item - 1;
+
+        if(myInventory.get(item2) instanceof Item){
+            JOptionPane.showMessageDialog(frame, "Can only place VendItem!",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        VendItem selected2 = (VendItem) myInventory.get(item2);
+        ArrayList<VendItem> vendItems = new ArrayList<VendItem>();
+        for (int i = 0; i < quantity; i++) {
+            vendItems.add(selected2);
+        }
+        vendingMachines.get(choice).addSlotStock(selected, vendItems);
+    }
+    public void changeItemSlotPrice(int choice, int selected, int price, JFrame frame) {
+        int choice2 = choice - 1;
+        if (vendingMachines.get(choice2).isSlotAvailable(selected))
+        {
+            vendingMachines.get(choice2).setSlotPrice(selected, price);
+            JOptionPane.showMessageDialog(frame, "Success!",
+                    "Information", JOptionPane.INFORMATION_MESSAGE);
+        }
+        else {
+            JOptionPane.showMessageDialog(frame, "Slot is not available!",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
     public void collectMoney(int choice, JFrame frame){
-        vendingMachines.get(choice).collectMoney();
+        int choice2 = choice - 1;
+        vendingMachines.get(choice2).collectMoney();
         JOptionPane.showMessageDialog(frame, "Success!",
                 "Information", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -127,7 +159,7 @@ public class FactoryModel {
         }
 
         if (calories < 0) {
-            JOptionPane.showMessageDialog(frame, "Calories should be >= 0",
+            JOptionPane.showMessageDialog(frame, "Calories should be > 0",
                     "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -176,7 +208,7 @@ public class FactoryModel {
      */
     public void displayItems(JTextArea ta){
         ta.append("Item No || Name ||  Calories\n");
-        int i = 0;
+        int i = 1;
         for (Item item : myInventory) {
             ta.append(i + "\t" +  item.getName() + "\t" + item.getCalories() + "\n");
             i++;
@@ -193,24 +225,16 @@ public class FactoryModel {
     }
 
     public void displayVendingMachineInfo(int vendingMachineNum, JTextArea ta, JFrame frame){
-        int vendingMachineNum2 = vendingMachineNum - 1;
-        try{
-            if (vendingMachineNum > 0 && vendingMachineNum <= vendingMachines.size()){
-                ta.append("Slot No || Item Name ||  Calories\n");
-                for (String string : vendingMachines.get(vendingMachineNum2).getSlotInfo()) {
-                    ta.append(string);
-                }
-            }
-        }
-        catch (IndexOutOfBoundsException e){
-            JOptionPane.showMessageDialog(frame, "Please enter a valid number.",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-            return;
+    int vendingMachineNum2 = vendingMachineNum - 1;
+    ArrayList<String> slots = vendingMachines.get(vendingMachineNum2).getSlotInfo();
+    for (String string : slots) {
+                ta.append(string);
         }
     }
 
     public void displayVendingMachineMoney(int vendingMachineNum, JTextArea ta){
-        ArrayList<String> money = vendingMachines.get(vendingMachineNum).showMoney();
+        int vendingMachineNum2 = vendingMachineNum - 1;
+        ArrayList<String> money = vendingMachines.get(vendingMachineNum2).showMoney();
         for (String string : money) {
             ta.append(string);
         }
@@ -226,4 +250,5 @@ public class FactoryModel {
     public int myInventoryNum(){
         return myInventory.size();
     }
+
 }

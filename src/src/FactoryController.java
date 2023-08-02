@@ -45,6 +45,10 @@ public class FactoryController {
                         return;
                     }
                     factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Program");
+                    int vendingMachineChosed2 = vendingMachineChosed - 1;
+                    if (factoryModel.getVendingMachines().get(vendingMachineChosed2) instanceof SpecialVendingMachine){
+                        factoryView.showDisplayInventoriesBtn();
+                    }
                 }
             }
         });
@@ -70,44 +74,67 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Restock");
+                factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getRestockTa(), errorFrame);
+                factoryModel.displayItems(factoryView.getRestockTa2());
+            }
+        });
+
+        this.factoryView.setStockBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isParsable(factoryView.getSelectSlotTf()) && isParsable(factoryView.getSelectItemTf()) && isParsable(factoryView.getQuantityItemTf())){
+                    int selectSlot = Integer.parseInt(factoryView.getSelectSlotTf());
+                    int selectItem = Integer.parseInt(factoryView.getSelectItemTf());
+                    int quantityItem = Integer.parseInt(factoryView.getQuantityItemTf());
+                    if (selectSlot <= 0 || selectItem <= 0 || quantityItem <= 0 || selectSlot > factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getNumSlots())
+                    {
+                        factoryModel.invalidNumberError(errorFrame);
+                        return;
+                    }
+                    else{
+                        factoryModel.setStock(vendingMachineChosed, selectSlot, selectItem, quantityItem, errorFrame);
+                        factoryView.clearAllTextAreas();
+                        factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getRestockTa(), errorFrame);
+                        factoryModel.displayItems(factoryView.getRestockTa2());
+                    }
+                }
+                else{
+                    factoryModel.invalidNumberError(errorFrame);
+                }
             }
         });
 
         this.factoryView.setChangePriceBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Change Price");
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Change Item Slot Price");
+                factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getChangePriceTa(), errorFrame);
             }
         });
 
-        //Change Price Buttons
-        this.factoryView.setEditPriceBtnListener(new ActionListener() {
+        this.factoryView.setSetPriceBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Edit Price");
-            }
-        });
-        this.factoryView.setSetToSRPBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Set to SRP");
-            }
-        });
+                if (isParsable(factoryView.getSelectItemTf2()) && isParsable(factoryView.getPriceItemTf())){
+                    int selectItem = Integer.parseInt(factoryView.getSelectItemTf2());
+                    int priceItem = Integer.parseInt(factoryView.getPriceItemTf());
+                    if (selectItem <= 0 || priceItem <= 0 || selectItem > factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getNumSlots())
+                    {
+                        factoryModel.invalidNumberError(errorFrame);
+                        return;
+                    }
 
-        this.factoryView.setSetAllToSRPBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
+                    else{
+                        factoryModel.changeItemSlotPrice(vendingMachineChosed, selectItem, priceItem, errorFrame);
+                        factoryView.clearAllTextAreas();
+                        factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getChangePriceTa(), errorFrame);
+                    }
+                }
+                else{
+                    factoryModel.invalidNumberError(errorFrame);
+                }
             }
         });
-        this.factoryView.setDisplaySlotsBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Slots");
-                factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getDisplaySlotsTa(), errorFrame);
-            }
-        });
-
         //Do Maintenance Buttons
         this.factoryView.setCollectMoneyBtnListener(new ActionListener() {
             @Override
@@ -153,6 +180,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Item Stocks");
+                factoryModel.displayItems(factoryView.getItemStocksTa());
             }
         });
 
@@ -160,6 +188,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Inventories");
+
             }
         });
 
@@ -327,7 +356,7 @@ public class FactoryController {
             return false;
         }
     }
-    private int vendingMachineChosed = 0;
+    private int vendingMachineChosed;
     private int choice;
     private JFrame errorFrame;
     private FactoryView factoryView;
