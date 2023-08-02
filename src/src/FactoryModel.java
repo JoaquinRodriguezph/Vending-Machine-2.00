@@ -259,12 +259,28 @@ public class FactoryModel {
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    /**
+     * This method collects the Money from the vending machine
+     *
+     * @param choice the selected vending machine
+     * @param frame the frame to notify events
+     */
     public void collectMoney(int choice, JFrame frame){
         int choice2 = choice - 1;
         vendingMachines.get(choice2).collectMoney();
         JOptionPane.showMessageDialog(frame, "Success!",
                 "Information", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    /**
+     * This method adds the Money to the vending machine
+     *
+     * @param choice the selected vending machine
+     * @param num the money value
+     * @param quantity the quantity of money denomination
+     * @param frame the frame to notify events
+     */
     public void replenishBills(int choice, int num, int quantity, JFrame frame) {
         Money money = null;
         switch(num){
@@ -316,6 +332,16 @@ public class FactoryModel {
             }
         }
     }
+
+    /**
+     * This method creates special vending machine
+     *
+     * @param name the name of the vending machine
+     * @param maxSlots the max slots of the vending machine
+     * @param slotMaxItems the max items per slot
+     * @param inventoryLimit the inventory limit of the special vending machine
+     * @param frame the frame to notify events
+     */
     public void createSpecialVendingMachine(String name, int maxSlots, int slotMaxItems, int inventoryLimit, JFrame frame){
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Name cannot be empty",
@@ -341,6 +367,15 @@ public class FactoryModel {
         JOptionPane.showMessageDialog(frame, "Success!",
                 "Error", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    /**
+     * This method creates regular vending machine
+     *
+     * @param name the name of the vending machine
+     * @param maxSlots the max slots of the vending machine
+     * @param slotMaxItems the max items per slot
+     * @param frame the frame to notify events
+     */
     public void createVendingMachine(String name, int maxSlots, int slotMaxItems, JFrame frame){
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Name cannot be empty",
@@ -361,6 +396,14 @@ public class FactoryModel {
         JOptionPane.showMessageDialog(frame, "Success!",
                 "Error", JOptionPane.INFORMATION_MESSAGE);
     }
+
+    /**
+     * This method creates an item
+     *
+     * @param name the name of the vending machine
+     * @param calories the max slots of the vending machine
+     * @param frame the frame to notify events
+     */
     public void createItem(String name, int calories, JFrame frame) {
         ArrayList<Item> itemStocks = new ArrayList<Item>();
         if (name.isEmpty()) {
@@ -391,6 +434,12 @@ public class FactoryModel {
 
     }
 
+    /**
+     * This method shows whether an item choice is valid
+     *
+     * @param choice the choice of the item
+     * @param errorFrame the frame to notify events
+     */
     public void selectItem(int choice, JFrame errorFrame){
         if (choice <= myInventory.size() && choice >= 0){
             JOptionPane.showMessageDialog(errorFrame, "Successfully selected item.",
@@ -401,6 +450,14 @@ public class FactoryModel {
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
+
+    /**
+     * This method validates the addition of an item to the slot
+     *
+     * @param choice the choice of the item
+     * @param num
+     * @param frame the frame to notify events
+     */
     public void addItem(int choice, int num, JFrame frame) {
         if (choice < 0 || choice > myInventory.size()) {
             JOptionPane.showMessageDialog(frame, "Please enter a valid number.",
@@ -412,7 +469,12 @@ public class FactoryModel {
         myInventory.add(myInventory.get(choice));
     }
 
-
+    /**
+     * This method displays the transaction log to the text area
+     *
+     * @param choice the choice of the vending machine
+     * @param ta text area to be appendended to
+     */
     public void displayTransactions(int choice, JTextArea ta){
         ArrayList<String> transactionLog = vendingMachines.get(choice - 1).getTransactionLog();
         for (String transaction : transactionLog) {
@@ -422,6 +484,7 @@ public class FactoryModel {
 
     /**
      * This method displays the items in the inventory.
+     *
      * @param ta, the text area of the view to be utilized
      */
     public void displayItems(JTextArea ta){
@@ -433,12 +496,24 @@ public class FactoryModel {
         }
     }
 
+    /**
+     * This method displays the inventory.
+     *
+     * @param choice the selected vednding machine
+     * @param ta, the text area of the view to be utilized
+     */
     public void displayInventories(int choice, JTextArea ta){
         ArrayList<String> inventories = vendingMachines.get(choice - 1).getInventoryLog();
         for (String string : inventories){
             ta.append(string);
         }
     }
+
+    /**
+     * This method displays the vending machines.
+     *
+     * @param ta, the text area of the view to be utilized
+     */
     public void displayVendingMachines(JTextArea ta){
         ta.append("Vending Machine No || Name ||  Max Slots || Max Items || Inventory Limit\n");
         int i = 1;
@@ -456,6 +531,12 @@ public class FactoryModel {
         }
     }
 
+    /**
+     * The method displays the all vending machine information
+     * @param vendingMachineNum the selected vending machine
+     * @param ta, the text area of the view to be utilized
+     * @param frame the frame to notify
+     */
     public void displayVendingMachineInfo(int vendingMachineNum, JTextArea ta, JFrame frame){
     int vendingMachineNum2 = vendingMachineNum - 1;
     ArrayList<String> slots = vendingMachines.get(vendingMachineNum2).getSlotInfo();
@@ -464,6 +545,11 @@ public class FactoryModel {
         }
     }
 
+    /**
+     * The method displays the all vending machine money
+     * @param vendingMachineNum the selected vending machine
+     * @param ta, the text area of the view to be utilized
+     */
     public void displayVendingMachineMoney(int vendingMachineNum, JTextArea ta){
         int vendingMachineNum2 = vendingMachineNum - 1;
         ArrayList<String> money = vendingMachines.get(vendingMachineNum2).showMoney();
@@ -476,9 +562,12 @@ public class FactoryModel {
         }
     }
 
-    public void displaySelectedItems(int vendingMachineNum, JTextArea ta){
-        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineNum - 1)));
-    }
+    /**
+     * The method displays the special vending machine inventory
+     *
+     * @param vendingMachineNum the selected vending machine
+     * @param ta, the text area of the view to be utilized
+     */
     public void displaySpecialVendingMachineInventory(int vendingMachineNum ,JTextArea ta){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineNum - 1)));
         ArrayList<String> inventory = svm.getIndexInventoryInfo();
@@ -486,43 +575,90 @@ public class FactoryModel {
             ta.append(string);
         }
     }
+
+    /**
+     * The helper method that does the invalid number error
+     *
+     * @param frame the frame to notify
+     */
     public void invalidNumberError(JFrame frame){
         JOptionPane.showMessageDialog(frame, "Please enter a valid number.",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * The method displays the success message
+     *
+     * @param frame the frame to notify
+     */
     public void success(JFrame frame){
         JOptionPane.showMessageDialog(frame, "Success!",
                 "Notice", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * The method displays the error message
+     *
+     * @param frame the frame to notify
+     */
     public void noItemSelectedError(JFrame frame){
         JOptionPane.showMessageDialog(frame, "Please select an item.",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * The method displays the availability message
+     *
+     * @param frame the frame to notify
+     */
     public void slotNotAvailableError(JFrame frame){
         JOptionPane.showMessageDialog(frame, "Slot not available.",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
-
+    /**
+     * The method displays the special vending machine message
+     *
+     * @param frame the frame to notify
+     */
     public void notSpecialVendingMachine(JFrame frame){
         JOptionPane.showMessageDialog(frame, "Not a special vending machine.",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * The method displays the null message
+     *
+     * @param frame the frame to notify
+     */
     public void nullError(JFrame frame){
         JOptionPane.showMessageDialog(frame, "Item Not Available. Please select another.",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * The method displays the invalid silog message
+     *
+     * @param frame the frame to notify
+     */
     public void invalidSilog(JFrame frame){
         JOptionPane.showMessageDialog(frame, "The items you chose cannot be made into a proper silog meal.",
                 "Error", JOptionPane.ERROR_MESSAGE);
     }
+
+    /**
+     * The method gets the number of vending machines
+     *
+     * @return the number of vending machines
+     */
     public int getVendingMachineSize(){
         return vendingMachines.size();
     }
+
+    /**
+     * The method gets the number of items in list of blueprints
+     *
+     * @return the number of items in list of blueprints
+     */
     public int myInventoryNum(){
         return myInventory.size();
     }

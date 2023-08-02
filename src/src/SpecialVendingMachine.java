@@ -421,6 +421,15 @@ public class SpecialVendingMachine extends VendingMachine{
         return silogCombo;
     }
 
+    /**
+     * This method returns whether the inventory is full.
+     *
+     * @return true if the inventory is full, false otherwise.
+     */
+    public boolean isFull() {
+        return MAX_INV == itemInventory.size();
+    }
+
 
     /**
      * This method gets the current count of items in the inventory of this special vending machine.
