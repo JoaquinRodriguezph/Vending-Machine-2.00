@@ -314,11 +314,11 @@ public class SpecialVendingMachine extends VendingMachine{
     /**
      * This method returns the process of making the silog meal
      *
-     * @param items the silog combo meal
-     * @param silog the silog String
+     * @param silogCombo the silog combo meal
      * @return the ArrayList of Strings of the process of making the combo meal.
      */
-    public ArrayList<String> silogProcess(ArrayList<Item> items, String silog) {
+    public ArrayList<String> silogProcess(SilogCombo silogCombo) {
+        ArrayList<Item> items = silogCombo.getItems();
         ArrayList<String> process = new ArrayList<String>();
         String side = "";
         ArrayList<String> topping = new ArrayList<String>();
