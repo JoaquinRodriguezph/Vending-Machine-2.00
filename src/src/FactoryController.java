@@ -78,7 +78,7 @@ public class FactoryController {
                         tempTotal += money2.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    factoryView.getJcomp4().append("You have paid " + total + " pesos.\n");
                     if (total > price || total == price) {
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
@@ -118,7 +118,7 @@ public class FactoryController {
                         tempTotal += money2.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    factoryView.getJcomp4().append("You have paid " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
@@ -158,7 +158,7 @@ public class FactoryController {
                         tempTotal += money2.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    factoryView.getJcomp4().append("You have paid " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
@@ -198,9 +198,10 @@ public class FactoryController {
                         tempTotal += money2.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    factoryView.getJcomp4().append("You have paid " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
+                        payment = factoryModel.getChange(vendingMachineChosed, payment, price);
                         if (before.equals(payment)) {
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
                             for (Money money2 : payment){
@@ -237,7 +238,7 @@ public class FactoryController {
                         tempTotal += money2.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    factoryView.getJcomp4().append("You have paid " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
@@ -277,7 +278,7 @@ public class FactoryController {
                         tempTotal += money2.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    factoryView.getJcomp4().append("You have paid " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);  if (before.equals(payment)) {
@@ -316,7 +317,7 @@ public class FactoryController {
                         tempTotal += money2.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    factoryView.getJcomp4().append("You have paid " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
@@ -356,7 +357,7 @@ public class FactoryController {
                         tempTotal += money2.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    factoryView.getJcomp4().append("You have paid " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
@@ -396,7 +397,7 @@ public class FactoryController {
                         tempTotal += money2.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    factoryView.getJcomp4().append("You have paid " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
