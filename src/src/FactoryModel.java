@@ -336,12 +336,12 @@ public class FactoryModel {
         for (VendingMachine vm : vendingMachines) {
             if (vm instanceof SpecialVendingMachine)
             {
-                ta.append("SVM");
-                ta.append(i + "\t" + vm.getName() + "    " + vm.getNumSlots() + "    " + vm.getMaxSlotItem() + "    " + ((SpecialVendingMachine) vm).getInventoryLimit() + "\n");
+                ta.append("SVM [");
+                ta.append(i + "]\t" + vm.getName() + "    " + vm.getNumSlots() + "    " + vm.getMaxSlotItem() + "    " + ((SpecialVendingMachine) vm).getInventoryLimit() + "\n");
             }
             else {
-                ta.append("RVM");
-                ta.append(i + "\t" + vm.getName() + "    " + vm.getNumSlots() + "    " + vm.getMaxSlotItem() + "\n");
+                ta.append("RVM [");
+                ta.append(i + "]\t" + vm.getName() + "    " + vm.getNumSlots() + "    " + vm.getMaxSlotItem() + "\n");
             }
             i++;
         }
