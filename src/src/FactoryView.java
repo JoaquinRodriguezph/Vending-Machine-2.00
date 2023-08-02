@@ -53,7 +53,6 @@ public class FactoryView {
         //Stocks Panel
         setCustomizeStocksPanel();
         setCreateItemsPanel();
-        setAddItemsPanel();
         setShowItemsPanel();
         //Customize Vending Machine Panel
         setCreateVMPanel();
@@ -510,6 +509,7 @@ public class FactoryView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel,"Customize Stocks"); clearAllTextAreas();
+                mainFrame.setSize(300, 300);
             }
         });
 
@@ -748,7 +748,6 @@ public class FactoryView {
 
         //Customize Item Panels
         cardPanel.add(createItemPanel, "Create Item");
-        cardPanel.add(addItemPanel, "Add Item");
         cardPanel.add(showItemsPanel, "Show Items");
 
         //Customize Vending Machine Panels
@@ -788,8 +787,6 @@ public class FactoryView {
         //Customize Stocks Buttons
         this.createItemBtn = new JButton("Create Item");
         stocksBtnList.add(createItemBtn);
-        this.addItemBtn = new JButton("Add Item");
-        stocksBtnList.add(addItemBtn);
         this.showItemBtn = new JButton("Show Items");
         stocksBtnList.add(showItemBtn);
 
@@ -1218,43 +1215,18 @@ public class FactoryView {
         gbc.gridx = 0; gbc.gridy = 0; createItemPanel.add(itemNamelbl, gbc);
         this.calorieslbl = new JLabel("Calories: ");
         gbc.gridx = 0; gbc.gridy = 1; createItemPanel.add(calorieslbl, gbc);
-        this.itemNameTf = new JTextField(10);
+        this.itemNameTf = new JTextField(20);
         gbc.gridx = 1; gbc.gridy = 0; createItemPanel.add(itemNameTf, gbc);
-        this.caloriesTf = new JTextField(5);
+        this.caloriesTf = new JTextField(20);
         gbc.gridx = 1; gbc.gridy = 1; createItemPanel.add(caloriesTf, gbc);
         this.createStockBtn = new JButton("Create Item");
         gbc.gridx = 0; gbc.gridy = 2; createItemPanel.add(createStockBtn);
-        gbc.gridx = 1; gbc.gridy = 2; createItemPanel.add(backBtn6);
+        this.createStockBtn2 = new JButton("Create Vending Item");
+        gbc.gridx = 1; gbc.gridy = 2; createItemPanel.add(createStockBtn2);
+        gbc.gridx = 0; gbc.gridy = 3; createItemPanel.add(backBtn6);
         createItemPanel.setBackground(Color.getHSBColor(21, 79, 94));
     }
 
-    /**
-     * This method sets the Add Items Panel.
-     */
-    public void setAddItemsPanel(){
-        this.addItemPanel = new JPanel(cardLayout);
-        addItemPanel.setLayout(new FlowLayout());
-        //GridBagConstraints gbc = new GridBagConstraints();
-        this.selectItemtoAddLbl = new JLabel("Select Item to Add: ");
-        this.selectItemtoAddTf = new JTextField(10);
-        this.selectItemtoAddBtn = new JButton("Select Item");
-        this.addItemLbl = new JLabel("Num_of_Items:");
-        this.addItemTf = new JTextField(5);
-        this.addItemBtn2 = new JButton("Add Item");
-        this.itemsTa = new JTextArea();
-        itemsTa.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(itemsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setPreferredSize(new Dimension(300, 300));
-        this.addItemPanel.add(scrollPane);
-        this.addItemPanel.add(selectItemtoAddLbl);
-        this.addItemPanel.add(selectItemtoAddTf);
-        this.addItemPanel.add(selectItemtoAddBtn);
-        this.addItemPanel.add(addItemLbl);
-        this.addItemPanel.add(addItemTf);
-        this.addItemPanel.add(addItemBtn2);
-        this.addItemPanel.add(backBtn7);
-        addItemPanel.setBackground(Color.getHSBColor(10,9, 94));
-    }
 
     /**
      * This method sets the Show Items Panel.
@@ -1277,8 +1249,8 @@ public class FactoryView {
     public void clearAllTextAreas(){
         this.jcomp4.setText(""); this.restockTa.setText(""); this.itemStocksTa.setText(""); this.inventoriesTa.setText(""); this.transactionsTa.setText("");
         this.moneyTa.setText(""); this.itemSlotsTa.setText(""); this.replenishChangeTa.setText(""); this.showItemsTa.setText("");
-        this.detailsTa.setText(""); this.showVMTa.setText(""); this.itemsTa.setText(""); this.changePriceTa.setText("");
-        this.restockTa2.setText(""); this.addItemTa.setText(""); this.changePriceofItemTa.setText(""); this.SelledItems.setText("");
+        this.detailsTa.setText(""); this.showVMTa.setText(""); this.changePriceTa.setText("");
+        this.restockTa2.setText(""); this.changePriceofItemTa.setText(""); this.SelledItems.setText("");
     }
 
     /**
@@ -1563,26 +1535,7 @@ public class FactoryView {
      */
     public void setCreateStockBtnListener(ActionListener actionListener){this.createStockBtn.addActionListener(actionListener);}
 
-    /**
-     * This method sets the Select Item to Add Button on what to do when pressed.
-     *
-     * @param actionListener, is to be overdriven.
-     */
-    public void setSelectItemtoAddBtnListener(ActionListener actionListener){this.selectItemtoAddBtn.addActionListener(actionListener);}
 
-    /**
-     * This method sets the Add Item Button2 on what to do when pressed.
-     *
-     * @param actionListener, is to be overdriven.
-     */
-    public void setAddItemBtn2Listener(ActionListener actionListener){this.addItemBtn2.addActionListener(actionListener);}
-
-    /**
-     * This method sets the Add Item Button on what to do when pressed.
-     *
-     * @param actionListener, is to be overdriven.
-     */
-    public void setAddItemBtnListener(ActionListener actionListener){this.addItemBtn.addActionListener(actionListener);}
 
     /**
      * This method sets the Show Items Button on what to do when pressed.
@@ -1688,9 +1641,15 @@ public class FactoryView {
 
     /**
      * This method sets the Thousand Peso Button on what to do when pressed.
-     * @param actionListener
+     * @param actionListener, is to be overdriven.
      */
     public void setThousandPesoBtnListener(ActionListener actionListener){this.thousandPeso.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Create Stock Button 2 on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setCreateStockBtn2Listener(ActionListener actionListener){this.createStockBtn2.addActionListener(actionListener);}
 
     /**
      * This method hides the Special Vending Machine Buttons.
@@ -1939,6 +1898,10 @@ public class FactoryView {
     }
 
 
+    public JFrame getMainFrame() {
+        return mainFrame;
+    }
+
     private JFrame mainFrame;
     private JLabel menuLabel;
     private JPanel btnPanel;
@@ -2103,7 +2066,7 @@ public class FactoryView {
 
     private JLabel itemNamelbl, calorieslbl, SRPlbl, itemNumberlbl, addItemlbl;
 
-    private JButton createStockBtn, addItemBtn2;
+    private JButton createStockBtn, createStockBtn2;
     private JTextField itemNameTf;
     private JTextField caloriesTf;
     private JTextField stocksTf;
@@ -2143,7 +2106,7 @@ public class FactoryView {
 
     //Buttons for the Customize Item Stock Menu
 
-    private JButton createItemBtn, addItemBtn, showItemBtn, selectItemtoAddBtn;
+    private JButton createItemBtn, showItemBtn, selectItemtoAddBtn;
     private JLabel selectItemtoAddLbl, addItemLbl;
     private JTextField selectItemtoAddTf;
     private JScrollPane scrollPane;
