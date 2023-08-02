@@ -531,6 +531,18 @@ public class FactoryModel {
         }
     }
 
+    public void displayItems2(JTextArea ta){
+        ta.append("Item No || Name ||  Calories\n");
+        int i = 1;
+        for (Item item : myInventory) {
+            if(item instanceof VendItem){
+                ta.append(i + "\t" +  item.getName() + "\t" + item.getCalories() + "\n");
+                i++;
+            }
+        }
+    }
+
+
     /**
      * This method displays the inventory.
      *

@@ -544,7 +544,7 @@ public class FactoryController {
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Restock");
                 factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getRestockTa(), errorFrame);
-                factoryModel.displayItems(factoryView.getRestockTa2());
+                factoryModel.displayItems2(factoryView.getRestockTa2());
             }
         });
 
@@ -564,7 +564,7 @@ public class FactoryController {
                         factoryModel.setStock(vendingMachineChosed, selectSlot, selectItem, quantityItem, errorFrame);
                         factoryView.clearAllTextAreas();
                         factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getRestockTa(), errorFrame);
-                        factoryModel.displayItems(factoryView.getRestockTa2());
+                        factoryModel.displayItems2(factoryView.getRestockTa2());
                     }
                 }
                 else{
