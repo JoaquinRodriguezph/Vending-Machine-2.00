@@ -2,18 +2,6 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class FactoryModel {
-    /**
-     * This method gets the vending machines.
-     *
-     * @return the ArrayList of vending machines
-     */
-    public ArrayList<VendingMachine> getVendingMachines() {
-        return vendingMachines;
-    }
-
-    private ArrayList<VendingMachine> vendingMachines;
-
-    private ArrayList<Item> myInventory;
 
     /**
      * This method is the constructor for the Factory Model Class.
@@ -61,6 +49,16 @@ public class FactoryModel {
         svm.addToInventory(myInventory.get(14), 25);
 
     }
+
+    /**
+     * This method gets the vending machines.
+     *
+     * @return the ArrayList of vending machines
+     */
+    public ArrayList<VendingMachine> getVendingMachines() {
+        return vendingMachines;
+    }
+
 
     //Special Vending Machine Features
     /**
@@ -434,6 +432,13 @@ public class FactoryModel {
 
     }
 
+    /**
+     * This method creates a VendItem
+     *
+     * @param name the name of the vending machine
+     * @param calories the max slots of the vending machine
+     * @param frame the frame to notify events
+     */
     public void createVendingItem(String name, int calories, JFrame frame) {
         ArrayList<Item> itemStocks = new ArrayList<Item>();
         if (name.isEmpty()) {
@@ -692,5 +697,11 @@ public class FactoryModel {
     public int myInventoryNum(){
         return myInventory.size();
     }
+
+
+
+    private ArrayList<VendingMachine> vendingMachines;
+
+    private ArrayList<Item> myInventory;
 
 }
