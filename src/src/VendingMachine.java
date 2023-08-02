@@ -99,7 +99,7 @@ public class VendingMachine {
     public ArrayList<String> getCurrentInventory() {
         ArrayList<String> inventory = new ArrayList<String>();
         for (ItemSlot slot : itemSlots) {
-            if (slot.isAvailable())
+            if (slot.getStock() > 0)
                 inventory.add(slot.getItemName() + ": " + slot.getStock() + "\n");
         }
 
