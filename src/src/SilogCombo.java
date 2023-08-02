@@ -2,7 +2,7 @@ import java.util.ArrayList;
 /**
  * This class represents a Silog Combo made from the special vending machine with a name, items, and calories.
  */
-public class SilogCombo {
+public class SilogCombo extends Item {
     /**
      * This method is a constructor which utilizes the following parameters:
      *
@@ -11,17 +11,8 @@ public class SilogCombo {
      * @param calories the total calories of the combo meal.
      */
     public SilogCombo(String name, ArrayList<Item> items, int calories) {
-        NAME = name;
+        super(name, calories);
         ITEMS = items;
-        CALORIES = calories;
-    }
-
-    /**
-     * Gets the name of the item.
-     * @return the name of the item.
-     */
-    public String getName() {
-        return NAME;
     }
 
     /**
@@ -33,25 +24,7 @@ public class SilogCombo {
     }
 
     /**
-     * Gets the total calories of the combo meal
-     * @return the total calories of the combo meal
-     */
-    public int getCalories() {
-        return CALORIES;
-    }
-
-    /**
-     * The name of the Silog Combo
-     */
-    private final String NAME;
-
-    /**
      * The list of items that comprise the combo
      */
     private final ArrayList<Item> ITEMS;
-
-    /**
-     * The total calories of the combo meal
-     */
-    private final int CALORIES;
 }
