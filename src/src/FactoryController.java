@@ -746,14 +746,14 @@ public class FactoryController {
                         tempTotal += m.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getSelected_Items().append("You have paid" + total + "pesos.\n");
+                    factoryView.getSelected_Items().append("You have paid " + total + " pesos.\n");
                     if (total > specialPayment || total == specialPayment){
                         ArrayList<Money> before = specialSilog;
                         specialSilog = factoryModel.getChange(vendingMachineChosed, specialSilog, specialPayment);
                         if (before.equals(specialSilog)){
                             factoryView.getSelected_Items().append("Not enough change, your money is returned..\n");
                             for (Money m : specialSilog){
-                                factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                             }
                             specialSilog.clear();
                         }
@@ -761,7 +761,7 @@ public class FactoryController {
                             if (specialSilog.size() != 0){
                                 factoryView.getSelected_Items().append("Your change is being returned. \n");
                                 for (Money m : specialSilog){
-                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                                 }
                             }
                             SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
@@ -778,7 +778,7 @@ public class FactoryController {
                     }
                 }
                 else{
-                    factoryView.getSelected_Items().append("Please select an item first.\n");
+                    factoryView.getSelected_Items().append("Please confirm combo first.\n");
                 }
             }
 
@@ -795,14 +795,14 @@ public class FactoryController {
                         tempTotal += m.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getSelected_Items().append("You have paid" + total + "pesos.\n");
+                    factoryView.getSelected_Items().append("You have paid " + total + " pesos.\n");
                     if (total > specialPayment || total == specialPayment){
                         ArrayList<Money> before = specialSilog;
                         specialSilog = factoryModel.getChange(vendingMachineChosed, specialSilog, specialPayment);
                         if (before.equals(specialSilog)){
                             factoryView.getSelected_Items().append("Not enough change, your money is returned..\n");
                             for (Money m : specialSilog){
-                                factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                             }
                             specialSilog.clear();
                         }
@@ -810,7 +810,7 @@ public class FactoryController {
                             if (specialSilog.size() != 0){
                                 factoryView.getSelected_Items().append("Your change is being returned. \n");
                                 for (Money m : specialSilog){
-                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                                 }
                             }
                             SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
@@ -827,7 +827,7 @@ public class FactoryController {
                     }
                 }
                 else{
-                    factoryView.getSelected_Items().append("Please select an item first.\n");
+                    factoryView.getSelected_Items().append("Please confirm combo first.\n");
                 }
             }
 
@@ -844,14 +844,14 @@ public class FactoryController {
                         tempTotal += m.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getSelected_Items().append("You have paid" + total + "pesos.\n");
+                    factoryView.getSelected_Items().append("You have paid " + total + " pesos.\n");
                     if (total > specialPayment || total == specialPayment){
                         ArrayList<Money> before = specialSilog;
                         specialSilog = factoryModel.getChange(vendingMachineChosed, specialSilog, specialPayment);
                         if (before.equals(specialSilog)){
                             factoryView.getSelected_Items().append("Not enough change, your money is returned..\n");
                             for (Money m : specialSilog){
-                                factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                             }
                             specialSilog.clear();
                         }
@@ -859,14 +859,16 @@ public class FactoryController {
                             if (specialSilog.size() != 0){
                                 factoryView.getSelected_Items().append("Your change is being returned. \n");
                                 for (Money m : specialSilog){
-                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                                 }
                             }
                             SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
                             SilogCombo silogCombo = svm.produceSilogCombo(silog);
                             ArrayList<String> silogComboNames = svm.silogProcess(silogCombo);
-                            for (String s : silogComboNames){
+
+                            for (String s : silogComboNames) {
                                 factoryView.getSelected_Items().append(s);
+
                             }
                             factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getSelledItems());
                             factoryView.getSelected_Items().append(silogCombo.getCalories() + " calories \n");
@@ -876,7 +878,7 @@ public class FactoryController {
                     }
                 }
                 else{
-                    factoryView.getSelected_Items().append("Please select an item first.\n");
+                    factoryView.getSelected_Items().append("Please confirm combo first.\n");
                 }
             }
 
@@ -893,14 +895,14 @@ public class FactoryController {
                         tempTotal += m.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getSelected_Items().append("You have paid" + total + "pesos.\n");
+                    factoryView.getSelected_Items().append("You have paid " + total + " pesos.\n");
                     if (total > specialPayment || total == specialPayment){
                         ArrayList<Money> before = specialSilog;
                         specialSilog = factoryModel.getChange(vendingMachineChosed, specialSilog, specialPayment);
                         if (before.equals(specialSilog)){
                             factoryView.getSelected_Items().append("Not enough change, your money is returned..\n");
                             for (Money m : specialSilog){
-                                factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                             }
                             specialSilog.clear();
                         }
@@ -908,7 +910,7 @@ public class FactoryController {
                             if (specialSilog.size() != 0){
                                 factoryView.getSelected_Items().append("Your change is being returned. \n");
                                 for (Money m : specialSilog){
-                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                                 }
                             }
                             SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
@@ -925,7 +927,7 @@ public class FactoryController {
                     }
                 }
                 else{
-                    factoryView.getSelected_Items().append("Please select an item first.\n");
+                    factoryView.getSelected_Items().append("Please confirm combo first.\n");
                 }
             }
 
@@ -942,14 +944,14 @@ public class FactoryController {
                         tempTotal += m.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getSelected_Items().append("You have paid" + total + "pesos.\n");
+                    factoryView.getSelected_Items().append("You have paid " + total + " pesos.\n");
                     if (total > specialPayment || total == specialPayment){
                         ArrayList<Money> before = specialSilog;
                         specialSilog = factoryModel.getChange(vendingMachineChosed, specialSilog, specialPayment);
                         if (before.equals(specialSilog)){
                             factoryView.getSelected_Items().append("Not enough change, your money is returned..\n");
                             for (Money m : specialSilog){
-                                factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                             }
                             specialSilog.clear();
                         }
@@ -957,7 +959,7 @@ public class FactoryController {
                             if (specialSilog.size() != 0){
                                 factoryView.getSelected_Items().append("Your change is being returned. \n");
                                 for (Money m : specialSilog){
-                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                                 }
                             }
                             SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
@@ -974,7 +976,7 @@ public class FactoryController {
                     }
                 }
                 else{
-                    factoryView.getSelected_Items().append("Please select an item first.\n");
+                    factoryView.getSelected_Items().append("Please confirm combo first.\n");
                 }
             }
 
@@ -991,14 +993,14 @@ public class FactoryController {
                         tempTotal += m.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getSelected_Items().append("You have paid" + total + "pesos.\n");
+                    factoryView.getSelected_Items().append("You have paid " + total + " pesos.\n");
                     if (total > specialPayment || total == specialPayment){
                         ArrayList<Money> before = specialSilog;
                         specialSilog = factoryModel.getChange(vendingMachineChosed, specialSilog, specialPayment);
                         if (before.equals(specialSilog)){
                             factoryView.getSelected_Items().append("Not enough change, your money is returned..\n");
                             for (Money m : specialSilog){
-                                factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                             }
                             specialSilog.clear();
                         }
@@ -1006,7 +1008,7 @@ public class FactoryController {
                             if (specialSilog.size() != 0){
                                 factoryView.getSelected_Items().append("Your change is being returned. \n");
                                 for (Money m : specialSilog){
-                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                                 }
                             }
                             SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
@@ -1023,7 +1025,7 @@ public class FactoryController {
                     }
                 }
                 else{
-                    factoryView.getSelected_Items().append("Please select an item first.\n");
+                    factoryView.getSelected_Items().append("Please confirm combo first.\n");
                 }
             }
 
@@ -1040,14 +1042,14 @@ public class FactoryController {
                         tempTotal += m.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getSelected_Items().append("You have paid" + total + "pesos.\n");
+                    factoryView.getSelected_Items().append("You have paid " + total + " pesos.\n");
                     if (total > specialPayment || total == specialPayment){
                         ArrayList<Money> before = specialSilog;
                         specialSilog = factoryModel.getChange(vendingMachineChosed, specialSilog, specialPayment);
                         if (before.equals(specialSilog)){
                             factoryView.getSelected_Items().append("Not enough change, your money is returned..\n");
                             for (Money m : specialSilog){
-                                factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                             }
                             specialSilog.clear();
                         }
@@ -1055,7 +1057,7 @@ public class FactoryController {
                             if (specialSilog.size() != 0){
                                 factoryView.getSelected_Items().append("Your change is being returned. \n");
                                 for (Money m : specialSilog){
-                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                                 }
                             }
                             SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
@@ -1072,7 +1074,7 @@ public class FactoryController {
                     }
                 }
                 else{
-                    factoryView.getSelected_Items().append("Please select an item first.\n");
+                    factoryView.getSelected_Items().append("Please confirm combo first.\n");
                 }
             }
 
@@ -1089,14 +1091,14 @@ public class FactoryController {
                         tempTotal += m.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getSelected_Items().append("You have paid" + total + "pesos.\n");
+                    factoryView.getSelected_Items().append("You have paid " + total + " pesos.\n");
                     if (total > specialPayment || total == specialPayment){
                         ArrayList<Money> before = specialSilog;
                         specialSilog = factoryModel.getChange(vendingMachineChosed, specialSilog, specialPayment);
                         if (before.equals(specialSilog)){
                             factoryView.getSelected_Items().append("Not enough change, your money is returned..\n");
                             for (Money m : specialSilog){
-                                factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                             }
                             specialSilog.clear();
                         }
@@ -1121,7 +1123,7 @@ public class FactoryController {
                     }
                 }
                 else{
-                    factoryView.getSelected_Items().append("Please select an item first.\n");
+                    factoryView.getSelected_Items().append("Please confirm combo first.\n");
                 }
             }
 
@@ -1138,14 +1140,14 @@ public class FactoryController {
                         tempTotal += m.getValue();
                     }
                     total = tempTotal;
-                    factoryView.getSelected_Items().append("You have paid" + total + "pesos.\n");
+                    factoryView.getSelected_Items().append("You have paid " + total + " pesos.\n");
                     if (total > specialPayment || total == specialPayment){
                         ArrayList<Money> before = specialSilog;
                         specialSilog = factoryModel.getChange(vendingMachineChosed, specialSilog, specialPayment);
                         if (before.equals(specialSilog)){
                             factoryView.getSelected_Items().append("Not enough change, your money is returned..\n");
                             for (Money m : specialSilog){
-                                factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                             }
                             specialSilog.clear();
                         }
@@ -1153,7 +1155,7 @@ public class FactoryController {
                             if (specialSilog.size() != 0){
                                 factoryView.getSelected_Items().append("Your change is being returned. \n");
                                 for (Money m : specialSilog){
-                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + "pesos.\n");
+                                    factoryView.getSelected_Items().append("You have received " + m.getValue() + " pesos.\n");
                                 }
                             }
                             SpecialVendingMachine svm = (SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed-1);
@@ -1170,7 +1172,7 @@ public class FactoryController {
                     }
                 }
                 else{
-                    factoryView.getSelected_Items().append("Please select an item first.\n");
+                    factoryView.getSelected_Items().append("Please confirm combo first.\n");
                 }
             }
 
