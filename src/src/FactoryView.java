@@ -729,7 +729,7 @@ public class FactoryView {
         cardPanel.add(showItemsPanel, "Show Items");
 
         //Customize Vending Machine Panels
-        cardPanel.add(createVMPanel, "Create Vending Machine");
+        cardPanel.add(createVMPanel, "Create Regular Vending Machine");
         cardPanel.add(showDetailsPanel, "Show Details");
         cardPanel.add(showVMPanel, "Show Vending Machines");
 
@@ -746,7 +746,7 @@ public class FactoryView {
         }
 
         //Customize Vending Machine Buttons
-        this.createVMBtn = new JButton("Create Vending Machine");
+        this.createVMBtn = new JButton("Create Regular Vending Machine");
         vendingMachineBtnList.add(createVMBtn);
         this.showDetailsBtn = new JButton("Show Details");
         vendingMachineBtnList.add(showDetailsBtn);
@@ -1078,7 +1078,7 @@ public class FactoryView {
     //Customize Vending Machine Panels
 
     /**
-     * This method sets the Create Vending Machine Panel.
+     * This method sets the Create Regular Vending Machine Panel.
      */
     public void setCreateVMPanel(){
         this.createVMPanel = new JPanel(cardLayout);
@@ -1096,7 +1096,7 @@ public class FactoryView {
         gbc.gridx = 1; gbc.gridy = 1; createVMPanel.add(numSlotsTf, gbc);
         this.maxItemsTf = new JTextField(5);
         gbc.gridx = 1; gbc.gridy = 2; createVMPanel.add(maxItemsTf, gbc);
-        this.createVMBtn2 = new JButton("Create Vending Machine");
+        this.createVMBtn2 = new JButton("Create Regular Vending Machine");
         gbc.gridx = 0; gbc.gridy = 3; createVMPanel.add(createVMBtn2, gbc);
         createVMPanel.setBackground(Color.pink);
         gbc.gridx = 1; gbc.gridy = 3; createVMPanel.add(backBtn9, gbc);
@@ -1406,13 +1406,13 @@ public class FactoryView {
     //Setter for Vending Machine Buttons
 
     /**
-     * This method sets the Create Vending Machine Button on what to do when pressed.
+     * This method sets the Create Regular Vending Machine Button on what to do when pressed.
      * @param actionListener, is to be overdriven.
      */
     public void setCreateVMBtnListener(ActionListener actionListener){this.createVMBtn.addActionListener(actionListener);}
 
     /**
-     * This method sets the Create Vending Machine Button2 on what to do when pressed.
+     * This method sets the Create Regular Vending Machine Button2 on what to do when pressed.
      * @param actionListener, is to be overdriven.
      */
     public void setCreateVMBtn2Listener(ActionListener actionListener){this.createVMBtn2.addActionListener(actionListener);}

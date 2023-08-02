@@ -12,10 +12,6 @@ public class FactoryModel {
 
     private ArrayList<VendingMachine> vendingMachines;
 
-    public ArrayList<Item> getMyInventory() {
-        return myInventory;
-    }
-
     private ArrayList<Item> myInventory;
 
     public FactoryModel() {
