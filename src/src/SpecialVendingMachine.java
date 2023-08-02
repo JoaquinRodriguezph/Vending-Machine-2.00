@@ -170,6 +170,7 @@ public class SpecialVendingMachine extends VendingMachine{
                 itemList.add(new ItemInfo(item.getName(), item.getCalories(), price));
                 itemInventory.add(item);
                 newStartingInventory();
+                clearLog();
                 b = true;
             }
         }
@@ -190,6 +191,7 @@ public class SpecialVendingMachine extends VendingMachine{
             if (contains(item)){
                 itemInventory.add(item);
                 newStartingInventory();
+                clearLog();
                 b = true;
             }
         }
