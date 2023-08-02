@@ -357,17 +357,15 @@ public class SpecialVendingMachine extends VendingMachine{
     }
 
     /**
-     * This method generates the silog combo meal.
+     * This method checks if the list of items compose of a valid silog combo meal.
      *
      * @param items the items in the potential silog combo meal
-     * @return the silog combo meal, return null if not a silog combo meal
+     * @return the true if it is valid combo meal, false otherwise
      */
-    public SilogCombo produceSilogCombo(ArrayList<Item> items) {
-        ArrayList<Integer> prices = new ArrayList<Integer>();
-        SilogCombo silogCombo = null;
-        ArrayList<Item> counterList = new ArrayList<Item>();
-        int calories = 0;
+    public boolean isSilog(ArrayList<Item> items) {
         boolean b = false;
+
+        ArrayList<Item> counterList = new ArrayList<Item>();
 
         for (Item def : defaultSilogBase) { //counting for the base items that defines a silog meal
             for (Item item : items) {
@@ -385,14 +383,30 @@ public class SpecialVendingMachine extends VendingMachine{
 
         if (b) {
             String silog = getSilog(items);
+            if (silog == null)
+                b = false;
+        }
 
-            if (silog != null) {
-                for (Item item : items) {   //calculating total calories
-                    calories += item.getCalories();
-                }
-                silogCombo = new SilogCombo(silog, items, calories);
-                addTransaction(silogCombo);
+        return b;
+    }
+
+    /**
+     * This method generates the silog combo meal.
+     *
+     * @param items the items in the potential silog combo meal
+     * @return the silog combo meal, return null if not a silog combo meal
+     */
+    public SilogCombo produceSilogCombo(ArrayList<Item> items) {
+        SilogCombo silogCombo = null;
+        int calories = 0;
+        boolean b = false;
+
+        if (isSilog(items)) {
+            for (Item item : items) {   //calculating total calories
+                calories += item.getCalories();
             }
+            silogCombo = new SilogCombo(getSilog(items), items, calories);
+            addTransaction(silogCombo);
         }
 
         return silogCombo;
