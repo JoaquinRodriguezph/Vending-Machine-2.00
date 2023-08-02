@@ -793,8 +793,10 @@ public class FactoryView {
         this.displayMoneyBtn = new JButton("Display Money");
         this.addItemtoInventoryMenuBtn = new JButton("Add Item to Inventory");
         addItemtoInventoryMenuBtn.setVisible(false);
+        doMaintenancePanel.add(addItemtoInventoryMenuBtn);
         this.changePriceofItemMenuBtn = new JButton("Change Price of Item");
         changePriceofItemMenuBtn.setVisible(false);
+        doMaintenancePanel.add(changePriceofItemMenuBtn);
         doMaintenancePanel.add(displayMoneyBtn);
         doMaintenancePanel.setBackground(Color.green);
     }
@@ -1410,7 +1412,15 @@ public class FactoryView {
      */
     public void setShowItemsBtnListener(ActionListener actionListener){this.showItemBtn.addActionListener(actionListener);}
 
+    public void showSpecialVMButtons(){
+        this.addItemtoInventoryMenuBtn.setVisible(true);
+        this.changePriceofItemMenuBtn.setVisible(true);
+    }
 
+    public void hideSpecialVMButtons(){
+        this.addItemtoInventoryMenuBtn.setVisible(false);
+        this.changePriceofItemMenuBtn.setVisible(false);
+    }
     private JFrame mainFrame;
     private JLabel menuLabel;
     private JPanel btnPanel;

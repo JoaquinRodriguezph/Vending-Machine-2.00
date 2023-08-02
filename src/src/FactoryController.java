@@ -49,7 +49,7 @@ public class FactoryController {
                     factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Program");
                     int vendingMachineChosed2 = vendingMachineChosed - 1;
                     if (factoryModel.getVendingMachines().get(vendingMachineChosed2) instanceof SpecialVendingMachine){
-                        factoryView.showDisplayInventoriesBtn();
+                        factoryView.showSpecialVMButtons();
                     }
                 }
             }

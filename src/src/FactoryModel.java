@@ -164,7 +164,7 @@ public class FactoryModel {
         }
         vendingMachines.add(new SpecialVendingMachine(name, maxSlots, slotMaxItems, inventoryLimit));
         JOptionPane.showMessageDialog(frame, "Success!",
-                "Error", JOptionPane.ERROR_MESSAGE);
+                "Error", JOptionPane.INFORMATION_MESSAGE);
     }
     public void createVendingMachine(String name, int maxSlots, int slotMaxItems, JFrame frame){
         if (name.isEmpty()) {
@@ -184,7 +184,7 @@ public class FactoryModel {
         }
         vendingMachines.add(new VendingMachine(name, maxSlots, slotMaxItems));
         JOptionPane.showMessageDialog(frame, "Success!",
-                "Error", JOptionPane.ERROR_MESSAGE);
+                "Error", JOptionPane.INFORMATION_MESSAGE);
     }
     public void createItem(String name, int calories, JFrame frame) {
         ArrayList<Item> itemStocks = new ArrayList<Item>();
@@ -265,10 +265,18 @@ public class FactoryModel {
         }
     }
     public void displayVendingMachines(JTextArea ta){
-        ta.append("Vending Machine No || Name ||  Max Slots || Max Items\n");
+        ta.append("Vending Machine No || Name ||  Max Slots || Max Items || Inventory Limit\n");
         int i = 1;
         for (VendingMachine vm : vendingMachines) {
-            ta.append(i + "\t" + vm.getName() + "    " + vm.getNumSlots() + "    " + vm.getMaxSlotItem() + "\n");
+            if (vm instanceof SpecialVendingMachine)
+            {
+                ta.append("SVM");
+                ta.append(i + "\t" + vm.getName() + "    " + vm.getNumSlots() + "    " + vm.getMaxSlotItem() + "    " + ((SpecialVendingMachine) vm).getInventoryLimit() + "\n");
+            }
+            else {
+                ta.append("RVM");
+                ta.append(i + "\t" + vm.getName() + "    " + vm.getNumSlots() + "    " + vm.getMaxSlotItem() + "\n");
+            }
             i++;
         }
     }
