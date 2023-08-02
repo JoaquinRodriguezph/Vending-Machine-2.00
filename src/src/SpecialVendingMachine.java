@@ -68,6 +68,15 @@ public class SpecialVendingMachine extends VendingMachine{
         return log;
     }
 
+    /**
+     * This method gets the inventory limit of the vending machine.
+     *
+     * @return the inventory limit of the vending machine.
+     */
+    public int getInventoryLimit() {
+        return MAX_INV;
+    }
+
 
     /**
      * This method adds a silog meal transaction.
