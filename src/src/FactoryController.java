@@ -781,9 +781,10 @@ public class FactoryController {
             public void actionPerformed(ActionEvent e) {
                 slotChosed = factoryView.getItemSlot().getSelectedIndex() + 1;
                 Item item = factoryModel.getItem(vendingMachineChosed, slotChosed);
+
                 if(item != null){
                     factoryView.clearAllTextAreas();
-                    factoryView.getSelected_Items().append(item.getName() + "\n");
+                    factoryView.getSelected_Items().append(item.getName() + " - " + ((SpecialVendingMachine) factoryModel.getVendingMachines().get(vendingMachineChosed - 1)).priceItem(item) + " PHP\n");
                     silog.add(item);
                     factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getSelledItems());
                 }
@@ -803,7 +804,7 @@ public class FactoryController {
                     for (Item item : silog){
                         sum += svm.priceItem(item);
                     }
-                    factoryView.getSelected_Items().append("Total: " + sum.toString());
+                    factoryView.getSelected_Items().append("Total: " + sum.toString() + " PHP\n");
                     specialPayment = sum;
                 }
                 else{
