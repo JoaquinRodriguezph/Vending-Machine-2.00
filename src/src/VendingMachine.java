@@ -160,13 +160,20 @@ public class VendingMachine {
 
 
     /**
-     * This method sets a new price given a slot number.
+     * This method sets a new price given a slot number if it contains items.
      *
      * @param slot the slot number to update the price with.
      * @param newPrice the new price given to the slot.
+     * @return true if changing the price is successful, false otherwise.
      */
-    public void setSlotPrice(int slot, int newPrice) throws IndexOutOfBoundsException {
-        itemSlots[slot - 1].setPrice(newPrice);
+    public boolean setSlotPrice(int slot, int newPrice) throws IndexOutOfBoundsException {
+        boolean b = false;
+
+        if (itemSlots[slot - 1].isAvailable()) {
+            b = true;
+            itemSlots[slot - 1].setPrice(newPrice);
+        }
+        return b;
     }
 
     /**
