@@ -567,6 +567,7 @@ public class FactoryView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel,"Main Program"); clearAllTextAreas();
+                hideBuysilog();
             }
         });
         backBtn31.addActionListener(new ActionListener() {
