@@ -417,15 +417,15 @@ public class VendingMachine {
 
         show.add("Money in " + NAME + "\n");
         show.add("------------------------" + "\n");
-        show.add("1 PHP: " + denominations.get(1).size() + "\n");
-        show.add("5 PHP: " + denominations.get(5).size() + "\n");
-        show.add("10 PHP: " + denominations.get(10).size() + "\n");
-        show.add("20 PHP: " + denominations.get(20).size() + "\n");
-        show.add("50 PHP: " + denominations.get(50).size() + "\n");
-        show.add("100 PHP: " + denominations.get(100).size() + "\n");
-        show.add("200 PHP: " + denominations.get(200).size() + "\n");
-        show.add("500 PHP: " + denominations.get(500).size() + "\n");
-        show.add("1000 PHP: " + denominations.get(1000).size() + "\n");
+        show.add("1 || 1 PHP: " + denominations.get(1).size() + "\n");
+        show.add("2 || 5 PHP: " + denominations.get(5).size() + "\n");
+        show.add("3 || 10 PHP: " + denominations.get(10).size() + "\n");
+        show.add("4 || 20 PHP: " + denominations.get(20).size() + "\n");
+        show.add("5 || 50 PHP: " + denominations.get(50).size() + "\n");
+        show.add("6 || 100 PHP: " + denominations.get(100).size() + "\n");
+        show.add("7 || 200 PHP: " + denominations.get(200).size() + "\n");
+        show.add("8 || 500 PHP: " + denominations.get(500).size() + "\n");
+        show.add("9 || 1000 PHP: " + denominations.get(1000).size() + "\n");
 
         return show;
     }
