@@ -253,21 +253,33 @@ public class VendingMachine {
      *
      * @param payment the payment in denominations
      * @param cost the price of the item transaction
-     * @return an ArrayList of Money in change, and return payment if a change cannot be given
+     * @return an int of change
      */
-    public ArrayList<Money> getChange(ArrayList<Money> payment, int cost) {
-        ArrayList<Money> change = new ArrayList<Money>();
+    public int calcChange(ArrayList<Money> payment, int cost) {
         int total = 0;
-        int nChange;
-        boolean b = true;
-        money.addAll(payment);
 
         //getting the payment value in terms of int
         for (Money denomination : payment) {
             total += denomination.getValue();
         }
 
-        nChange = total - cost;
+        return total - cost;
+    }
+
+    /**
+     * This method calculates and returns change if there is sufficient denominations in the vending machine.
+     *
+     * @param payment the payment in denominations
+     * @param cost the price of the item transaction
+     * @return an ArrayList of Money in change, and return payment if a change cannot be given
+     */
+    public ArrayList<Money> getChange(ArrayList<Money> payment, int cost) {
+        ArrayList<Money> change = new ArrayList<Money>();
+        int nChange;
+        boolean b = true;
+        money.addAll(payment);
+
+        nChange = calcChange(payment, cost);
 
         while (nChange >= 1000 && b) {
             b = false;
