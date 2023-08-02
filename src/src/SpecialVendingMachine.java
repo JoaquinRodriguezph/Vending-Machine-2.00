@@ -45,7 +45,7 @@ public class SpecialVendingMachine extends VendingMachine{
     public ArrayList<String> getCurrentInventory() {
         ArrayList<String> inventory = new ArrayList<String>();
         for (ItemSlot slot : itemSlots) {
-            if (slot.isAvailable())
+            if (slot.getStock() > 0)
                 inventory.add(slot.getItemName() + ": " + slot.getStock() + "\n");
         }
         inventory.addAll(getItemInventory());
@@ -158,8 +158,8 @@ public class SpecialVendingMachine extends VendingMachine{
 
         if (itemInventory.size() < MAX_INV) {
             if (!contains(item)) {
-                itemInventory.add(item);
                 itemList.add(new ItemInfo(item.getName(), item.getCalories(), price));
+                itemInventory.add(item);
                 newStartingInventory();
                 b = true;
             }
@@ -178,9 +178,11 @@ public class SpecialVendingMachine extends VendingMachine{
         boolean b = false;
 
         if (itemInventory.size() < MAX_INV) {
-            itemInventory.add(item);
-            newStartingInventory();
-            b = true;
+            if (contains(item)){
+                itemInventory.add(item);
+                newStartingInventory();
+                b = true;
+            }
         }
 
         return b;

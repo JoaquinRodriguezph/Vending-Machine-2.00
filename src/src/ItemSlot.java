@@ -151,7 +151,7 @@ public class ItemSlot {
      * @return true or false depending if there is at least one stock.
      */
     public boolean isAvailable() {
-        return vendItems.size() > 0;
+        return price > 0 && vendItems.size() > 0;
     }
 
 
