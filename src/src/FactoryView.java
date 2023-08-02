@@ -1484,6 +1484,13 @@ public class FactoryView {
     }
 
     /**
+     * This method sets the mainframe size.
+     */
+    public void setMainFrameSize(int width, int height){
+        this.mainFrame.setSize(width, height);
+    }
+
+    /**
      * This method sets the Add Item to Inventory Panel.
      */
     public void setAddItemtoInventoryPanel(){
