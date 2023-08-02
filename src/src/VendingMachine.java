@@ -142,7 +142,7 @@ public class VendingMachine {
         ArrayList<String> slotInfo = new ArrayList<String>();
 
         slotInfo.add("-------- Vending Machine " + NAME + "--------\n");
-        slotInfo.add("Slot - Cost - Availability\n");
+        slotInfo.add("Slot - Item - Cost - Availability\n");
         for (int i = 0; i < itemSlots.length; i++) {
             String availability;
             if (itemSlots[i].isAvailable())

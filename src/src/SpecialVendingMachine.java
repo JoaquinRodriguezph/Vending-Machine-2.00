@@ -253,23 +253,13 @@ public class SpecialVendingMachine extends VendingMachine{
         }
 
         if (counterList.size() == 1) {
-        //    Item item = counter
-            for (Item def : counterList) {
-                for (Item item : items) {
-                    if (def.getName().equalsIgnoreCase(item.getName()) && def.getCalories() == item.getCalories()) {
-                        switch (def.getName()) {
-                            case "Tapas" -> silog = "Tapsilog";
-                            case "Bangus" -> silog = "Bangsilog";
-                            case "Tosino" -> silog = "Tosilog";
-                            case "Pork Chop" -> silog = "Porksilog";
-                            case "Fried Chicken" -> silog = "Chicksilog";
-                        }
-                        b = true;
-                        break;
-                    }
-                }
-                if (b)
-                    break;
+            Item item = counterList.remove(0);
+            switch (item.getName()) {
+                case "Tapas" -> silog = "Tapsilog";
+                case "Bangus" -> silog = "Bangsilog";
+                case "Tosino" -> silog = "Tosilog";
+                case "Pork Chop" -> silog = "Porksilog";
+                case "Fried Chicken" -> silog = "Chicksilog";
             }
         }
         return silog;
@@ -348,25 +338,14 @@ public class SpecialVendingMachine extends VendingMachine{
         }
 
         if (b) {
-            counterList.clear();
-            for (Item def : defaultSilogSide) { //counting for the different chosen side, there could only be one
-                for (Item item : items) {
-                    if (def.getName().equalsIgnoreCase(item.getName()) && def.getCalories() == item.getCalories()) {
-                        if (!counterList.contains(def))
-                            counterList.add(def);
-                        break;
-                    }
-                }
-                if (counterList.size() > 1)
-                    break;
-            }
+            String silog = getSilog(items);
 
-            if (counterList.size() == 1) {
+            if (silog != null) {
                 for (Item item : items) {   //calculating total calories
                     calories += item.getCalories();
                 }
-                silogCombo = new SilogCombo(getSilog(items), items, calories);
-                addTransaction(items, prices);
+                silogCombo = new SilogCombo(silog, items, calories);
+                //addTransaction(silogCombo);
             }
         }
 
@@ -386,11 +365,11 @@ public class SpecialVendingMachine extends VendingMachine{
         int[] nCount = new int[itemInventory.size()];
         boolean b = false;
 
-        for (Item item : itemInventory) {
+        for (Item item : itemInventory) {   //getting all the names of the item instances in itemInventory
             names.add(item.getName());
         }
 
-        for (String str : names) {
+        for (String str : names) {  //counting the number of repeated names of the item instances in an array
             b = false;
             for (int i = 0; i < nameCount.size(); i++) {
                 if (str.equalsIgnoreCase(nameCount.get(i))) {
@@ -404,6 +383,7 @@ public class SpecialVendingMachine extends VendingMachine{
                 nameCount.add(str);
             }
         }
+
         inventory.add("- - - Special Inventory " + NAME + " - - -\n");
         for (int i = 0; i < nameCount.size(); i++) {
             inventory.add(nameCount.get(i) + ": " + nCount[i] + "\n");
