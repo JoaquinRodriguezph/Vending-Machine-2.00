@@ -150,7 +150,7 @@ public class VendingMachine {
             else
                 availability = "Not Available";
 
-            slotInfo.add("[" + (i + 1) + "] - " + itemSlots[i].getPrice() + " - " + availability + "\n");
+            slotInfo.add("[" + (i + 1) + "] - " + itemSlots[i].getItemCalories() + " Calories - "+ itemSlots[i].getPrice() + " PHP (" + availability + ")\n");
 
         }
 
