@@ -5,6 +5,9 @@ import java.util.ArrayList;
 
 public class FactoryController {
 
+    /**
+     * This method is the constructor for the Factory View Class. It is used to initialize the components of the GUI.
+     */
     public FactoryController(FactoryView factoryView, FactoryModel factoryModel) {
         this.factoryModel = factoryModel;
         this.factoryView = factoryView;
@@ -874,6 +877,11 @@ public class FactoryController {
         });
     }
 
+    /**
+     * This method is a helper method that checks if the input is can be used to parseInt
+     *
+     * @return true if the input is can be used to parseInt, false otherwise
+     */
     public static boolean isParsable(String input) {
         try {
             Integer.parseInt(input);
