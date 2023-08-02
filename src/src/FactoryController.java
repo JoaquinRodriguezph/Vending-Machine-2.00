@@ -63,6 +63,7 @@ public class FactoryController {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Buy from Vending Machine");
                 factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getJcomp4(), errorFrame);
                 ArrayList<String> comboBox = factoryModel.comboboxChoices(vendingMachineChosed);
+                factoryView.setMainFrameSize(600,390);
                 for (String string: comboBox){
                     factoryView.getJcomp11().addItem(string);
                 }
@@ -97,6 +98,7 @@ public class FactoryController {
                         }
                         else{
                             if(payment.size() != 0){
+                                factoryView.getJcomp4().append("Your change is being returned.\n");
                                 for (Money money1: payment){
                                     factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
                                 }
@@ -137,6 +139,7 @@ public class FactoryController {
                         }
                         else{
                             if(payment.size() != 0){
+                                factoryView.getJcomp4().append("Your change is being returned.\n");
                                 for (Money money1: payment){
                                     factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
                                 }
@@ -177,6 +180,7 @@ public class FactoryController {
                         }
                         else{
                             if(payment.size() != 0){
+                                factoryView.getJcomp4().append("Your change is being returned.\n");
                                 for (Money money1: payment){
                                     factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
                                 }
@@ -217,6 +221,7 @@ public class FactoryController {
                         }
                         else{
                             if(payment.size() != 0){
+                                factoryView.getJcomp4().append("Your change is being returned.\n");
                                 for (Money money1: payment){
                                     factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
                                 }
@@ -257,6 +262,7 @@ public class FactoryController {
                         }
                         else{
                             if(payment.size() != 0){
+                                factoryView.getJcomp4().append("Your change is being returned.\n");
                                 for (Money money1: payment){
                                     factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
                                 }
@@ -287,7 +293,8 @@ public class FactoryController {
                     factoryView.getJcomp4().append("You have paid " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
-                        payment = factoryModel.getChange(vendingMachineChosed, payment, price);  if (before.equals(payment)) {
+                        payment = factoryModel.getChange(vendingMachineChosed, payment, price);
+                        if (before.equals(payment)) {
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
                             for (Money money2 : payment){
                                 factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
@@ -296,6 +303,7 @@ public class FactoryController {
                         }
                         else{
                             if(payment.size() != 0){
+                                factoryView.getJcomp4().append("Your change is being returned.\n");
                                 for (Money money1: payment){
                                     factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
                                 }
@@ -336,6 +344,7 @@ public class FactoryController {
                         }
                         else{
                             if(payment.size() != 0){
+                                factoryView.getJcomp4().append("Your change is being returned.\n");
                                 for (Money money1: payment){
                                     factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
                                 }
@@ -376,6 +385,7 @@ public class FactoryController {
                         }
                         else{
                             if(payment.size() != 0){
+                                factoryView.getJcomp4().append("Your change is being returned.\n");
                                 for (Money money1: payment){
                                     factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
                                 }
@@ -416,6 +426,7 @@ public class FactoryController {
                         }
                         else{
                             if(payment.size() != 0){
+                                factoryView.getJcomp4().append("Your change is being returned.\n");
                                 for (Money money1: payment){
                                     factoryView.getJcomp4().append("You have received " + money1.getValue() + " pesos.\n");
                                 }

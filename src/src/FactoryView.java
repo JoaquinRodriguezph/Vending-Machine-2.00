@@ -570,6 +570,7 @@ public class FactoryView {
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel,"Main Program"); clearAllTextAreas();
                 hideBuysilog();
+                setMainFrameSize(350, 400);
             }
         });
         backBtn31.addActionListener(new ActionListener() {
@@ -1482,6 +1483,13 @@ public class FactoryView {
     public void hideSpecialVMButtons(){
         this.addItemtoInventoryMenuBtn.setVisible(false);
         this.changePriceofItemMenuBtn.setVisible(false);
+    }
+
+    /**
+     * This method sets the mainframe size.
+     */
+    public void setMainFrameSize(int width, int height){
+        this.mainFrame.setSize(width, height);
     }
 
     /**
