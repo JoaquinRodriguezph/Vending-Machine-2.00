@@ -12,10 +12,6 @@ public class FactoryModel {
 
     private ArrayList<VendingMachine> vendingMachines;
 
-    public ArrayList<Item> getMyInventory() {
-        return myInventory;
-    }
-
     private ArrayList<Item> myInventory;
 
     public FactoryModel() {
@@ -99,57 +95,48 @@ public class FactoryModel {
         switch(num){
             case 1 ->
             {
-                money = new Money(1);
                 for (int i = 0; i < quantity; i++) {
-                    vendingMachines.get(choice).addMoney(money);
+                    vendingMachines.get(choice - 1).addMoney(new Money(1));
                 }
             }
             case 2 -> {
-                money = new Money(5);
                 for (int i = 0; i < quantity; i++) {
-                    vendingMachines.get(choice).addMoney(money);
+                    vendingMachines.get(choice - 1).addMoney(new Money(5));
                 }
             }
             case 3 -> {
-                money = new Money(10);
                 for (int i = 0; i < quantity; i++) {
-                    vendingMachines.get(choice).addMoney(money);
+                    vendingMachines.get(choice - 1).addMoney(new Money(10));
                 }
             }
             case 4 -> {
-                money = new Money(20);
                 for (int i = 0; i < quantity; i++) {
-                    vendingMachines.get(choice).addMoney(money);
+                    vendingMachines.get(choice - 1).addMoney(new Money(20));
                 }
             }
             case 5 -> {
-                money = new Money(50);
                 for (int i = 0; i < quantity; i++) {
-                    vendingMachines.get(choice).addMoney(money);
+                    vendingMachines.get(choice - 1).addMoney(new Money(50));
                 }
             }
             case 6 -> {
-                money = new Money(100);
                 for (int i = 0; i < quantity; i++) {
-                    vendingMachines.get(choice).addMoney(money);
+                    vendingMachines.get(choice - 1).addMoney(new Money(100));
                 }
             }
             case 7 -> {
-                money = new Money(200);
                 for (int i = 0; i < quantity; i++) {
-                    vendingMachines.get(choice).addMoney(money);
+                    vendingMachines.get(choice - 1).addMoney(new Money(200));
                 }
             }
             case 8 -> {
-                money = new Money(500);
                 for (int i = 0; i < quantity; i++) {
-                    vendingMachines.get(choice).addMoney(money);
+                    vendingMachines.get(choice - 1).addMoney(new Money(500));
                 }
             }
             case 9 -> {
-                money = new Money(1000);
                 for (int i = 0; i < quantity; i++) {
-                    vendingMachines.get(choice).addMoney(money);
+                    vendingMachines.get(choice - 1).addMoney(new Money(1000));
                 }
             }
         }

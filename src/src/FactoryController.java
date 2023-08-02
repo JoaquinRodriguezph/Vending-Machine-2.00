@@ -389,7 +389,7 @@ public class FactoryController {
         this.factoryView.setCreateVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Create Vending Machine");
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Create Regular Vending Machine");
             }
         });
         this.factoryView.setCreateVMBtn2Listener(new ActionListener() {
