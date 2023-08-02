@@ -567,6 +567,7 @@ public class FactoryView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel,"Main Program"); clearAllTextAreas();
+                setMainFrameSize(350, 400);
             }
         });
         backBtn31.addActionListener(new ActionListener() {
@@ -1614,6 +1615,11 @@ public class FactoryView {
     public void showBuysilog(){
         jcomp15.setVisible(true);
     }
+
+    public void setMainFrameSize(int width, int height){
+        this.mainFrame.setSize(width, height);
+    }
+
     private JFrame mainFrame;
     private JLabel menuLabel;
     private JPanel btnPanel;
