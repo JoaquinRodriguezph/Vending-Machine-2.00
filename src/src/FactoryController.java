@@ -71,48 +71,33 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (selectedItem){
-                    if (total >= price){
+                    Money money = new Money(1);
+                    payment.add(money);
+                    int tempTotal = 0;
+                    for (Money money2 : payment){
+                        tempTotal += money2.getValue();
+                    }
+                    total = tempTotal;
+                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
+                    if (total > price || total == price) {
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
-                        if (before.equals(payment)){
+                        if (before.equals(payment)) {
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
-                            payment.clear();
-                        }
-                        else{
-                            for (Money money : payment){
-                                factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
-                            };
-                            factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
-                            factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
-                            selectedItem = false;
-                        }
-                    }
-                    else{
-                        Money money = new Money(1);
-                        payment.add(money);
-                        int tempTotal = 0;
-                        for (Money money2 : payment){
-                            tempTotal += money2.getValue();
-                        }
-                        total = tempTotal;
-                        factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
-                        if (total > price || total == price) {
-                            ArrayList<Money> before = payment;
-                            payment = factoryModel.getChange(vendingMachineChosed, payment, price);
-                            if (before.equals(payment)) {
-                                factoryView.getJcomp4().append("Not enough change, your money is returned\n");
-                                payment.clear();
-                            }
-
-                        }
-                        else{
                             for (Money money2 : payment){
                                 factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
                             };
-                            factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
-                            factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
-                            selectedItem = false;
+                            payment.clear();
                         }
+
+                    }
+                    else{
+                        for (Money money2 : payment){
+                            factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
+                        };
+                        factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
+                        factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
+                        selectedItem = false;
                     }
                 }
                 else{
@@ -125,38 +110,31 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (selectedItem){
+                    Money money = new Money(5);
+                    payment.add(money);
+                    int tempTotal = 0;
+                    for (Money money2 : payment){
+                        tempTotal += money2.getValue();
+                    }
+                    total = tempTotal;
+                    factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
                     if (total > price || total == price){
                         ArrayList<Money> before = payment;
                         payment = factoryModel.getChange(vendingMachineChosed, payment, price);
                         if (before.equals(payment)){
                             factoryView.getJcomp4().append("Not enough change, your money is returned\n");
+                            for (Money money2 : payment){
+                                factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
+                            };
                             payment.clear();
                         }
                         else{
-                            for (Money money : payment){
+                            for (Money money2 : payment){
                                 factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
                             };
                             factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
                             factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
                             selectedItem = false;
-                        }
-                    }
-                    else{
-                        Money money = new Money(5);
-                        payment.add(money);
-                        int tempTotal = 0;
-                        for (Money money2 : payment){
-                            tempTotal += money2.getValue();
-                        }
-                        total = tempTotal;
-                        factoryView.getJcomp4().append("You have payed " + total + " pesos.\n");
-                        if (total > price || total == price) {
-                            ArrayList<Money> before = payment;
-                            payment = factoryModel.getChange(vendingMachineChosed, payment, price);
-                            if (before.equals(payment)) {
-                                factoryView.getJcomp4().append("Not enough change, your money is returned\n");
-                                payment.clear();
-                            }
                         }
                     }
                 }
