@@ -151,11 +151,11 @@ public class VendingMachine {
         for (int i = 0; i < itemSlots.length; i++) {
             String availability;
             if (itemSlots[i].isAvailable())
-                availability = itemSlots[i].getItemName() + " - " + itemSlots[i].getItemCalories() + " Calories - "+ itemSlots[i].getPrice() + " PHP (Available)";
+                availability = " - "+ itemSlots[i].getPrice() + " PHP (Available)";
             else
                 availability = "(Not Available)";
 
-            slotInfo.add("[" + (i + 1) + "] " +  availability + "\n");
+            slotInfo.add("[" + (i + 1) + "] " + itemSlots[i].getItemName() + " - " + itemSlots[i].getItemCalories() + " Calories" +  availability + "\n");
 
         }
 
@@ -183,7 +183,7 @@ public class VendingMachine {
     public boolean setSlotPrice(int slot, int newPrice) throws IndexOutOfBoundsException {
         boolean b = false;
 
-        if (itemSlots[slot - 1].isAvailable()) {
+        if (itemSlots[slot - 1].getStock() > 0) {
             b = true;
             itemSlots[slot - 1].setPrice(newPrice);
         }
