@@ -335,7 +335,7 @@ public class SpecialVendingMachine extends VendingMachine{
 
         process.add("Cooking Rice...\n");
         process.add("Cooking " + side + "...\n");
-        process.add("Putting Rice and " + side + "in a Bowl...\n");
+        process.add("Putting Rice and " + side + " in a Bowl...\n");
         for (String str : topping) {
             process.add("Topping with " + str + "...\n");
         }
