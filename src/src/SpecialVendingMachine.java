@@ -253,6 +253,15 @@ public class SpecialVendingMachine extends VendingMachine{
     }
 
     /**
+     * This method gets the size of the item info list.
+     *
+     * @return the size of the item info list.
+     */
+    public int getItemListSize() {
+        return itemList.size();
+    }
+
+    /**
      * This method returns instance of the item to be released, null if not found.
      *
      * @param choice the item index + 1
