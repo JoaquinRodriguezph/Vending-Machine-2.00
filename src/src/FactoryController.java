@@ -728,7 +728,12 @@ public class FactoryController {
         this.factoryView.setAddItemtoInventoryBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //if (isParsable(factoryView.getSelectSpecialItemTf()))
+                if (isParsable(factoryView.getSelectSpecialItemTf())){
+                      int choice = Integer.parseInt(factoryView.getSelectSpecialItemTf());
+                      if (factoryModel.addToInventory(vendingMachineChosed, choice)){
+
+                    }
+                }
             }
         });
         //

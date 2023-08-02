@@ -38,6 +38,19 @@ public class FactoryModel {
         myInventory.add(new Item("Toyo", 53));
     }
 
+    //Special Vending Machine Features
+    public boolean addToInventory(int vendingMachineChosed, int slot){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
+        Item item = myInventory.get(choice - 1);
+        if (svm.addToInventory(item)){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    //
     public ArrayList<String> comboboxChoices(int choice) {
         ArrayList<String> choices = new ArrayList<String>();
         for (int i = 0; i < vendingMachines.get(choice-1).getNumSlots(); i++) {
