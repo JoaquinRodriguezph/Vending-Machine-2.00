@@ -1213,6 +1213,7 @@ public class FactoryView {
         this.jcomp4.setText(""); this.restockTa.setText(""); this.itemStocksTa.setText(""); this.inventoriesTa.setText(""); this.transactionsTa.setText("");
         this.moneyTa.setText(""); this.itemSlotsTa.setText(""); this.replenishChangeTa.setText(""); this.showItemsTa.setText("");
         this.detailsTa.setText(""); this.showVMTa.setText(""); this.vmTa.setText(""); this.itemsTa.setText(""); this.changePriceTa.setText("");
+        this.restockTa2.setText("");
     }
 
     public void showDisplayInventoriesBtn(){
@@ -1252,6 +1253,65 @@ public class FactoryView {
      * @param actionListener, is to be overdriven.
      */
     public void setBuyFromVmBtnListener(ActionListener actionListener){this.buyFromVmBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Jcomp13 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+
+    /**
+     * This method sets the Jcomp1 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp1BtnListener(ActionListener actionListener){this.jcomp1.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Jcomp2 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp2BtnListener(ActionListener actionListener){this.jcomp2.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Jcomp3 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp3BtnListener(ActionListener actionListener){this.jcomp3.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Jcomp5 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp5BtnListener(ActionListener actionListener){this.jcomp5.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Jcomp6 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp6BtnListener(ActionListener actionListener){this.jcomp6.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Jcomp7 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp7BtnListener(ActionListener actionListener){this.jcomp7.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Jcomp8 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp8BtnListener(ActionListener actionListener){this.jcomp8.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Jcomp9 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp9BtnListener(ActionListener actionListener){this.jcomp9.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Jcomp10 Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setJcomp10BtnListener(ActionListener actionListener){this.jcomp10.addActionListener(actionListener);}
 
     /**
      * This method sets the Jcomp13 Button on what to do when pressed.

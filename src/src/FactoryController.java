@@ -66,12 +66,35 @@ public class FactoryController {
             }
         });
 
+        this.factoryView.setJcomp1BtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (selectedItem){
+                    Money money = new Money(1);
+                    moneyPayed += 1;
+                    price -= moneyPayed;
+                    factoryView.getJcomp4().append("You have payed " + moneyPayed + " dollars.\n");
+                    factoryView.getJcomp4().append("You still need to pay " + price + " dollars.\n");
+                }
+                else{
+                    factoryModel.noItemSelectedError(errorFrame);
+                }
+            }
+        });
+
+
         this.factoryView.setJcomp13BtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 slotChosed = factoryView.getJcomp11().getSelectedIndex() + 1;
-                factoryModel.success(errorFrame);
-
+                if (factoryModel.getVendingMachines().get(vendingMachineChosed - 1).isSlotAvailable(slotChosed)){
+                    factoryModel.success(errorFrame);
+                    selectedItem = true;
+                    price = factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotPrice(slotChosed);
+                }
+                else {
+                    factoryModel.slotNotAvailableError(errorFrame);
+                }
             }
         });
 
@@ -371,6 +394,9 @@ public class FactoryController {
             return false;
         }
     }
+    private int price, moneyPayed;
+    private ArrayList<Money> payment;
+    private boolean selectedItem = false;
     private int vendingMachineChosed;
     private int choice, slotChosed;
     private JFrame errorFrame;
