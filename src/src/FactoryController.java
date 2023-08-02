@@ -92,9 +92,6 @@ public class FactoryController {
 
                     }
                     else{
-                        for (Money money2 : payment){
-                            factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
-                        };
                         factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
                         factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
                         selectedItem = false;
@@ -129,9 +126,6 @@ public class FactoryController {
                             payment.clear();
                         }
                         else{
-                            for (Money money2 : payment){
-                                factoryView.getJcomp4().append("You have received " + money.getValue() + " pesos.\n");
-                            };
                             factoryView.getJcomp4().append("You have bought " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + ".\n");
                             factoryModel.dispenseItem(vendingMachineChosed, slotChosed);
                             selectedItem = false;
