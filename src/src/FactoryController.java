@@ -762,6 +762,7 @@ public class FactoryController {
                         sum += svm.priceItem(item);
                     }
                     factoryView.getSelected_Items().append("Total: " + sum.toString());
+                    specialPayment = sum;
                 }
                 else{
                     factoryModel.invalidSilog(errorFrame);
@@ -919,6 +920,7 @@ public class FactoryController {
     }
 
     private ArrayList<Item> silog;
+    private Integer specialPayment;
     private boolean isSVM = false;
     private int price, moneyPayed, total;
     private ArrayList<Money> payment;

@@ -692,6 +692,7 @@ public class FactoryView {
             @Override
             public void actionPerformed(ActionEvent e) {
                 cardLayout.show(cardPanel,"Buy from Vending Machine");
+                SelledItems.setText(""); Selected_Items.setText("");
             }
         });
     }
