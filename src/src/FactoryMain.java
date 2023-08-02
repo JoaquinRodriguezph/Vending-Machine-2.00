@@ -7,7 +7,7 @@ public class FactoryMain {
         FactoryView factoryView = new FactoryView();
         FactoryModel factoryModel = new FactoryModel();
 
-        FactoryController employeeController = new FactoryController(factoryView, factoryModel);
+        FactoryController factoryController = new FactoryController(factoryView, factoryModel);
     }
 
 }
