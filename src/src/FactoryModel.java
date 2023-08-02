@@ -333,6 +333,9 @@ public class FactoryModel {
         }
     }
 
+    public void displaySelectedItems(int vendingMachineNum, JTextArea ta){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineNum - 1)));
+    }
     public void displaySpecialVendingMachineInventory(int vendingMachineNum ,JTextArea ta){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineNum - 1)));
         ArrayList<String> inventory = svm.getIndexInventoryInfo();

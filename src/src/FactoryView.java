@@ -729,7 +729,6 @@ public class FactoryView {
     public void setBuyFromVmPanel(){
         this.buyFromVmPanel = new JPanel(cardLayout);
         buyFromVmPanel.setLayout(null);
-        String[] jcomp16Items = {"Item 1", "Item 2", "Item 3"};
 
         //construct components
         jcomp1 = new JButton ("1 Peso");
@@ -747,7 +746,6 @@ public class FactoryView {
         jcomp12 = new JLabel ("Enter item slot:");
         jcomp13 = new JButton ("Enter");
         jcomp15 = new JButton ("Buysilog");
-        jcomp16 = new JComboBox (jcomp16Items);
 
         buyFromVmPanel.add (jcomp1); buyFromVmPanel.add(jcomp2); buyFromVmPanel.add(jcomp3); buyFromVmPanel.add(jcomp4Scroller);
         buyFromVmPanel.add (jcomp5); buyFromVmPanel.add(jcomp6); buyFromVmPanel.add(jcomp7); buyFromVmPanel.add(jcomp8);
@@ -769,7 +767,6 @@ public class FactoryView {
         jcomp13.setBounds (255, 245, 100, 25);
         jcomp14.setBounds (465, 245, 100, 25);
         jcomp15.setBounds (470, 320, 100, 25);
-        jcomp16.setBounds (360, 245, 100, 25);
     }
 
     /**
@@ -1609,6 +1606,13 @@ public class FactoryView {
         itemSlot.setBounds (110, 240, 100, 25);
         Add.setBounds (220, 240, 100, 25);
         Selected_Items.setBounds (345, 5, 230, 225);
+    }
+    private void hideBuysilog(){
+        jcomp15.setVisible(false);
+    }
+
+    private void showBuysilog(){
+        jcomp15.setVisible(true);
     }
     private JFrame mainFrame;
     private JLabel menuLabel;
