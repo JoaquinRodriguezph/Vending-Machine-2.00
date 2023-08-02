@@ -94,7 +94,7 @@ public class FactoryModel {
             if(vendingMachines.get(choice2).addSlotStock(selected, vendItems)) {
                 ;
                 JOptionPane.showMessageDialog(frame, "Success!",
-                        "Error", JOptionPane.INFORMATION_MESSAGE);
+                        "Notice", JOptionPane.INFORMATION_MESSAGE);
             }
         }
         else {
@@ -347,7 +347,7 @@ public class FactoryModel {
 
     public void success(JFrame frame){
         JOptionPane.showMessageDialog(frame, "Success!",
-                "Error", JOptionPane.INFORMATION_MESSAGE);
+                "Notice", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public void noItemSelectedError(JFrame frame){

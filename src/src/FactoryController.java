@@ -432,6 +432,7 @@ public class FactoryController {
                     factoryModel.success(errorFrame);
                     selectedItem = true;
                     price = factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotPrice(slotChosed);
+                    factoryView.getJcomp4().append("Selected Item: " + factoryModel.getVendingMachines().get(vendingMachineChosed - 1).getSlotItemName(slotChosed) + " - " + price + " PHP\n");
                 }
                 else {
                     factoryModel.slotNotAvailableError(errorFrame);
