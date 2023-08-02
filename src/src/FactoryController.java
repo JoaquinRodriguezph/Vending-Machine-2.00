@@ -6,9 +6,11 @@ import java.util.ArrayList;
 
 public class FactoryController {
 
+
     /**
      * This method is the constructor for the Factory View Class. It is used to initialize the components of the GUI.
      */
+    @SuppressWarnings("unchecked")
     public FactoryController(FactoryView factoryView, FactoryModel factoryModel) {
         this.factoryModel = factoryModel;
         this.factoryView = factoryView;
