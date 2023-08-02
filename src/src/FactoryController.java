@@ -722,6 +722,7 @@ public class FactoryController {
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Add Item to Inventory");
                 factoryModel.displayItems(factoryView.getAddItemTa());
+                factoryView.hideSpecialPrice();
             }
         });
 
@@ -730,9 +731,28 @@ public class FactoryController {
             public void actionPerformed(ActionEvent e) {
                 if (isParsable(factoryView.getSelectSpecialItemTf())){
                       int choice = Integer.parseInt(factoryView.getSelectSpecialItemTf());
-                      if (factoryModel.addToInventory(vendingMachineChosed, choice)){
-
-                    }
+                      if (factoryModel.addToInventoryTest(vendingMachineChosed, choice)){
+                            factoryModel.addToInventoryTrue(vendingMachineChosed, choice);
+                            factoryView.clearAllTextAreas();
+                            factoryModel.displayItems(factoryView.getAddItemTa());
+                            factoryModel.success(errorFrame);
+                        }
+                      else{
+                            factoryView.showSpecialPrice();
+                            if(isParsable(factoryView.getSetSpecialPriceTf())){
+                                int price = Integer.parseInt(factoryView.getSetSpecialPriceTf());
+                                factoryModel.addToInventoryFalse(vendingMachineChosed, choice, price);
+                                factoryView.clearAllTextAreas();
+                                factoryModel.displayItems(factoryView.getAddItemTa());
+                                factoryModel.success(errorFrame);
+                            }
+                            else{
+                                factoryModel.invalidNumberError(errorFrame);
+                            }
+                        }
+                }
+                else {
+                    factoryModel.invalidNumberError(errorFrame);
                 }
             }
         });
