@@ -81,10 +81,22 @@ public class FactoryModel {
         svm.setItemPrice(slot, price);
     }
 
+    /**
+     * This method gets the size of special vending machine item list.
+     * @param vendingMachineChosed the chosen special vending machine
+     * @return the item list size of the selected vending machine
+     */
     public int getSVMItemListSize(int vendingMachineChosed){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         return svm.getItemListSize();
     }
+
+    /**
+     * This adds the chosen item to the special vending machine.
+     * @param vendingMachineChosed the chosen special vending machine
+     * @param slot the selected item
+     * @return true if successfully added, false otherwise
+     */
     public boolean addToInventoryTest(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         Item item = myItems.get(slot - 1);
@@ -96,12 +108,20 @@ public class FactoryModel {
         }
     }
 
+
     public void addToInventoryTrue(int vendingMachineChosed, int slot){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         Item item = myItems.get(slot - 1);
         svm.addToInventory(item);
     }
 
+    /**
+     * This adds the chosen new item to the special vending machine.
+     * @param vendingMachineChosed the chosen special vending machine
+     * @param slot the selected item
+     * @param price the price to be set
+     * @return true if successfully added, false otherwise
+     */
     public void addToInventoryFalse(int vendingMachineChosed, int slot, int price){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         Item item = myItems.get(slot - 1);
