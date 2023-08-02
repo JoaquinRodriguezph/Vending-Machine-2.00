@@ -225,8 +225,30 @@ public class FactoryView {
 
     private JPanel createSpecialVMPanel;
 
-    private JLabel nameVmLbl2, numSlotsLbl2, maxItemsLbl2; private JTextField nameVmTf2, numSlotsTf2, maxItemsTf2;
-    private JLabel inventoryLimitLbl2; private JTextField inventoryLimitTf2;
+    private JLabel nameVmLbl2, numSlotsLbl2, maxItemsLbl2; private JTextField nameVmTf2;
+    private JTextField numSlotsTf2;
+
+    public String getNameVmTf2() {
+        return nameVmTf2.getText();
+    }
+
+    public String getNumSlotsTf2() {
+        return numSlotsTf2.getText();
+    }
+
+    public String getMaxItemsTf2() {
+        return maxItemsTf2.getText();
+    }
+
+    public String getInventoryLimitTf2() {
+        return inventoryLimitTf2.getText();
+    }
+    private JTextField maxItemsTf2;
+    private JLabel inventoryLimitLbl2;
+
+
+
+    private JTextField inventoryLimitTf2;
     private JButton createVMBtn3; private JButton backBtn31;
     private JLabel nameVmLbl, numSlotsLbl, maxItemsLbl;
 
