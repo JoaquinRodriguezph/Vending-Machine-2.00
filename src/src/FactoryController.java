@@ -685,9 +685,7 @@ public class FactoryController {
                     };
                 }
                 catch (NumberFormatException ex){
-                    errorFrame = new JFrame("Error");
-                    JOptionPane.showMessageDialog(errorFrame, "Please enter a valid number.",
-                            "Error", JOptionPane.ERROR_MESSAGE);;
+                    factoryModel.invalidNumberError(errorFrame);
                 }
             }
         });
@@ -696,6 +694,25 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Create Special Vending Machine");
+            }
+        });
+
+        this.factoryView.setCreateVMBtn3Listener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try{
+                    if (isParsable(factoryView.getNumSlotsTf2()) && isParsable(factoryView.getMaxItemsTf2())
+                            && isParsable(factoryView.getInventoryLimitTf2())){
+                        int num = Integer.parseInt(factoryView.getNumSlotsTf2());
+                        int num2 = Integer.parseInt(factoryView.getMaxItemsTf2());
+                        int num3 = Integer.parseInt(factoryView.getInventoryLimitTf2());
+                        String name = factoryView.getNameVmTf2();
+                        factoryModel.createSpecialVendingMachine(name, num, num2, num3, errorFrame);
+                    };
+                }
+                catch (NumberFormatException ex){
+                    factoryModel.invalidNumberError(errorFrame);
+                }
             }
         });
         this.factoryView.setShowVMBtnListener(new ActionListener() {

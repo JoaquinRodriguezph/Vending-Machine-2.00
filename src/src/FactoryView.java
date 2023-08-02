@@ -1345,9 +1345,21 @@ public class FactoryView {
      * This method sets the Show Details Button on what to do when pressed.
      * @param actionListener, is to be overdriven.
      */
+
     public void setShowDetailsBtnListener(ActionListener actionListener){this.showDetailsBtn.addActionListener(actionListener);}
 
+    /**
+     * This method sets the Create Special Vending Machine Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+
     public void setCreateSpecialVMBtnListener(ActionListener actionListener){this.createSpecialVMBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Create Special Vending Machine Button3 on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setCreateVMBtn3Listener(ActionListener actionListener){this.createVMBtn3.addActionListener(actionListener);}
     /**
      * This method sets the Pick Button on what to do when pressed.
      * @param actionListener, is to be overdriven.

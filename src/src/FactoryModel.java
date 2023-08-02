@@ -141,6 +141,31 @@ public class FactoryModel {
             }
         }
     }
+    public void createSpecialVendingMachine(String name, int maxSlots, int slotMaxItems, int inventoryLimit, JFrame frame){
+        if (name.isEmpty()) {
+            JOptionPane.showMessageDialog(frame, "Name cannot be empty",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (maxSlots < 8) {
+            JOptionPane.showMessageDialog(frame, "Max slots should be >= 8",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (slotMaxItems < 10) {
+            JOptionPane.showMessageDialog(frame, "Max items per slot should be >= 10",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (inventoryLimit < 10) {
+            JOptionPane.showMessageDialog(frame, "Inventory limit should be >= 10",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        vendingMachines.add(new SpecialVendingMachine(name, maxSlots, slotMaxItems, inventoryLimit));
+        JOptionPane.showMessageDialog(frame, "Success!",
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
     public void createVendingMachine(String name, int maxSlots, int slotMaxItems, JFrame frame){
         if (name.isEmpty()) {
             JOptionPane.showMessageDialog(frame, "Name cannot be empty",
