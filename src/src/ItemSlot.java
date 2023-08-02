@@ -110,6 +110,42 @@ public class ItemSlot {
     }
 
     /**
+     * This method adds the items to the item slot. It is only added when
+     * the slot is empty or the item is of the same.
+     *
+     * @param vendItem the items to be added to the item slot
+     * @return true if adding item is successful, false otherwise
+     */
+    public boolean addStock(ArrayList<VendItem> vendItem) {
+        boolean b = false;
+
+        String itemName = vendItem.get(0).getName();
+        int calories = vendItem.get(0).getCalories();
+
+        for (VendItem item : vendItem) {    //checking if all items are the same
+            if (!(item.getName().equalsIgnoreCase(itemName) && calories == item.getCalories())) {
+                b = false;
+                break;
+            }
+            else
+                b = true;
+        }
+
+        if (b) {
+            for (int i = 0; i < vendItem.size(); i++) {
+                if (!addStock(vendItem.remove(0))) {
+                    b = false;
+                    break;
+                }
+                else
+                    b = true;
+            }
+        }
+
+        return b;
+    }
+
+    /**
      * The method checks if there is stock left of an item.
      *
      * @return true or false depending if there is at least one stock.
