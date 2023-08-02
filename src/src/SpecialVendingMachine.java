@@ -72,9 +72,11 @@ public class SpecialVendingMachine extends VendingMachine{
     /**
      * This method adds a silog meal transaction.
      */
-    public void addTransaction(ArrayList<Item> items, ArrayList<Integer> prices) {
-        for (int i = 0; i < prices.size(); i++) {
-            transactionLog.add(items.get(i).getName() + "-" + prices.get(i));
+    public void addTransaction(SilogCombo silogCombo) {
+        ArrayList<Item> items = silogCombo.getItems();
+
+        for (Item item : items) {
+            transactionLog.add(item.getName() + "-" + priceItem(item));
         }
     }
 
@@ -155,10 +157,12 @@ public class SpecialVendingMachine extends VendingMachine{
         boolean b = false;
 
         if (itemInventory.size() < MAX_INV) {
-            itemInventory.add(item);
-            itemList.add(new ItemInfo(item.getName(), item.getCalories(), price));
-            newStartingInventory();
-            b = true;
+            if (!contains(item)) {
+                itemInventory.add(item);
+                itemList.add(new ItemInfo(item.getName(), item.getCalories(), price));
+                newStartingInventory();
+                b = true;
+            }
         }
 
         return b;
@@ -180,6 +184,35 @@ public class SpecialVendingMachine extends VendingMachine{
         }
 
         return b;
+    }
+
+    /**
+     * This method gets the price of the item if it exists in the item list, return null otherwise.
+     *
+     * @param item the item to be checked.
+     * @return the price of the item, null if not found.
+     */
+    public Integer priceItem(Item item) {
+        Integer price = null;
+
+        for (ItemInfo itemInfo : itemList) {    //looking for the item in the list
+            if (itemInfo.getName().equalsIgnoreCase(item.getName()) && itemInfo.getCalories() == item.getCalories()) {
+                price = itemInfo.getPrice();
+                break;
+            }
+        }
+
+        return price;
+    }
+
+    /**
+     * This method sets the price of the item in the item list.
+     *
+     * @param choice the item choice index + 1.
+     * @param price the price to be set.
+     */
+    public void setItemPrice(int choice, int price) throws IndexOutOfBoundsException {
+        itemList.get(choice - 1).setPrice(price);
     }
 
     /**
@@ -345,7 +378,7 @@ public class SpecialVendingMachine extends VendingMachine{
                     calories += item.getCalories();
                 }
                 silogCombo = new SilogCombo(silog, items, calories);
-                //addTransaction(silogCombo);
+                addTransaction(silogCombo);
             }
         }
 

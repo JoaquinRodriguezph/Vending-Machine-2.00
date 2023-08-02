@@ -138,6 +138,7 @@ public class VendingMachine {
         return itemSlots[0].getMax();
     }
 
+
     public ArrayList<String> getSlotInfo() {
         ArrayList<String> slotInfo = new ArrayList<String>();
 
