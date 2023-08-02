@@ -690,6 +690,7 @@ public class FactoryController {
             }
         });
 
+        //Special Vending Machine Listeners
         this.factoryView.setCreateSpecialVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -715,6 +716,22 @@ public class FactoryController {
                 }
             }
         });
+
+        this.factoryView.setAddItemtoInventoryMenuBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Add Item to Inventory");
+                factoryModel.displayItems(factoryView.getAddItemTa());
+            }
+        });
+
+        this.factoryView.setAddItemtoInventoryBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //if (isParsable(factoryView.getSelectSpecialItemTf()))
+            }
+        });
+        //
         this.factoryView.setShowVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

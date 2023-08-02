@@ -17,7 +17,8 @@ public class FactoryModel {
     public FactoryModel() {
         this.vendingMachines = new ArrayList<VendingMachine>();
         this.myInventory = new ArrayList<Item>();
-        vendingMachines.add(new VendingMachine("Vending Machine 1", 10, 10));
+        vendingMachines.add(new VendingMachine("Regular Vending Machine", 10, 10));
+        vendingMachines.add(new SpecialVendingMachine("Special Vending Machine", 10, 10 ,10));
         myInventory.add(new VendItem("Sunny Side Up", 120));
         myInventory.add(new VendItem("Chippy", 170));
         myInventory.add(new VendItem("Tapas", 200));
