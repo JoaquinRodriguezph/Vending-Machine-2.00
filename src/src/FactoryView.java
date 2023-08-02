@@ -74,6 +74,10 @@ public class FactoryView {
     private JLabel enterItemLbl; private JTextField enterItemTf; private JButton SRPbtn, editBtn;
     private JButton setPriceBtn;
 
+    //Special Vending Machine Components
+    private JButton addItemtoInventoryMenuBtn, changePriceofItemMenuBtn;
+    private JPanel addItemtoInventoryPanel, changePriceofItemPanel;
+
     //Change Price
 
     /**
@@ -715,7 +719,9 @@ public class FactoryView {
         cardPanel.add(displayTransactionsPanel, "Display Transactions");
         cardPanel.add(displayMoneyPanel, "Display Money");
 
-        //Change Price Panels
+        //Special Vending Machine Panels
+        //cardPanel.add(addItemtoInventoryPanel, "Add Item to Inventory");
+        //cardPanel.add(changePriceofItemPanel, "Change Price of Item");
 
         //Customize Item Panels
         cardPanel.add(createItemPanel, "Create Item");
@@ -804,6 +810,7 @@ public class FactoryView {
         jcomp2 = new JButton ("5 Peso");
         jcomp3 = new JButton ("10 Peso");
         jcomp4 = new JTextArea (5, 5);
+        JScrollPane jcomp4Scroller = new JScrollPane(jcomp4, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         jcomp5 = new JButton ("20 Peso");
         jcomp6 = new JButton ("50 Peso");
         jcomp7 = new JButton ("100 Peso");
@@ -816,7 +823,7 @@ public class FactoryView {
         jcomp15 = new JButton ("Buy");
         jcomp16 = new JComboBox (jcomp16Items);
 
-        buyFromVmPanel.add (jcomp1); buyFromVmPanel.add(jcomp2); buyFromVmPanel.add(jcomp3); buyFromVmPanel.add(jcomp4);
+        buyFromVmPanel.add (jcomp1); buyFromVmPanel.add(jcomp2); buyFromVmPanel.add(jcomp3); buyFromVmPanel.add(jcomp4Scroller);
         buyFromVmPanel.add (jcomp5); buyFromVmPanel.add(jcomp6); buyFromVmPanel.add(jcomp7); buyFromVmPanel.add(jcomp8);
         buyFromVmPanel.add (jcomp9); buyFromVmPanel.add(jcomp10); buyFromVmPanel.add(jcomp11); buyFromVmPanel.add(jcomp12);
         buyFromVmPanel.add (jcomp13); buyFromVmPanel.add(jcomp14); buyFromVmPanel.add(jcomp15); buyFromVmPanel.add(jcomp16);
@@ -824,7 +831,7 @@ public class FactoryView {
         jcomp1.setBounds (30, 285, 80, 20);
         jcomp2.setBounds (115, 285, 80, 20);
         jcomp3.setBounds (205, 285, 80, 20);
-        jcomp4.setBounds (15, 5, 560, 225);
+        jcomp4Scroller.setBounds (15, 5, 560, 225);
         jcomp5.setBounds (295, 285, 90, 20);
         jcomp6.setBounds (395, 285, 100, 25);
         jcomp7.setBounds (25, 320, 100, 25);
@@ -866,7 +873,7 @@ public class FactoryView {
      */
     public void setDoMaintenancePanel(){
         this.doMaintenancePanel = new JPanel(cardLayout);
-        doMaintenancePanel.setLayout(new GridLayout(13,1));
+        doMaintenancePanel.setLayout(new GridLayout(12,1));
         doMaintenancePanel.add(backBtn26);
         this.restockBtn = new JButton("Restock");
         doMaintenancePanel.add(restockBtn);
@@ -885,6 +892,10 @@ public class FactoryView {
         this.displayTransactionsBtn = new JButton("Display Transactions");
         doMaintenancePanel.add(displayTransactionsBtn);
         this.displayMoneyBtn = new JButton("Display Money");
+        this.addItemtoInventoryMenuBtn = new JButton("Add Item to Inventory");
+        addItemtoInventoryMenuBtn.setVisible(false);
+        this.changePriceofItemMenuBtn = new JButton("Change Price of Item");
+        changePriceofItemMenuBtn.setVisible(false);
         doMaintenancePanel.add(displayMoneyBtn);
         doMaintenancePanel.setBackground(Color.green);
     }

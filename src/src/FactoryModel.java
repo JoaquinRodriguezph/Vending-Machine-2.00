@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class FactoryModel {
+    private boolean selectedItem = false;
+    private int vendingMachineChosed;
+    private int choice, slotChosed;
+    private JFrame errorFrame;
     public ArrayList<VendingMachine> getVendingMachines() {
         return vendingMachines;
     }
@@ -43,8 +47,11 @@ public class FactoryModel {
         return choices;
     }
 
-    public void displayMoneyNeeded(int choice, int selected, JFrame frame) {
-
+    public ArrayList<Money> getChange(int choice, ArrayList<Money> payment, int cost){
+        return vendingMachines.get(choice-1).getChange(payment, cost);
+    }
+    public void dispenseItem(int choice, int slotChosed){
+        vendingMachines.get(choice-1).dispenseItem(slotChosed);
     }
     public void setStock(int choice, int selected, int item, int quantity, JFrame frame){
         int choice2 = choice - 1;
@@ -54,11 +61,13 @@ public class FactoryModel {
             VendItem selected2 = (VendItem) myInventory.get(item2);
             ArrayList<VendItem> vendItems = new ArrayList<VendItem>();
             for (int i = 0; i < quantity; i++) {
-                vendItems.add(selected2);
+                vendItems.add(new VendItem(selected2.getName(), selected2.getCalories()));
             }
-            vendingMachines.get(choice2).addSlotStock(selected, vendItems);
-            JOptionPane.showMessageDialog(frame, "Tite!",
-                    "Error", JOptionPane.ERROR_MESSAGE);
+            if(vendingMachines.get(choice2).addSlotStock(selected, vendItems)) {
+                ;
+                JOptionPane.showMessageDialog(frame, "Success!",
+                        "Error", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
         else {
             JOptionPane.showMessageDialog(frame, "Can only place VendItem!",
@@ -68,7 +77,7 @@ public class FactoryModel {
     }
     public void changeItemSlotPrice(int choice, int selected, int price, JFrame frame) {
         int choice2 = choice - 1;
-        if (vendingMachines.get(choice2).isSlotAvailable(selected))
+        if (vendingMachines.get(choice2).setSlotPrice(selected, price))
         {
             vendingMachines.get(choice2).setSlotPrice(selected, price);
             JOptionPane.showMessageDialog(frame, "Success!",
