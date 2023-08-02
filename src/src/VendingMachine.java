@@ -189,18 +189,19 @@ public class VendingMachine {
      * @return true if the item was successfully added to the slot, otherwise false
      */
     public boolean addSlotStock(int slot, VendItem vendItem, int quantity) throws IndexOutOfBoundsException {
-        if (getMaxSlotItem() < itemSlots[slot - 1].getStock() + quantity) {
+        boolean b = false;
+        if (getMaxSlotItem() >= itemSlots[slot - 1].getStock() + quantity) {
             for (int i = 0; i < quantity; i++) {
                 VendItem newItem = new VendItem(vendItem.getName(), vendItem.getCalories());
                 if (itemSlots[slot - 1].addStock(newItem)) {
                     newStartingInventory();
-                    return true;
+                    b = true;
                 }
                 else
                     break;
             }
         }
-        return false;
+        return b;
     }
 
     /**
