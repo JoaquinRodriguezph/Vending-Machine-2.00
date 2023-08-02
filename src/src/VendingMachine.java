@@ -194,6 +194,20 @@ public class VendingMachine {
     }
 
     /**
+     * This method gets the name of the item on the slot.
+     *
+     * @param slot the slot number given
+     * @return the name of the item on the slot.
+     */
+    public String getSlotItemName(int slot) {
+        String name = null;
+        if (itemSlots[slot - 1].getStock() > 0)
+            name = itemSlots[slot - 1].getItemName();
+
+        return name;
+    }
+
+    /**
      * This method adds an item given a slot number.
      *
      * @param slot the slot number to update the price with.
