@@ -1639,6 +1639,60 @@ public class FactoryView {
     }
 
     /**
+     * This method sets the One Peso Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setOnePesoBtnListener(ActionListener actionListener){this.onePeso.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Five Peso Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setFivePesoBtnListener(ActionListener actionListener){this.fivePeso.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Ten Peso Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setTenPesoBtnListener(ActionListener actionListener){this.tenPeso.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Twenty Peso Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setTwentyPesoBtnListener(ActionListener actionListener){this.twentyPeso.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Fifty Peso Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setFiftyPesoBtnListener(ActionListener actionListener){this.fiftyPeso.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Hundred Peso Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setHundredPesoBtnListener(ActionListener actionListener){this.hundredPeso.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Two Hundred Peso Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setTwoHundredPesoBtnListener(ActionListener actionListener){this.twoHundredPeso.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Five Hundred Peso Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setFiveHundredPesoBtnListener(ActionListener actionListener){this.fiveHundredPeso.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Thousand Peso Button on what to do when pressed.
+     * @param actionListener
+     */
+    public void setThousandPesoBtnListener(ActionListener actionListener){this.thousandPeso.addActionListener(actionListener);}
+
+    /**
      * This method hides the Special Vending Machine Buttons.
      */
     public void hideSpecialVMButtons(){
@@ -1731,6 +1785,7 @@ public class FactoryView {
         tenPeso = new JButton ("10 Peso");
         SelledItems = new JTextArea (5, 5);
         SelledItems.setEditable(false);
+        JScrollPane scrollPane = new JScrollPane(this.SelledItems, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         twentyPeso = new JButton ("20 Peso");
         fiftyPeso = new JButton ("50 Peso");
         hundredPeso = new JButton ("100 Peso");
@@ -1743,6 +1798,7 @@ public class FactoryView {
         Add = new JButton ("Add");
         Selected_Items = new JTextArea (5, 5);
         Selected_Items.setEditable(false);
+        JScrollPane scrollPane2 = new JScrollPane(this.Selected_Items, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 
         //adjust size and set layout
         svmPanel.setPreferredSize (new Dimension (582, 359));
@@ -1752,7 +1808,7 @@ public class FactoryView {
         svmPanel.add (onePeso);
         svmPanel.add (fivePeso);
         svmPanel.add (tenPeso);
-        svmPanel.add (SelledItems);
+        svmPanel.add (scrollPane);
         svmPanel.add (twentyPeso);
         svmPanel.add (fiftyPeso);
         svmPanel.add (hundredPeso);
@@ -1764,13 +1820,13 @@ public class FactoryView {
         svmPanel.add (Confirm);
         svmPanel.add (itemSlot);
         svmPanel.add (Add);
-        svmPanel.add (Selected_Items);
+        svmPanel.add (scrollPane2);
 
         //set component bounds (only needed by Absolute Positioning)
         onePeso.setBounds (25, 285, 80, 20);
         fivePeso.setBounds (115, 285, 80, 20);
         tenPeso.setBounds (205, 285, 80, 20);
-        SelledItems.setBounds (20, 5, 320, 225);
+        scrollPane.setBounds (20, 5, 320, 225);
         twentyPeso.setBounds (295, 285, 90, 20);
         fiftyPeso.setBounds (395, 285, 100, 25);
         hundredPeso.setBounds (25, 320, 100, 25);
@@ -1782,7 +1838,7 @@ public class FactoryView {
         Confirm.setBounds (470, 320, 100, 25);
         itemSlot.setBounds (110, 240, 100, 25);
         Add.setBounds (220, 240, 100, 25);
-        Selected_Items.setBounds (345, 5, 230, 225);
+        scrollPane2.setBounds (345, 5, 230, 225);
     }
 
     /**
