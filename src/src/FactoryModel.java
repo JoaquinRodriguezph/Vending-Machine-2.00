@@ -57,7 +57,8 @@ public class FactoryModel {
                 vendItems.add(selected2);
             }
             vendingMachines.get(choice2).addSlotStock(selected, vendItems);
-
+            JOptionPane.showMessageDialog(frame, "Tite!",
+                    "Error", JOptionPane.ERROR_MESSAGE);
         }
         else {
             JOptionPane.showMessageDialog(frame, "Can only place VendItem!",
@@ -236,6 +237,12 @@ public class FactoryModel {
         }
     }
 
+    public void displayInventories(int choice, JTextArea ta){
+        ArrayList<String> inventories = vendingMachines.get(choice - 1).getInventoryLog();
+        for (String string : inventories){
+            ta.append(string);
+        }
+    }
     public void displayVendingMachines(JTextArea ta){
         ta.append("Vending Machine No || Name ||  Max Slots || Max Items\n");
         int i = 1;
@@ -249,7 +256,7 @@ public class FactoryModel {
     int vendingMachineNum2 = vendingMachineNum - 1;
     ArrayList<String> slots = vendingMachines.get(vendingMachineNum2).getSlotInfo();
     for (String string : slots) {
-                ta.append(string);
+            ta.append(string);
         }
     }
 

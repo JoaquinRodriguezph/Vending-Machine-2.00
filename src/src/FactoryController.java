@@ -40,7 +40,7 @@ public class FactoryController {
                 if (isParsable(factoryView.getPickVMTf()))
                 {
                     vendingMachineChosed = Integer.parseInt(factoryView.getPickVMTf());
-                    if (vendingMachineChosed < 0 || vendingMachineChosed > factoryModel.getVendingMachineSize())
+                    if (vendingMachineChosed <= 0 || vendingMachineChosed > factoryModel.getVendingMachineSize())
                     {
                         factoryModel.invalidNumberError(errorFrame);
                         return;
@@ -225,7 +225,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Display Inventories");
-
+                factoryModel.displayInventories(vendingMachineChosed, factoryView.getInventoriesTa());
             }
         });
 
