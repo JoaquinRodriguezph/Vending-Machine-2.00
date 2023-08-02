@@ -15,6 +15,8 @@ public class FactoryModel {
         this.myInventory = new ArrayList<Item>();
         vendingMachines.add(new VendingMachine("Regular Vending Machine", 10, 10));
         vendingMachines.add(new SpecialVendingMachine("Special Vending Machine", 10, 10 ,10));
+        SpecialVendingMachine svm = (SpecialVendingMachine) vendingMachines.get(1);
+
         myInventory.add(new VendItem("Sunny Side Up", 120));
         myInventory.add(new VendItem("Chippy", 170));
         myInventory.add(new VendItem("Tapas", 200));
@@ -32,9 +34,34 @@ public class FactoryModel {
         myInventory.add(new VendItem("Bottled Water", 0));
         myInventory.add(new Item("Gravy", 79));
         myInventory.add(new Item("Toyo", 53));
+
+        svm.addToInventory(myInventory.get(0), 30);
+        svm.addToInventory(myInventory.get(1), 75);
+        svm.addToInventory(myInventory.get(2), 100);
+        svm.addToInventory(myInventory.get(3), 75);
+        svm.addToInventory(myInventory.get(4), 75);
+        svm.addToInventory(myInventory.get(5), 75);
+        svm.addToInventory(myInventory.get(6), 20);
+        svm.addToInventory(myInventory.get(7), 100);
+        svm.addToInventory(myInventory.get(8), 100);
+        svm.addToInventory(myInventory.get(9), 100);
+        svm.addToInventory(myInventory.get(10), 100);
+        svm.addToInventory(myInventory.get(11), 20);
+        svm.addToInventory(myInventory.get(12), 50);
+        svm.addToInventory(myInventory.get(13), 50);
+        svm.addToInventory(myInventory.get(14), 25);
+
     }
 
     //Special Vending Machine Features
+    public ArrayList<String> specialComboBox(int vendingMachine){
+        SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachine - 1)));
+        ArrayList<String> choices = new ArrayList<String>();
+        for (int i = 0; i < svm.getItemListSize(); i++) {
+            choices.add("" + (i + 1));
+        }
+        return choices;
+    }
     public void setItemPrice(int vendingMachineChosed, int slot, int price){
         SpecialVendingMachine svm = ((SpecialVendingMachine) (vendingMachines.get(vendingMachineChosed - 1)));
         svm.setItemPrice(slot, price);

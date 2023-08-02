@@ -1564,6 +1564,7 @@ public class FactoryView {
         fivePeso = new JButton ("5 Peso");
         tenPeso = new JButton ("10 Peso");
         SelledItems = new JTextArea (5, 5);
+        SelledItems.setEditable(false);
         twentyPeso = new JButton ("20 Peso");
         fiftyPeso = new JButton ("50 Peso");
         hundredPeso = new JButton ("100 Peso");
@@ -1575,6 +1576,7 @@ public class FactoryView {
         itemSlot = new JComboBox (itemSlotItems);
         Add = new JButton ("Add");
         Selected_Items = new JTextArea (5, 5);
+        Selected_Items.setEditable(false);
 
         //adjust size and set layout
         svmPanel.setPreferredSize (new Dimension (582, 359));
@@ -1667,6 +1669,15 @@ public class FactoryView {
     private JLabel enterSpecialItemSlot;
     private JButton Back;
     private JButton Confirm;
+
+    /**
+     * This method returns the Item Slot Combo Box.
+     * @return itemSlot combo box.
+     */
+    public JComboBox getItemSlot() {
+        return itemSlot;
+    }
+
     private JComboBox itemSlot;
     private JButton Add;
     private JTextArea Selected_Items;

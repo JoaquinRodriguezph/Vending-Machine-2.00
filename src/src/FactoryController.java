@@ -48,6 +48,7 @@ public class FactoryController {
                     }
                     factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Program");
                     int vendingMachineChosed2 = vendingMachineChosed - 1;
+                    isSVM = false;
                     if (factoryModel.getVendingMachines().get(vendingMachineChosed2) instanceof SpecialVendingMachine){
                         isSVM = true;
                         factoryView.showSpecialVMButtons();
@@ -462,6 +463,11 @@ public class FactoryController {
             public void actionPerformed(ActionEvent e) {
                 if(isSVM){
                     factoryView.getCardLayout().show(factoryView.getCardPanel(), "Special Vending Machine");
+                    ArrayList<String> items = factoryModel.specialComboBox(vendingMachineChosed);
+                    for (String string : items)
+                    {
+                        factoryView.getItemSlot().addItem(string);
+                    }
                     factoryModel.displaySpecialVendingMachineInventory(vendingMachineChosed, factoryView.getSelledItems());
                 }
                 else {
