@@ -15,6 +15,7 @@ public class FactoryModel {
     public FactoryModel() {
         this.vendingMachines = new ArrayList<VendingMachine>();
         this.myInventory = new ArrayList<Item>();
+        vendingMachines.add(new VendingMachine("Vending Machine 1", 10, 10));
         myInventory.add(new Item("Sunny Side Up", 120));
         myInventory.add(new Item("Chippy", 170));
         myInventory.add(new Item("Tapas", 200));
@@ -31,6 +32,7 @@ public class FactoryModel {
         myInventory.add(new Item("Royal", 140));
         myInventory.add(new Item("Bottled Water", 0));
     }
+
 
     public void createVendingMachine(String name, int maxSlots, int slotMaxItems, JFrame frame){
         if (name.isEmpty()) {
@@ -124,6 +126,30 @@ public class FactoryModel {
             ta.append(i + "\t" + vm.getName() + "    " + vm.getNumSlots() + "    " + vm.getMaxSlotItem() + "\n");
             i++;
         }
+    }
+
+    public void displayVendingMachineInfo(int vendingMachineNum, JTextArea ta, JFrame frame){
+        try{
+            if (vendingMachineNum >= 0 && vendingMachineNum <= vendingMachines.size()){
+                ta.append("Slot No || Item Name ||  Calories\n");
+                for (String string : vendingMachines.get(vendingMachineNum).getSlotInfo()) {
+                    ta.append(string);
+                }
+            }
+        }
+        catch (IndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(frame, "Please enter a valid number.",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+    }
+
+    public void invalidNumberError(JFrame frame){
+        JOptionPane.showMessageDialog(frame, "Please enter a valid number.",
+                "Error", JOptionPane.ERROR_MESSAGE);
+    }
+    public int getVendingMachineSize(){
+        return vendingMachines.size();
     }
     public int myInventoryNum(){
         return myInventory.size();

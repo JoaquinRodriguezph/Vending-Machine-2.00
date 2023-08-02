@@ -14,6 +14,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Pick Vending Machine");
+                factoryModel.displayVendingMachines(factoryView.getVmTa());
             }
         });
 
@@ -35,7 +36,16 @@ public class FactoryController {
         this.factoryView.setPickVMBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Program");
+                if (isParsable(factoryView.getPickVMTf()))
+                {
+                    vendingMachineChosed = Integer.parseInt(factoryView.getPickVMTf());
+                    if (vendingMachineChosed < 0 || vendingMachineChosed >= factoryModel.getVendingMachineSize())
+                    {
+                        factoryModel.invalidNumberError(errorFrame);
+                        return;
+                    }
+                    factoryView.getCardLayout().show(factoryView.getCardPanel(), "Main Program");
+                }
             }
         });
 
@@ -43,6 +53,7 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Buy from Vending Machine");
+                factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getJcomp4(), errorFrame);
             }
         });
 
@@ -51,17 +62,6 @@ public class FactoryController {
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Do Maintenance");
             }
-        });
-        this.factoryView.setSelectWalletBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Select Wallet");
-            }
-        });
-        this.factoryView.setShowCurrentWalletBtnListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Current Wallet");}
         });
 
         //Sets up Do Maintenance Buttons
@@ -122,6 +122,7 @@ public class FactoryController {
         this.factoryView.setShowItemSlotsBtnListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                factoryModel.displayVendingMachineInfo(vendingMachineChosed, factoryView.getItemSlotsTa(), errorFrame);
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Item Slots");
             }
         });
@@ -270,6 +271,31 @@ public class FactoryController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 factoryView.getCardLayout().show(factoryView.getCardPanel(), "Show Details");
+                factoryModel.displayVendingMachines(factoryView.getDetailsTa());
+            }
+        });
+
+        this.factoryView.setPickBtnListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (isParsable(factoryView.getPickVmTf2())){
+                    try{
+                        choice = Integer.parseInt(factoryView.getPickVmTf2());
+                        if(choice >= 0 && choice < factoryModel.getVendingMachineSize()){
+                            factoryView.clearAllTextAreas();
+                            factoryModel.displayVendingMachineInfo(choice, factoryView.getDetailsTa(), errorFrame);
+                        }
+                    }
+                    catch (NumberFormatException ex){
+                        factoryModel.invalidNumberError(errorFrame);
+                        errorFrame = new JFrame("Error");
+                        JOptionPane.showMessageDialog(errorFrame, "Please enter a valid number.",
+                                "Error", JOptionPane.ERROR_MESSAGE);;
+                    }
+                }
+                else {
+                    factoryModel.displayVendingMachineInfo(-1, factoryView.getDetailsTa(), errorFrame);
+                }
             }
         });
     }
@@ -282,6 +308,7 @@ public class FactoryController {
             return false;
         }
     }
+    private int vendingMachineChosed = 0;
     private int choice;
     private JFrame errorFrame;
     private FactoryView factoryView;

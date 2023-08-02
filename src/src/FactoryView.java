@@ -13,6 +13,10 @@ public class FactoryView {
     private JLabel menuLabel;
     private JPanel btnPanel;
 
+    /**
+     * This method is used to return the cardPanel.
+     * @return the cardPanel.
+     */
     public JPanel getCardPanel() {
         return cardPanel;
     }
@@ -23,16 +27,36 @@ public class FactoryView {
     private JPanel startProgramPanel, customizeVMPanel, customizeStocksPanel, pickVMPanel;
 
     //Main Program Components
-    private JPanel buyFromVmPanel, doMaintenancePanel, selectWalletPanel, showCurrentWalletPanel;
+    private JPanel buyFromVmPanel, doMaintenancePanel;
     private JButton backBtn26;//doMaintenanceBackBtn
     private JButton backBtn27;//buyFromVmBackBtn
 
     private JLabel pickWalletLbl; private JTextField pickWalletTf;
-    private JLabel pickVMLbl; private JTextField pickVMTf; private JButton pickVMBtn, backBtn16;
+    private JLabel pickVMLbl, pickVmLbl2;
+
+    /**
+     * This method is used to return the string from text field getPickVMTf.
+     * @return the string from text field getPickVMTf.
+     */
+    public String getPickVMTf() {
+        return pickVMTf.getText();
+    }
+
+    private JTextField pickVMTf; private JButton pickVMBtn, backBtn16;
     private JButton pickWalletBtn, backBtn12, backBtn13, backBtn14, backBtn15;
 
     //Buying Components
-    private JButton jcomp1; private JButton jcomp2; private JButton jcomp3; private JTextArea jcomp4; private JButton jcomp5;
+    private JButton jcomp1; private JButton jcomp2; private JButton jcomp3;
+
+    /**
+     * This method is used to return the JTextArea jcomp4.
+     * @return the JTextArea jcomp4.
+     */
+    public JTextArea getJcomp4() {
+        return jcomp4;
+    }
+
+    private JTextArea jcomp4; private JButton jcomp5;
     private JButton jcomp6; private JButton jcomp7; private JButton jcomp8; private JButton jcomp9; private JButton jcomp10;
     private JPasswordField jcomp11; private JLabel jcomp12; private JButton jcomp13;
     private JButton jcomp14; private JButton jcomp15; private JComboBox jcomp16;
@@ -47,6 +71,15 @@ public class FactoryView {
     private JButton editPricebtn, setToSRPbtn, setAllToSRPbtn, displaySlotsbtn;
 
     private JTextArea editPriceTa; private JLabel enterSlotLbl, enterPriceLbl; private JTextField enterSlotTf, enterPriceTf;
+
+    public JTextArea getDisplaySlotsTa() {
+        return displaySlotsTa;
+    }
+
+    public JTextArea getSetToSRPTa() {
+        return setToSRPTa;
+    }
+
     private JTextArea displaySlotsTa, setToSRPTa;
     private JLabel enterItemLbl; private JTextField enterItemTf; private JButton SRPbtn, editBtn;
 
@@ -63,7 +96,21 @@ public class FactoryView {
     private JPanel showItemStocksPanel, displayInventoriesPanel, displayTransactionsPanel, displayMoneyPanel;
     private JButton showItemStocksBtn, displayInventoriesBtn, displayTransactionsBtn, displayMoneyBtn;
 
-    private JTextArea itemStocksTa, inventoriesTa, transactionsTa, moneyTa, itemSlotsTa, replenishChangeTa;
+    private JTextArea itemStocksTa;
+    private JTextArea inventoriesTa;
+    private JTextArea transactionsTa;
+    private JTextArea moneyTa;
+
+    /**
+     * This method is used to return the JTextArea itemStocksTa.
+     * @return the JTextArea itemStocksTa.
+     */
+    public JTextArea getItemSlotsTa() {
+        return itemSlotsTa;
+    }
+
+    private JTextArea itemSlotsTa;
+    private JTextArea replenishChangeTa;
     private JButton backBtn22, backBtn23, backBtn24, backBtn25;
 
 
@@ -72,21 +119,43 @@ public class FactoryView {
 
     private JLabel nameVmLbl, numSlotsLbl, maxItemsLbl;
 
+    /**
+     * This method is used to return the string from text field getNameVmTf.
+     * @return the string from text field getNameVmTf.
+     */
     public String getNameVmTf() {
         return nameVmTf.getText();
     }
 
+    /**
+     * This method is used to return the string from text field getNumSlotsTf.
+     * @return the string from text field getNumSlotsTf.
+     */
     public String getNumSlotsTf() {
         return numSlotsTf.getText();
     }
 
+    /**
+     * This method is used to return the string from text field getMaxItemsTf.
+     * @return the string from text field getMaxItemsTf.
+     */
     public String getMaxItemsTf() {
         return maxItemsTf.getText();
     }
 
     private JTextField nameVmTf, numSlotsTf, maxItemsTf;
 
-    private JLabel pickVmLbl; private JTextField pickVmTf;
+    private JLabel pickVendingMachineLbl;
+
+    /**
+     * This method is used to return the string from text field getPickVmTf.
+     * @return the string from text field getPickVmTf.
+     */
+    public String getPickVmTf2() {
+        return pickVmTf2.getText();
+    }
+
+    private JTextField pickVmTf2;
     private JButton createVmBtn, createVMBtn2, pickBtn, backBtn9, backBtn10, backBtn11;
 
     //Customize Item Stock Components
@@ -100,6 +169,10 @@ public class FactoryView {
     private JTextField stocksTf;
     private JTextField SRPtf;
 
+    /**
+     * This method is used to return the string from text field getItemNameTf.
+     * @return the string from text field getItemNameTf.
+     */
     public String getAddItemTf() {
         return this.addItemTf.getText();
     }
@@ -108,19 +181,26 @@ public class FactoryView {
     private JTextField numItemTf;
     private JTextField showItemTf;
 
+    /**
+     * This method is used to return the JTextArea itemsTa.
+     * @return the JTextArea itemsTa.
+     */
     public JTextArea getItemsTa() {
         return itemsTa;
     }
 
     private JTextArea itemsTa;
-    private JTextArea currentWalletTa;
-
     public JTextArea getShowItemsTa() {
         return showItemsTa;
     }
 
     private JTextArea showItemsTa;
     private JTextArea walletTa;
+
+    public JTextArea getDetailsTa() {
+        return detailsTa;
+    }
+
     private JTextArea detailsTa;
 
     public JTextArea getShowVMTa() {
@@ -128,28 +208,50 @@ public class FactoryView {
     }
 
     private JTextArea showVMTa;
+
+
+    public JTextArea getVmTa() {
+        return vmTa;
+    }
+
     private JTextArea vmTa; //TextArea for showing the items
 
 
+    /**
+     * This method is used to get the String value in the text field.
+     * @return String value of itemNameTf.
+     */
     public String getItemNameTf() {
         return this.itemNameTf.getText();
     }
 
+    /**
+     * This method is used to get the String value in the text field.
+     * @return String value of caloriesTf.
+     */
     public String getCaloriesTf() {
         return this.caloriesTf.getText();
     }
 
+    /**
+     * This method is used to get the String value in the text field.
+     * @return String value of stocksTf.
+     */
     public String getStocksTf() {
         return this.stocksTf.getText();
     }
 
+    /**
+     * This method is used to get the String value in the text field.
+     * @return String value of SRPtf.
+     */
     public String getSRPtf() {
         return this.SRPtf.getText();
     }
 
     /**
-     * This method is used to get the card layout
-     * @return the card layout
+     * This method is used to get the card layout.
+     * @return the card layout.
      */
     public CardLayout getCardLayout() {
         return cardLayout;
@@ -163,7 +265,7 @@ public class FactoryView {
 
     //Buttons for the Main Program
 
-    private JButton buyFromVmBtn, doMaintenanceBtn, selectWalletBtn, showCurrentWalletBtn;
+    private JButton buyFromVmBtn, doMaintenanceBtn;
 
     //Buttons for the Vending Machine
     private JButton createVMBtn, showDetailsBtn, showVMBtn;
@@ -176,6 +278,10 @@ public class FactoryView {
     private JButton createItemBtn, addItemBtn, showItemBtn, selectItemtoAddBtn;
     private JLabel selectItemtoAddLbl, addItemLbl;
 
+    /**
+     * This method is used to return the string from text field getSelectItemtoAddTf.
+     * @return the string from text field getSelectItemtoAddTf.
+     */
     public String getSelectItemtoAddTf() {
         return selectItemtoAddTf.getText();
     }
@@ -185,7 +291,7 @@ public class FactoryView {
     private ArrayList<JButton> btnList, backBtnList, mainProgramBtnList, stocksBtnList, vendingMachineBtnList;
 
     /**
-     * This method is the constructor for the Factory View Class.
+     * This method is the constructor for the Factory View Class. It is used to initialize the components of the GUI.
      */
     public FactoryView() {
         this.btnPanel = new JPanel();
@@ -208,8 +314,6 @@ public class FactoryView {
         setPickVMPanel();
         setBuyFromVmPanel();
         setDoMaintenancePanel();
-        setSelectWalletPanel();
-        setShowCurrentWalletPanel();
         //Do Maintenance Panels
         setRestockPanel();
         setChangePricePanel();
@@ -251,6 +355,9 @@ public class FactoryView {
         this.mainProgramBtnList = new ArrayList<JButton>();
     }
 
+    /**
+     * This method is used to set the back Buttons for the Factory View Class.
+     */
     public void setBackButtons(){
         this.backBtn1 = new JButton("Back"); this.backBtn2 = new JButton("Back"); this.backBtn3 = new JButton("Back");
         this.backBtn4 = new JButton("Back"); this.backBtn5 = new JButton("Back"); this.backBtn6 = new JButton("Back");
@@ -488,6 +595,9 @@ public class FactoryView {
         });
     }
 
+    /**
+     * This method sets the buttons for the GUI and adds panels to the main panel, card layout.
+     */
     public void setButtons(){
 
         //Main Menu Buttons
@@ -516,8 +626,6 @@ public class FactoryView {
         cardPanel.add(pickVMPanel, "Pick Vending Machine");
         cardPanel.add(buyFromVmPanel, "Buy from Vending Machine");
         cardPanel.add(doMaintenancePanel, "Do Maintenance");
-        cardPanel.add(selectWalletPanel, "Select Wallet");
-        cardPanel.add(showCurrentWalletPanel, "Show Current Wallet");
 
         //Do Maintenance Panels
 
@@ -552,10 +660,6 @@ public class FactoryView {
         mainProgramBtnList.add(buyFromVmBtn);
         this.doMaintenanceBtn = new JButton("Do Maintenance");
         mainProgramBtnList.add(doMaintenanceBtn);
-        this.selectWalletBtn = new JButton("Select Wallet");
-        mainProgramBtnList.add(selectWalletBtn);
-        this.showCurrentWalletBtn = new JButton("Show Current Wallet");
-        mainProgramBtnList.add(showCurrentWalletBtn);
         for (JButton button: mainProgramBtnList){
             button.setBackground(Color.getHSBColor(173, 216, 230));//Light Blue
             button.setVerticalTextPosition(SwingConstants.CENTER);
@@ -593,20 +697,31 @@ public class FactoryView {
         }
     }
 
+    /**
+     * This method sets the Start Program Panel.
+     */
     public void setStartProgramPanel(){
         this.startProgramPanel = new JPanel(cardLayout);
-        startProgramPanel.setLayout(new GridLayout(5, 1));
+        startProgramPanel.setLayout(new GridLayout(3, 1));
         startProgramPanel.add(backBtn1);
         startProgramPanel.setBackground(Color.pink);
     }
 
+    /**
+     * This method sets the Customize Vending Machine Panel.
+     */
     public void setCustomizeVMPanel(){
         this.customizeVMPanel = new JPanel(cardLayout);
         customizeVMPanel.setLayout(new GridLayout(4,1));
         customizeVMPanel.setBackground(Color.red);
         customizeVMPanel.add(backBtn2);
     }
+
     //Main Program Panels
+
+    /**
+     * This method sets the Buy from Vending Machine Panel.
+     */
     public void setBuyFromVmPanel(){
         this.buyFromVmPanel = new JPanel(cardLayout);
         buyFromVmPanel.setLayout(null);
@@ -652,6 +767,9 @@ public class FactoryView {
         jcomp16.setBounds (360, 245, 100, 25);
     }
 
+    /**
+     * This method sets the Pick Vending Machine Panel.
+     */
     public void setPickVMPanel(){
         this.pickVMPanel = new JPanel(cardLayout);
         pickVMPanel.setLayout(new FlowLayout());
@@ -670,6 +788,10 @@ public class FactoryView {
         pickVMPanel.add(pickVMBtn);
         pickVMPanel.add(backBtn13);
     }
+
+    /**
+     * This method sets the Do Maintenance Panel.
+     */
     public void setDoMaintenancePanel(){
         this.doMaintenancePanel = new JPanel(cardLayout);
         doMaintenancePanel.setLayout(new GridLayout(10,1));
@@ -696,6 +818,10 @@ public class FactoryView {
     }
 
     //Do Maintenance Panels
+
+    /**
+     * This method sets the Restock Panel.
+     */
     public void setRestockPanel(){
         this.restockPanel = new JPanel(cardLayout);
         restockPanel.setLayout(new FlowLayout());
@@ -721,6 +847,9 @@ public class FactoryView {
         restockPanel.add(backBtn17);
     }
 
+    /**
+     * This method sets the Change Price Panel.
+     */
     public void setChangePricePanel(){
         this.changePricePanel = new JPanel(cardLayout);
         changePricePanel.setLayout(new GridLayout(5,1));
@@ -737,6 +866,10 @@ public class FactoryView {
     }
 
     //Change Price Panels
+
+    /**
+     * This method sets the Edit Price Panel.
+     */
     public void setEditPricePanel(){
         this.editPricePanel = new JPanel(cardLayout);
         editPricePanel.setLayout(new FlowLayout());
@@ -758,6 +891,9 @@ public class FactoryView {
         editPricePanel.add(backBtn28);
     }
 
+    /**
+     * This method sets the Set to SRP Panel.
+     */
     public void setSetToSRPPanel(){
         this.setToSRPPanel = new JPanel(cardLayout);
         setToSRPPanel.setLayout(new FlowLayout());
@@ -772,10 +908,16 @@ public class FactoryView {
         setToSRPPanel.add(backBtn29);
     }
 
+    /**
+     * This method sets the Set All to SRP Panel.
+     */
     public void setSetAllToSRPPanel(){
         this.setAllToSRPPanel = new JPanel(cardLayout);
     }
 
+    /**
+     * This method sets the Display Slots Panel.
+     */
     public void setDisplaySlotsPanel(){
         this.displaySlotsPanel = new JPanel(cardLayout);
         displaySlotsPanel.setLayout(new FlowLayout());
@@ -787,11 +929,18 @@ public class FactoryView {
         displaySlotsPanel.add(backBtn30);
     }
     //Do maintenance panels
+
+    /**
+     * This method sets the Collect Money Panel.
+     */
     public void setCollectMoneyPanel(){
         this.collectMoneyPanel = new JPanel(cardLayout);
         collectMoneyPanel.add(backBtn19);
     }
 
+    /**
+     * This method sets the Replenish Change Panel.
+     */
     public void setReplenishChangePanel(){
         this.replenishChangePanel = new JPanel(cardLayout);
         replenishChangePanel.setLayout(new FlowLayout());
@@ -814,6 +963,9 @@ public class FactoryView {
         replenishChangePanel.add(backBtn20);
     }
 
+    /**
+     * This method sets the Show Item Slots Panel.
+     */
     public void setShowItemSlotsPanel(){
         this.showItemSlotsPanel = new JPanel(cardLayout);
         showItemSlotsPanel.setLayout(new FlowLayout());
@@ -824,6 +976,10 @@ public class FactoryView {
         this.showItemSlotsPanel.add(scrollPane);
         this.showItemSlotsPanel.add(backBtn21);
     }
+
+    /**
+     * This method sets the Show Item Stocks Panel.
+     */
     public void setShowItemStocksPanel(){
         this.showItemStocksPanel = new JPanel(cardLayout);
         showItemStocksPanel.setLayout(new FlowLayout());
@@ -835,6 +991,9 @@ public class FactoryView {
         this.showItemStocksPanel.add(backBtn22);
     }
 
+    /**
+     * This method sets the Display Inventories Panel.
+     */
     public void setDisplayInventoriesPanel(){
         this.displayInventoriesPanel = new JPanel(cardLayout);
         displayInventoriesPanel.setLayout(new FlowLayout());
@@ -846,6 +1005,9 @@ public class FactoryView {
         this.displayInventoriesPanel.add(backBtn23);
     }
 
+    /**
+     * This method sets the Display Transactions Panel.
+     */
     public void setDisplayTransactionsPanel(){
         this.displayTransactionsPanel = new JPanel(cardLayout);
         displayTransactionsPanel.setLayout(new FlowLayout());
@@ -857,6 +1019,9 @@ public class FactoryView {
         this.displayTransactionsPanel.add(backBtn24);
     }
 
+    /**
+     * This method sets the Display Money Panel.
+     */
     public void setDisplayMoneyPanel(){
         this.displayMoneyPanel = new JPanel(cardLayout);
         displayMoneyPanel.setLayout(new FlowLayout());
@@ -868,41 +1033,11 @@ public class FactoryView {
         this.displayMoneyPanel.add(backBtn25);
     }
 
-    //Main program panels again
-    public void setSelectWalletPanel(){
-        this.selectWalletPanel = new JPanel(cardLayout);
-        selectWalletPanel.setLayout(new FlowLayout());
-        this.walletTa = new JTextArea();
-        walletTa.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(walletTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setPreferredSize(new Dimension(300, 200));
-        this.selectWalletPanel.add(scrollPane);
-        this.pickWalletBtn = new JButton("Pick Wallet");
-        this.pickWalletLbl = new JLabel("Pick Wallet: ");
-        this.pickWalletLbl.setHorizontalAlignment(SwingConstants.CENTER);
-        this.pickWalletTf = new JTextField(10);
-        this.pickWalletTf.setHorizontalAlignment(SwingConstants.CENTER);
-        selectWalletPanel.add(pickWalletLbl);
-        selectWalletPanel.add(pickWalletTf);
-        selectWalletPanel.add(pickWalletBtn);
-        selectWalletPanel.add(backBtn14, BorderLayout.SOUTH);
-        selectWalletPanel.setBackground(Color.orange);
-    }
-
-    public void setShowCurrentWalletPanel(){
-        this.showCurrentWalletPanel = new JPanel(cardLayout);
-        showCurrentWalletPanel.setLayout(new FlowLayout());
-        this.currentWalletTa = new JTextArea();
-        currentWalletTa.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(itemsTa, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollPane.setPreferredSize(new Dimension(300, 300));
-        this.showCurrentWalletPanel.add(scrollPane);
-        this.showCurrentWalletPanel.add(backBtn12);
-        showCurrentWalletPanel.setBackground(Color.pink);
-    }
-
     //Customize Vending Machine Panels
 
+    /**
+     * This method sets the Create Vending Machine Panel.
+     */
     public void setCreateVMPanel(){
         this.createVMPanel = new JPanel(cardLayout);
         createVMPanel.setLayout(new GridBagLayout());
@@ -925,6 +1060,9 @@ public class FactoryView {
         gbc.gridx = 1; gbc.gridy = 3; createVMPanel.add(backBtn9, gbc);
     }
 
+    /**
+     * This method sets the Show Details Panel.
+     */
     public void setShowDetailsPanel(){
         this.showDetailsPanel = new JPanel(cardLayout);
         this.detailsTa = new JTextArea();
@@ -934,18 +1072,21 @@ public class FactoryView {
         scrollPane.setPreferredSize(new Dimension(300, 200));
         this.showDetailsPanel.add(scrollPane);
         this.pickBtn = new JButton("Pick");
-        this.pickVmLbl = new JLabel("Pick Vending Machine:");
-        this.pickVmLbl.setHorizontalAlignment(SwingConstants.CENTER);
-        this.pickVmTf = new JTextField();
-        this.pickVmTf.setHorizontalAlignment(SwingConstants.CENTER);
-        this.pickVmTf.setColumns(10);
-        this.showDetailsPanel.add(pickVmLbl);
-        this.showDetailsPanel.add(pickVmTf);
+        this.pickVendingMachineLbl = new JLabel("Pick Vending Machine:");
+        this.pickVendingMachineLbl.setHorizontalAlignment(SwingConstants.CENTER);
+        this.pickVmTf2 = new JTextField();
+        this.pickVmTf2.setHorizontalAlignment(SwingConstants.CENTER);
+        this.pickVmTf2.setColumns(10);
+        this.showDetailsPanel.add(pickVendingMachineLbl);
+        this.showDetailsPanel.add(pickVmTf2);
         this.showDetailsPanel.add(pickBtn);
         this.showDetailsPanel.add(backBtn10, BorderLayout.SOUTH);
         showDetailsPanel.setBackground(Color.pink);
     }
 
+    /**
+     * This method sets the Show Vending Machine Panel.
+     */
     public void setShowVMPanel(){
         this.showVMPanel = new JPanel(cardLayout);
         this.showVMTa = new JTextArea();
@@ -958,6 +1099,9 @@ public class FactoryView {
         showVMPanel.setBackground(Color.orange);
     }
 
+    /**
+     * This method sets the Customize Stocks Panel.
+     */
     public void setCustomizeStocksPanel(){
         this.customizeStocksPanel = new JPanel(cardLayout);
         customizeStocksPanel.setLayout(new GridLayout(4,1));
@@ -966,6 +1110,10 @@ public class FactoryView {
     }
 
     //Customize Item Panels
+
+    /**
+     * This method sets the Create Item Panel.
+     */
     public void setCreateItemsPanel(){
         this.createItemPanel = new JPanel(cardLayout);
         createItemPanel.setLayout(new GridBagLayout());
@@ -984,6 +1132,9 @@ public class FactoryView {
         createItemPanel.setBackground(Color.getHSBColor(21, 79, 94));
     }
 
+    /**
+     * This method sets the Add Items Panel.
+     */
     public void setAddItemsPanel(){
         this.addItemPanel = new JPanel(cardLayout);
         addItemPanel.setLayout(new FlowLayout());
@@ -1009,6 +1160,9 @@ public class FactoryView {
         addItemPanel.setBackground(Color.getHSBColor(10,9, 94));
     }
 
+    /**
+     * This method sets the Show Items Panel.
+     */
     public void setShowItemsPanel(){
         this.showItemsPanel = new JPanel(cardLayout);
         showItemsPanel.setLayout(new FlowLayout());
@@ -1020,69 +1174,204 @@ public class FactoryView {
         this.showItemsPanel.add(backBtn8);
         showItemsPanel.setBackground(Color.getHSBColor(100,9, 94));
     }
-    public void hideButtons(ArrayList<JButton> buttons){
-        for (JButton button : buttons){
-            button.setVisible(false);
-        }
-    }
 
-    public void showButtons(ArrayList<JButton> buttons){
-        for (JButton button : buttons){
-            button.setVisible(true);
-        }
-    }
-
+    /**
+     * This method clears all text areas.
+     */
     public void clearAllTextAreas(){
-        this.jcomp14.setText(""); this.editPriceTa.setText(""); this.restockTa.setText(""); this.displaySlotsTa.setText("");
+        this.jcomp4.setText(""); this.editPriceTa.setText(""); this.restockTa.setText(""); this.displaySlotsTa.setText("");
         this.setToSRPTa.setText(""); this.itemStocksTa.setText(""); this.inventoriesTa.setText(""); this.transactionsTa.setText("");
         this.moneyTa.setText(""); this.itemSlotsTa.setText(""); this.replenishChangeTa.setText(""); this.showItemsTa.setText("");
-        this.walletTa.setText(""); this.detailsTa.setText(""); this.showVMTa.setText(""); this.vmTa.setText(""); this.itemsTa.setText("");
-        this.currentWalletTa.setText("");
+        this.detailsTa.setText(""); this.showVMTa.setText(""); this.vmTa.setText(""); this.itemsTa.setText("");
     }
 
     //Setters for Main Menu Buttons
+
+    /**
+     * This method sets the Start Program Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setStartProgramBtn(ActionListener actionListener){this.startProgramBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Customize Vending Machine Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setCustomizeVMBtnListener(ActionListener actionListener){this.customizeVmBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Customize Stocks Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setCustomizeStocksBtnListener(ActionListener actionListener){this.customizeStocksBtn.addActionListener(actionListener);}
 
     //Setters for Main Program Buttons
+
+    /**
+     * This method sets the Pick Vending Machine Button on what to do when pressed .
+     * @param actionListener, is to be overdriven.
+     */
     public void setPickVMBtnListener(ActionListener actionListener){this.pickVMBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Buy From Vending Machine Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setBuyFromVmBtnListener(ActionListener actionListener){this.buyFromVmBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Do Maintenance Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setDoMaintenanceBtnListener(ActionListener actionListener){this.doMaintenanceBtn.addActionListener(actionListener);}
 
-    public void setSelectWalletBtnListener(ActionListener actionListener){this.selectWalletBtn.addActionListener(actionListener);}
-    public void setShowCurrentWalletBtnListener(ActionListener actionListener){this.showCurrentWalletBtn.addActionListener(actionListener);}
-
     //Setters for Do Maintenance Buttons
+
+    /**
+     * This method sets the Set Restock Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setRestockBtnListener(ActionListener actionListener){this.restockBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Set to Change Price Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setChangePriceBtnListener(ActionListener actionListener){this.changePriceBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Collect Money Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setCollectMoneyBtnListener(ActionListener actionListener){this.collectMoneyBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Replenish Change Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setReplenishChangeBtnListener(ActionListener actionListener){this.replenishChangeBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Show Item Slots Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setShowItemSlotsBtnListener(ActionListener actionListener){this.showItemSlotsBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Show Item Stocks Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setShowItemStocksBtnListener(ActionListener actionListener){this.showItemStocksBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Display Inventories Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setDisplayInventoriesBtnListener(ActionListener actionListener){this.displayInventoriesBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Display Transactions Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setDisplayTransactionsBtnListener(ActionListener actionListener){this.displayTransactionsBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Display Money Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setDisplayMoneyBtnListener(ActionListener actionListener){this.displayMoneyBtn.addActionListener(actionListener);}
 
     //Setter for Change Price Buttons
 
+    /**
+     * This method sets the Edit Price Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setEditPriceBtnListener(ActionListener actionListener){this.editPricebtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Set to SRP Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setSetToSRPBtnListener(ActionListener actionListener){this.setToSRPbtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Set All to SRP Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setSetAllToSRPBtnListener(ActionListener actionListener){this.setAllToSRPbtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Display Slots Button on what to do when pressed.
+     * @param actionListener
+     */
     public void setDisplaySlotsBtnListener(ActionListener actionListener){this.displaySlotsbtn.addActionListener(actionListener);}
     //Setter for Vending Machine Buttons
+
+    /**
+     * This method sets the Create Vending Machine Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setCreateVMBtnListener(ActionListener actionListener){this.createVMBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Create Vending Machine Button2 on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setCreateVMBtn2Listener(ActionListener actionListener){this.createVMBtn2.addActionListener(actionListener);}
+    /**
+     * This method sets the Show Details Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setShowDetailsBtnListener(ActionListener actionListener){this.showDetailsBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Pick Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
+    public void setPickBtnListener(ActionListener actionListener){this.pickBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Show Vending Machine Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setShowVMBtnListener(ActionListener actionListener){this.showVMBtn.addActionListener(actionListener);}
 
     //Setter for Item Stock Buttons
 
+    /**
+     * This method sets the Create Item Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setCreateItemBtnListener(ActionListener actionListener){this.createItemBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Create Stock Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setCreateStockBtnListener(ActionListener actionListener){this.createStockBtn.addActionListener(actionListener);}
 
+    /**
+     * This method sets the Select Item to Add Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setSelectItemtoAddBtnListener(ActionListener actionListener){this.selectItemtoAddBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Add Item Button2 on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setAddItemBtn2Listener(ActionListener actionListener){this.addItemBtn2.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Add Item Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setAddItemBtnListener(ActionListener actionListener){this.addItemBtn.addActionListener(actionListener);}
+
+    /**
+     * This method sets the Show Items Button on what to do when pressed.
+     * @param actionListener, is to be overdriven.
+     */
     public void setShowItemsBtnListener(ActionListener actionListener){this.showItemBtn.addActionListener(actionListener);}
 }
