@@ -197,7 +197,7 @@ public class VendingMachine {
      * This method gets the name of the item on the slot.
      *
      * @param slot the slot number given
-     * @return the name of the item on the slot.
+     * @return the name of the item on the slot, null if item does not exist on the slot.
      */
     public String getSlotItemName(int slot) {
         String name = null;
