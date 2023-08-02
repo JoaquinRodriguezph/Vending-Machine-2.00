@@ -65,6 +65,10 @@ public class FactoryController {
                 for (String string: comboBox){
                     factoryView.getJcomp11().addItem(string);
                 }
+                factoryView.hideBuysilog();
+                if (isSVM){
+                    factoryView.showBuysilog();
+                }
             }
         });
 

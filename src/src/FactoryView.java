@@ -1607,11 +1607,11 @@ public class FactoryView {
         Add.setBounds (220, 240, 100, 25);
         Selected_Items.setBounds (345, 5, 230, 225);
     }
-    private void hideBuysilog(){
+    public void hideBuysilog(){
         jcomp15.setVisible(false);
     }
 
-    private void showBuysilog(){
+    public void showBuysilog(){
         jcomp15.setVisible(true);
     }
     private JFrame mainFrame;
